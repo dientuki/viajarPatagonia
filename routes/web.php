@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['namespace' => 'Admin',
+              'prefix' => 'admin',
+              'middleware' => ['auth',],
+              'as' => 'admin::'], function() {
+
+    //Dashboard
+    Route::get('dashboard.html', ['uses' => 'ShowDashboard', 'as' => 'dashboard']);
+});
