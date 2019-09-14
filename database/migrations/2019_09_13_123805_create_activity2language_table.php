@@ -19,8 +19,8 @@ class CreateActivity2languageTable extends Migration
             $table->collation = 'utf8_unicode_ci';
 
             $table->smallIncrements('id');
-            $table->tinyInteger('fk_activity');
-            $table->smallInteger('fk_language');
+            $table->tinyInteger('fk_activity')->unsigned();
+            $table->smallInteger('fk_language')->unsigned();
 
             $table->foreign('fk_activity')->references('id')->on('activities');
         });
