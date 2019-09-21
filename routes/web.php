@@ -26,6 +26,6 @@ Route::group(['namespace' => 'Admin',
 });
 
 Auth::routes(['register' => false]);
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
