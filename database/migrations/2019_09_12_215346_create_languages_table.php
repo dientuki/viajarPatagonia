@@ -19,8 +19,8 @@ class CreateLanguagesTable extends Migration
             $table->collation = 'utf8_unicode_ci';
 
             $table->tinyIncrements('id');
-            $table->string('name');
-            $table->string('iso', 2);
+            $table->string('language');
+            $table->string('iso', 2)->comment('ISO 639-1 code');
         });
     }
 

@@ -12,7 +12,12 @@ class DestinationsTableSeeder extends Seeder
     public function run()
     {
         DB::table('destinations')->insert([
-            'name' => 'El Calafate'
+            'destination' => 'El Calafate',
+            'fk_region' => 1
         ]);
+        DB::table('destinations')->insert([
+            'destination' => 'Chile Chico',
+            'fk_region' => 2
+        ]);        
     }
 }
