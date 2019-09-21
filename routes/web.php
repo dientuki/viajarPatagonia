@@ -25,19 +25,7 @@ Route::group(['namespace' => 'Admin',
     Route::get('dashboard.html', ['uses' => 'ShowDashboard', 'as' => 'dashboard']);
 });
 
-// Login
-Route::group(['prefix' => 'user',
-              'middleware' => ['web'],
-              'as' => 'user::'], function() {
+Auth::routes(['register' => false]);
+Auth::routes();
 
-    // Login Routes...
-    Route::get('login.html', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
-    Route::post('login.html', ['as' => 'login.post', 'uses' => 'Auth\LoginController@login']);
-    Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
-
-    // Password Reset Routes...
-    Route::get('password/reset.html', ['as' => 'password.reset', 'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm']);
-    Route::post('password/email', ['as' => 'password.email', 'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail']);
-    Route::get('password/reset/{token}', ['as' => 'password.reset.token', 'uses' => 'Auth\ResetPasswordController@showResetForm']);
-    Route::post('password/reset', ['as' => 'password.reset.post', 'uses' => 'Auth\ResetPasswordController@reset']);
-});
+Route::get('/home', 'HomeController@index')->name('home');

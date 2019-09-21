@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductTypesTable extends Migration
+class CreateCruiseshipsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,17 @@ class CreateProductTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_types', function (Blueprint $table) {
+        Schema::create('cruiseships', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
 
-            $table->tinyIncrements('id');
-            $table->string('name');
+            $table->smallIncrements('id');
+            $table->string('map');
+            $table->boolean('is_active')->default(false);
+            $table->tinyInteger('fk_cruiseships_type')->unsigned();
+
+            $table->foreign('fk_cruiseships_type')->references('id')->on('cruiseships_types');
         });
     }
 
@@ -30,6 +34,6 @@ class CreateProductTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_types');
+        Schema::dropIfExists('cruiseships');
     }
 }

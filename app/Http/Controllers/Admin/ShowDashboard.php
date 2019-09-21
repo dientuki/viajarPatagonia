@@ -15,6 +15,6 @@ class ShowDashboard extends Controller
      */
     public function __invoke(Request $request)
     {
-        //
+        return view('welcome');
     }
 }

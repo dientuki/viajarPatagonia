@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateActivity2languageTable extends Migration
+class CreateLanguagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateActivity2languageTable extends Migration
      */
     public function up()
     {
-        Schema::create('activity2language', function (Blueprint $table) {
+        Schema::create('languages', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
 
-            $table->smallIncrements('id');
-            $table->tinyInteger('fk_activity')->unsigned();
-            $table->smallInteger('fk_language')->unsigned();
-
-            $table->foreign('fk_activity')->references('id')->on('activities');
+            $table->tinyIncrements('id');
+            $table->string('name');
+            $table->string('iso', 2);
         });
     }
 
@@ -33,6 +31,6 @@ class CreateActivity2languageTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activity2language');
+        Schema::dropIfExists('languages');
     }
 }

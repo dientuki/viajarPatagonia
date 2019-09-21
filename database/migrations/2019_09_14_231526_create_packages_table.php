@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRegionsTable extends Migration
+class CreatePackagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,16 @@ class CreateRegionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('regions', function (Blueprint $table) {
+        Schema::create('packages', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
 
-            $table->tinyIncrements('id');
-            $table->string('name');
+            $table->smallIncrements('id');
+            $table->mediumInteger('price_peso')->unsigned();
+            $table->mediumInteger('price_dolar')->unsigned();
+            $table->string('map');
+            $table->boolean('is_active')->default(false);
         });
     }
 
@@ -30,6 +33,6 @@ class CreateRegionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('regions');
+        Schema::dropIfExists('packages');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateActivitiesEsTable extends Migration
+class CreatePackage2excursionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,17 @@ class CreateActivitiesEsTable extends Migration
      */
     public function up()
     {
-        Schema::create('activities_es', function (Blueprint $table) {
+        Schema::create('package2excursion', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
 
             $table->smallIncrements('id');
-            $table->string('name');
+            $table->smallInteger('fk_package')->unsigned();
+            $table->smallInteger('fk_excursion')->unsigned();
+
+            $table->foreign('fk_package')->references('id')->on('packages');
+            $table->foreign('fk_excursion')->references('id')->on('excursions');
         });
     }
 
@@ -30,6 +34,6 @@ class CreateActivitiesEsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activities_es');
+        Schema::dropIfExists('package2excursion');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateActivitiesEnTable extends Migration
+class CreateExcursionstypesTranslationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,18 @@ class CreateActivitiesEnTable extends Migration
      */
     public function up()
     {
-        Schema::create('activities_en', function (Blueprint $table) {
+        Schema::create('excursions_types_translation', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
 
             $table->smallIncrements('id');
-            $table->string('name');
+            $table->tinyInteger('fk_language')->unsigned();
+            $table->tinyInteger('fk_excursion_type')->unsigned();
+            $table->string('type');
+
+            $table->foreign('fk_language')->references('id')->on('languages');
+            $table->foreign('fk_excursion_type')->references('id')->on('excursions_types');
         });
     }
 
@@ -30,6 +35,6 @@ class CreateActivitiesEnTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activities_en');
+        Schema::dropIfExists('excursions_types_translation');
     }
 }
