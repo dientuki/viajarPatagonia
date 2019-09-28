@@ -12,7 +12,7 @@ plugins.push(
 if (process.env.NODE_ENV == 'development') {
   plugins.push(
     new StyleLintPlugin({
-        configFile : "stylelint-dev.json",
+        configFile : "stylelint.json",
         sintax : 'scss',
         files : 'resources/sass/**/*.scss',
       }),
