@@ -11,5 +11,5 @@ module.exports = {
         fonts: path.resolve(baseDir, "resources", "fonts"),
         images: path.resolve(baseDir, "resources", "images")
     },
-    publicPath: '../',
+    publicPath: '',
 }
