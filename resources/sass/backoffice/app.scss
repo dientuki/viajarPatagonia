@@ -1,8 +1,33 @@
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+@font-face {
+  font-family: Roboto-regular;
+  src: url("../../fonts/Roboto-Regular.woff2") format("woff2"),
+    url("../../fonts/Roboto-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 // Variables
 @import "../variables";
 
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
+
+.vertical-nav {
+  min-width: 17rem;
+  width: 17rem;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: (3em/$fs) (3em/$fs) (10em/$fs) rgba(0, 0, 0, .1);
+  // transition: all .4s;
+}
+
+.page-content {
+  width: calc(100% - 17rem);
+  margin-left: 17rem;
+  // transition: all .4s;
+}
