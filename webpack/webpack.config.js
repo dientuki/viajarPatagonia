@@ -1,6 +1,5 @@
 const paths = require("./paths");
 console.log(`Mode: ${process.env.NODE_ENV}`);
-console.log('Paths:', paths);
 
 const entries = require('./entries');
 const output = require('./output');
