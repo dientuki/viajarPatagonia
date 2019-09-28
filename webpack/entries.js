@@ -1,6 +1,6 @@
 // Placeholder for webpack entries.
 const entries = {
-    'adminStyle': './resources/sass/app.scss',
+    'adminStyle': './resources/sass/backoffice/app.scss',
     'adminJs': './resources/js/bootstrap.js'
 };
 
