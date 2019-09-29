@@ -19,13 +19,14 @@ Route::get('/', function () {
 Route::group(['namespace' => 'Admin',
               'prefix' => 'admin',
               'middleware' => ['auth',],
-              'as' => 'admin::'], function() {
+              'as' => 'admin.'], function() {
 
     // Dashboard
     Route::get('dashboard.html', ['uses' => 'ShowDashboard', 'as' => 'dashboard']);
+
+    Route::resource('regions', 'RegionsController');
 });
 
 Auth::routes(['register' => false]);
-//Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
