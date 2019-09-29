@@ -18,13 +18,13 @@ Route::get('/', function () {
 // Admin
 Route::group(['namespace' => 'Admin',
               'prefix' => 'admin',
-              'middleware' => ['auth',],
+              'middleware' => ['auth'],
               'as' => 'admin.'], function() {
 
     // Dashboard
     Route::get('dashboard.html', ['uses' => 'ShowDashboard', 'as' => 'dashboard']);
 
-    Route::resource('regions', 'RegionsController');
+    Route::resource('regions', 'RegionsController')->except(['show']);
 });
 
 Auth::routes(['register' => false]);

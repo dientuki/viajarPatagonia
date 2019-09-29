@@ -15,7 +15,8 @@ class RegionsController extends Controller
      */
     public function index()
     {
-        //
+        $regions = Region::all();
+        return view('admin/regions/index', compact('regions'));
     }
 
     /**
