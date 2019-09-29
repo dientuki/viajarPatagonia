@@ -23,11 +23,40 @@
   top: 0;
   left: 0;
   box-shadow: (3em/$fs) (3em/$fs) (10em/$fs) rgba(0, 0, 0, .1);
-  // transition: all .4s;
+  transition: margin .4s;
+
+  &.active {
+    margin-left: -17rem;
+  }
 }
 
 .page-content {
   width: calc(100% - 17rem);
   margin-left: 17rem;
-  // transition: all .4s;
+  transition: margin .4s, width .4s;
+
+  &.active {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media (max-width: (768em/$fs)) {
+  .vertical-nav {
+    margin-left: -17rem;
+
+    &.active {
+      margin-left: 0;
+    }
+  }
+
+  .page-content {
+    width: 100%;
+    margin: 0;
+
+    &.active {
+      margin-left: 17rem;
+      width: calc(100% - 17rem);
+    }
+  }
 }
