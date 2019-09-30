@@ -18,6 +18,10 @@
                 <td class="column-action">
                     <a href="{{route('admin.regions.edit', $region->id)}}" class="btn btn-primary btn-sm" role="button"
                         title="Editar {{ $region->region }}">Editar</a>
+              {!! Form::open(array('route' => array('admin.regions.destroy', $region->id), 'method' => 'DELETE', 'class' => 'form-inline')) !!}
+                <button type="submit" class="btn btn-danger btn-sm" title="Borrar {{ $region->region }}">
+                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Borrar</button>
+              {!! Form::close() !!}
 
                 </td>
 
@@ -25,6 +29,8 @@
             @endforeach
         </tbody>
     </table>
+
+    <a href="{{route('admin.regions.create')}}">Crear</a>
     @else
     Enhorabuena! No hay usuarios para activar!
     @endif
