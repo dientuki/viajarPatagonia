@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Region;
 use Illuminate\Http\Request;
+use App\Http\Requests\EditRegion;
+use App\Http\Requests\StoreRegion;
 use App\Http\Controllers\Controller;
 
 class RegionsController extends Controller
@@ -26,52 +28,60 @@ class RegionsController extends Controller
      */
     public function create()
     {
-        //
+        $region = new Region();
+        $action = 'create';
+        $form_data = array('route' => 'admin.regions.store', 'method' => 'POST');
+
+        return view('admin/regions/form', compact('action', 'region',  'form_data'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreRegion  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function store(StoreRegion $request)
+    {      
+        $data = $request->validated();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Region  $region
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Region $region)
-    {
-        //
+        $region = Region::create($data);
+
+        return redirect()->route('admin.regions.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Region  $region
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Region $region)
+    public function edit($id)
     {
-        //
+        $region = Region::getEdit($id);
+
+        $action    = 'update';
+        $form_data = array('route' => array('admin.regions.update', $region->id), 'method' => 'PATCH');
+
+        return view('admin/regions/form', compact('action', 'region', 'form_data'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Region  $region
+     * @param  \App\Http\Requests\EditRegion  $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Region $region)
+    public function update(EditRegion $request, $id)
     {
-        //
+        $region = Region::getEdit($id);
+
+        $data = $request->validated();
+
+        $region->fill($data)->save();
+
+        return redirect()->route('admin.regions.index');
     }
 
     /**
@@ -80,8 +90,23 @@ class RegionsController extends Controller
      * @param  \App\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Region $region)
+    public function destroy($id)
     {
-        //
+        if (Region::destroy($id) == 1){
+            $message = 'El Room fue eliminado de nuestros registros';
+        } else {
+            $message = 'El Room NO fue eliminado de nuestros registros';
+        }
+
+
+        if ($request->ajax()) {
+            return response()->json(array(
+                'message' => $message
+            ));
+        }
+
+        //Session::flash('message', $message);
+        return redirect()->route('admin.regions.index');
+
     }
 }
