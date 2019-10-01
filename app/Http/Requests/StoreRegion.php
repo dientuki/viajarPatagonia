@@ -3,9 +3,25 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Prologue\Alerts\Facades\Alert;
 
 class StoreRegion extends FormRequest
 {
+    /**
+     * Configure the validator instance.
+     *
+     * @param  \Illuminate\Validation\Validator  $validator
+     * @return void
+     */
+    public function withValidator($validator)
+    {
+        if ($validator->errors()->any()) {
+            foreach ($validator->errors()->all() as $error) {
+                Alert::error($error . 'por aca')->flash();
+            }
+        }
+    }
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -15,6 +31,7 @@ class StoreRegion extends FormRequest
     {
         return true;
     }
+    
 
     /**
      * Get the validation rules that apply to the request.
