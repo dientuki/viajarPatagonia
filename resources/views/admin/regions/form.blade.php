@@ -2,18 +2,6 @@
 
 @section ('content')
 
-@foreach (Alert::getMessages() as $type => $messages)
-  <div class="alert-wrapper">
-    @foreach ($messages as $message)
-      <div class="alert-animation animated zoomIn">
-        <div class="alert-fix">
-          <div class="alert alert-{{ $type }}"><strong>{{ ucfirst(trans('alerts.' . $type)) }}!</strong> {{ $message }} <span class="alert-close"></span></div>
-        </div>
-      </div>
-    @endforeach
-  </div>
-@endforeach
-
 {!! Form::model($region, array_merge($form_data, array('role' => 'form', 'class' => 'form-horizontal'))) !!}
 
 <div class="form-group {{ $errors->first('region') != null ? 'has-error' : '' }}">
