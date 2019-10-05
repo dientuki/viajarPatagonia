@@ -15,7 +15,7 @@
     @enderror
   </div>
 
-  {!! Form::submit(trans('validation.attributes.' . $action), array('class'=>'btn btn-primary') ) !!}
+  {!! Form::submit(__('buttons.' . $action) . ' region', array('class'=>'btn btn-primary') ) !!}
 
 
 {!! Form::close() !!}
