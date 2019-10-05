@@ -114,8 +114,24 @@ jobs:
           name: Add new version.txt
           command: echo $CIRCLE_TAG-$(git rev-parse --short HEAD) >  ./_version.txt
       - run:
+          name: Remove files
+          command: |
+            rm -rf .circleci
+            rm -rf .env.*
+            rm -rf database
+            rm -rf tests
+            rm -rf webpack
+            rm -rf composer.*
+            rm -rf package.json
+            rm -rf package-lock.json
+            rm -rf phpunit.xml
+            rm -rf postcss.config.js
+            rm -rf stylelint.json
+      - run:
           name: Making build.tar.gz
-          command: tar -zcvf build.tar.gz --exclude .circleci --exclude .env.* --exclude build.tar.gz --exclude-vcs build.tar.gz ./
+          command: |
+            tar -zcvf ../build.tar.gz --exclude-vcs ./
+            mv ../build.tar.gz ./build.tar.gz
       - store_artifacts:
           path: build.tar.gz
       - persist_to_workspace:
