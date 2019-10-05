@@ -96,10 +96,7 @@ jobs:
           command: php artisan config:cache
       - run:
           name: Optimizing Route Loading
-          command: php artisan route:cache
-      - run:
-          name: Optimizing Configuration Loading
-          command: php artisan config:cache                    
+          command: php artisan route:cache                  
       - save_cache:
           key: laravel-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
@@ -160,7 +157,8 @@ workflows:
               only: /.*/                
       - optimize_laravel:
           requires:
-            - install_laravel        
+            - install_laravel
+            - php_checks
           filters:
             tags:
               only: /.*/                   
