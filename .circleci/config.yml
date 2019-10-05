@@ -30,10 +30,10 @@ jobs:
           command: sh scripts/check_output.sh
       - run:
           name: Check git merged files
-          command: sh scripts/check_output.sh 
+          command: sh scripts/check_merge.sh 
       - run:
           name: Check PHP Sintax()
-          command: sh scripts/check_output.sh 
+          command: sh scripts/check_syntax.sh 
 
 workflows:
   version: 2
