@@ -40,21 +40,3 @@ optimization['splitChunks'] = {
   }
 
 module.exports = optimization;
-/*
-    minimizer: [
-      new UglifyJsPlugin({
-        sourceMap: false,
-        uglifyOptions: {
-          output: {beautify: false},
-          compress: {
-            unused: true,
-            dead_code: true,
-            warnings: false
-          },
-          mangle: true
-        }
-      }),
-      new OptimizeCSSAssetsPlugin({})
-    ]
-  }
-  */
