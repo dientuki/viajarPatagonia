@@ -9,11 +9,13 @@ node: &node
   docker:
     - image: circleci/node:10.16.0
 
+ubuntu: &ubuntu
+  - image: circleci/buildpack-deps:18.04    
+
 version: 2
 jobs:
   checkout_code:
-    docker:
-      - image: circleci/buildpack-deps:18.04
+    <<: *ubuntu
     <<: *wd  
     steps:
       - checkout
@@ -64,7 +66,7 @@ jobs:
           name: Building public assets
           command: npm run prod
       - save_cache:
-          key: public-assets-{{ .Environment.CIRCLE_SHA1 }}
+          key: public-assets-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - public/dist
   
@@ -75,8 +77,53 @@ jobs:
       - restore_cache:
           key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
       - run:
-          name: Install Laravel
-          command: composer install                
+          name: Install Laravel with Autoloader Optimization
+          command: composer install --optimize-autoloader --no-dev
+      - save_cache:
+          key: laravel-install-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~vpp      
+
+  optimize_laravel:
+    <<: *php
+    <<: *wd
+    steps:
+      - restore_cache:
+          key: laravel-install-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: Optimizing Configuration Loading
+          command: php artisan config:cache
+      - run:
+          name: Optimizing Route Loading
+          command: php artisan route:cache
+      - run:
+          name: Optimizing Configuration Loading
+          command: php artisan config:cache                    
+      - save_cache:
+          key: laravel-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~vpp              
+
+  build_targz:
+    <<: *wd
+    <<: *ubuntu
+    steps:
+      - restore_cache:
+          key: laravel-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: public-assets-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: Add new version.txt
+          command: echo $CIRCLE_TAG-$(git rev-parse --short HEAD) >  ./_version.txt
+      - run:
+          name: Making build.tar.gz
+          command: tar -zcvf build.tar.gz --exclude .circleci --exclude .env.* --exclude build.tar.gz --exclude-vcs build.tar.gz ./
+      - store_artifacts:
+          path: build.tar.gz
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - build.tar.gz            
 
 workflows:
   version: 2
@@ -110,3 +157,16 @@ workflows:
           filters:
             tags:
               only: /.*/                
+      - optimize_laravel:
+          requires:
+            - install_laravel        
+          filters:
+            tags:
+              only: /.*/                   
+      - build_targz:
+          requires:
+            - optimize_laravel
+            - build_webpack     
+          filters:
+            tags:
+              only: /.*/    
