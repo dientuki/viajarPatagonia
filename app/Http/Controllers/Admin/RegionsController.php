@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\EditRegion;
 use App\Http\Requests\StoreRegion;
 use App\Http\Controllers\Controller;
+use Prologue\Alerts\Facades\Alert;
 
 class RegionsController extends Controller
 {
@@ -31,7 +32,7 @@ class RegionsController extends Controller
         $region = new Region();
         $action = 'create';
         $form_data = array('route' => 'admin.regions.store', 'method' => 'POST');
-
+        
         return view('admin/regions/form', compact('action', 'region',  'form_data'));
     }
 
