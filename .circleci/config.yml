@@ -1,0 +1,216 @@
+wd: &wd
+  working_directory: ~/vpp
+
+php: &php
+  docker:
+    - image: circleci/php:7.2.19-cli
+
+node: &node
+  docker:
+    - image: circleci/node:10.16.0
+
+ubuntu: &ubuntu
+  docker:
+    - image: circleci/buildpack-deps:18.04    
+
+version: 2
+jobs:
+  checkout_code:
+    <<: *ubuntu
+    <<: *wd  
+    steps:
+      - checkout
+      - save_cache:
+          key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/vpp
+
+  php_checks:
+    <<: *wd
+    <<: *php
+    steps:
+      - restore_cache:
+          key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: Check terminate scripts commands, and logs commands
+          command: sh scripts/check_output.sh
+      - run:
+          name: Check git merged files
+          command: sh scripts/check_merge.sh 
+      - run:
+          name: Check PHP Sintax()
+          command: sh scripts/check_syntax.sh
+
+  install_webpack:
+      <<: *node
+      <<: *wd
+      steps:
+        - restore_cache:
+            key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+        - run:
+            name: Node as tooling install
+            command: npm install
+        - save_cache:
+            key: dependency-cache-node-{{ checksum "package.json" }}
+            paths:
+              - node_modules
+
+  build_webpack:
+    <<: *node
+    <<: *wd
+    steps:
+      - restore_cache:
+          key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}      
+      - restore_cache:
+          key: dependency-cache-node-{{ checksum "package.json" }}
+      - run:
+          name: Building public assets
+          command: npm run prod
+      - save_cache:
+          key: public-assets-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - public/dist
+  
+  install_laravel:
+    <<: *php
+    <<: *wd
+    steps:
+      - restore_cache:
+          key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: Install Laravel with Autoloader Optimization
+          command: composer install --optimize-autoloader --no-dev
+      - save_cache:
+          key: laravel-install-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ./      
+
+  optimize_laravel:
+    <<: *php
+    <<: *wd
+    steps:
+      - restore_cache:
+          key: laravel-install-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: Optimizing Configuration Loading
+          command: php artisan config:cache
+      - run:
+          name: Optimizing Route Loading
+          command: php artisan route:cache                  
+      - save_cache:
+          key: laravel-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ./              
+
+  build_targz:
+    <<: *wd
+    <<: *ubuntu
+    steps:
+      - restore_cache:
+          key: laravel-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: public-assets-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: Add new version.txt
+          command: echo $CIRCLE_TAG-$(git rev-parse --short HEAD) >  ./_version.txt
+      - run:
+          name: Remove files
+          command: |
+            rm -rf .circleci
+            rm -rf .env.*
+            rm -rf database
+            rm -rf tests
+            rm -rf webpack
+            rm -rf composer.*
+            rm -rf package.json
+            rm -rf package-lock.json
+            rm -rf phpunit.xml
+            rm -rf postcss.config.js
+            rm -rf stylelint.json
+            rm -rf scripts            
+      - run:
+          name: Making build.tar.gz
+          command: |
+            tar -zcvf ../build.tar.gz --exclude-vcs ./
+            mv ../build.tar.gz ./build.tar.gz
+      - store_artifacts:
+          path: build.tar.gz
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - build.tar.gz
+
+  release:
+    <<: *wd
+    <<: *ubuntu
+    steps:
+      - attach_workspace:
+          at: ./
+      - run:
+          name: Publish assets to Github
+          command: |
+            wget https://github.com/tcnksm/ghr/releases/download/v0.13.0/ghr_v0.13.0_linux_amd64.tar.gz
+            tar -xvzf ghr_v0.13.0_linux_amd64.tar.gz ghr_v0.13.0_linux_amd64/ghr
+            mv ghr_v0.13.0_linux_amd64/ghr ghr
+            ./ghr -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME $CIRCLE_TAG build.tar.gz
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - checkout_code:
+          filters:
+            tags:
+              only: /.*/
+      - php_checks:
+          requires:
+            - checkout_code        
+          filters:
+            tags:
+              only: /.*/              
+      - install_webpack:
+          requires:
+            - checkout_code        
+          filters:
+            tags:
+              only: /.*/
+      - build_webpack:
+          requires:
+            - install_webpack        
+          filters:
+            tags:
+              only: /.*/                 
+      - install_laravel:
+          requires:
+            - checkout_code        
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/          
+      - optimize_laravel:
+          requires:
+            - install_laravel
+            - php_checks
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/            
+      - build_targz:
+          requires:
+            - optimize_laravel
+            - build_webpack     
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/ 
+      - release:
+          requires:
+            - build_targz   
+          filters:              
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/          
