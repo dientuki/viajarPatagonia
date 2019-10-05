@@ -4,7 +4,7 @@ wd: &wd
 
 php: &php
   docker:
-    - image: circleci/php:7.2.19
+    - image: circleci/php:7.2.19-cli
 
 version: 2
 jobs:
@@ -29,17 +29,17 @@ jobs:
           name: Check terminate scripts commands, and logs commands
           command: |
             chmod +x scripts/check_output.sh
-            scripts/check_ouput.sh
+            sh scripts/check_output.sh
       - run:
           name: Check git merged files
           command: |
             chmod +x scripts/check_merge.sh
-            scripts/check_merge.sh
+            sh scripts/check_output.sh 
       - run:
           name: Check PHP Sintax()
           command: |
             chmod +x scripts/check_syntax.sh
-            scripts/check_syntax.sh
+            sh scripts/check_output.sh 
 
 workflows:
   version: 2
