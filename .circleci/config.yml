@@ -2,6 +2,10 @@
 wd: &wd
   working_directory: ~/vpp
 
+php: &php
+  docker:
+    - image: circleci/php:7.2.0-cli
+
 version: 2
 jobs:
   checkout_code:
@@ -10,6 +14,32 @@ jobs:
     <<: *wd  
     steps:
       - checkout
+      - save_cache:
+          key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/vpp
+
+  php_checks:
+    <<: *wd
+    <<: *php
+    steps:
+      - restore_cache:
+          key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: Check terminate scripts commands, and logs commands
+          command: |
+            chmod +x scripts/check_output.sh
+            scripts/check_ouput.sh
+      - run:
+          name: Check git merged files
+          command: |
+            chmod +x scripts/check_merge.sh
+            scripts/check_merge.sh
+      - run:
+          name: Check PHP Sintax()
+          command: |
+            chmod +x scripts/check_syntax.sh
+            scripts/check_syntax.sh
 
 workflows:
   version: 2
@@ -19,3 +49,9 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - php_checks:
+          requires:
+            - checkout_code        
+          filters:
+            tags:
+              only: /.*/              
