@@ -17,7 +17,7 @@ class StoreRegion extends FormRequest
     {
         if ($validator->errors()->any()) {
             foreach ($validator->errors()->all() as $error) {
-                Alert::error($error . 'por aca')->flash();
+                Alert::error($error)->flash();
             }
         }
     }
