@@ -1,4 +1,3 @@
-
 wd: &wd
   working_directory: ~/vpp
 
@@ -54,8 +53,8 @@ jobs:
               - node_modules
 
   build_webpack:
-      <<: *node
-      <<: *wd
+    <<: *node
+    <<: *wd
     steps:
       - restore_cache:
           key: dependency-cache-node-{{ checksum "package.json" }}
@@ -68,14 +67,14 @@ jobs:
             - public/dist
   
   install_laravel:
-      <<: *php
-      <<: *wd
-      steps:
-        - restore_cache:
-            key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
-        - run:
-            name: Install Laravel
-            command: composer install                
+    <<: *php
+    <<: *wd
+    steps:
+      - restore_cache:
+          key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: Install Laravel
+          command: composer install                
 
 workflows:
   version: 2
