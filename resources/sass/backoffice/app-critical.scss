@@ -1,9 +1,11 @@
 // Variables
 @import "../variables";
 
+$sidebar: (270rem/$fs);
+
 .vertical-nav {
-  min-width: 17rem;
-  width: 17rem;
+  min-width: $sidebar;
+  width: $sidebar;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -12,13 +14,13 @@
   transition: margin .4s;
 
   &.active {
-    margin-left: -17rem;
+    margin-left: $sidebar*-1;
   }
 }
 
 .page-content {
-  width: calc(100% - 17rem);
-  margin-left: 17rem;
+  width: calc(100% - #{sidebar});
+  margin-left: $sidebar;
   transition: margin .4s, width .4s;
 
   &.active {
@@ -29,7 +31,7 @@
 
 @media (max-width: (768em/$fs)) {
   .vertical-nav {
-    margin-left: -17rem;
+    margin-left: $sidebar*-1;
 
     &.active {
       margin-left: 0;
@@ -41,8 +43,8 @@
     margin: 0;
 
     &.active {
-      margin-left: 17rem;
-      width: calc(100% - 17rem);
+      margin-left: $sidebar;
+      width: calc(100% - #{sidebar});
     }
   }
 }
