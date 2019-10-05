@@ -83,7 +83,7 @@ jobs:
       - save_cache:
           key: laravel-install-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-            - ~vpp      
+            - ./      
 
   optimize_laravel:
     <<: *php
@@ -103,7 +103,7 @@ jobs:
       - save_cache:
           key: laravel-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-            - ~vpp              
+            - ./              
 
   build_targz:
     <<: *wd
