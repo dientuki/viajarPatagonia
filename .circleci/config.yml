@@ -127,6 +127,7 @@ jobs:
             rm -rf phpunit.xml
             rm -rf postcss.config.js
             rm -rf stylelint.json
+            rm -rf scripts            
       - run:
           name: Making build.tar.gz
           command: |
