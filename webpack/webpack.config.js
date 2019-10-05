@@ -16,5 +16,8 @@ module.exports = {
         rules: rules
     },
     plugins: plugins,
-    optimization: optimization
+    optimization: optimization,
+    performance: {
+        hints: false
+    }
 }

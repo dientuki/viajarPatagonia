@@ -19,7 +19,7 @@ $sidebar: (270rem/$fs);
 }
 
 .page-content {
-  width: calc(100% - #{sidebar});
+  width: calc(100% - #{$sidebar});
   margin-left: $sidebar;
   transition: margin .4s, width .4s;
 
@@ -44,7 +44,7 @@ $sidebar: (270rem/$fs);
 
     &.active {
       margin-left: $sidebar;
-      width: calc(100% - #{sidebar});
+      width: calc(100% - #{$sidebar});
     }
   }
 }
