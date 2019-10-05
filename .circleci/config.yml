@@ -6,6 +6,10 @@ php: &php
   docker:
     - image: circleci/php:7.2.19-cli
 
+node: &node
+  docker:
+    - image: circleci/node:10.16.0
+
 version: 2
 jobs:
   checkout_code:
@@ -33,7 +37,45 @@ jobs:
           command: sh scripts/check_merge.sh 
       - run:
           name: Check PHP Sintax()
-          command: sh scripts/check_syntax.sh 
+          command: sh scripts/check_syntax.sh
+
+  install_webpack:
+      <<: *node
+      <<: *wd
+      steps:
+        - restore_cache:
+            key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+        - run:
+            name: Node as tooling install
+            command: npm install
+        - save_cache:
+            key: dependency-cache-node-{{ checksum "package.json" }}
+            paths:
+              - node_modules
+
+  build_webpack:
+      <<: *node
+      <<: *wd
+    steps:
+      - restore_cache:
+          key: dependency-cache-node-{{ checksum "package.json" }}
+      - run:
+          name: Building public assets
+          command: npm run prod
+      - save_cache:
+          key: public-assets-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - public/dist
+  
+  install_laravel:
+      <<: *php
+      <<: *wd
+      steps:
+        - restore_cache:
+            key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+        - run:
+            name: Install Laravel
+            command: composer install                
 
 workflows:
   version: 2
@@ -49,3 +91,21 @@ workflows:
           filters:
             tags:
               only: /.*/              
+      - install_webpack:
+          requires:
+            - checkout_code        
+          filters:
+            tags:
+              only: /.*/
+      - build_webpack:
+          requires:
+            - install_webpack        
+          filters:
+            tags:
+              only: /.*/                 
+      - install_laravel:
+          requires:
+            - checkout_code        
+          filters:
+            tags:
+              only: /.*/                
