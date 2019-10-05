@@ -137,7 +137,21 @@ jobs:
       - persist_to_workspace:
           root: ./
           paths:
-            - build.tar.gz            
+            - build.tar.gz
+
+  release:
+    <<: *wd
+    <<: *ubuntu
+    steps:
+      - attach_workspace:
+          at: ./
+      - run:
+          name: Publish assets to Github
+          command: |
+            wget https://github.com/tcnksm/ghr/releases/download/v0.13.0/ghr_v0.13.0_linux_amd64.tar.gz
+            tar -xvzf ghr_v0.13.0_linux_amd64.tar.gz ghr_v0.13.0_linux_amd64/ghr
+            mv ghr_v0.13.0_linux_amd64/ghr ghr
+            ./ghr -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME $CIRCLE_TAG build.tar.gz
 
 workflows:
   version: 2
@@ -170,18 +184,31 @@ workflows:
             - checkout_code        
           filters:
             tags:
-              only: /.*/                
+              only: /^v.*/
+            branches:
+              ignore: /.*/          
       - optimize_laravel:
           requires:
             - install_laravel
             - php_checks
           filters:
             tags:
-              only: /.*/                   
+              only: /^v.*/
+            branches:
+              ignore: /.*/            
       - build_targz:
           requires:
             - optimize_laravel
             - build_webpack     
           filters:
             tags:
-              only: /.*/    
+              only: /^v.*/
+            branches:
+              ignore: /.*/ 
+      - release:
+          requires:
+            - build_targz     
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/          
