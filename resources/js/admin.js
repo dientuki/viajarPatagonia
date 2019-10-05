@@ -5,3 +5,11 @@ import 'jquery';
 //import 'popper.js';
 
 toogleNav();
+
+/*
+$('.modalDelete').on('shown.bs.modal', function () {
+    //$('#myInput').trigger('focus')
+  })
+  */
+
+ $('.modalDelete').modal()
