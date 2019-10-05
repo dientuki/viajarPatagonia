@@ -207,7 +207,8 @@ workflows:
               ignore: /.*/ 
       - release:
           requires:
-            - build_targz     
+            - build_targz   
+          filters:              
             tags:
               only: /^v.*/
             branches:
