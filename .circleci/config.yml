@@ -10,7 +10,8 @@ node: &node
     - image: circleci/node:10.16.0
 
 ubuntu: &ubuntu
-  - image: circleci/buildpack-deps:18.04    
+  docker:
+    - image: circleci/buildpack-deps:18.04    
 
 version: 2
 jobs:
