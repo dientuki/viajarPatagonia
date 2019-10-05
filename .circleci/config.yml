@@ -57,6 +57,8 @@ jobs:
     <<: *wd
     steps:
       - restore_cache:
+          key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}      
+      - restore_cache:
           key: dependency-cache-node-{{ checksum "package.json" }}
       - run:
           name: Building public assets
