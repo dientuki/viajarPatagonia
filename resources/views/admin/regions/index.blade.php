@@ -19,7 +19,7 @@
                 <div class="row">
                 <a href="{{route('admin.regions.edit', $region->id)}}" class="btn btn-primary col" title="{{__('buttons.edit')}} {{ $region->region }}">{{__('buttons.edit')}}</a>
                 
-                {!! Form::open(array('route' => array('admin.regions.destroy', $region->id), 'method' => 'DELETE', 'class' => 'col modalOpener id-' . $region->id, 'data-id' => $region->id)) !!}
+                {!! Form::open(array('route' => array('admin.regions.destroy', $region->id), 'method' => 'DELETE', 'class' => 'col modalOpener', 'id' => 'id-' . $region->id)) !!}
                 <button id="button-{{ $region->id }}" type="submit" class="btn btn-danger modalDelete"
                     title="{{__('buttons.delete')}} {{ $region->region }}">
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
