@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Prologue\Alerts\Facades\Alert;
 
-class StoreRegion extends FormRequest
+class StoreDestination extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,20 @@ class StoreRegion extends FormRequest
     public function rules()
     {
         return [
-            'region' => 'required'
+            'destination' => 'required',
+            'fk_region' => 'required|numeric|exists:regions,id'
         ];
     }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'fk_region' => 'region',
+        ];
+    }    
 }

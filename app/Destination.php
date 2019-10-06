@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Region extends Model
+class Destination extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'regions';
+    protected $table = 'destinations';
 
     /**
      * Indicates if the model should be timestamped.
@@ -25,15 +25,24 @@ class Region extends Model
      *
      * @var array
      */
-    protected $fillable = ['region'];    
+    protected $fillable = ['destination', 'fk_region'];    
 
     static function getLists() {
-      return Region::orderBy('region')->pluck('region', 'id');
-    }  
+      //return Region::orderBy('region')->lists('region', 'id');
+    }
+
+    static public function getAll(){
+      $destinations = Destination::select('destinations.id', 'destinations.destination', 'regions.region')
+          ->join('regions', 'regions.id', '=', 'destinations.fk_region')
+          ->orderBy('regions.region')->orderBy('destinations.destination');
+  
+      return $destinations->get();
+    }
+  
 
     static function getEdit($id){
 
-        $result = Region::select('id', 'region')
+        $result = Destination::select('id', 'destination', 'fk_region')
             ->where('id', $id)
             ->get()->first();
     
