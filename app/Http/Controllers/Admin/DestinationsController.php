@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Admin;
 use Exception;
 use App\Region;
 use App\Destination;
-//use App\Http\Requests\EditRegion;
-use App\Http\Requests\StoreDestination;
 use Illuminate\Http\Request;
 use Prologue\Alerts\Facades\Alert;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EditDestination;
+use App\Http\Requests\StoreDestination;
 use Illuminate\Database\QueryException;
 
 class DestinationsController extends Controller
@@ -69,17 +69,19 @@ class DestinationsController extends Controller
         $action    = 'update';
         $form_data = array('route' => array('admin.destinations.update', $destination->id), 'method' => 'PATCH');
 
-        return view('admin/destinations/form', compact('action', 'destination', 'form_data'));
+        $regions = Region::getLists();
+
+        return view('admin/destinations/form', compact('action', 'destination', 'form_data', 'regions'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\EditRegion  $request
+     * @param  \App\Http\Requests\EditDestination  $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EditRegion $request, $id)
+    public function update(EditDestination $request, $id)
     {
         $destination = Destination::getEdit($id);
 
