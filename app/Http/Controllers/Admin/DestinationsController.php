@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use Exception;
+use App\Region;
 use App\Destination;
-use Illuminate\Http\Request;
 //use App\Http\Requests\EditRegion;
 //use App\Http\Requests\StoreRegion;
+use Illuminate\Http\Request;
 use Prologue\Alerts\Facades\Alert;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\QueryException;
@@ -34,8 +35,10 @@ class DestinationsController extends Controller
         $destination = new Destination();
         $action = 'create';
         $form_data = array('route' => 'admin.destinations.store', 'method' => 'POST');
+
+        $regions = Region::getLists();
         
-        return view('admin/destinations/form', compact('action', 'region',  'form_data'));
+        return view('admin/destinations/form', compact('action', 'destination',  'form_data', 'regions'));
     }
 
     /**
@@ -66,7 +69,7 @@ class DestinationsController extends Controller
         $action    = 'update';
         $form_data = array('route' => array('admin.destinations.update', $destination->id), 'method' => 'PATCH');
 
-        return view('admin/destinations/form', compact('action', 'region', 'form_data'));
+        return view('admin/destinations/form', compact('action', 'destination', 'form_data'));
     }
 
     /**
