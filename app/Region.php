@@ -27,6 +27,10 @@ class Region extends Model
      */
     protected $fillable = ['region'];    
 
+    static function getLists() {
+      return Region::orderBy('region')->lists('region', 'id');
+    }  
+
     static function getEdit($id){
 
         $result = Region::select('id', 'region')
