@@ -30,6 +30,7 @@ Route::group(['namespace' => 'Admin',
 
     Route::resource('regions', 'RegionsController')->except(['show']);
     Route::resource('destinations', 'DestinationsController')->except(['show']);
+    Route::resource('currencies', 'CurrenciesController')->except(['show']);
 });
 
 Auth::routes(['register' => false]);
