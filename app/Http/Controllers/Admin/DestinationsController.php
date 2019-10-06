@@ -6,7 +6,7 @@ use Exception;
 use App\Region;
 use App\Destination;
 //use App\Http\Requests\EditRegion;
-//use App\Http\Requests\StoreRegion;
+use App\Http\Requests\StoreDestination;
 use Illuminate\Http\Request;
 use Prologue\Alerts\Facades\Alert;
 use App\Http\Controllers\Controller;
@@ -44,10 +44,10 @@ class DestinationsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreRegion  $request
+     * @param  \App\Http\Requests\StoreDestination  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRegion $request)
+    public function store(StoreDestination $request)
     {      
         $data = $request->validated();
 

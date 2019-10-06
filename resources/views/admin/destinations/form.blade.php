@@ -16,10 +16,10 @@
   </div>
 
   <div class="form-group">
-    <?php $class = $errors->has('region') != null ? 'form-control is-invalid' : 'form-control'; ?>
-    {!! Form::label('region', 'Region') !!}
+    <?php $class = $errors->has('fk_region') != null ? 'form-control is-invalid' : 'form-control'; ?>
+    {!! Form::label('fk_region', 'Region') !!}
     {!! Form::select('fk_region', $regions, $destination->fk_region, array('placeholder' => 'Seleccione una region...', 'required' => true, 'class' => $class) ) !!}
-    @error('region')
+    @error('fk_region')
       <div class="invalid-feedback">
         <strong>{{ $message }}</strong>
       </div>
