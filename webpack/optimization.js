@@ -1,6 +1,5 @@
 const optimization = {};
 const minimizer = [];
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 optimization['splitChunks'] = {
     chunks: 'all',
@@ -11,7 +10,28 @@ optimization['splitChunks'] = {
   };
 
   if (process.env.NODE_ENV == 'production') {
+    const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+    const TerserPlugin = require('terser-webpack-plugin');
+
     optimization['minimize'] = true;
+
+    minimizer.push(
+      new TerserPlugin({
+        sourceMap: false,
+        terserOptions: {
+          ecma: 6,
+          output: {beautify: false},
+          compress: {
+            unused: true,
+            dead_code: true
+          },
+          warnings: false,
+          mangle: true,
+          ie8: false,
+          safari10: false
+        }
+      })
+    );
     
     minimizer.push(new OptimizeCSSAssetsPlugin({}));
     
@@ -20,21 +40,3 @@ optimization['splitChunks'] = {
   }
 
 module.exports = optimization;
-/*
-    minimizer: [
-      new UglifyJsPlugin({
-        sourceMap: false,
-        uglifyOptions: {
-          output: {beautify: false},
-          compress: {
-            unused: true,
-            dead_code: true,
-            warnings: false
-          },
-          mangle: true
-        }
-      }),
-      new OptimizeCSSAssetsPlugin({})
-    ]
-  }
-  */

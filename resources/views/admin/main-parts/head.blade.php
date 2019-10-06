@@ -15,4 +15,5 @@
 <link rel="preload" href="{{ load_resource('Roboto-Regular.woff') }}" as="font" type="font/woff" crossorigin>
 
 <!-- Styles -->
+<style>{{ load_critical_css('adminCritical.css') }}</style>
 <link href="{{ load_resource('adminStyle.css') }}" rel="preload" as="style" onload="this.rel = 'stylesheet'" >

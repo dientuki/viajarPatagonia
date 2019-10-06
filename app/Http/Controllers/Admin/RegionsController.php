@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Exception;
 use App\Region;
 use Illuminate\Http\Request;
 use App\Http\Requests\EditRegion;
 use App\Http\Requests\StoreRegion;
-use App\Http\Controllers\Controller;
 use Prologue\Alerts\Facades\Alert;
+use App\Http\Controllers\Controller;
+use Illuminate\Database\QueryException;
 
 class RegionsController extends Controller
 {
@@ -88,26 +90,20 @@ class RegionsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Region  $region
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        if (Region::destroy($id) == 1){
-            $message = 'El Room fue eliminado de nuestros registros';
-        } else {
-            $message = 'El Room NO fue eliminado de nuestros registros';
-        }
+        $region = Region::findOrFail($id);
 
+        try {
+            $region->delete();
+            Alert::success('Registro eliminado correctamente!')->flash();
+        } catch (Exception $e) {
+            Alert::error('No puedes eliminar el registro!')->flash();
+        }  
 
-        if ($request->ajax()) {
-            return response()->json(array(
-                'message' => $message
-            ));
-        }
-
-        //Session::flash('message', $message);
         return redirect()->route('admin.regions.index');
-
     }
 }

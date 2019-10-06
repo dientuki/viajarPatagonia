@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'previous' => '&laquo; Anterior',
-    'next'     => 'Siguiente &raquo;',
-
+    'create' => 'Crear',
+    'update' => 'Actualizar',
+    'edit' => 'Editar',
+    'delete' => 'Borrar',
 ];

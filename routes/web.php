@@ -23,6 +23,8 @@ Route::group(['namespace' => 'Admin',
               'middleware' => ['auth'],
               'as' => 'admin.'], function() {
 
+    App::setLocale('es');
+
     // Dashboard
     Route::get('dashboard.html', ['uses' => 'ShowDashboard', 'as' => 'dashboard']);
 
