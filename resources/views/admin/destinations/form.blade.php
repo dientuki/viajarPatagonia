@@ -6,7 +6,7 @@
 
   <div class="form-group">
     <?php $class = $errors->has('destination') != null ? 'form-control is-invalid' : 'form-control'; ?>
-    {!! Form::label('destination', 'Destination') !!}
+    {!! Form::label('destination', 'Destino') !!}
     {!! Form::text('destination', null, array('placeholder' => 'Destino', 'class'=>$class, 'required' => true))  !!}
     @error('destination')
       <div class="invalid-feedback">
@@ -18,7 +18,7 @@
   <div class="form-group">
     <?php $class = $errors->has('region') != null ? 'form-control is-invalid' : 'form-control'; ?>
     {!! Form::label('region', 'Region') !!}
-    {!! Form::select('fk_region', $regions, $destination->fk_region, array('required' => true) ) !!}
+    {!! Form::select('fk_region', $regions, $destination->fk_region, array('placeholder' => 'Seleccione una region...', 'required' => true, 'class' => $class) ) !!}
     @error('region')
       <div class="invalid-feedback">
         <strong>{{ $message }}</strong>
