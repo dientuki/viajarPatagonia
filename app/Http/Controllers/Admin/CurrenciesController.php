@@ -6,9 +6,9 @@ use Exception;
 use App\Currency;
 use Illuminate\Http\Request;
 use Prologue\Alerts\Facades\Alert;
+use App\Http\Requests\EditCurrency;
+use App\Http\Requests\StoreCurrency;
 use App\Http\Controllers\Controller;
-//use App\Http\Requests\EditDestination;
-//use App\Http\Requests\StoreDestination;
 
 class CurrenciesController extends Controller
 {
@@ -34,16 +34,16 @@ class CurrenciesController extends Controller
         $action = 'create';
         $form_data = array('route' => 'admin.currencies.store', 'method' => 'POST');
         
-        return view('admin/currencies/form', compact('action', 'destination',  'form_data'));
+        return view('admin/currencies/form', compact('action', 'currency',  'form_data'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreDestination  $request
+     * @param  \App\Http\Requests\StoreCurrency  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDestination $request)
+    public function store(StoreCurrency $request)
     {      
         $data = $request->validated();
 
@@ -65,17 +65,17 @@ class CurrenciesController extends Controller
         $action    = 'update';
         $form_data = array('route' => array('admin.currencies.update', $currency->id), 'method' => 'PATCH');
 
-        return view('admin/currencies/form', compact('action', 'destination', 'form_data'));
+        return view('admin/currencies/form', compact('action', 'currency', 'form_data'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\EditDestination  $request
+     * @param  \App\Http\Requests\EditCurrency  $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EditDestination $request, $id)
+    public function update(EditCurrency $request, $id)
     {
         $currency = Currency::getEdit($id);
 
