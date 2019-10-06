@@ -7,21 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 class EditRegion extends FormRequest
 {
     /**
-     * Configure the validator instance.
-     *
-     * @param  \Illuminate\Validation\Validator  $validator
-     * @return void
-     */
-    public function withValidator($validator)
-    {
-        if ($validator->errors()->any()) {
-            foreach ($validator->errors()->all() as $error) {
-                Alert::error($error)->flash();
-            }
-        }
-    }
-
-    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
