@@ -9,7 +9,6 @@ use App\Http\Requests\EditRegion;
 use App\Http\Requests\StoreRegion;
 use Prologue\Alerts\Facades\Alert;
 use App\Http\Controllers\Controller;
-use Illuminate\Database\QueryException;
 
 class RegionsController extends Controller
 {
