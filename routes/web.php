@@ -29,6 +29,7 @@ Route::group(['namespace' => 'Admin',
     Route::get('dashboard.html', ['uses' => 'ShowDashboard', 'as' => 'dashboard']);
 
     Route::resource('regions', 'RegionsController')->except(['show']);
+    Route::resource('destinations', 'DestinationsController')->except(['show']);
 });
 
 Auth::routes(['register' => false]);
