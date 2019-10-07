@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditCurrency extends FormRequest
+class StoreLanguage extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,8 @@ class EditCurrency extends FormRequest
     public function rules()
     {
         return [
-            'sign' => 'required|max:5',
-            'code' => 'required|max:3',
-            'currency' => 'required',
-            'amount' => 'required|numeric|between:0,99999999.99'            
+            'language' => 'required',
+            'iso' => 'required|max:2',
         ];
     }
 
@@ -40,7 +38,8 @@ class EditCurrency extends FormRequest
     public function attributes()
     {
         return [
-            'currency' => 'moneda',
+            'language' => __('fields.language'),
+            'iso' => __('fields.iso'),
         ];
     }    
 }
