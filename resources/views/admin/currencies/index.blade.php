@@ -7,7 +7,7 @@
     <thead class="thead-dark">
         <tr>
             <th>{{ ucfirst(__('fields.sign')) }}</th>
-            <th>{{ ucfirst(__('fields.code')) }}</th>
+            <th>{{ ucfirst(__('fields.iso')) }}</th>
             <th>{{ ucfirst(__('fields.currency')) }}</th>
             <th>{{ ucfirst(__('fields.amount')) }}</th>
             <th class="column-action">Accion</th>
@@ -17,7 +17,7 @@
         @foreach ($currencies as $currency)
         <tr>
             <td>{{ $currency->sign }}</td>
-            <td>{{ $currency->code }}</td>
+            <td>{{ $currency->iso }}</td>
             <td>{{ $currency->currency }}</td>
             <td>{{ $currency->amount }}</td>
 

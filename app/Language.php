@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Currency extends Model
+class Language extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'currencies';
+    protected $table = 'languages';
 
     /**
      * Indicates if the model should be timestamped.
@@ -25,7 +25,7 @@ class Currency extends Model
      *
      * @var array
      */
-    protected $fillable = ['sign', 'iso', 'currency', 'amount'];    
+    protected $fillable = ['language', 'iso'];    
 
     static function getLists() {
       //return Region::orderBy('region')->pluck('region', 'id');
@@ -33,7 +33,7 @@ class Currency extends Model
 
     static function getEdit($id){
 
-        $result = Currency::select('id', 'sign', 'iso', 'currency', 'amount')
+        $result = Language::select('id', 'language', 'iso')
             ->where('id', $id)
             ->get()->first();
     
