@@ -25,5 +25,9 @@ return [
     'code' => 'código',
     'currency' => 'moneda',
     'amount' => 'cambio',
-    'amount_long' => 'Cambio con respecto al dolar'
+    'amount_long' => 'Cambio con respecto al dolar',
+
+    // Lenguaje
+    'language' => 'lenguaje',
+    'iso' => 'código'
 ];
