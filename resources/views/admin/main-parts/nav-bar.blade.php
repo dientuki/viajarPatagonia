@@ -82,7 +82,7 @@
 
     <ul class="nav flex-column bg-white mb-0">
         <li class="nav-item">
-            <a href="#" class="nav-link text-dark font-italic">
+            <a href="{{route('admin.languages.index')}}" class="nav-link text-dark font-italic">
                 <i class="fa fa-area-chart mr-3 text-primary fa-fw"></i>
                 Lenguajes
             </a>
