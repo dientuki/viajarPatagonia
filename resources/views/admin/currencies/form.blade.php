@@ -48,7 +48,7 @@
     @enderror
   </div>      
 
-  {!! Form::submit(__('buttons.' . $action) . __('fields.currency'), array('class'=>'btn btn-primary') ) !!}
+  {!! Form::submit(__('buttons.' . $action) . ' ' .__('fields.currency'), array('class'=>'btn btn-primary') ) !!}
 
 
 {!! Form::close() !!}
