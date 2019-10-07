@@ -16,10 +16,10 @@
   </div>
   
   <div class="form-group">
-    <?php $class = $errors->has('code') != null ? 'form-control is-invalid' : 'form-control'; ?>
-    {!! Form::label('code', ucfirst(__('fields.code')) . ' ISO 4217') !!}
-    {!! Form::text('code', null, array('placeholder' => ucfirst(__('fields.code')) . ' ISO 4217', 'class'=>$class, 'required' => true, 'maxlength' => 3)) !!}
-    @error('code')
+    <?php $class = $errors->has('iso') != null ? 'form-control is-invalid' : 'form-control'; ?>
+    {!! Form::label('iso', ucfirst(__('fields.iso')) . ' ISO 4217') !!}
+    {!! Form::text('iso', null, array('placeholder' => ucfirst(__('fields.iso')) . ' ISO 4217', 'class'=>$class, 'required' => true, 'maxlength' => 3)) !!}
+    @error('iso')
       <div class="invalid-feedback">
         <strong>{{ $message }}</strong>
       </div>

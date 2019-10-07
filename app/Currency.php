@@ -25,7 +25,7 @@ class Currency extends Model
      *
      * @var array
      */
-    protected $fillable = ['sign', 'code', 'currency', 'amount'];    
+    protected $fillable = ['sign', 'iso', 'currency', 'amount'];    
 
     static function getLists() {
       //return Region::orderBy('region')->pluck('region', 'id');
@@ -33,7 +33,7 @@ class Currency extends Model
 
     static function getEdit($id){
 
-        $result = Currency::select('id', 'sign', 'code', 'currency', 'amount')
+        $result = Currency::select('id', 'sign', 'iso', 'currency', 'amount')
             ->where('id', $id)
             ->get()->first();
     

@@ -20,7 +20,7 @@ class CreateCurrenciesTable extends Migration
 
             $table->tinyIncrements('id');
             $table->string('sign', 5);
-            $table->string('code', 3)->comment('ISO 4217 code');
+            $table->string('iso', 3)->comment('ISO 4217 code');
             $table->string('currency');
             $table->decimal('amount', 8, 2)->comment('Against Dollar');
         });
