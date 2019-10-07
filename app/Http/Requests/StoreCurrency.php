@@ -41,7 +41,10 @@ class StoreCurrency extends FormRequest
     public function attributes()
     {
         return [
-            'currency' => 'moneda',
+            'sign' => __('fields.sign'),
+            'code' => __('fields.code'),
+            'currency' => __('fields.currency'),
+            'amount' => __('fields.amount'),
         ];
     }    
 }

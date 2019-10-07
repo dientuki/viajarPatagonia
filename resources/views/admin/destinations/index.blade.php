@@ -6,8 +6,8 @@
 <table class="table table-striped table-bordered table-hover table-sm">
     <thead class="thead-dark">
         <tr>
-            <th>Destino</th>
-            <th>Region</th>
+            <th>{{ ucfirst(__('fields.destination')) }}</th>
+            <th>{{ ucfirst(__('fields.region')) }}</th>
             <th class="column-action">Accion</th>
         </tr>
     </thead>
@@ -19,7 +19,7 @@
 
             <td class="column-action px-4">
                 <div class="row">
-                <a href="{{route('admin.destinations.edit', $destination->id)}}" class="btn btn-primary col" title="{{__('buttons.edit')}} {{ $destination->region }}">{{__('buttons.edit')}}</a>
+                <a href="{{route('admin.destinations.edit', $destination->id)}}" class="btn btn-primary col" title="{{__('buttons.edit')}} {{ $destination->destination }}">{{__('buttons.edit')}}</a>
                 
                 {!! Form::open(array('route' => array('admin.destinations.destroy', $destination->id), 'method' => 'DELETE', 'class' => 'col modalOpener', 'id' => 'id-' . $destination->id)) !!}
                 <button id="button-{{ $destination->id }}" type="submit" class="btn btn-danger modalDelete"
@@ -36,9 +36,7 @@
 
 @include ('admin/widgets/modal-delete')
 
-<a href="{{route('admin.destinations.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} Region">{{__('buttons.create')}} Destino</a>
-@else
-Enhorabuena! No hay usuarios para activar!
+<a href="{{route('admin.destinations.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(__('fields.destination')) }}">{{__('buttons.create')}} {{ ucfirst(__('fields.destination')) }}</a>
 @endif
 
 @endsection

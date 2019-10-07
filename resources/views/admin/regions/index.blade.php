@@ -6,7 +6,7 @@
 <table class="table table-striped table-bordered table-hover table-sm">
     <thead class="thead-dark">
         <tr>
-            <th>Region</th>
+            <th>{{ ucfirst(__('fields.region')) }}</th>
             <th class="column-action">Accion</th>
         </tr>
     </thead>
@@ -34,9 +34,7 @@
 
 @include ('admin/widgets/modal-delete')
 
-<a href="{{route('admin.regions.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} Region">{{__('buttons.create')}} Region</a>
-@else
-Enhorabuena! No hay usuarios para activar!
+<a href="{{route('admin.regions.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(__('fields.region')) }}">{{__('buttons.create')}} {{ ucfirst(__('fields.region')) }}</a>
 @endif
 
 @endsection

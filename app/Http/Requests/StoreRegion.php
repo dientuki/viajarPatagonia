@@ -29,4 +29,16 @@ class StoreRegion extends FormRequest
             'region' => 'required'
         ];
     }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'fk_region' => __('fields.region'),
+        ];
+    }        
 }

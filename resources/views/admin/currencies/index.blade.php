@@ -6,10 +6,10 @@
 <table class="table table-striped table-bordered table-hover table-sm">
     <thead class="thead-dark">
         <tr>
-            <th>Signo</th>
-            <th>Código</th>
-            <th>Moneda</th>
-            <th>Cambio</th>
+            <th>{{ ucfirst(__('fields.sign')) }}</th>
+            <th>{{ ucfirst(__('fields.code')) }}</th>
+            <th>{{ ucfirst(__('fields.currency')) }}</th>
+            <th>{{ ucfirst(__('fields.amount')) }}</th>
             <th class="column-action">Accion</th>
         </tr>
     </thead>
@@ -40,9 +40,7 @@
 
 @include ('admin/widgets/modal-delete')
 
-<a href="{{route('admin.currencies.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} Moneda">{{__('buttons.create')}} Moneda</a>
-@else
-Enhorabuena! No hay usuarios para activar!
+<a href="{{route('admin.currencies.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(__('fields.currency')) }}">{{__('buttons.create')}} {{ ucfirst(__('fields.currency')) }}</a>
 @endif
 
 @endsection
