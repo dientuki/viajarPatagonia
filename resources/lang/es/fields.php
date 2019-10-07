@@ -23,6 +23,6 @@ return [
     'sign' => 'signo',
     'code' => 'código',
     'currency' => 'moneda',
-    'amount' => 'cambio'            
-
+    'amount' => 'cambio',
+    'amount_long' => 'Cambio con respecto al dolar'
 ];
