@@ -13,19 +13,19 @@ class CurrenciesTableSeeder extends Seeder
     {
         DB::table('currencies')->insert([
             'sign' => 'u$s',
-            'code' => 'USD',
+            'iso' => 'USD',
             'currency' => 'United State dollar',
             'amount' => 1
         ]);
         DB::table('currencies')->insert([
             'sign' => '€',
-            'code' => 'EUR',
+            'iso' => 'EUR',
             'currency' => 'Euro',
             'amount' => .91
         ]);
         DB::table('currencies')->insert([
             'sign' => '$',
-            'code' => 'ARS',
+            'iso' => 'ARS',
             'currency' => 'Peso Argentino',
             'amount' => 59.69
         ]);        
