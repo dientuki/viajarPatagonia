@@ -39,7 +39,7 @@ class EditDestination extends FormRequest
     public function attributes()
     {
         return [
-            'fk_region' => 'region',
+            'fk_region' => __('fields.region'),
         ];
-    }    
+    }      
 }
