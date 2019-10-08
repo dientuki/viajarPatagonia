@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use Exception;
+use App\Language;
 use App\CruiseshipsTypes;
 use Illuminate\Http\Request;
-use App\Http\Requests\EditCruiseshipsTypes;
-use App\Http\Requests\StoreCruiseshipsTypes;
 use Prologue\Alerts\Facades\Alert;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EditCruiseshipsTypes;
+use App\Http\Requests\StoreCruiseshipsTypes;
 
 class CruiseshipsTypesController extends Controller
 {
@@ -20,7 +21,9 @@ class CruiseshipsTypesController extends Controller
     public function index()
     {
         $cruiseshipsTypes = CruiseshipsTypes::getAll();
-        return view('admin/cruiseships-types/index', compact('cruiseshipsTypes'));
+        $languages = Language::getAll();
+
+        return view('admin/cruiseships-types/index', compact('cruiseshipsTypes', 'languages'));
     }
 
     /**
