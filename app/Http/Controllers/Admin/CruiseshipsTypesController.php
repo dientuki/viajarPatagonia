@@ -7,6 +7,7 @@ use App\Language;
 use App\CruiseshipsTypes;
 use Illuminate\Http\Request;
 use Prologue\Alerts\Facades\Alert;
+use App\Translations\CruiseshipsTypesTranslation;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EditCruiseshipsTypes;
 use App\Http\Requests\StoreCruiseshipsTypes;
@@ -36,8 +37,10 @@ class CruiseshipsTypesController extends Controller
         $cruiseshipType = new CruiseshipsTypes();
         $action = 'create';
         $form_data = array('route' => 'admin.cruiseships-types.store', 'method' => 'POST');
+
+        $languages = Language::getAll();
         
-        return view('admin/cruiseships-types/form', compact('action', 'cruiseshipType',  'form_data'));
+        return view('admin/cruiseships-types/form', compact('action', 'cruiseshipType',  'form_data', 'languages'));
     }
 
     /**
@@ -50,7 +53,19 @@ class CruiseshipsTypesController extends Controller
     {      
         $data = $request->validated();
 
-        $cruiseshipType = CruiseshipsTypes::create($data);
+        $cruiseshipType = CruiseshipsTypes::create();
+
+        $languages = Language::getAll();
+
+        foreach ($languages as $language) {
+            if (isset($data['language_' . $language->id]) && isset($data['fklanguage_' . $language->id])) {
+                CruiseshipsTypesTranslation::create([
+                    'fk_language' => $data['fklanguage_' . $language->id],
+                    'fk_cruiseships_type' => $cruiseshipType->id,
+                    'type' => $data['language_' . $language->id]
+                ]);
+            }
+        }        
 
         return redirect()->route('admin.cruiseships-types.index');
     }
@@ -67,8 +82,9 @@ class CruiseshipsTypesController extends Controller
 
         $action    = 'update';
         $form_data = array('route' => array('admin.cruiseships-types.update', $cruiseshipType->id), 'method' => 'PATCH');
+        $languages = Language::getAll();
 
-        return view('admin/cruiseships-types/form', compact('action', 'cruiseshipType', 'form_data'));
+        return view('admin/cruiseships-types/form', compact('action', 'cruiseshipType', 'form_data', 'languages'));
     }
 
     /**

@@ -50,24 +50,30 @@ class CruiseshipsTypes extends Model
 
     static function getEdit($id){
 
-        $cruiseshipsTypes = CruiseshipsTypes::select('cruiseships_types.id', 'cruiseships_types_translation.type', 'languages.iso')
-          ->join('cruiseships_types_translation', 'cruiseships_types.id', '=', 'cruiseships_types_translation.fk_cruiseships_type')
-          ->join('languages', 'languages.id', '=', 'cruiseships_types_translation.fk_language')
-          ->where('id', $id)
-          ->get()->first();
-    
-        if (is_array($id)) {
-          if (count($result) == count(array_unique($id))) {
-            return $result;
-          }
-        } elseif (! is_null($result)) {
+      $cruiseshipsTypes = CruiseshipsTypes::select('cruiseships_types.id');
+      $languages = Language::getAll();
+
+      foreach ($languages as $language) {
+        $cruiseshipsTypes->addSelect("ct$language->id.type as type$language->id", "l$language->id.iso as iso$language->id")
+          ->join("cruiseships_types_translation as ct$language->id", 'cruiseships_types.id', '=', "ct$language->id.fk_cruiseships_type")
+          ->join("languages as l$language->id", "l$language->id.id", '=', "ct$language->id.fk_language")
+          ->where("l$language->id.iso", $language->iso);
+      }
+
+      $result = $cruiseshipsTypes->where('cruiseships_types.id', $id)->get()->first();
+  
+      if (is_array($id)) {
+        if (count($result) == count(array_unique($id))) {
           return $result;
         }
-    
-        //Laravel 4 fallback
-        return abort(404);
-    
-        //throw (new ModelNotFoundException)->setModel(get_class($this->model));
+      } elseif (! is_null($result)) {
+        return $result;
       }
+  
+      //Laravel 4 fallback
+      return abort(404);
+  
+      //throw (new ModelNotFoundException)->setModel(get_class($this->model));
+    }
     
 }

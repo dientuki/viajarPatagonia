@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Translations;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,30 +25,10 @@ class CruiseshipsTypesTranslation extends Model
      *
      * @var array
      */
-    //protected $fillable = ['region'];    
+    protected $fillable = ['fk_language', 'fk_cruiseships_type', 'type'];    
 
     static function getLists() {
       //return Region::orderBy('region')->pluck('region', 'id');
     }  
-
-    static function getEdit($id){
-
-        $result = CruiseshipsTypes::select('id')
-            ->where('id', $id)
-            ->get()->first();
-    
-        if (is_array($id)) {
-          if (count($result) == count(array_unique($id))) {
-            return $result;
-          }
-        } elseif (! is_null($result)) {
-          return $result;
-        }
-    
-        //Laravel 4 fallback
-        return abort(404);
-    
-        //throw (new ModelNotFoundException)->setModel(get_class($this->model));
-      }
     
 }
