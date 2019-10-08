@@ -29,5 +29,8 @@ return [
 
     // Lenguaje
     'language' => 'lenguaje',
-    'iso' => 'código'
+    'iso' => 'código',
+
+    // Tipo de cruceros
+    'cruiseshipType' => 'tipo de crucero'
 ];
