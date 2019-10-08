@@ -6,29 +6,29 @@
 <table class="table table-striped table-bordered table-hover table-sm">
     <thead class="thead-dark">
         <tr>
-        <th colspan="3">Tipo de crucero</th>
+        <th colspan="{{count($languages)}}">{{ ucfirst(__('fields.cruiseshipType')) }}</th>
         <th class="column-action" rowspan="2">Accion</th>
         </tr>
         <tr>
-        <th>a</th>
-        <th>b</th>
-        <th>c</th>
+        @foreach ($languages as $language)
+            <th>{{$language->language}}</th>
+        @endforeach
         </tr>        
     </thead>
     <tbody>
         @foreach ($cruiseshipsTypes as $cruiseshipType)
         <tr>
-            <td>{{$cruiseshipType->type}}</td>
-            <td>{{$cruiseshipType->iso}}</td>
-            <td>s</td>
+            @foreach ($languages as $language)
+                <td>{{$cruiseshipType['type' . $language->id]}}</td>
+            @endforeach
 
             <td class="column-action px-4">
                 <div class="row">
-                <a href="{{route('admin.cruiseships-types.edit', $cruiseshipType->id)}}" class="btn btn-primary col" title="{{__('buttons.edit')}} {{ $cruiseshipType->id }}">{{__('buttons.edit')}}</a>
+                <a href="{{route('admin.cruiseships-types.edit', $cruiseshipType->id)}}" class="btn btn-primary col" title="{{__('buttons.edit')}} {{ $cruiseshipType['type' . $languages[0]->id] }}">{{__('buttons.edit')}}</a>
                 
                 {!! Form::open(array('route' => array('admin.cruiseships-types.destroy', $cruiseshipType->id), 'method' => 'DELETE', 'class' => 'col modalOpener', 'id' => 'id-' . $cruiseshipType->id)) !!}
                 <button id="button-{{ $cruiseshipType->id }}" type="submit" class="btn btn-danger modalDelete"
-                    title="{{__('buttons.delete')}} {{ $cruiseshipType->region }}">
+                    title="{{__('buttons.delete')}} {{ $cruiseshipType['type' . $languages[0]->id] }}">
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     {{__('buttons.delete') }}</button>
                 {!! Form::close() !!}
@@ -41,7 +41,7 @@
 
 @include ('admin/widgets/modal-delete')
 
-<a href="{{route('admin.cruiseships-types.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(__('fields.region')) }}">{{__('buttons.create')}} {{ ucfirst(__('fields.region')) }}</a>
+<a href="{{route('admin.cruiseships-types.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(__('fields.cruiseshipType')) }}">{{__('buttons.create')}} {{ ucfirst(__('fields.cruiseshipType')) }}</a>
 @endif
 
 @endsection
