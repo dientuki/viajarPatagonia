@@ -100,7 +100,22 @@ class CruiseshipsTypesController extends Controller
 
         $data = $request->validated();
 
-        $cruiseshipType->fill($data)->save();
+        $languages = Language::getAll();
+
+        foreach ($languages as $language) {
+            if (isset($data['language_' . $language->id]) && isset($data['fklanguage_' . $language->id])) {
+
+                $where = [];
+                $where[] = ['fk_language', $data['fklanguage_' . $language->id]];
+                $where[] = ['fk_cruiseships_type', $id];
+
+                $cruiseshipTypeTranslation = CruiseshipsTypesTranslation::getEdit($where);
+
+                $cruiseshipTypeTranslation->fill([
+                    'type' => $data['language_' . $language->id]
+                ])->save();
+            }
+        }  
 
         return redirect()->route('admin.cruiseships-types.index');
     }

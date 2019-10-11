@@ -29,6 +29,31 @@ class CruiseshipsTypesTranslation extends Model
 
     static function getLists() {
       //return Region::orderBy('region')->pluck('region', 'id');
-    }  
+    }
+
+    static function getEdit($where){
+
+      $result = CruiseshipsTypesTranslation::select('id', 'fk_language', 'fk_cruiseships_type', 'type');
+
+      if (is_array($where)) {
+        $result->where($where);
+      } else {
+        $result->where('id', $id);
+      }
     
+      return $result->get()->first();
+  /*
+      if (is_array($id)) {
+        if (count($result) == count(array_unique($id))) {
+          return $result;
+        }
+      } elseif (! is_null($result)) {
+        return $result;
+      }
+  */
+      //Laravel 4 fallback
+      return abort(404);
+  
+      //throw (new ModelNotFoundException)->setModel(get_class($this->model));
+    }    
 }
