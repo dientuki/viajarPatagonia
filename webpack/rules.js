@@ -6,27 +6,35 @@ const names = process.env.NODE_ENV == 'development' ? '[name]-[hash].[ext]' : '[
 
 /* javascripts */
 rules.push({
-    test: /\.js$/,
-    exclude: /(node_modules|dist|js)/,
-    use: {
-      loader: 'babel-loader',
-      options: {
-        presets: ['@babel/preset-env', { modules: false }],
-        cacheDirectory: true
-      }
+  test: /\.js$/,
+  exclude: /(node_modules|dist|js)/,
+  use: {
+    loader: 'babel-loader',
+    options: {
+      cacheDirectory: true
     }
-  });
+  }
+});
+
+/* jsx */  
+rules.push({
+  test: /\.jsx$/,
+  exclude: /(node_modules)/,
+  use: {
+    loader: 'babel-loader',   
+  }
+});  
 
 /* styles */
 rules.push({
-    test: /\.scss$/,
-    use: [
-      MiniCssExtractPlugin.loader,
-      {loader: 'css-loader', options: { importLoaders: 1 }},
-      'postcss-loader',
-      {loader: 'sass-loader', options: {precision: 2}}
-    ],
-  });
+  test: /\.scss$/,
+  use: [
+    MiniCssExtractPlugin.loader,
+    {loader: 'css-loader', options: { importLoaders: 1 }},
+    'postcss-loader',
+    {loader: 'sass-loader', options: {precision: 2}}
+  ],
+});
 
 /* images */
 rules.push({
