@@ -61,7 +61,7 @@ class CruiseshipsTypesController extends Controller
             if (isset($data['language_' . $language->id]) && isset($data['fk_language_' . $language->id])) {
                 CruiseshipsTypesTranslation::create([
                     'fk_language' => $data['fk_language_' . $language->id],
-                    'fk_cruiseships_type' => $cruiseshipType->id,
+                    'fk_cruiseship_type' => $cruiseshipType->id,
                     'type' => $data['language_' . $language->id]
                 ]);
             }
@@ -107,7 +107,7 @@ class CruiseshipsTypesController extends Controller
 
                 $where = [];
                 $where[] = ['fk_language', $data['fk_language_' . $language->id]];
-                $where[] = ['fk_cruiseships_type', $id];
+                $where[] = ['fk_cruiseship_type', $id];
 
                 $cruiseshipTypeTranslation = CruiseshipsTypesTranslation::getEdit($where);
 
@@ -131,7 +131,7 @@ class CruiseshipsTypesController extends Controller
         $cruiseshipType = CruiseshipsTypes::findOrFail($id);
 
         try {
-            CruiseshipsTypesTranslation::where('fk_cruiseships_type', $id)->delete();
+            CruiseshipsTypesTranslation::where('fk_cruiseship_type', $id)->delete();
             $cruiseshipType->delete();
             Alert::success('Registro eliminado correctamente!')->flash();
         } catch (Exception $e) {

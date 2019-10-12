@@ -21,9 +21,9 @@ class CreateCruiseshipsTable extends Migration
             $table->smallIncrements('id');
             $table->string('map');
             $table->boolean('is_active')->default(false);
-            $table->tinyInteger('fk_cruiseships_type')->unsigned();
+            $table->tinyInteger('fk_cruiseship_type')->unsigned();
 
-            $table->foreign('fk_cruiseships_type')->references('id')->on('cruiseships_types');
+            $table->foreign('fk_cruiseship_type')->references('id')->on('cruiseships_types');
         });
     }
 
