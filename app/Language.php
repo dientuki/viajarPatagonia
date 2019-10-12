@@ -29,7 +29,11 @@ class Language extends Model
 
     static function getLists() {
       //return Region::orderBy('region')->pluck('region', 'id');
-    }  
+    } 
+    
+    static function getAll() {
+      return Language::select('id', 'language', 'iso')->orderBy('id')->get();
+    }
 
     static function getEdit($id){
 

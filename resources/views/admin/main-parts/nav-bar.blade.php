@@ -47,7 +47,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link text-dark font-italic">
+            <a href="{{route('admin.cruiseships-types.index')}}" class="nav-link text-dark font-italic">
                 <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
                 Tipos de cruceros
             </a>
