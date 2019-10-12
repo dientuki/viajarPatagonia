@@ -41,7 +41,7 @@
 
     <ul class="nav flex-column bg-white mb-0">
         <li class="nav-item">
-            <a href="#" class="nav-link text-dark font-italic bg-light">
+            <a href="{{route('admin.cruiseships.index')}}" class="nav-link text-dark font-italic bg-light">
                 <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
                 Cruceros
             </a>
