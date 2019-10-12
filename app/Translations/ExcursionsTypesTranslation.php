@@ -4,14 +4,14 @@ namespace App\Translations;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CruiseshipsTypesTranslation extends Model
+class ExcursionsTypesTranslation extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'cruiseships_types_translation';
+    protected $table = 'excursions_types_translation';
 
     /**
      * Indicates if the model should be timestamped.
@@ -25,7 +25,7 @@ class CruiseshipsTypesTranslation extends Model
      *
      * @var array
      */
-    protected $fillable = ['fk_language', 'fk_cruiseship_type', 'type'];    
+    protected $fillable = ['fk_language', 'fk_excursion_type', 'type'];    
 
     static function getLists() {
       //return Region::orderBy('region')->pluck('region', 'id');
@@ -33,7 +33,7 @@ class CruiseshipsTypesTranslation extends Model
 
     static function getEdit($where){
 
-      $result = CruiseshipsTypesTranslation::select('id', 'fk_language', 'fk_cruiseship_type', 'type');
+      $result = ExcursionsTypesTranslation::select('id', 'fk_language', 'fk_excursion_type', 'type');
 
       if (is_array($where)) {
         $result->where($where);

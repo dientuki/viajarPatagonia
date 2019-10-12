@@ -30,10 +30,14 @@ return [
     // Lenguaje
     'language' => 'lenguaje',
     'iso' => 'código',
+    // FK lenguajes
+    'fk_language_1' => 'lenguaje español',
+    'fk_language_2' => 'lenguaje ingles',
+    'fk_language_3' => 'lenguaje portugues',
 
     // Tipo de cruceros
     'cruiseshipType' => 'tipo de crucero',
-    'fk_language_1' => 'lenguaje español',
-    'fk_language_2' => 'lenguaje ingles',
-    'fk_language_3' => 'lenguaje portugues'
+
+    // Tipo de excursiones
+    'excursionType' => 'tipo de excursion',
 ];

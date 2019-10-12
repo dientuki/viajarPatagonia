@@ -4,15 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use Exception;
 use App\Language;
-use App\CruiseshipsTypes;
+use App\ExcursionsTypes;
 use Illuminate\Http\Request;
 use Prologue\Alerts\Facades\Alert;
-use App\Translations\CruiseshipsTypesTranslation;
+use App\Translations\ExcursionsTypesTranslation;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\EditCruiseshipsTypes;
-use App\Http\Requests\StoreCruiseshipsTypes;
+use App\Http\Requests\EditExcursionsTypes;
+use App\Http\Requests\StoreExcursionsTypes;
 
-class CruiseshipsTypesController extends Controller
+class ExcursionsTypesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,10 +21,10 @@ class CruiseshipsTypesController extends Controller
      */
     public function index()
     {
-        $cruiseshipsTypes = CruiseshipsTypes::getAll();
+        $excursionsTypes = ExcursionsTypes::getAll();
         $languages = Language::getAll();
 
-        return view('admin/cruiseships-types/index', compact('cruiseshipsTypes', 'languages'));
+        return view('admin/excursions-types/index', compact('excursionsTypes', 'languages'));
     }
 
     /**
@@ -34,40 +34,40 @@ class CruiseshipsTypesController extends Controller
      */
     public function create()
     {
-        $cruiseshipType = new CruiseshipsTypes();
+        $excursionType = new ExcursionsTypes();
         $action = 'create';
-        $form_data = array('route' => 'admin.cruiseships-types.store', 'method' => 'POST');
+        $form_data = array('route' => 'admin.excursions-types.store', 'method' => 'POST');
 
         $languages = Language::getAll();
         
-        return view('admin/cruiseships-types/form', compact('action', 'cruiseshipType',  'form_data', 'languages'));
+        return view('admin/excursions-types/form', compact('action', 'excursionType',  'form_data', 'languages'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCruiseshipsTypes  $request
+     * @param  \App\Http\Requests\StoreExcursionsTypes  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCruiseshipsTypes $request)
+    public function store(StoreExcursionsTypes $request)
     {      
         $data = $request->validated();
 
-        $cruiseshipType = CruiseshipsTypes::create();
+        $excursionType = ExcursionsTypes::create();
 
         $languages = Language::getAll();
 
         foreach ($languages as $language) {
             if (isset($data['language_' . $language->id]) && isset($data['fk_language_' . $language->id])) {
-                CruiseshipsTypesTranslation::create([
+                ExcursionsTypesTranslation::create([
                     'fk_language' => $data['fk_language_' . $language->id],
-                    'fk_cruiseship_type' => $cruiseshipType->id,
+                    'fk_excursion_type' => $excursionType->id,
                     'type' => $data['language_' . $language->id]
                 ]);
             }
         }        
 
-        return redirect()->route('admin.cruiseships-types.index');
+        return redirect()->route('admin.excursions-types.index');
     }
 
     /**
@@ -78,25 +78,25 @@ class CruiseshipsTypesController extends Controller
      */
     public function edit($id)
     {
-        $cruiseshipType = CruiseshipsTypes::getEdit($id);
+        $excursionType = ExcursionsTypes::getEdit($id);
 
         $action    = 'update';
-        $form_data = array('route' => array('admin.cruiseships-types.update', $cruiseshipType->id), 'method' => 'PATCH');
+        $form_data = array('route' => array('admin.excursions-types.update', $excursionType->id), 'method' => 'PATCH');
         $languages = Language::getAll();
 
-        return view('admin/cruiseships-types/form', compact('action', 'cruiseshipType', 'form_data', 'languages'));
+        return view('admin/excursions-types/form', compact('action', 'excursionType', 'form_data', 'languages'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\EditCruiseshipsTypes  $request
+     * @param  \App\Http\Requests\EditExcursionsTypes  $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EditCruiseshipsTypes $request, $id)
+    public function update(EditExcursionsTypes $request, $id)
     {
-        $cruiseshipType = CruiseshipsTypes::getEdit($id);
+        $excursionType = ExcursionsTypes::getEdit($id);
 
         $data = $request->validated();
 
@@ -107,17 +107,17 @@ class CruiseshipsTypesController extends Controller
 
                 $where = [];
                 $where[] = ['fk_language', $data['fk_language_' . $language->id]];
-                $where[] = ['fk_cruiseship_type', $id];
+                $where[] = ['fk_excursion_type', $id];
 
-                $cruiseshipTypeTranslation = CruiseshipsTypesTranslation::getEdit($where);
+                $excursionTypeTranslation = ExcursionsTypesTranslation::getEdit($where);
 
-                $cruiseshipTypeTranslation->fill([
+                $excursionTypeTranslation->fill([
                     'type' => $data['language_' . $language->id]
                 ])->save();
             }
         }  
 
-        return redirect()->route('admin.cruiseships-types.index');
+        return redirect()->route('admin.excursions-types.index');
     }
 
     /**
@@ -128,16 +128,16 @@ class CruiseshipsTypesController extends Controller
      */
     public function destroy($id)
     {
-        $cruiseshipType = CruiseshipsTypes::findOrFail($id);
+        $excursionType = ExcursionsTypes::findOrFail($id);
 
         try {
-            CruiseshipsTypesTranslation::where('fk_cruiseship_type', $id)->delete();
-            $cruiseshipType->delete();
+            ExcursionsTypesTranslation::where('fk_excursion_type', $id)->delete();
+            $excursionType->delete();
             Alert::success('Registro eliminado correctamente!')->flash();
         } catch (Exception $e) {
             Alert::error('No puedes eliminar el registro!')->flash();
         }  
 
-        return redirect()->route('admin.cruiseships-types.index');
+        return redirect()->route('admin.excursions-types.index');
     }
 }

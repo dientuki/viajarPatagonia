@@ -20,11 +20,11 @@ class CreateCruiseshipsTypesTranslationTable extends Migration
 
             $table->smallIncrements('id');
             $table->tinyInteger('fk_language')->unsigned();
-            $table->tinyInteger('fk_cruiseships_type')->unsigned();
+            $table->tinyInteger('fk_cruiseship_type')->unsigned();
             $table->string('type');
 
             $table->foreign('fk_language')->references('id')->on('languages');
-            $table->foreign('fk_cruiseships_type')->references('id')->on('cruiseships_types');
+            $table->foreign('fk_cruiseship_type')->references('id')->on('cruiseships_types');
         });
     }
 

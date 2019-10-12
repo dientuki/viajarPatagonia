@@ -18,7 +18,9 @@ class DatabaseSeeder extends Seeder
             CurrenciesTableSeeder::class,
             LanguagesTableSeeder::class,
             CruiseshipsTypesTableSeeder::class,
-            CruiseshipsTypesTranslationSeeder::class
+            CruiseshipsTypesTranslationSeeder::class,
+            ExcursionsTypesTableSeeder::class,
+            ExcursionsTypesTranslationSeeder::class
         ]);
     }
 }
