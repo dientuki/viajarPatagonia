@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    @include ('admin/main-parts/head')
+    @include ('admin/main-parts/head', ['jsfile' => 'adminForm'])
   </head>
 
   <body >
