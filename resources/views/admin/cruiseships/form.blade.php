@@ -64,7 +64,10 @@
           <strong>{{ $message }}</strong>
         </div>
       @enderror
-    </div>         
+    </div>      
+
+
+    <div id="draftjs"></div>   
 
     {!! Form::submit(__('buttons.' . $action) . ' ' . ucfirst(__('fields.cruiseship')), array('class'=>'btn btn-primary') ) !!}
 

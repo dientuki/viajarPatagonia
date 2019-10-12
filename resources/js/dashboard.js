@@ -4,4 +4,8 @@ import $ from 'jquery';
 
 toogleNav();
 
+import(/* webpackChunkName: "draft" */ './modules/draft/draft').then((Draft) => {
+  console.log('asdg');
+});
+
 window.$ = $;

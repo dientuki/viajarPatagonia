@@ -72,4 +72,5 @@ rules.push({
     }
   ]
 });
+
 module.exports = rules;  
