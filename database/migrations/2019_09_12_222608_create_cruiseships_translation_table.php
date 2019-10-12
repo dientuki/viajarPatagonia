@@ -13,7 +13,7 @@ class CreateCruiseshipsTranslationTable extends Migration
      */
     public function up()
     {
-        Schema::create('cruiseships_tranlation', function (Blueprint $table) {
+        Schema::create('cruiseships_translation', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
@@ -37,6 +37,6 @@ class CreateCruiseshipsTranslationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cruiseships_tranlation');
+        Schema::dropIfExists('cruiseships_translation');
     }
 }
