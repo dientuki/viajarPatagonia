@@ -38,6 +38,10 @@ return [
     // Tipo de cruceros
     'cruiseshipType' => 'tipo de crucero',
 
+    // Cruceros
+    'cruiseship' => 'crucero',    
+    'active' => 'activo',    
+
     // Tipo de excursiones
     'excursionType' => 'tipo de excursion',
 ];
