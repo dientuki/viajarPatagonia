@@ -30,17 +30,17 @@ class Cruiseships extends Model
     //protected $fillable = ['region'];    
 
     static public function getAll(){
-      $cruiseshipsTypes = Cruiseships::select('cruiseships.id', 'cruiseships.is_active');
+      $cruiseships = Cruiseships::select('cruiseships.id', 'cruiseships.is_active');
       $languages = Language::getAll();
 
       foreach ($languages as $language) {
-        $cruiseshipsTypes->addSelect("ct$language->id.title as title$language->id")
+        $cruiseships->addSelect("ct$language->id.title as title$language->id")
           ->join("cruiseships_translation as ct$language->id", 'cruiseships.id', '=', "ct$language->id.fk_cruiseship")
           ->join("languages as l$language->id", "l$language->id.id", '=', "ct$language->id.fk_language")
           ->where("l$language->id.iso", $language->iso);
       }
 
-      return $cruiseshipsTypes->get();
+      return $cruiseships->get();
     }
 
     static function getLists() {
@@ -49,17 +49,17 @@ class Cruiseships extends Model
 
     static function getEdit($id){
 
-      $cruiseshipsTypes = Cruiseships::select('cruiseships.id');
+      $cruiseship = Cruiseships::select('cruiseships.id', 'cruiseships.is_active');
       $languages = Language::getAll();
 
       foreach ($languages as $language) {
-        $cruiseshipsTypes->addSelect("ct$language->id.title as language_$language->id", "l$language->id.id as fk_language_$language->id")
+        $cruiseship->addSelect("ct$language->id.title as title_$language->id", "l$language->id.id as fk_language_$language->id")
           ->join("cruiseships_translation as ct$language->id", 'cruiseships.id', '=', "ct$language->id.fk_cruiseship")
           ->join("languages as l$language->id", "l$language->id.id", '=', "ct$language->id.fk_language")
           ->where("l$language->id.iso", $language->iso);
       }
 
-      $result = $cruiseshipsTypes->where('cruiseships.id', $id)->get()->first();
+      $result = $cruiseship->where('cruiseships.id', $id)->get()->first();
   
       if (is_array($id)) {
         if (count($result) == count(array_unique($id))) {
