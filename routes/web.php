@@ -33,6 +33,7 @@ Route::group(['namespace' => 'Admin',
     Route::resource('currencies', 'CurrenciesController')->except(['show']);
     Route::resource('languages', 'LanguagesController')->except(['show']);
     Route::resource('cruiseships-types', 'CruiseshipsTypesController')->except(['show']);
+    Route::resource('excursions-types', 'ExcursionsTypesController')->except(['show']);
 });
 
 Auth::routes(['register' => false]);
