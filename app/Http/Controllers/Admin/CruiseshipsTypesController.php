@@ -131,6 +131,7 @@ class CruiseshipsTypesController extends Controller
         $cruiseshipType = CruiseshipsTypes::findOrFail($id);
 
         try {
+            CruiseshipsTypesTranslation::where('fk_cruiseships_type', $id)->delete();
             $cruiseshipType->delete();
             Alert::success('Registro eliminado correctamente!')->flash();
         } catch (Exception $e) {
