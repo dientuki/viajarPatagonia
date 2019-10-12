@@ -30,7 +30,7 @@ class EditCruiseshipsTypes extends FormRequest
 
         foreach ($languages as $language) {
             $validation['language_' . $language->id] = 'required';
-            $validation['fklanguage_' . $language->id] = 'required';//'same:'.$language->id;
+            $validation['fk_language_' . $language->id] = 'required|in:'.$language->id;
         }
         
         return $validation;
@@ -48,7 +48,7 @@ class EditCruiseshipsTypes extends FormRequest
 
         foreach ($languages as $language) {
             $validation['language_' . $language->id] = $language->$language;
-            $validation['fklanguage_' . $language->id] = $language->$language;
+            $validation['fk_language_' . $language->id] = $language->$language;
         }
 
         return $validation;

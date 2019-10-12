@@ -58,9 +58,9 @@ class CruiseshipsTypesController extends Controller
         $languages = Language::getAll();
 
         foreach ($languages as $language) {
-            if (isset($data['language_' . $language->id]) && isset($data['fklanguage_' . $language->id])) {
+            if (isset($data['language_' . $language->id]) && isset($data['fk_language_' . $language->id])) {
                 CruiseshipsTypesTranslation::create([
-                    'fk_language' => $data['fklanguage_' . $language->id],
+                    'fk_language' => $data['fk_language_' . $language->id],
                     'fk_cruiseships_type' => $cruiseshipType->id,
                     'type' => $data['language_' . $language->id]
                 ]);
@@ -103,10 +103,10 @@ class CruiseshipsTypesController extends Controller
         $languages = Language::getAll();
 
         foreach ($languages as $language) {
-            if (isset($data['language_' . $language->id]) && isset($data['fklanguage_' . $language->id])) {
+            if (isset($data['language_' . $language->id]) && isset($data['fk_language_' . $language->id])) {
 
                 $where = [];
-                $where[] = ['fk_language', $data['fklanguage_' . $language->id]];
+                $where[] = ['fk_language', $data['fk_language_' . $language->id]];
                 $where[] = ['fk_cruiseships_type', $id];
 
                 $cruiseshipTypeTranslation = CruiseshipsTypesTranslation::getEdit($where);

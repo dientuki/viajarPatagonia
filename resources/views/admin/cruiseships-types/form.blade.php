@@ -15,13 +15,14 @@
                   <div class="input-group-text">{{$language->iso}}</div>
               </div>
               {!! Form::text('language_' . $language->id, null, array('placeholder' => $language->language, 'class'=>$class, 'required' => true)) !!}
-          </div>
-          @error('language_' . $language->id)
+              @error('language_' . $language->id)
             <div class="invalid-feedback">
               <strong>{{ $message }}</strong>
             </div>
           @enderror
-          {!! Form::hidden('fklanguage_' . $language->id, $language->id) !!}
+          </div>
+
+          {!! Form::hidden('fk_language_' . $language->id, $language->id) !!}
       </div>
     @endforeach
 
