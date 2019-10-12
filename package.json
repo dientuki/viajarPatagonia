@@ -34,5 +34,10 @@
     },
     "browserslist": [
         "defaults and last 2 version and > .5%"
-    ]
+    ],
+    "dependencies": {
+        "draft-js": "^0.11.1",
+        "react": "^16.10.2",
+        "react-dom": "^16.10.2"
+    }
 }
