@@ -6,14 +6,14 @@ use App\Language;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class CruiseshipsTypes extends Model
+class ExcursionsTypes extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'cruiseships_types';
+    protected $table = 'excursions_types';
 
     /**
      * Indicates if the model should be timestamped.
@@ -30,17 +30,17 @@ class CruiseshipsTypes extends Model
     //protected $fillable = ['region'];    
 
     static public function getAll(){
-      $cruiseshipsTypes = CruiseshipsTypes::select('cruiseships_types.id');
+      $excursionsTypes = ExcursionsTypes::select('excursions_types.id');
       $languages = Language::getAll();
 
       foreach ($languages as $language) {
-        $cruiseshipsTypes->addSelect("ct$language->id.type as type$language->id", "l$language->id.iso as iso$language->id")
-          ->join("cruiseships_types_translation as ct$language->id", 'cruiseships_types.id', '=', "ct$language->id.fk_cruiseships_type")
+        $excursionsTypes->addSelect("ct$language->id.type as type$language->id", "l$language->id.iso as iso$language->id")
+          ->join("excursions_types_translation as ct$language->id", 'excursions_types.id', '=', "ct$language->id.fk_excursion_type")
           ->join("languages as l$language->id", "l$language->id.id", '=', "ct$language->id.fk_language")
           ->where("l$language->id.iso", $language->iso);
       }
 
-      return $cruiseshipsTypes->get();
+      return $excursionsTypes->get();
     }
 
     static function getLists() {
@@ -49,17 +49,17 @@ class CruiseshipsTypes extends Model
 
     static function getEdit($id){
 
-      $cruiseshipsTypes = CruiseshipsTypes::select('cruiseships_types.id');
+      $excursionsTypes = ExcursionsTypes::select('excursions_types.id');
       $languages = Language::getAll();
 
       foreach ($languages as $language) {
-        $cruiseshipsTypes->addSelect("ct$language->id.type as language_$language->id", "l$language->id.id as fk_language_$language->id")
-          ->join("cruiseships_types_translation as ct$language->id", 'cruiseships_types.id', '=', "ct$language->id.fk_cruiseships_type")
+        $excursionsTypes->addSelect("ct$language->id.type as language_$language->id", "l$language->id.id as fk_language_$language->id")
+          ->join("excursions_types_translation as ct$language->id", 'excursions_types.id', '=', "ct$language->id.fk_excursion_type")
           ->join("languages as l$language->id", "l$language->id.id", '=', "ct$language->id.fk_language")
           ->where("l$language->id.iso", $language->iso);
       }
 
-      $result = $cruiseshipsTypes->where('cruiseships_types.id', $id)->get()->first();
+      $result = $excursionsTypes->where('excursions_types.id', $id)->get()->first();
   
       if (is_array($id)) {
         if (count($result) == count(array_unique($id))) {
