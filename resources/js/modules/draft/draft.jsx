@@ -7,9 +7,6 @@ class RichEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = { editorState: EditorState.createEmpty() };
-    const text = convertFromRaw(JSON.parse('{"blocks":[{"key":"eao61","text":"asdfasdf","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}'))
-    //this.state.editorState = EditorState.createWithContent(text);    
-    //this.state.editorState = EditorState.createWithContent(text);
 
     this.focus = () => this.refs.editor.focus();
     this.onChange = (editorState) => this.setState({ editorState });
