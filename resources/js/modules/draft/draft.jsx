@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Editor, EditorState, RichUtils, getDefaultKeyBinding, convertFromRaw, convertToRaw, ContentState} from 'draft-js';
+import { Editor, EditorState, RichUtils, getDefaultKeyBinding, convertFromRaw, convertToRaw} from 'draft-js';
 import StyleButton from './styleButton.jsx';
 
 class RichEditor extends React.Component {
