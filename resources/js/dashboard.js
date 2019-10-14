@@ -5,6 +5,9 @@ __webpack_public_path__ = `${window.location.protocol}//${window.location.host}/
 
 toogleNav();
 
-import(/* webpackChunkName: "draft" */ './modules/draft/draft.jsx');
+
+if (document.querySelectorAll('.draftjs').length > 0) {
+    import(/* webpackChunkName: "draft" */ './modules/draft/draft.jsx');
+}
 
 window.$ = $;

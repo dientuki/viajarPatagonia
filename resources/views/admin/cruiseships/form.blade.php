@@ -67,7 +67,12 @@
     </div>      
 
 
-    <div id="draftjs"></div>   
+    <div class="draftjs" data-field="map1"></div>
+    {!! Form::textarea('map1', '{"blocks":[{"key":"eao61","text":"asdfasdf","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}', array('id' => 'map1')) !!}
+    <div class="draftjs"  data-field="map2"></div>   
+    {!! Form::textarea('map1', '{"blocks":[{"key":"eao61","text":"asdfasdf","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}', array('id' => 'map2')) !!}
+    <div class="draftjs" data-field="map3"></div>   
+    {!! Form::textarea('map1', null, array('id' => 'map3')) !!}
 
     {!! Form::submit(__('buttons.' . $action) . ' ' . ucfirst(__('fields.cruiseship')), array('class'=>'btn btn-primary') ) !!}
 

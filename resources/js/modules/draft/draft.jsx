@@ -1,20 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Editor, EditorState, RichUtils, getDefaultKeyBinding, convertFromRaw, convertToRaw} from 'draft-js';
+import { Editor, EditorState, RichUtils, getDefaultKeyBinding, convertFromRaw, convertToRaw, ContentState} from 'draft-js';
+import StyleButton from './styleButton.jsx';
 
-class RichEditorExample extends React.Component {
+class RichEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = { editorState: EditorState.createEmpty() };
+    const text = convertFromRaw(JSON.parse('{"blocks":[{"key":"eao61","text":"asdfasdf","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}'))
+    //this.state.editorState = EditorState.createWithContent(text);    
+    //this.state.editorState = EditorState.createWithContent(text);
 
     this.focus = () => this.refs.editor.focus();
     this.onChange = (editorState) => this.setState({ editorState });
-    this.onBlur = this._onBlur.bind(this);
 
     this.handleKeyCommand = this._handleKeyCommand.bind(this);
     this.mapKeyToEditorCommand = this._mapKeyToEditorCommand.bind(this);
     this.toggleBlockType = this._toggleBlockType.bind(this);
     this.toggleInlineStyle = this._toggleInlineStyle.bind(this);
+    this.element = null;
   }
 
   _handleKeyCommand(command, editorState) {
@@ -59,9 +63,19 @@ class RichEditorExample extends React.Component {
     );
   }
 
-  _onBlur() {
-    console.log(JSON.stringify( convertToRaw(this.editorState.getCurrentContent()) ));
-    document.querySelector('#draftjs').dataset.text = JSON.stringify( convertToRaw(this.editorState.getCurrentContent()) )
+  componentDidMount() {
+    this.element = ReactDOM.findDOMNode(this).parentNode;
+    const content = document.querySelector(`#${this.element.dataset.field}`).value
+
+    if (content !== '') {
+      this.setState({
+        editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(content)))
+      });
+    }
+  } 
+
+  onBlur() {
+    document.querySelector(`#${this.element.dataset.field}`).value = JSON.stringify(convertToRaw(this.editorState.getCurrentContent()));
   }
 
   render() {
@@ -95,7 +109,8 @@ class RichEditorExample extends React.Component {
             handleKeyCommand={this.handleKeyCommand}
             keyBindingFn={this.mapKeyToEditorCommand}
             onChange={this.onChange}
-            onBlur={this._onBlur}
+            onBlur={this.onBlur}
+            element={this.element}
             ref="editor"
             spellCheck={true}
           />
@@ -119,29 +134,6 @@ function getBlockStyle(block) {
   switch (block.getType()) {
     case 'blockquote': return 'RichEditor-blockquote';
     default: return null;
-  }
-}
-
-class StyleButton extends React.Component {
-  constructor() {
-    super();
-    this.onToggle = (e) => {
-      e.preventDefault();
-      this.props.onToggle(this.props.style);
-    };
-  }
-
-  render() {
-    let className = 'RichEditor-styleButton';
-    if (this.props.active) {
-      className += ' RichEditor-activeButton';
-    }
-
-    return (
-      <span className={className} onMouseDown={this.onToggle}>
-        {this.props.label}
-      </span>
-    );
   }
 }
 
@@ -178,14 +170,13 @@ const BlockStyleControls = (props) => {
   );
 };
 
-var INLINE_STYLES = [
-  { label: 'Bold', style: 'BOLD' },
-  { label: 'Italic', style: 'ITALIC' },
-  { label: 'Underline', style: 'UNDERLINE' }
-];
-
 const InlineStyleControls = (props) => {
-  const currentStyle = props.editorState.getCurrentInlineStyle();
+  const currentStyle = props.editorState.getCurrentInlineStyle(),
+    INLINE_STYLES = [
+      { label: 'Bold', style: 'BOLD' },
+      { label: 'Italic', style: 'ITALIC' },
+      { label: 'Underline', style: 'UNDERLINE' }
+    ];
 
   return (
     <div className="RichEditor-controls">
@@ -202,12 +193,9 @@ const InlineStyleControls = (props) => {
   );
 };
 
-const onBlur = (e) => {
-  console.log(e, 'table blurred');
-}
-
-ReactDOM.render(
-  <RichEditorExample />,
-  document.getElementById('draftjs')
-);
-
+document.querySelectorAll('.draftjs').forEach((element) => {
+  ReactDOM.render(
+    <RichEditor />,
+    element
+  );
+});
