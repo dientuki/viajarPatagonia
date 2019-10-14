@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Admin;
 use Exception;
 use App\Language;
 use App\Cruiseships;
+use App\CruiseshipsTypes;
 use Illuminate\Http\Request;
 use Prologue\Alerts\Facades\Alert;
-use App\Translations\CruiseshipsTranslation;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EditCruiseships;
-use App\Http\Requests\StoreCruiseships;
+use App\Http\Requests\StoreCruiseship;
+use App\Translations\CruiseshipsTranslation;
 
 class CruiseshipsController extends Controller
 {
@@ -37,32 +38,37 @@ class CruiseshipsController extends Controller
         $cruiseship = new Cruiseships();
         $action = 'create';
         $form_data = array('route' => 'admin.cruiseships.store', 'method' => 'POST');
+        $cruiseshipType = CruiseshipsTypes::getLists();
 
         $languages = Language::getAll();
         
-        return view('admin/cruiseships/form', compact('action', 'cruiseship',  'form_data', 'languages'));
+        return view('admin/cruiseships/form', compact('action', 'cruiseship',  'form_data', 'languages', 'cruiseshipType'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCruiseships  $request
+     * @param  \App\Http\Requests\StoreCruiseship  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCruiseships $request)
+    public function store(StoreCruiseship $request)
     {      
         $data = $request->validated();
 
-        $cruiseship = Cruiseships::create();
+        //dd($data);
+
+        $cruiseship = Cruiseships::create($data);
 
         $languages = Language::getAll();
 
         foreach ($languages as $language) {
-            if (isset($data['language_' . $language->id]) && isset($data['fk_language_' . $language->id])) {
+            if (isset($data['fk_language_' . $language->id])) {
                 CruiseshipsTranslation::create([
                     'fk_language' => $data['fk_language_' . $language->id],
-                    'fk_cruiseship_type' => $cruiseship->id,
-                    'type' => $data['language_' . $language->id]
+                    'fk_cruiseship' => $cruiseship->id,
+                    'title' => $data['title_' . $language->id],
+                    'dropline' => $data['dropline_' . $language->id],
+                    'body' => $data['body_' . $language->id]
                 ]);
             }
         }        

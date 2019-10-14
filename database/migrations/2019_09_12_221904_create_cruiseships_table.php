@@ -19,7 +19,7 @@ class CreateCruiseshipsTable extends Migration
             $table->collation = 'utf8_unicode_ci';
 
             $table->smallIncrements('id');
-            $table->string('map');
+            $table->text('map');
             $table->boolean('is_active')->default(false);
             $table->tinyInteger('fk_cruiseship_type')->unsigned();
 

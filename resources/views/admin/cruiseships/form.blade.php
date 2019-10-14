@@ -27,7 +27,7 @@
         <div class="form-group">
           <?php $class = $errors->has('dropline_' . $language->id) != null ? 'form-control is-invalid' : 'form-control'; ?>
           {!! Form::label('dropline_' . $language->id, ucfirst(__('fields.dropline_' . $language->id))) !!}
-          {!! Form::text('dropline_' . $language->id, null, array('placeholder' => $language->language, 'class'=>$class, 'required' => true)) !!}
+          {!! Form::textarea('dropline_' . $language->id, null, array('placeholder' => $language->language, 'class'=>$class, 'required' => true)) !!}
           @error('dropline_' . $language->id)
             <div class="invalid-feedback">
               <strong>{{ $message }}</strong>
@@ -38,17 +38,30 @@
         <div class="form-group">
           <?php $class = $errors->has('body_' . $language->id) != null ? 'form-control is-invalid' : 'form-control'; ?>
           {!! Form::label('body_' . $language->id, ucfirst(__('fields.body_' . $language->id))) !!}
-          {!! Form::text('body_' . $language->id, null, array('placeholder' => $language->language, 'class'=>$class, 'required' => true)) !!}
+          <div class="draftjs" data-field="body_{{$language->id}}"></div>
+          {!! Form::text('body_' . $language->id, null, array('class'=>'hidden', 'required' => true)) !!}
           @error('body_' . $language->id)
             <div class="invalid-feedback">
               <strong>{{ $message }}</strong>
             </div>
           @enderror
-        </div>                
+        </div> 
+
+        {!! Form::hidden('fk_language_' . $language->id, $language->id) !!}              
 
       </fieldset>
     @endforeach
 
+    <div class="form-group">
+      <?php $class = $errors->has('fk_cruiseship_type') != null ? 'form-control is-invalid' : 'form-control'; ?>
+      {!! Form::label('fk_cruiseship_type', ucfirst(__('fields.cruiseshipType'))) !!}
+      {!! Form::select('fk_cruiseship_type', $cruiseshipType, $cruiseship->fk_cruiseship_type, array('placeholder' => ucfirst(__('fields.cruiseshipType_select_placeholder')), 'required' => true, 'class' => $class) ) !!}
+      @error('fk_cruiseship_type')
+        <div class="invalid-feedback">
+          <strong>{{ $message }}</strong>
+        </div>
+      @enderror
+    </div>  
 
     <div class="form-check">
       {!! Form::checkbox('is_active', 1, false, array('class' => 'form-check-input') ) !!}
@@ -58,21 +71,13 @@
     <div class="form-group">
       <?php $class = $errors->has('map') != null ? 'form-control is-invalid' : 'form-control'; ?>
       {!! Form::label('map', ucfirst(__('fields.map'))) !!}
-      {!! Form::text('map', null, array('placeholder' => __('fields.map'), 'class'=>$class, 'required' => true)) !!}
+      {!! Form::text('map', null, array('placeholder' => __('fields.map'), 'class'=>$class)) !!}
       @error('map')
         <div class="invalid-feedback">
           <strong>{{ $message }}</strong>
         </div>
       @enderror
-    </div>      
-
-
-    <div class="draftjs" data-field="map1"></div>
-    {!! Form::textarea('map1', '{"blocks":[{"key":"eao61","text":"asdfasdf","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}', array('id' => 'map1')) !!}
-    <div class="draftjs"  data-field="map2"></div>   
-    {!! Form::textarea('map1', '{"blocks":[{"key":"eao61","text":"asdfasdf","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}', array('id' => 'map2')) !!}
-    <div class="draftjs" data-field="map3"></div>   
-    {!! Form::textarea('map1', null, array('id' => 'map3')) !!}
+    </div>
 
     {!! Form::submit(__('buttons.' . $action) . ' ' . ucfirst(__('fields.cruiseship')), array('class'=>'btn btn-primary') ) !!}
 

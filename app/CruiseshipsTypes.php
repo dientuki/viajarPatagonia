@@ -22,13 +22,6 @@ class CruiseshipsTypes extends Model
      */
     public $timestamps = false;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    //protected $fillable = ['region'];    
-
     static public function getAll(){
       $cruiseshipsTypes = CruiseshipsTypes::select('cruiseships_types.id');
       $languages = Language::getAll();
@@ -44,7 +37,12 @@ class CruiseshipsTypes extends Model
     }
 
     static function getLists() {
-      //return Region::orderBy('region')->pluck('region', 'id');
+      $cruiseshipsTypes = CruiseshipsTypes::join('cruiseships_types_translation', 'cruiseships_types.id', '=', 'cruiseships_types_translation.fk_cruiseship_type');
+      $cruiseshipsTypes->join('languages', 'languages.id', '=', 'cruiseships_types_translation.fk_language');
+      $cruiseshipsTypes->where('languages.iso', 'es');
+      $cruiseshipsTypes->orderBy('cruiseships_types_translation.type');
+
+      return $cruiseshipsTypes->pluck('cruiseships_types_translation.type', 'cruiseships_types.id');
     }  
 
     static function getEdit($id){

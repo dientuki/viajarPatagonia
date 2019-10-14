@@ -27,7 +27,7 @@ class Cruiseships extends Model
      *
      * @var array
      */
-    //protected $fillable = ['region'];    
+    protected $fillable = ['is_active', 'map', 'fk_cruiseship_type'];    
 
     static public function getAll(){
       $cruiseships = Cruiseships::select('cruiseships.id', 'cruiseships.is_active');
