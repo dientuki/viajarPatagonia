@@ -38,10 +38,19 @@ return [
 
     // Tipo de cruceros
     'cruiseshipType' => 'tipo de crucero',
+    'cruiseshipType_select_placeholder' => 'Seleccione un tipo de crucero...',
 
     // Cruceros
     'cruiseship' => 'crucero',    
-    'active' => 'activo',    
+    'active' => 'activo',   
+    'name' => 'nombre',
+    'summary' => 'resumen',
+    'body' => 'detalle',
+    'map' => 'mapa',
+
+    // Precios
+    'price' => 'precio',
+    'discount' => 'descuento',
 
     // Tipo de excursiones
     'excursionType' => 'tipo de excursion',

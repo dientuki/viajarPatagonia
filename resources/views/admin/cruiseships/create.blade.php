@@ -10,13 +10,13 @@
     <div>{{ ucfirst(__('fields.cruiseship')) }}</div>
 
     @foreach ($languages as $language)
-      <fieldset>
-        <h2>{{ $language->language }}</h2>
+      <fieldset class="sticky-wrapper">
+        <h2 class="sticky-head">{{ $language->language }}</h2>
 
           <div class="form-group">
             <?php $class = $errors->has('name_' . $language->id) != null ? 'form-control is-invalid' : 'form-control'; ?>
-            {!! Form::label('name_' . $language->id, ucfirst(__('fields.name_' . $language->id))) !!}
-            {!! Form::text('name_' . $language->id, null, array('placeholder' => $language->language, 'class'=>$class)) !!}
+            {!! Form::label('name_' . $language->id, ucfirst(__('fields.name'))) !!}
+            {!! Form::text('name_' . $language->id, null, array('placeholder' => ucfirst(__('fields.name')), 'class'=>$class)) !!}
             @error('name_' . $language->id)
               <div class="invalid-feedback">
                 <strong>{{ $message }}</strong>
@@ -26,8 +26,8 @@
 
           <div class="form-group">
             <?php $class = $errors->has('summary_' . $language->id) != null ? 'form-control is-invalid' : 'form-control'; ?>
-            {!! Form::label('summary_' . $language->id, ucfirst(__('fields.summary_' . $language->id))) !!}
-            {!! Form::textarea('summary_' . $language->id, null, array('placeholder' => $language->language, 'class'=>$class)) !!}
+            {!! Form::label('summary_' . $language->id, ucfirst(__('fields.summary'))) !!}
+            {!! Form::textarea('summary_' . $language->id, null, array('placeholder' => ucfirst(__('fields.summary')), 'class'=>$class)) !!}
             @error('summary_' . $language->id)
               <div class="invalid-feedback">
                 <strong>{{ $message }}</strong>
@@ -36,10 +36,10 @@
           </div>
 
           <div class="form-group">
-            <?php $class = $errors->has('body_' . $language->id) != null ? 'form-control is-invalid' : 'form-control'; ?>
-            {!! Form::label('body_' . $language->id, ucfirst(__('fields.body_' . $language->id))) !!}
-            <div class="draftjs" data-field="body_{{$language->id}}"></div>
-            {!! Form::text('body_' . $language->id, null, array('class'=>'hidden')) !!}
+            <?php $class = $errors->has('body_' . $language->id) != null ? 'draftjs is-invalid' : 'draftjs'; ?>
+            {!! Form::label('body_' . $language->id, ucfirst(__('fields.body'))) !!}
+            {!! Form::hidden('body_' . $language->id, null, array('class'=>'hidden')) !!}
+            <div class="{{ $class }}" data-field="body_{{$language->id}}"></div>
             @error('body_' . $language->id)
               <div class="invalid-feedback">
                 <strong>{{ $message }}</strong>
@@ -74,7 +74,7 @@
         <div class="form-group">
           <?php $class = $errors->has('map') != null ? 'form-control is-invalid' : 'form-control'; ?>
           {!! Form::label('map', ucfirst(__('fields.map'))) !!}
-          {!! Form::text('map', null, array('placeholder' => __('fields.map'), 'class'=>$class)) !!}
+          {!! Form::text('map', null, array('placeholder' => ucfirst(__('fields.map')), 'class'=>$class)) !!}
           @error('map')
             <div class="invalid-feedback">
               <strong>{{ $message }}</strong>
@@ -97,8 +97,8 @@
         <div class="col-sm">
           <div class="form-group">
             <?php $class = $errors->has('price_' . $currency->id) != null ? 'form-control is-invalid' : 'form-control'; ?>
-            {!! Form::label('price_' . $currency->id, ucfirst(__('fields.price_' . $currency->id))) !!}
-            {!! Form::text('price_' . $currency->id, null, array('placeholder' => 'placheolder', 'class'=>$class)) !!}
+            {!! Form::label('price_' . $currency->id, ucfirst($currency->currency)) !!}
+            {!! Form::text('price_' . $currency->id, null, array('placeholder' => ucfirst(__('fields.price')), 'class'=>$class)) !!}
             @error('price_' . $currency->id)
               <div class="invalid-feedback">
                 <strong>{{ $message }}</strong>
@@ -108,8 +108,8 @@
 
           <div class="form-group">
             <?php $class = $errors->has('discount_' . $currency->id) != null ? 'form-control is-invalid' : 'form-control'; ?>
-            {!! Form::label('discount_' . $currency->id, ucfirst(__('fields.discount_' . $currency->id))) !!}
-            {!! Form::text('discount_' . $currency->id, null, array('placeholder' => 'placheolder', 'class'=>$class)) !!}
+            {!! Form::label('discount_' . $currency->id, ucfirst(__('fields.discount'))) !!}
+            {!! Form::text('discount_' . $currency->id, null, array('placeholder' => ucfirst(__('fields.discount')), 'class'=>$class)) !!}
             @error('discount_' . $currency->id)
               <div class="invalid-feedback">
                 <strong>{{ $message }}</strong>

@@ -34,7 +34,7 @@ class Cruiseships extends Model
       $languages = Language::getAll();
 
       foreach ($languages as $language) {
-        $cruiseships->addSelect("ct$language->id.title as title$language->id")
+        $cruiseships->addSelect("ct$language->id.name as title$language->id")
           ->join("cruiseships_translation as ct$language->id", 'cruiseships.id', '=', "ct$language->id.fk_cruiseship")
           ->join("languages as l$language->id", "l$language->id.id", '=', "ct$language->id.fk_language")
           ->where("l$language->id.iso", $language->iso);

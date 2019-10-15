@@ -40,12 +40,12 @@ class StoreCruiseship extends FormRequest
         foreach ($currencies as $currency) {
             $validation['price_' . $currency->id] = 'integer|nullable';
             $validation['discount_' . $currency->id] = 'integer|nullable';
-            $validation['is_active' . $language->id] = 'boolean';
+            $validation['is_active_' . $language->id] = 'boolean';
             $validation['fk_currency_' . $currency->id] = 'required|in:'.$currency->id;
         }
 
         $validation['is_active'] = 'boolean';
-        $validation['map'] = 'url';
+        $validation['map'] = 'url|nullable';
         $validation['fk_cruiseship_type'] = 'required|numeric|exists:cruiseships_types,id';
         
         return $validation;
@@ -59,17 +59,26 @@ class StoreCruiseship extends FormRequest
     public function attributes()
     {
         $languages = Language::getAll();
+        $currencies = Currency::getAll();
         $validation = [];
 
         foreach ($languages as $language) {
-            $validation['name_' . $language->id] = $language->$language;
-            $validation['summary_' . $language->id] = $language->$language;
-            $validation['body_' . $language->id] = $language->$language;
-            $validation['fk_language_' . $language->id] = $language->$language;
+            $validation['name_' . $language->id] = __('fields.name');
+            $validation['summary_' . $language->id] = __('fields.summary');
+            $validation['body_' . $language->id] = __('fields.body');
+            $validation['fk_language_' . $language->id] = __('fields.language');
         }
 
-        $validation['is_active'] = 'boolean';
-        $validation['map'] = 'url';        
+        foreach ($currencies as $currency) {
+            $validation['price_' . $currency->id] = __('fields.price');
+            $validation['discount_' . $currency->id] = __('fields.discount');
+            $validation['is_active_' . $language->id] = __('fields.active');
+            $validation['fk_currency_' . $currency->id] =  __('fields.currency');
+        }        
+
+        $validation['is_active'] = __('fields.active');
+        $validation['fk_cruiseship_type'] = __('fields.cruiseshipType');
+        $validation['map'] = __('fields.map');        
 
         return $validation;
     }    

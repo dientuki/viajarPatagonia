@@ -29,7 +29,7 @@ class Currency extends Model
 
 
     static function getAll() {
-      return Currency::select('id', 'sign', 'iso', 'currency')->get();
+      return Currency::select('id', 'sign', 'iso', 'currency')->orderBy('iso')->get();
     }
 
     static function getLists() {
