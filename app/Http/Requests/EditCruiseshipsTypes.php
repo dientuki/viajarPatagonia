@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Language;
+use App\Translations\Language;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EditCruiseshipsTypes extends FormRequest
@@ -17,7 +17,6 @@ class EditCruiseshipsTypes extends FormRequest
         return true;
     }
     
-
     /**
      * Get the validation rules that apply to the request.
      *

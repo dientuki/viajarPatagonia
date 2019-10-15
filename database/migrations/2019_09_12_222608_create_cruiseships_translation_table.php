@@ -13,20 +13,20 @@ class CreateCruiseshipsTranslationTable extends Migration
      */
     public function up()
     {
-        Schema::create('cruiseships_tranlation', function (Blueprint $table) {
+        Schema::create('cruiseships_translation', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
 
             $table->smallIncrements('id');
             $table->tinyInteger('fk_language')->unsigned();
-            $table->smallInteger('fk_cruiseships')->unsigned();
-            $table->string('title');
-            $table->string('body');
-            $table->string('dropline');
+            $table->smallInteger('fk_cruiseship')->unsigned();
+            $table->string('name');
+            $table->string('summary');
+            $table->mediumText('body');
 
             $table->foreign('fk_language')->references('id')->on('languages');
-            $table->foreign('fk_cruiseships')->references('id')->on('cruiseships');
+            $table->foreign('fk_cruiseship')->references('id')->on('cruiseships');
         });
     }
 
@@ -37,6 +37,6 @@ class CreateCruiseshipsTranslationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cruiseships_tranlation');
+        Schema::dropIfExists('cruiseships_translation');
     }
 }

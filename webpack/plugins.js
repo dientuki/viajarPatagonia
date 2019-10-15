@@ -1,7 +1,6 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
 const paths = require("./paths");
 const plugins = [];
 
@@ -10,6 +9,8 @@ plugins.push(
 );
 
 if (process.env.NODE_ENV == 'development') {
+  const StyleLintPlugin = require('stylelint-webpack-plugin');
+  
   plugins.push(
     new StyleLintPlugin({
         configFile : "stylelint.json",

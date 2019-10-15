@@ -3,11 +3,19 @@
     "scripts": {
         "dev": "npm run development",
         "development": "cross-env NODE_ENV=development webpack --progress --hide-modules --config=webpack/webpack.config.js",
+        "eslint:js": "eslint ./resources/js/**/*.js",
+        "eslint:jsx": "eslint ./resources/js/**/*.jsx",
         "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production webpack --progress --hide-modules --config=webpack/webpack.config.js"
+        "production": "cross-env NODE_ENV=production webpack --progress --hide-modules --config=webpack/webpack.config.js",
+        "stylelint": "stylelint './resources/sass/**/*.scss' --syntax scss --config stylelint.json"
     },
     "devDependencies": {
+        "@babel/core": "^7.6.4",
+        "@babel/preset-env": "^7.6.3",
+        "@babel/preset-react": "^7.6.3",
         "autoprefixer": "^9.6.1",
+        "babel-eslint": "^10.0.3",
+        "babel-loader": "^8.0.6",
         "bootstrap": "^4.3.1",
         "browserslist": "^4.7.0",
         "clean-webpack-plugin": "^3.0.0",
@@ -34,5 +42,10 @@
     },
     "browserslist": [
         "defaults and last 2 version and > .5%"
-    ]
+    ],
+    "dependencies": {
+        "draft-js": "^0.11.1",
+        "react": "^16.10.2",
+        "react-dom": "^16.10.2"
+    }
 }

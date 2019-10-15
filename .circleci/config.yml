@@ -55,6 +55,24 @@ jobs:
             paths:
               - node_modules
 
+  frontend_tests:
+    <<: *node
+    <<: *wd
+    steps:
+      - restore_cache:
+          key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}      
+      - restore_cache:
+          key: dependency-cache-node-{{ checksum "package.json" }}
+      - run:
+          name: Linter Javascript
+          command: npm run eslint:js
+      - run:
+          name: Linter Javascript eXtended
+          command: npm run eslint:jsx         
+      - run:
+          name: Linter CSS
+          command: npm run stylelint              
+
   build_webpack:
     <<: *node
     <<: *wd
@@ -118,6 +136,7 @@ jobs:
           command: |
             rm -rf .circleci
             rm -rf .env.*
+            rm -rf .eslintrc.json
             rm -rf database
             rm -rf tests
             rm -rf webpack
@@ -174,20 +193,28 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - frontend_tests:
+          requires:
+            - install_webpack        
+          filters:
+            tags:
+              only: /.*/                
       - build_webpack:
           requires:
             - install_webpack        
           filters:
             tags:
-              only: /.*/                 
+              only: /.*/
+            branches:
+              only: master             
       - install_laravel:
           requires:
             - checkout_code        
           filters:
             tags:
-              only: /^v.*/
+              only: /.*/
             branches:
-              ignore: /.*/          
+              only: master          
       - optimize_laravel:
           requires:
             - install_laravel
@@ -200,6 +227,7 @@ workflows:
       - build_targz:
           requires:
             - optimize_laravel
+            - frontend_tests
             - build_webpack     
           filters:
             tags:

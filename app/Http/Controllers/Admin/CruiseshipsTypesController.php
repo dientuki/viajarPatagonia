@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Exception;
-use App\Language;
+use App\Translations\Language;
 use App\CruiseshipsTypes;
 use Illuminate\Http\Request;
 use Prologue\Alerts\Facades\Alert;
