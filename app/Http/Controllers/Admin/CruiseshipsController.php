@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Exception;
 use App\Currency;
-use App\Language;
+use App\Translations\Language;
 use App\Cruiseships;
 use App\CruiseshipsTypes;
 use Illuminate\Http\Request;

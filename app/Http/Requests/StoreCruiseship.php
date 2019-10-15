@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Currency;
-use App\Language;
+use App\Translations\Language;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCruiseship extends FormRequest

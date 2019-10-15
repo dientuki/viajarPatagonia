@@ -30,6 +30,7 @@ return [
     // Lenguaje
     'language' => 'lenguaje',
     'iso' => 'código',
+    
     // FK lenguajes
     'fk_language_1' => 'lenguaje español',
     'fk_language_2' => 'lenguaje ingles',

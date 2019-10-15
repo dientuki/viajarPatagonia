@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Language;
+use App\Translations\Language;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EditExcursionsTypes extends FormRequest

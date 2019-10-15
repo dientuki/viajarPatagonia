@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Language;
+use App\Translations\Language;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
