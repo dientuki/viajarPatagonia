@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
             ExcursionsTypesTableSeeder::class,
             ExcursionsTypesTranslationSeeder::class,
             CruiseshipsTableSeeder::class,
-            CruiseshipsTranslationSeeder::class            
+            CruiseshipsTranslationSeeder::class,
+            CruiseshipsPricesSeeder::class            
         ]);
     }
 }

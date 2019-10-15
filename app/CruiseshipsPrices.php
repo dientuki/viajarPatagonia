@@ -1,17 +1,19 @@
 <?php
 
-namespace App\Translations;
+namespace App;
 
+use App\Translations\Language;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class CruiseshipsTranslation extends Model
+class CruiseshipsPrices extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'cruiseships_translation';
+    protected $table = 'cruiseships_prices';
 
     /**
      * Indicates if the model should be timestamped.
@@ -25,36 +27,25 @@ class CruiseshipsTranslation extends Model
      *
      * @var array
      */
-    protected $fillable = ['fk_language', 'fk_cruiseship', 'name', 'summary', 'body'];    
-
-    static function getLists() {
-      //return Region::orderBy('region')->pluck('region', 'id');
-    }
+    protected $fillable = ['price', 'discount', 'is_active', 'fk_currency', 'fk_cruiseship'];    
 
     static function getEdits($where){
 
-      $result = CruiseshipsTranslation::select('id', 'fk_language', 'name', 'summary', 'body');
+      $result = CruiseshipsPrices::select('id', 'price', 'discount', 'is_active', 'fk_currency');
 
       if (is_array($where)) {
         $result->where($where);
       } else {
         $result->where('fk_cruiseship', $where);
-        $result->orderBy('fk_language');
+        $result->orderBy('fk_currency');
       }
     
       return $result->get();
-  /*
-      if (is_array($id)) {
-        if (count($result) == count(array_unique($id))) {
-          return $result;
-        }
-      } elseif (! is_null($result)) {
-        return $result;
-      }
-  */
+  
       //Laravel 4 fallback
       return abort(404);
   
       //throw (new ModelNotFoundException)->setModel(get_class($this->model));
-    }    
+    }
+    
 }

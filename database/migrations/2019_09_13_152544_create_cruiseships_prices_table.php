@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePricesCruiseshipsTable extends Migration
+class CreateCruiseshipsPricesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePricesCruiseshipsTable extends Migration
      */
     public function up()
     {
-        Schema::create('prices_cruiseships', function (Blueprint $table) {
+        Schema::create('cruiseships_prices', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
@@ -37,6 +37,6 @@ class CreatePricesCruiseshipsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prices_cruiseships');
+        Schema::dropIfExists('cruiseships_prices');
     }
 }

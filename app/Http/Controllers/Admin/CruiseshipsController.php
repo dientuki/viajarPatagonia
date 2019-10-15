@@ -6,6 +6,7 @@ use Exception;
 use App\Currency;
 use App\Cruiseships;
 use App\CruiseshipsTypes;
+use App\CruiseshipsPrices;
 use Illuminate\Http\Request;
 use App\Translations\Language;
 use Prologue\Alerts\Facades\Alert;
@@ -101,13 +102,14 @@ class CruiseshipsController extends Controller
         $cruiseship = Cruiseships::getEdit($id);
         $cruiseshipTranslation = CruiseshipsTranslation::getEdits($id);
         $cruiseshipType = CruiseshipsTypes::getLists();
+        $cruiseshipPrice = CruiseshipsPrices::getEdits($id);
         $currencies = Currency::getAll();
 
         $action    = 'update';
         $form_data = array('route' => array('admin.cruiseships.update', $cruiseship->id), 'method' => 'PATCH');
         $languages = Language::getAll();
 
-        return view('admin/cruiseships/edit', compact('action', 'cruiseship', 'form_data', 'languages', 'cruiseshipTranslation', 'cruiseshipType', 'currencies'));
+        return view('admin/cruiseships/edit', compact('action', 'cruiseship', 'form_data', 'languages', 'cruiseshipTranslation', 'cruiseshipType', 'currencies', 'cruiseshipPrice'));
     }
 
     /**
