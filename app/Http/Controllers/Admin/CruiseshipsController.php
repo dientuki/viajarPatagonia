@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use Exception;
 use App\Currency;
-use App\Translations\Language;
 use App\Cruiseships;
 use App\CruiseshipsTypes;
 use Illuminate\Http\Request;
+use App\Translations\Language;
 use Prologue\Alerts\Facades\Alert;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\EditCruiseships;
+use App\Http\Requests\EditCruiseship;
 use App\Http\Requests\StoreCruiseship;
 use App\Translations\CruiseshipsTranslation;
 
@@ -101,22 +101,23 @@ class CruiseshipsController extends Controller
         $cruiseship = Cruiseships::getEdit($id);
         $cruiseshipTranslation = CruiseshipsTranslation::getEdits($id);
         $cruiseshipType = CruiseshipsTypes::getLists();
+        $currencies = Currency::getAll();
 
         $action    = 'update';
         $form_data = array('route' => array('admin.cruiseships.update', $cruiseship->id), 'method' => 'PATCH');
         $languages = Language::getAll();
 
-        return view('admin/cruiseships/edit', compact('action', 'cruiseship', 'form_data', 'languages', 'cruiseshipTranslation', 'cruiseshipType'));
+        return view('admin/cruiseships/edit', compact('action', 'cruiseship', 'form_data', 'languages', 'cruiseshipTranslation', 'cruiseshipType', 'currencies'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\EditCruiseships  $request
+     * @param  \App\Http\Requests\EditCruiseship  $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EditCruiseships $request, $id)
+    public function update(EditCruiseship $request, $id)
     {
         $cruiseship = Cruiseships::getEdit($id);
 

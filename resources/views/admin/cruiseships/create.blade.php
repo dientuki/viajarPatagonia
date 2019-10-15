@@ -89,7 +89,6 @@
 
     <fieldset>
       <h2>Precios</h2>
-
       
       <div class="row">
         @foreach ($currencies as $currency)
