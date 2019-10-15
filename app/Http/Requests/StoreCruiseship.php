@@ -31,8 +31,8 @@ class StoreCruiseship extends FormRequest
         $validation = [];
 
         foreach ($languages as $language) {
-            $validation['title_' . $language->id] = 'required';
-            $validation['dropline_' . $language->id] = 'required';
+            $validation['name_' . $language->id] = 'required';
+            $validation['summary_' . $language->id] = 'required';
             $validation['body_' . $language->id] = 'required';
             $validation['fk_language_' . $language->id] = 'required|in:'.$language->id;
         }
@@ -62,8 +62,8 @@ class StoreCruiseship extends FormRequest
         $validation = [];
 
         foreach ($languages as $language) {
-            $validation['title_' . $language->id] = $language->$language;
-            $validation['dropline_' . $language->id] = $language->$language;
+            $validation['name_' . $language->id] = $language->$language;
+            $validation['summary_' . $language->id] = $language->$language;
             $validation['body_' . $language->id] = $language->$language;
             $validation['fk_language_' . $language->id] = $language->$language;
         }

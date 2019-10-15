@@ -14,44 +14,44 @@ class CruiseshipsTranslationSeeder extends Seeder
         DB::table('cruiseships_translation')->insert([
             'fk_language' => 1,
             'fk_cruiseship' => 1,
-            'title' => 'Patagonia es',
+            'name' => 'Patagonia es',
             'body' => '{"blocks":[{"key":"2eqog","text":"Cuerpo español","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":7,"length":7,"style":"BOLD"}],"entityRanges":[],"data":{}}],"entityMap":{}}',
-            'dropline' => 'bajada patagonia',
+            'summary' => 'bajada patagonia',
         ]);
         DB::table('cruiseships_translation')->insert([
             'fk_language' => 2,
             'fk_cruiseship' => 1,
-            'title' => 'Patagonia en',
+            'name' => 'Patagonia en',
             'body' => '{"blocks":[{"key":"2eqog","text":"Cuerpo en","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":7,"length":2,"style":"BOLD"}],"entityRanges":[],"data":{}}],"entityMap":{}}',
-            'dropline' => 'dropline patagonia',
+            'summary' => 'summary patagonia',
         ]);
         DB::table('cruiseships_translation')->insert([
             'fk_language' => 3,
             'fk_cruiseship' => 1,
-            'title' => 'Patagonia pt',
+            'name' => 'Patagonia pt',
             'body' => '{"blocks":[{"key":"2eqog","text":"Cuerpo porugez","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":7,"length":7,"style":"ITALIC"}],"entityRanges":[],"data":{}}],"entityMap":{}}',
-            'dropline' => 'linha de queda patagonia',
+            'summary' => 'linha de queda patagonia',
         ]);
         DB::table('cruiseships_translation')->insert([
             'fk_language' => 1,
             'fk_cruiseship' => 2,
-            'title' => 'Antartida es',
+            'name' => 'Antartida es',
             'body' => '{"blocks":[{"key":"2eqog","text":"Cuerpo español","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":7,"length":7,"style":"BOLD"}],"entityRanges":[],"data":{}}],"entityMap":{}}',
-            'dropline' => 'bajada Antartida',            
+            'summary' => 'bajada Antartida',            
         ]);
         DB::table('cruiseships_translation')->insert([
             'fk_language' => 2,
             'fk_cruiseship' => 2,
-            'title' => 'Antartida en',
+            'name' => 'Antartida en',
             'body' => '{"blocks":[{"key":"2eqog","text":"Cuerpo en","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":7,"length":2,"style":"BOLD"}],"entityRanges":[],"data":{}}],"entityMap":{}}',
-            'dropline' => 'dropline Antartida',  
+            'summary' => 'summary Antartida',  
         ]);
         DB::table('cruiseships_translation')->insert([
             'fk_language' => 3,
             'fk_cruiseship' => 2,
-            'title' => 'Antartida pt',
+            'name' => 'Antartida pt',
             'body' => '{"blocks":[{"key":"2eqog","text":"Cuerpo porugez","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":7,"length":7,"style":"ITALIC"}],"entityRanges":[],"data":{}}],"entityMap":{}}',
-            'dropline' => 'linha de queda Antartida',  
+            'summary' => 'linha de queda Antartida',  
         ]);                  
     }
 }

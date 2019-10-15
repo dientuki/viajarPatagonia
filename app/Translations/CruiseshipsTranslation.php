@@ -25,7 +25,7 @@ class CruiseshipsTranslation extends Model
      *
      * @var array
      */
-    protected $fillable = ['fk_language', 'fk_cruiseship', 'title', 'dropline', 'body'];    
+    protected $fillable = ['fk_language', 'fk_cruiseship', 'name', 'summary', 'body'];    
 
     static function getLists() {
       //return Region::orderBy('region')->pluck('region', 'id');
@@ -33,7 +33,7 @@ class CruiseshipsTranslation extends Model
 
     static function getEdits($where){
 
-      $result = CruiseshipsTranslation::select('id', 'fk_language', 'fk_cruiseship', 'title', 'dropline', 'body');
+      $result = CruiseshipsTranslation::select('id', 'fk_language', 'fk_cruiseship', 'name', 'summary', 'body');
 
       if (is_array($where)) {
         $result->where($where);

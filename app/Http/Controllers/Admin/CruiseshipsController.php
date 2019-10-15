@@ -67,8 +67,8 @@ class CruiseshipsController extends Controller
                 CruiseshipsTranslation::create([
                     'fk_language' => $data['fk_language_' . $language->id],
                     'fk_cruiseship' => $cruiseship->id,
-                    'title' => $data['title_' . $language->id],
-                    'dropline' => $data['dropline_' . $language->id],
+                    'name' => $data['name_' . $language->id],
+                    'summary' => $data['summary_' . $language->id],
                     'body' => $data['body_' . $language->id]
                 ]);
             }

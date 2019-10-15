@@ -14,10 +14,10 @@
         <h2>{{ $language->language }}</h2>
 
           <div class="form-group">
-            <?php $class = $errors->has('title_' . $language->id) != null ? 'form-control is-invalid' : 'form-control'; ?>
-            {!! Form::label('title_' . $language->id, ucfirst(__('fields.title_' . $language->id))) !!}
-            {!! Form::text('title_' . $language->id, null, array('placeholder' => $language->language, 'class'=>$class)) !!}
-            @error('title_' . $language->id)
+            <?php $class = $errors->has('name_' . $language->id) != null ? 'form-control is-invalid' : 'form-control'; ?>
+            {!! Form::label('name_' . $language->id, ucfirst(__('fields.name_' . $language->id))) !!}
+            {!! Form::text('name_' . $language->id, null, array('placeholder' => $language->language, 'class'=>$class)) !!}
+            @error('name_' . $language->id)
               <div class="invalid-feedback">
                 <strong>{{ $message }}</strong>
               </div>
@@ -25,10 +25,10 @@
           </div>
 
           <div class="form-group">
-            <?php $class = $errors->has('dropline_' . $language->id) != null ? 'form-control is-invalid' : 'form-control'; ?>
-            {!! Form::label('dropline_' . $language->id, ucfirst(__('fields.dropline_' . $language->id))) !!}
-            {!! Form::textarea('dropline_' . $language->id, null, array('placeholder' => $language->language, 'class'=>$class)) !!}
-            @error('dropline_' . $language->id)
+            <?php $class = $errors->has('summary_' . $language->id) != null ? 'form-control is-invalid' : 'form-control'; ?>
+            {!! Form::label('summary_' . $language->id, ucfirst(__('fields.summary_' . $language->id))) !!}
+            {!! Form::textarea('summary_' . $language->id, null, array('placeholder' => $language->language, 'class'=>$class)) !!}
+            @error('summary_' . $language->id)
               <div class="invalid-feedback">
                 <strong>{{ $message }}</strong>
               </div>
