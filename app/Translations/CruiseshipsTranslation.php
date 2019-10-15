@@ -31,17 +31,18 @@ class CruiseshipsTranslation extends Model
       //return Region::orderBy('region')->pluck('region', 'id');
     }
 
-    static function getEdit($where){
+    static function getEdits($where){
 
       $result = CruiseshipsTranslation::select('id', 'fk_language', 'fk_cruiseship', 'title', 'dropline', 'body');
 
       if (is_array($where)) {
         $result->where($where);
       } else {
-        $result->where('id', $id);
+        $result->where('fk_cruiseship', $where);
+        $result->orderBy('fk_language');
       }
     
-      return $result->get()->first();
+      return $result->get();
   /*
       if (is_array($id)) {
         if (count($result) == count(array_unique($id))) {

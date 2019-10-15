@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Currency;
 use App\Language;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -26,6 +27,7 @@ class StoreCruiseship extends FormRequest
     public function rules()
     {
         $languages = Language::getAll();
+        $currencies = Currency::getAll();
         $validation = [];
 
         foreach ($languages as $language) {
@@ -33,6 +35,13 @@ class StoreCruiseship extends FormRequest
             $validation['dropline_' . $language->id] = 'required';
             $validation['body_' . $language->id] = 'required';
             $validation['fk_language_' . $language->id] = 'required|in:'.$language->id;
+        }
+
+        foreach ($currencies as $currency) {
+            $validation['price_' . $currency->id] = 'integer|nullable';
+            $validation['discount_' . $currency->id] = 'integer|nullable';
+            $validation['is_active' . $language->id] = 'boolean';
+            $validation['fk_currency_' . $currency->id] = 'required|in:'.$currency->id;
         }
 
         $validation['is_active'] = 'boolean';

@@ -23,10 +23,10 @@ class CreatePricesCruiseshipsTable extends Migration
             $table->mediumInteger('discount');
             $table->boolean('is_active')->default(false);
             $table->tinyInteger('fk_currency')->unsigned();
-            $table->smallInteger('fk_cruise')->unsigned();
+            $table->smallInteger('fk_cruiseship')->unsigned();
 
             $table->foreign('fk_currency')->references('id')->on('currencies');
-            $table->foreign('fk_cruise')->references('id')->on('cruiseships');
+            $table->foreign('fk_cruiseship')->references('id')->on('cruiseships');
         });
     }
 

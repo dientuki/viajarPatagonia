@@ -27,6 +27,11 @@ class Currency extends Model
      */
     protected $fillable = ['sign', 'iso', 'currency', 'amount'];    
 
+
+    static function getAll() {
+      return Currency::select('id', 'sign', 'iso', 'currency')->get();
+    }
+
     static function getLists() {
       //return Region::orderBy('region')->pluck('region', 'id');
     }  

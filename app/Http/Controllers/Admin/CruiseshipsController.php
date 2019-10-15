@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Exception;
+use App\Currency;
 use App\Language;
 use App\Cruiseships;
 use App\CruiseshipsTypes;
@@ -39,10 +40,11 @@ class CruiseshipsController extends Controller
         $action = 'create';
         $form_data = array('route' => 'admin.cruiseships.store', 'method' => 'POST');
         $cruiseshipType = CruiseshipsTypes::getLists();
+        $currencies = Currency::getAll();
 
         $languages = Language::getAll();
         
-        return view('admin/cruiseships/form', compact('action', 'cruiseship',  'form_data', 'languages', 'cruiseshipType'));
+        return view('admin/cruiseships/create', compact('action', 'cruiseship',  'form_data', 'languages', 'cruiseshipType', 'currencies'));
     }
 
     /**
@@ -55,11 +57,10 @@ class CruiseshipsController extends Controller
     {      
         $data = $request->validated();
 
-        //dd($data);
-
         $cruiseship = Cruiseships::create($data);
 
         $languages = Language::getAll();
+        $currencies = Currency::getAll();
 
         foreach ($languages as $language) {
             if (isset($data['fk_language_' . $language->id])) {
@@ -71,7 +72,20 @@ class CruiseshipsController extends Controller
                     'body' => $data['body_' . $language->id]
                 ]);
             }
-        }        
+        }
+
+        foreach ($currencies as $currency) {
+            if (isset($data['fk_currency_' . $language->id]) && $data['price_' . $currency->id] != null) {
+
+                CruiseshipsTranslation::create([
+                    'fk_currency' => $data['fk_currency_' . $language->id],
+                    'fk_cruiseship' => $cruiseship->id,
+                    'price' => $data['price_' . $currency->id],
+                    'discount' => $data['discount_' . $currency->id],
+                    'is_active' => isset($data['is_active_' . $currency->id]) ? true : false
+                ]);
+            }
+        }            
 
         return redirect()->route('admin.cruiseships.index');
     }
@@ -85,12 +99,14 @@ class CruiseshipsController extends Controller
     public function edit($id)
     {
         $cruiseship = Cruiseships::getEdit($id);
+        $cruiseshipTranslation = CruiseshipsTranslation::getEdits($id);
+        $cruiseshipType = CruiseshipsTypes::getLists();
 
         $action    = 'update';
         $form_data = array('route' => array('admin.cruiseships.update', $cruiseship->id), 'method' => 'PATCH');
         $languages = Language::getAll();
 
-        return view('admin/cruiseships/form', compact('action', 'cruiseship', 'form_data', 'languages'));
+        return view('admin/cruiseships/edit', compact('action', 'cruiseship', 'form_data', 'languages', 'cruiseshipTranslation', 'cruiseshipType'));
     }
 
     /**
