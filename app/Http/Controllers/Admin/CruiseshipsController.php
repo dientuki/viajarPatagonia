@@ -76,7 +76,7 @@ class CruiseshipsController extends Controller
         }
 
         foreach ($currencies as $currency) {
-            if (isset($data['fk_currency_' . $language->id]) && $data['price_' . $currency->id] != null) {
+            if (isset($data['fk_currency_' . $currency->id]) && $data['price_' . $currency->id] != null) {
 
                 CruiseshipsPrices::create([
                     'fk_currency' => $data['fk_currency_' . $language->id],
@@ -148,20 +148,32 @@ class CruiseshipsController extends Controller
 
         $currencies = Currency::getAll();
         foreach ($currencies as $currency) {
-            if (isset($data['fk_currency_' . $language->id])) {
+            if (isset($data['fk_currency_' . $currency->id]) && $data['price_' . $currency->id] != null) {
 
                 $where = array(
-                    ['fk_language', $data['fk_language_' . $language->id]],
+                    ['fk_currency', $data['fk_currency_' . $currency->id]],
                     ['fk_cruiseship', $id]
                 );
 
-                $cruiseshipTranslation = CruiseshipsTranslation::getUpdate($where);
+                $cruiseshipPrice = CruiseshipsPrices::getUpdate($where);
 
-                $cruiseshipTranslation->fill([
-                    'name' => $data['name_' . $language->id],
-                    'summary' => $data['summary_' . $language->id],
-                    'body' => $data['body_' . $language->id]
-                ])->save();
+                //dd(is_null($cruiseshipPrice));
+
+                if (is_null($cruiseshipPrice)) {
+                    CruiseshipsPrices::create([
+                        'fk_currency' => $data['fk_currency_' . $currency->id],
+                        'fk_cruiseship' => $id,
+                        'price' => $data['price_' . $currency->id],
+                        'discount' => $data['discount_' . $currency->id],
+                        'is_active' => isset($data['is_active_' . $currency->id]) ? true : false
+                    ]);
+                } else {
+                    $cruiseshipTranslation->fill([
+                        'price' => $data['price_' . $currency->id],
+                        'discount' => $data['discount_' . $currency->id],
+                        'is_active' => isset($data['is_active_' . $currency->id]) ? true : false
+                    ])->save();
+                }
             }            
         }
 
