@@ -204,15 +204,17 @@ workflows:
             - install_webpack        
           filters:
             tags:
-              only: /.*/                 
+              only: /.*/
+            branches:
+              only: master             
       - install_laravel:
           requires:
             - checkout_code        
           filters:
             tags:
-              only: /^v.*/
+              only: /.*/
             branches:
-              ignore: /.*/          
+              only: master          
       - optimize_laravel:
           requires:
             - install_laravel
