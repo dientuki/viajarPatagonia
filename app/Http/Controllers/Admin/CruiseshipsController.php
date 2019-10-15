@@ -78,7 +78,7 @@ class CruiseshipsController extends Controller
         foreach ($currencies as $currency) {
             if (isset($data['fk_currency_' . $language->id]) && $data['price_' . $currency->id] != null) {
 
-                CruiseshipsTranslation::create([
+                CruiseshipsPrices::create([
                     'fk_currency' => $data['fk_currency_' . $language->id],
                     'fk_cruiseship' => $cruiseship->id,
                     'price' => $data['price_' . $currency->id],
@@ -100,7 +100,7 @@ class CruiseshipsController extends Controller
     public function edit($id)
     {
         $cruiseship = Cruiseships::getEdit($id);
-        $cruiseshipTranslation = CruiseshipsTranslation::getEdits($id);
+        $cruiseshipTranslation = CruiseshipsTranslation::getEdit($id);
         $cruiseshipType = CruiseshipsTypes::getLists();
         $cruiseshipPrice = CruiseshipsPrices::getEdits($id);
         $currencies = Currency::getAll();
@@ -125,22 +125,45 @@ class CruiseshipsController extends Controller
 
         $data = $request->validated();
 
+        $cruiseship->fill($data)->save();
+
         $languages = Language::getAll();
-
         foreach ($languages as $language) {
-            if (isset($data['language_' . $language->id]) && isset($data['fk_language_' . $language->id])) {
+            if (isset($data['fk_language_' . $language->id])) {
 
-                $where = [];
-                $where[] = ['fk_language', $data['fk_language_' . $language->id]];
-                $where[] = ['fk_cruiseship_type', $id];
+                $where = array(
+                    ['fk_language', $data['fk_language_' . $language->id]],
+                    ['fk_cruiseship', $id]
+                );
 
-                $cruiseshipTranslation = CruiseshipsTranslation::getEdit($where);
+                $cruiseshipTranslation = CruiseshipsTranslation::getUpdate($where);
 
                 $cruiseshipTranslation->fill([
-                    'type' => $data['language_' . $language->id]
+                    'name' => $data['name_' . $language->id],
+                    'summary' => $data['summary_' . $language->id],
+                    'body' => $data['body_' . $language->id]
                 ])->save();
-            }
-        }  
+            }            
+        }
+
+        $currencies = Currency::getAll();
+        foreach ($currencies as $currency) {
+            if (isset($data['fk_currency_' . $language->id])) {
+
+                $where = array(
+                    ['fk_language', $data['fk_language_' . $language->id]],
+                    ['fk_cruiseship', $id]
+                );
+
+                $cruiseshipTranslation = CruiseshipsTranslation::getUpdate($where);
+
+                $cruiseshipTranslation->fill([
+                    'name' => $data['name_' . $language->id],
+                    'summary' => $data['summary_' . $language->id],
+                    'body' => $data['body_' . $language->id]
+                ])->save();
+            }            
+        }
 
         return redirect()->route('admin.cruiseships.index');
     }

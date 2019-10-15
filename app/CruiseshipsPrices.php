@@ -47,5 +47,20 @@ class CruiseshipsPrices extends Model
   
       //throw (new ModelNotFoundException)->setModel(get_class($this->model));
     }
+
+    static function getEdit($id){
+
+      return CruiseshipsPrices::select('id', 'price', 'discount', 'is_active', 'fk_currency')
+        ->where('fk_cruiseship', $id)
+        ->orderBy('fk_currency')
+        ->get();
+    }    
+
+    static function getUpdate($where){
+
+      return CruiseshipsPrices::select('id', 'price', 'discount', 'is_active', 'fk_currency')
+        ->where($where)
+        ->get()->first();
+    }    
     
 }

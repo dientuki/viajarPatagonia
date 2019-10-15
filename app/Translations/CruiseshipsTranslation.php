@@ -31,30 +31,18 @@ class CruiseshipsTranslation extends Model
       //return Region::orderBy('region')->pluck('region', 'id');
     }
 
-    static function getEdits($where){
+    static function getEdit($id){
 
-      $result = CruiseshipsTranslation::select('id', 'fk_language', 'name', 'summary', 'body');
+      return CruiseshipsTranslation::select('id', 'fk_language', 'name', 'summary', 'body')
+        ->where('fk_cruiseship', $id)
+        ->orderBy('fk_language')
+        ->get();
+    }    
 
-      if (is_array($where)) {
-        $result->where($where);
-      } else {
-        $result->where('fk_cruiseship', $where);
-        $result->orderBy('fk_language');
-      }
-    
-      return $result->get();
-  /*
-      if (is_array($id)) {
-        if (count($result) == count(array_unique($id))) {
-          return $result;
-        }
-      } elseif (! is_null($result)) {
-        return $result;
-      }
-  */
-      //Laravel 4 fallback
-      return abort(404);
-  
-      //throw (new ModelNotFoundException)->setModel(get_class($this->model));
+    static function getUpdate($where){
+
+      return CruiseshipsTranslation::select('id', 'fk_language', 'name', 'summary', 'body')
+        ->where($where)
+        ->get()->first();
     }    
 }

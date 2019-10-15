@@ -20,7 +20,7 @@ class CreateCruiseshipsPricesTable extends Migration
 
             $table->smallIncrements('id');
             $table->mediumInteger('price');
-            $table->mediumInteger('discount');
+            $table->mediumInteger('discount')->nullable(true);
             $table->boolean('is_active')->default(false);
             $table->tinyInteger('fk_currency')->unsigned();
             $table->smallInteger('fk_cruiseship')->unsigned();
