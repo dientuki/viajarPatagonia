@@ -65,10 +65,7 @@ jobs:
           key: dependency-cache-node-{{ checksum "package.json" }}
       - run:
           name: Linter Javascript
-          command: npm run eslint:js
-      - run:
-          name: Linter Javascript eXtended
-          command: npm run eslint:jsx         
+          command: npm run eslint:js       
       - run:
           name: Linter CSS
           command: npm run stylelint              
