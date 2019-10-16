@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 export default class StyleButton extends React.Component {
@@ -8,6 +9,13 @@ export default class StyleButton extends React.Component {
       e.preventDefault();
       this.props.onToggle(this.props.style);
     };
+  }
+
+  static propTypes = {
+    active: PropTypes.bool,
+    label: PropTypes.string,
+    onToggle: PropTypes.func,
+    style: PropTypes.string
   }
 
   render() {
