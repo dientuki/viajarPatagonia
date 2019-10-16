@@ -62,7 +62,7 @@ class RichEditor extends React.Component {
 
   componentDidMount() {
     this.element = ReactDOM.findDOMNode(this).parentNode;
-    const content = document.querySelector(`#${this.element.dataset.field}`).value
+    const content = document.querySelector(`#${this.element.dataset.field}`).value;
 
     if (content !== '') {
       this.setState({
