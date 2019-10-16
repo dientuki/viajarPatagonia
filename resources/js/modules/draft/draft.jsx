@@ -4,6 +4,7 @@ import StyleButton from './styleButton.jsx';
 import { convertFromRaw, convertToRaw, Editor, EditorState, getDefaultKeyBinding, RichUtils } from 'draft-js';
 
 class RichEditor extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = { editorState: EditorState.createEmpty() };
