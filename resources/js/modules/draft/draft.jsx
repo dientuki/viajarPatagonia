@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Editor, EditorState, RichUtils, getDefaultKeyBinding, convertFromRaw, convertToRaw} from 'draft-js';
 import StyleButton from './styleButton.jsx';
+import { convertFromRaw, convertToRaw, Editor, EditorState, getDefaultKeyBinding, RichUtils } from 'draft-js';
 
 class RichEditor extends React.Component {
   constructor(props) {
@@ -20,6 +20,7 @@ class RichEditor extends React.Component {
 
   _handleKeyCommand(command, editorState) {
     const newState = RichUtils.handleKeyCommand(editorState, command);
+
     if (newState) {
       this.onChange(newState);
       return true;
@@ -76,12 +77,13 @@ class RichEditor extends React.Component {
   }
 
   render() {
-    const { editorState } = this.state;
+    const { editorState } = this.state,
+      contentState = editorState.getCurrentContent();
 
     // If the user changes block type before entering any text, we can
     // either style the placeholder or hide it. Let's just hide it now.
     let className = 'RichEditor-editor';
-    var contentState = editorState.getCurrentContent();
+
     if (!contentState.hasText()) {
       if (contentState.getBlockMap().first().getType() !== 'unstyled') {
         className += ' RichEditor-hidePlaceholder';
@@ -123,8 +125,8 @@ const styleMap = {
     backgroundColor: 'rgba(0, 0, 0, 0.05)',
     fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
     fontSize: 16,
-    padding: 2,
-  },
+    padding: 2
+  }
 };
 
 function getBlockStyle(block) {
@@ -141,7 +143,7 @@ const BLOCK_TYPES = [
   { label: 'H6', style: 'header-six' },
   { label: 'Blockquote', style: 'blockquote' },
   { label: 'UL', style: 'unordered-list-item' },
-  { label: 'OL', style: 'ordered-list-item' },
+  { label: 'OL', style: 'ordered-list-item' }
 ];
 
 const BlockStyleControls = (props) => {
