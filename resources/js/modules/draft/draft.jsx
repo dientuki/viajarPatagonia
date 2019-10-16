@@ -121,14 +121,44 @@ class RichEditor extends React.Component {
 }
 
 // Custom overrides for "code" style.
-const styleMap = {
-  CODE: {
-    backgroundColor: 'rgba(0, 0, 0, 0.05)',
-    fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
-    fontSize: 16,
-    padding: 2
-  }
-};
+const BLOCK_TYPES = [
+    {
+      label: 'H3',
+      style: 'header-three'
+    },
+    {
+      label: 'H4',
+      style: 'header-four'
+    },
+    {
+      label: 'H5',
+      style: 'header-five'
+    },
+    {
+      label: 'H6',
+      style: 'header-six'
+    },
+    {
+      label: 'Blockquote',
+      style: 'blockquote'
+    },
+    {
+      label: 'UL',
+      style: 'unordered-list-item'
+    },
+    {
+      label: 'OL',
+      style: 'ordered-list-item'
+    }
+  ],
+  styleMap = {
+    CODE: {
+      backgroundColor: 'rgba(0, 0, 0, 0.05)',
+      fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
+      fontSize: 16,
+      padding: 2
+    }
+  };
 
 function getBlockStyle(block) {
   switch (block.getType()) {
@@ -136,16 +166,6 @@ function getBlockStyle(block) {
     default: return null;
   }
 }
-
-const BLOCK_TYPES = [
-  { label: 'H3', style: 'header-three' },
-  { label: 'H4', style: 'header-four' },
-  { label: 'H5', style: 'header-five' },
-  { label: 'H6', style: 'header-six' },
-  { label: 'Blockquote', style: 'blockquote' },
-  { label: 'UL', style: 'unordered-list-item' },
-  { label: 'OL', style: 'ordered-list-item' }
-];
 
 const BlockStyleControls = (props) => {
   const { editorState } = props;
@@ -173,9 +193,18 @@ const BlockStyleControls = (props) => {
 const InlineStyleControls = (props) => {
   const currentStyle = props.editorState.getCurrentInlineStyle(),
     INLINE_STYLES = [
-      { label: 'Bold', style: 'BOLD' },
-      { label: 'Italic', style: 'ITALIC' },
-      { label: 'Underline', style: 'UNDERLINE' }
+      {
+        label: 'Bold',
+        style: 'BOLD'
+      },
+      {
+        label: 'Italic',
+        style: 'ITALIC'
+      },
+      {
+        label: 'Underline',
+        style: 'UNDERLINE'
+      }
     ];
 
   return (
