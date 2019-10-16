@@ -13,6 +13,9 @@
             "jsx": true
         }
     },
+    "extends": [
+        "plugin:react/recommended"
+    ],
     "globals": {
         "__webpack_public_path__": "writable"
     },
