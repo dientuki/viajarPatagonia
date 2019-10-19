@@ -5,7 +5,15 @@
   {!! Form::open(array_merge($form_data, array('role' => 'form', 'class' => 'form-horizontal', 'enctype' => "multipart/form-data"))) !!}
     <div>{{ ucfirst(__('fields.cruiseship')) }}</div>
 
-    <div class="needsclick dropzone" id="dropzone"></div>
+    <fieldset class="sticky-wrapper">
+      <h2 class="sticky-head">Images</h2>
+
+      
+
+      <div class="needsclick dropzone" id="dropzone" data-url="{{ route('admin.images.store') }}" data-token="{{ csrf_token() }}"></div>
+    </fieldset>
+
+    
 
     @foreach ($languages as $language)
       <fieldset class="sticky-wrapper">
