@@ -3,7 +3,7 @@ export function toogleNav() {
     content = document.querySelector('#content'),
     sidebar = document.querySelector('#sidebar');
 
-  if (button !== null)   {
+  if (button !== null) {
     button.addEventListener('click', () => {
       window.requestAnimationFrame(() => {
         sidebar.classList.toggle('active');

@@ -1,6 +1,7 @@
 import Dropzone from 'dropzone';
 
 export default class DropzoneMiddleware {
+
   constructor(query) {
     Dropzone.autoDiscover = false;
     this.element = document.querySelector(query);
