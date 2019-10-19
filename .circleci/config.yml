@@ -67,6 +67,9 @@ jobs:
           name: Linter Javascript
           command: npm run eslint:js       
       - run:
+          name: Linter Javascript eXtended
+          command: npm run eslint:jsx
+      - run:
           name: Linter CSS
           command: npm run stylelint              
 
