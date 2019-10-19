@@ -1,4 +1,3 @@
-//* eslint-disable */
 import BlockStyleControls from './blockStyleControls.jsx';
 import InlineStyleControls from './inlineStyleControls.jsx';
 import React from 'react';
