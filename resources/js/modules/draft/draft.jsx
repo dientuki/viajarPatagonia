@@ -1,7 +1,8 @@
 /* eslint-disable */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import StyleButton from './styleButton.jsx';
+import InlineStyleControls from './inlineStyleControls.jsx';
+import BlockStyleControls from './blockStyleControls.jsx';
 import { convertFromRaw, convertToRaw, Editor, EditorState, getDefaultKeyBinding, RichUtils } from 'draft-js';
 
 class RichEditor extends React.Component {
@@ -122,37 +123,7 @@ class RichEditor extends React.Component {
 }
 
 // Custom overrides for "code" style.
-const BLOCK_TYPES = [
-    {
-      label: 'H3',
-      style: 'header-three'
-    },
-    {
-      label: 'H4',
-      style: 'header-four'
-    },
-    {
-      label: 'H5',
-      style: 'header-five'
-    },
-    {
-      label: 'H6',
-      style: 'header-six'
-    },
-    {
-      label: 'Blockquote',
-      style: 'blockquote'
-    },
-    {
-      label: 'UL',
-      style: 'unordered-list-item'
-    },
-    {
-      label: 'OL',
-      style: 'ordered-list-item'
-    }
-  ],
-  styleMap = {
+const styleMap = {
     CODE: {
       backgroundColor: 'rgba(0, 0, 0, 0.05)',
       fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
@@ -167,61 +138,6 @@ function getBlockStyle(block) {
     default: return null;
   }
 }
-
-const BlockStyleControls = (props) => {
-  const { editorState } = props;
-  const selection = editorState.getSelection();
-  const blockType = editorState
-    .getCurrentContent()
-    .getBlockForKey(selection.getStartKey())
-    .getType();
-
-  return (
-    <div className="RichEditor-controls">
-      {BLOCK_TYPES.map((type) =>
-        <StyleButton
-          key={type.label}
-          active={type.style === blockType}
-          label={type.label}
-          onToggle={props.onToggle}
-          style={type.style}
-        />
-      )}
-    </div>
-  );
-};
-
-const InlineStyleControls = (props) => {
-  const currentStyle = props.editorState.getCurrentInlineStyle(),
-    INLINE_STYLES = [
-      {
-        label: 'Bold',
-        style: 'BOLD'
-      },
-      {
-        label: 'Italic',
-        style: 'ITALIC'
-      },
-      {
-        label: 'Underline',
-        style: 'UNDERLINE'
-      }
-    ];
-
-  return (
-    <div className="RichEditor-controls">
-      {INLINE_STYLES.map((type) =>
-        <StyleButton
-          key={type.label}
-          active={currentStyle.has(type.style)}
-          label={type.label}
-          onToggle={props.onToggle}
-          style={type.style}
-        />
-      )}
-    </div>
-  );
-};
 
 document.querySelectorAll('.draftjs').forEach((element) => {
   ReactDOM.render(
