@@ -43,14 +43,15 @@ const BlockStyleControls = (props) => {
 
   return (
     <div className="RichEditor-controls">
-      {BLOCK_TYPES.map((type) =>
-        <StyleButton
+      {BLOCK_TYPES.map((type) => {
+        return <StyleButton
           key={type.label}
           active={type.style === blockType}
           label={type.label}
           onToggle={props.onToggle}
           style={type.style}
-        />
+        />;
+      }
       )}
     </div>
   );
