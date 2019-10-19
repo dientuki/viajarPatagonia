@@ -29,7 +29,7 @@ class StoreCruiseship extends FormRequest
         $languages = Language::getAll();
         $currencies = Currency::getAll();
         $validation = [];
-
+/*
         foreach ($languages as $language) {
             $validation['name_' . $language->id] = 'required';
             $validation['summary_' . $language->id] = 'required';
@@ -43,10 +43,11 @@ class StoreCruiseship extends FormRequest
             $validation['is_active_' . $language->id] = 'boolean';
             $validation['fk_currency_' . $currency->id] = 'required|in:'.$currency->id;
         }
-
+*/
         $validation['is_active'] = 'boolean';
         $validation['map'] = 'url|nullable';
         $validation['fk_cruiseship_type'] = 'required|numeric|exists:cruiseships_types,id';
+        $validation['images'] = 'nullable';
         
         return $validation;
     }
@@ -78,7 +79,8 @@ class StoreCruiseship extends FormRequest
 
         $validation['is_active'] = __('fields.active');
         $validation['fk_cruiseship_type'] = __('fields.cruiseshipType');
-        $validation['map'] = __('fields.map');        
+        $validation['map'] = __('fields.map'); 
+        $validation['images[]'] = 'dunno';       
 
         return $validation;
     }    
