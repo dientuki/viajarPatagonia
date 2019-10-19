@@ -1,4 +1,4 @@
-/* eslint-disable */
+//* eslint-disable */
 import BlockStyleControls from './blockStyleControls.jsx';
 import InlineStyleControls from './inlineStyleControls.jsx';
 import React from 'react';
@@ -11,10 +11,8 @@ class RichEditor extends React.Component {
     super(props);
     this.state = { editorState: EditorState.createEmpty() };
 
-    this.focus = () => this.refs.editor.focus();
-    this.onChange = (editorState) => {
-      return this.setState({ editorState });
-    };
+    this.focus = () => this.editor.focus();
+    this.onChange = (editorState) => this.setState({ editorState });
 
     this.handleKeyCommand = this._handleKeyCommand.bind(this);
     this.mapKeyToEditorCommand = this._mapKeyToEditorCommand.bind(this);
@@ -69,15 +67,14 @@ class RichEditor extends React.Component {
   }
 
   componentDidMount() {
-    this.element = ReactDOM.findDOMNode(this).parentNode;
+    this.element = this.node.parentNode;
     const content = document.querySelector(`#${this.element.dataset.field}`).value;
 
     if (content !== '') {
       this.setState({
-        editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(content)))
-      });
+        editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(content)))});
     }
-  } 
+  }
 
   onBlur() {
     document.querySelector(`#${this.element.dataset.field}`).value = JSON.stringify(convertToRaw(this.editorState.getCurrentContent()));
@@ -92,13 +89,16 @@ class RichEditor extends React.Component {
     let className = 'RichEditor-editor';
 
     if (!contentState.hasText()) {
-      if (contentState.getBlockMap().first().getType() !== 'unstyled') {
+      if (contentState.getBlockMap().first()
+        .getType() !== 'unstyled') {
         className += ' RichEditor-hidePlaceholder';
       }
     }
 
     return (
-      <div className="RichEditor-root">
+      <div className="RichEditor-root" ref={(node) => {
+        this.node = node;
+      }} >
         <BlockStyleControls
           editorState={editorState}
           onToggle={this.toggleBlockType}
@@ -117,13 +117,16 @@ class RichEditor extends React.Component {
             onChange={this.onChange}
             onBlur={this.onBlur}
             element={this.element}
-            ref="editor"
+            ref={(c) => {
+              this.editor = c;
+            }}
             spellCheck={true}
           />
         </div>
       </div>
     );
   }
+
 }
 
 // Custom overrides for "code" style.

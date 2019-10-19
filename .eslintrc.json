@@ -244,7 +244,7 @@
         "wrap-regex": "error", //require parenthesis around regex literals
 
         //ECMAScript 6: These rules relate to ES6, also known as ES2015
-        "arrow-body-style": ["error", "always"], //require braces around arrow function bodies
+        "arrow-body-style": ["error", "as-needed"], //require braces around arrow function bodies
         "arrow-parens": "error", //require parentheses around arrow function arguments
         "arrow-spacing": "error", //enforce consistent spacing before and after the arrow in arrow functions
         "constructor-super": "error", //require super() calls in constructors
