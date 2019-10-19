@@ -8,6 +8,8 @@
     <fieldset class="sticky-wrapper">
       <h2 class="sticky-head">Images</h2>
 
+      lavar es: {{ dd(request()) }}!!
+
       <div id="actions" class="row">
 
         <div class="col-lg-7">
