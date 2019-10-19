@@ -5,6 +5,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { convertFromRaw, convertToRaw, Editor, EditorState, getDefaultKeyBinding, RichUtils } from 'draft-js';
 
+function getBlockStyle(block) {
+  switch (block.getType()) {
+    case 'blockquote': return 'RichEditor-blockquote';
+    default: return null;
+  }
+}
+
 class RichEditor extends React.Component {
 
   constructor(props) {
@@ -14,11 +21,21 @@ class RichEditor extends React.Component {
     this.focus = () => this.editor.focus();
     this.onChange = (editorState) => this.setState({ editorState });
 
+    /* eslint-disable no-underscore-dangle */
     this.handleKeyCommand = this._handleKeyCommand.bind(this);
     this.mapKeyToEditorCommand = this._mapKeyToEditorCommand.bind(this);
     this.toggleBlockType = this._toggleBlockType.bind(this);
     this.toggleInlineStyle = this._toggleInlineStyle.bind(this);
+    /* eslint-enable no-underscore-dangle */
     this.element = null;
+    this.styleMap = {
+      CODE: {
+        backgroundColor: 'rgba(0, 0, 0, 0.05)',
+        fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
+        fontSize: 16,
+        padding: 2
+      }
+    };
   }
 
   _handleKeyCommand(command, editorState) {
@@ -43,8 +60,9 @@ class RichEditor extends React.Component {
       if (newEditorState !== this.state.editorState) {
         this.onChange(newEditorState);
       }
-      return;
+      return false;
     }
+
     return getDefaultKeyBinding(e);
   }
 
@@ -71,8 +89,7 @@ class RichEditor extends React.Component {
     const content = document.querySelector(`#${this.element.dataset.field}`).value;
 
     if (content !== '') {
-      this.setState({
-        editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(content)))});
+      this.setState({editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(content)))});
     }
   }
 
@@ -110,7 +127,7 @@ class RichEditor extends React.Component {
         <div className={className} onClick={this.focus}>
           <Editor
             blockStyleFn={getBlockStyle}
-            customStyleMap={styleMap}
+            customStyleMap={this.styleMap}
             editorState={editorState}
             handleKeyCommand={this.handleKeyCommand}
             keyBindingFn={this.mapKeyToEditorCommand}
@@ -127,23 +144,6 @@ class RichEditor extends React.Component {
     );
   }
 
-}
-
-// Custom overrides for "code" style.
-const styleMap = {
-  CODE: {
-    backgroundColor: 'rgba(0, 0, 0, 0.05)',
-    fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
-    fontSize: 16,
-    padding: 2
-  }
-};
-
-function getBlockStyle(block) {
-  switch (block.getType()) {
-    case 'blockquote': return 'RichEditor-blockquote';
-    default: return null;
-  }
 }
 
 document.querySelectorAll('.draftjs').forEach((element) => {
