@@ -35,7 +35,7 @@ const InlineStyleControls = (props) => {
 };
 
 InlineStyleControls.propTypes = {
-  editorState: PropTypes.func,
+  editorState: PropTypes.object,
   onToggle: PropTypes.func
 };
 

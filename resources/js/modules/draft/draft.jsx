@@ -4,13 +4,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { convertFromRaw, convertToRaw, Editor, EditorState, getDefaultKeyBinding, RichUtils } from 'draft-js';
 
-function getBlockStyle(block) {
-  switch (block.getType()) {
-    case 'blockquote': return 'RichEditor-blockquote';
-    default: return null;
-  }
-}
-
 class RichEditor extends React.Component {
 
   constructor(props) {
@@ -35,6 +28,13 @@ class RichEditor extends React.Component {
         padding: 2
       }
     };
+  }
+
+  static getBlockStyle(block) {
+    switch (block.getType()) {
+      case 'blockquote': return 'RichEditor-blockquote';
+      default: return null;
+    }
   }
 
   _handleKeyCommand(command, editorState) {
@@ -125,7 +125,7 @@ class RichEditor extends React.Component {
         />
         <div className={className} onClick={this.focus}>
           <Editor
-            blockStyleFn={getBlockStyle}
+            blockStyleFn={RichEditor.getBlockStyle}
             customStyleMap={this.styleMap}
             editorState={editorState}
             handleKeyCommand={this.handleKeyCommand}
