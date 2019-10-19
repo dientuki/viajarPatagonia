@@ -1,11 +1,14 @@
 export function toogleNav() {
-  const content = document.querySelector('#content'),
+  const button = document.querySelector('#sidebarCollapse'),
+    content = document.querySelector('#content'),
     sidebar = document.querySelector('#sidebar');
 
-  document.querySelector('#sidebarCollapse').addEventListener('click', () => {
-    window.requestAnimationFrame(() => {
-      sidebar.classList.toggle('active');
-      content.classList.toggle('active');
+  if (button !== null)   {
+    button.addEventListener('click', () => {
+      window.requestAnimationFrame(() => {
+        sidebar.classList.toggle('active');
+        content.classList.toggle('active');
+      });
     });
-  });
+  }
 }
