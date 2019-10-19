@@ -8,9 +8,63 @@
     <fieldset class="sticky-wrapper">
       <h2 class="sticky-head">Images</h2>
 
-      
+      <div id="actions" class="row">
 
-      <div class="needsclick dropzone" id="dropzone" data-url="{{ route('admin.images.store') }}" data-token="{{ csrf_token() }}"></div>
+      <div class="col-lg-7">
+        <!-- The fileinput-button span is used to style the file input field as button -->
+        <span class="btn btn-success fileinput-button" id="dropzone" data-url="{{ route('admin.images.store') }}">
+            <i class="glyphicon glyphicon-plus"></i>
+            <span>Add files...</span>
+        </span>
+        <button type="reset" class="btn btn-warning cancel">
+            <i class="glyphicon glyphicon-ban-circle"></i>
+            <span>Cancel upload</span>
+        </button>
+      </div>
+
+      <div class="col-lg-5">
+        <!-- The global file processing state -->
+        <span class="fileupload-process">
+          <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+          </div>
+        </span>
+      </div>
+
+    </div>
+
+      <div class="table table-striped" class="files" id="previews">
+
+        <div class="file-row template">
+          <!-- This is used as the file preview template -->
+          <input type="hidden" name="images[]" value="" />
+          <div>
+              <span class="preview"><img class="thumbnail" data-dz-thumbnail /></span>
+          </div>
+          <div>
+              <p class="name" data-dz-name></p>
+              <strong class="error text-danger" data-dz-errormessage></strong>
+          </div>
+          <div>
+              <p class="size" data-dz-size></p>
+              <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+              </div>
+          </div>
+          <div>
+            <div data-dz-remove class="btn btn-warning cancel">
+                <i class="glyphicon glyphicon-ban-circle"></i>
+                <span>Cancel</span>
+            </div>
+            <div data-dz-remove class="btn btn-danger delete">
+              <i class="glyphicon glyphicon-trash"></i>
+              <span>Delete</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
     </fieldset>
 
     

@@ -1,52 +1,46 @@
 import Dropzone from 'dropzone';
+import { storageAvailable } from '../helpers/validators';
 
 export default class DropzoneMiddleware {
 
   constructor(query) {
     Dropzone.autoDiscover = false;
+    const previewNode = document.querySelector('.template'),
+      previewTemplate = previewNode.parentNode.innerHTML;
+
+    previewNode.parentNode.removeChild(previewNode);
+
     this.element = document.querySelector(query);
     this.form = this.element.closest('form');
+
     this.config = {
-      addRemoveLinks: true,
+      clickable: '.fileinput-button',
+      parallelUploads: 1,
+      previewTemplate: previewTemplate,
+      previewsContainer: '#previews',
       url: this.element.dataset.url
     };
     this.setHeader();
     this.setEvents();
 
-    return new Dropzone(query, this.config);
+    return new Dropzone(document.body, this.config);
   }
 
   setHeader() {
-    this.config.headers = { 'X-CSRF-TOKEN': this.element.dataset.token };
+    this.config.headers = { 'X-CSRF-TOKEN': this.form.querySelector('input[name=_token]').value };
   }
 
   setEvents() {
-    this.uploadedDocumentMap = {};
 
     this.config.success = (file, response) => {
-      const input = document.createElement('INPUT');
-
-      input.setAttribute('type', 'hidden');
-      input.setAttribute('name', 'images[]');
-      input.setAttribute('value', response.name);
-
-      this.form.insertBefore(input, this.form.firstChild);
-
-      this.uploadedDocumentMap[file.name] = response.name;
-    };
-
-    this.config.removedfile = (file) => {
-      let name;
-
-      if (typeof file.file_name === 'undefined') {
-        name = this.uploadedDocumentMap[file.name];
-      } else {
-        name = file.file_name;
-      }
-
-      file.previewElement.remove();
-
-      this.form.querySelector(`input[name="images[]"][value="${name}"]`).remove();
+      file.previewTemplate.querySelector('input[name="images[]"]').setAttribute('value', response.name);
+      window.requestAnimationFrame(() => {
+        if (storageAvailable('localStorage') === true) {
+          console.log(file.name, file.dataURL);
+          localStorage.setItem(file.name, file.dataURL);
+        }
+  
+      });
     };
   }
 
