@@ -7,6 +7,10 @@ toogleNav();
 
 if (document.querySelectorAll('.draftjs').length > 0) {
   import(/* webpackChunkName: "draft" */ './modules/draft/draft.jsx');
+  import(/* webpackChunkName: "dropzone" */ 'dropzone').then((dzone) => {
+    dzone.default.autoDiscover = false;
+    new dzone.default('#dropzone', { url: "/file/post"});
+  });
 }
 
 if (document.querySelectorAll('.modalOpener').length > 0) {

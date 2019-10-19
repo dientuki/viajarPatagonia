@@ -30,21 +30,16 @@
   }
 }
 
-.draftjs {
-  overflow: hidden;
-
-  &.is-invalid {
-    border: solid (1em/$fs) #e3342f;
-    border-radius: .25rem;
-
-    & ~ .invalid-feedback {
-      display: block;
-    }
-  }
-}
-
 .sticky-head {
   position: sticky;
   top: 0;
   background: #f8fafc;
 }
+
+// Draft
+@import "./modules/draft/draft.scss";
+@import "./modules/draft/rich-editor.scss";
+
+// Dropzone
+@import "./modules/dropzone/basic.scss";
+@import "./modules/dropzone/dropzone.scss";

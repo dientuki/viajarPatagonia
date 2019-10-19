@@ -2,8 +2,10 @@
 
 @section ('content')
 
-  {!! Form::open(array_merge($form_data, array('role' => 'form', 'class' => 'form-horizontal'))) !!}
+  {!! Form::open(array_merge($form_data, array('role' => 'form', 'class' => 'form-horizontal', 'enctype' => "multipart/form-data"))) !!}
     <div>{{ ucfirst(__('fields.cruiseship')) }}</div>
+
+    <div class="needsclick dropzone" id="dropzone"></div>
 
     @foreach ($languages as $language)
       <fieldset class="sticky-wrapper">
