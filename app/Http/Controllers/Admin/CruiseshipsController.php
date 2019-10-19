@@ -57,38 +57,53 @@ class CruiseshipsController extends Controller
     public function store(StoreCruiseship $request)
     {      
         $data = $request->validated();
+       // dd($data);
 
         $cruiseship = Cruiseships::create($data);
 
+        //$this.storeLanguages($cruiseship->id, $data);
+        //$this.storeCurrencies($cruiseship->id, $data);
+
+        foreach ($data['images'] as $file) {
+            $cruiseship->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('products');
+        }
+
+        return redirect()->route('admin.cruiseships.index');
+    }
+
+    private function storeLanguages($id, $data)
+    {
         $languages = Language::getAll();
-        $currencies = Currency::getAll();
 
         foreach ($languages as $language) {
             if (isset($data['fk_language_' . $language->id])) {
                 CruiseshipsTranslation::create([
                     'fk_language' => $data['fk_language_' . $language->id],
-                    'fk_cruiseship' => $cruiseship->id,
+                    'fk_cruiseship' => $id,
                     'name' => $data['name_' . $language->id],
                     'summary' => $data['summary_' . $language->id],
                     'body' => $data['body_' . $language->id]
                 ]);
             }
         }
+    }
 
+    private function storeCurrencies($id, $data)
+    {
+        $currencies = Currency::getAll();
+        
         foreach ($currencies as $currency) {
             if (isset($data['fk_currency_' . $currency->id]) && $data['price_' . $currency->id] != null) {
 
                 CruiseshipsPrices::create([
                     'fk_currency' => $data['fk_currency_' . $language->id],
-                    'fk_cruiseship' => $cruiseship->id,
+                    'fk_cruiseship' => $id,
                     'price' => $data['price_' . $currency->id],
                     'discount' => $data['discount_' . $currency->id],
                     'is_active' => isset($data['is_active_' . $currency->id]) ? true : false
                 ]);
             }
-        }            
-
-        return redirect()->route('admin.cruiseships.index');
+        }  
     }
 
     /**
