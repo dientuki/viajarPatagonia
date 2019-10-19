@@ -8,7 +8,7 @@
 <title>{{ config('app.name') }}</title>
 
 <!-- Scripts -->
-@stack('scripts')
+<script src="{{ load_resource('adminDashboard.js') }}" defer crossorigin="anonymous"></script>
 
 <!-- Fonts -->
 <link rel="preload" href="{{ load_resource('Roboto-Regular.woff2') }}" as="font" type="font/woff2" crossorigin />

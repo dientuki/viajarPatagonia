@@ -6,7 +6,13 @@ __webpack_public_path__ = `${window.location.protocol}//${window.location.host}/
 toogleNav();
 
 if (document.querySelectorAll('.draftjs').length > 0) {
-    import(/* webpackChunkName: "draft" */ './modules/draft/draft.jsx');
+  import(/* webpackChunkName: "draft" */ './modules/draft/draft.jsx');
+}
+
+if (document.querySelectorAll('.modalOpener').length > 0) {
+  import(/* webpackChunkName: "preventDelete" */ './modules/preventDelete/preventDelete').then((module) => {
+    module.preventDelete();
+  });
 }
 
 window.$ = $;
