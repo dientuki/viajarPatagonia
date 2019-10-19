@@ -36,6 +36,11 @@
   background: #f8fafc;
 }
 
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
 // Draft
 @import "./modules/draft/draft.scss";
 @import "./modules/draft/rich-editor.scss";

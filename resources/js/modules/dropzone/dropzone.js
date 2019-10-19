@@ -8,10 +8,9 @@ export default class DropzoneMiddleware {
     const previewNode = document.querySelector('.template'),
       previewTemplate = previewNode.parentNode.innerHTML;
 
-    previewNode.parentNode.removeChild(previewNode);
+    // previewNode.parentNode.removeChild(previewNode);
 
     this.element = document.querySelector(query);
-    this.form = this.element.closest('form');
 
     this.config = {
       clickable: '.fileinput-button',
@@ -27,7 +26,9 @@ export default class DropzoneMiddleware {
   }
 
   setHeader() {
-    this.config.headers = { 'X-CSRF-TOKEN': this.form.querySelector('input[name=_token]').value };
+    const form = this.element.closest('form');
+
+    this.config.headers = { 'X-CSRF-TOKEN': form.querySelector('input[name=_token]').value };
   }
 
   setEvents() {
@@ -36,10 +37,8 @@ export default class DropzoneMiddleware {
       file.previewTemplate.querySelector('input[name="images[]"]').setAttribute('value', response.name);
       window.requestAnimationFrame(() => {
         if (storageAvailable('localStorage') === true) {
-          console.log(file.name, file.dataURL);
           localStorage.setItem(file.name, file.dataURL);
         }
-  
       });
     };
   }
