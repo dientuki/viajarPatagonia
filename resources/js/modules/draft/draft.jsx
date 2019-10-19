@@ -1,8 +1,8 @@
 /* eslint-disable */
+import BlockStyleControls from './blockStyleControls.jsx';
+import InlineStyleControls from './inlineStyleControls.jsx';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import InlineStyleControls from './inlineStyleControls.jsx';
-import BlockStyleControls from './blockStyleControls.jsx';
 import { convertFromRaw, convertToRaw, Editor, EditorState, getDefaultKeyBinding, RichUtils } from 'draft-js';
 
 class RichEditor extends React.Component {
@@ -12,7 +12,9 @@ class RichEditor extends React.Component {
     this.state = { editorState: EditorState.createEmpty() };
 
     this.focus = () => this.refs.editor.focus();
-    this.onChange = (editorState) => this.setState({ editorState });
+    this.onChange = (editorState) => {
+      return this.setState({ editorState });
+    };
 
     this.handleKeyCommand = this._handleKeyCommand.bind(this);
     this.mapKeyToEditorCommand = this._mapKeyToEditorCommand.bind(this);
@@ -33,11 +35,13 @@ class RichEditor extends React.Component {
 
   _mapKeyToEditorCommand(e) {
     if (e.keyCode === 9 /* TAB */) {
+
       const newEditorState = RichUtils.onTab(
         e,
         this.state.editorState,
         4, /* maxDepth */
       );
+
       if (newEditorState !== this.state.editorState) {
         this.onChange(newEditorState);
       }
@@ -124,13 +128,13 @@ class RichEditor extends React.Component {
 
 // Custom overrides for "code" style.
 const styleMap = {
-    CODE: {
-      backgroundColor: 'rgba(0, 0, 0, 0.05)',
-      fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
-      fontSize: 16,
-      padding: 2
-    }
-  };
+  CODE: {
+    backgroundColor: 'rgba(0, 0, 0, 0.05)',
+    fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
+    fontSize: 16,
+    padding: 2
+  }
+};
 
 function getBlockStyle(block) {
   switch (block.getType()) {
