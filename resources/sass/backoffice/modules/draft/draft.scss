@@ -1,0 +1,12 @@
+.draftjs {
+  overflow: hidden;
+
+  &.is-invalid {
+    border: solid (1em/$fs) #e3342f;
+    border-radius: .25rem;
+
+    & ~ .invalid-feedback {
+      display: block;
+    }
+  }
+}

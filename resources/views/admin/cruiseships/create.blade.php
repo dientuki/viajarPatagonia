@@ -2,8 +2,79 @@
 
 @section ('content')
 
-  {!! Form::open(array_merge($form_data, array('role' => 'form', 'class' => 'form-horizontal'))) !!}
+  {!! Form::open(array_merge($form_data, array('role' => 'form', 'class' => 'form-horizontal', 'enctype' => "multipart/form-data"))) !!}
     <div>{{ ucfirst(__('fields.cruiseship')) }}</div>
+
+    <fieldset class="sticky-wrapper">
+      <h2 class="sticky-head">Images</h2>
+
+      lavar es: {{ dd(request()) }}!!
+
+      <div id="actions" class="row">
+
+        <div class="col-lg-7">
+          <!-- The fileinput-button span is used to style the file input field as button -->
+          <div class="btn btn-success fileinput-button" id="dropzone" data-url="{{ route('admin.images.store') }}">
+              <i class="glyphicon glyphicon-plus"></i>
+              <span>Add files...</span>
+          </div>
+          <div type="reset" class="btn btn-warning cancel">
+              <i class="glyphicon glyphicon-ban-circle"></i>
+              <span>Cancel upload</span>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <!-- The global file processing state -->
+          <div class="fileupload-process">
+            <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="table table-striped files" id="previews">
+
+
+      </div>
+
+    </fieldset>
+
+    <div class="hidden">
+
+      <div class="file-row template">
+        <!-- This is used as the file preview template -->
+        <input type="hidden" name="images[]" value="" />
+        <div>
+            <span class="preview"><img class="thumbnail" data-dz-thumbnail /></span>
+        </div>
+        <div>
+            <p class="name" data-dz-name></p>
+            <strong class="error text-danger" data-dz-errormessage></strong>
+        </div>
+        <div>
+            <p class="size" data-dz-size></p>
+            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+            </div>
+        </div>
+        <div>
+          <div data-dz-remove class="btn btn-warning cancel">
+              <i class="glyphicon glyphicon-ban-circle"></i>
+              <span>Cancel</span>
+          </div>
+          <div data-dz-remove class="btn btn-danger delete">
+            <i class="glyphicon glyphicon-trash"></i>
+            <span>Delete</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    
 
     @foreach ($languages as $language)
       <fieldset class="sticky-wrapper">

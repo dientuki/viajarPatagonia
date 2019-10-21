@@ -3,11 +3,16 @@
 namespace App;
 
 use App\Translations\Language;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\Models\Media;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class Cruiseships extends Model
+class Cruiseships extends Model implements HasMedia
 {
+  use HasMediaTrait;
     /**
      * The table associated with the model.
      *
@@ -65,5 +70,12 @@ class Cruiseships extends Model
   
       //throw (new ModelNotFoundException)->setModel(get_class($this->model));
     }
+
+    public function registerMediaConversions(Media $media = null)
+    {
+        $this->addMediaConversion('backoffice')
+          ->fit(Manipulations::FIT_CROP, 120, 120)
+          ->optimize();
     
-}
+    }
+  }
