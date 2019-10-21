@@ -8,7 +8,7 @@
     <fieldset class="sticky-wrapper">
       <h2 class="sticky-head">Images</h2>
 
-      lavar es: {{ dd(request()) }}!!
+      
 
       <div id="actions" class="row">
 
@@ -36,7 +36,28 @@
       </div>
 
       <div class="table table-striped files" id="previews">
+      @if (request()->old('images') != null)
+        @foreach (request()->old('images') as $image)
+          @if ($image != null)
+          <div class="file-row template">
+            <!-- This is used as the file preview template -->
+            <input type="hidden" name="images[]" value="{{ $image }}" />
+            <div>
+                <span class="preview"><img class="thumbnail" data-dz-thumbnail /></span>
+            </div>
+            <div>
 
+              <div data-dz-remove class="btn btn-danger delete">
+                <i class="glyphicon glyphicon-trash"></i>
+                <span>Delete</span>
+              </div>
+            </div>
+          </div>          
+            
+          @endif
+
+        @endforeach
+      @endif
 
       </div>
 
