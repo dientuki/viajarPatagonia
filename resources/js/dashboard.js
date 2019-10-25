@@ -9,7 +9,7 @@ if (document.querySelectorAll('.draftjs').length > 0) {
   import(/* webpackChunkName: "draft" */ './modules/draft/draft.jsx');
 }
 
-if (document.querySelector('#dropzone').length > 0) {
+if (document.querySelector('#dropzone') !== null) {
   import(/* webpackChunkName: "dropzone" */ './modules/dropzone/dropzone').then((DropzoneMiddleware) => {
     window.dropzone = new DropzoneMiddleware.default('#dropzone');
   });
