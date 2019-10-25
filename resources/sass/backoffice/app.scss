@@ -34,6 +34,9 @@
   position: sticky;
   top: 0;
   background: #f8fafc;
+  box-shadow: 0 0 (10em/$fs) (3em/$fs) rgba(#f8fafc, 1);
+  border-radius: 0 0 (10em/$fs) (10em/$fs);
+  z-index: 9;
 }
 
 .hidden {
