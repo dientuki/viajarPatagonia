@@ -8,7 +8,7 @@
             <div class="form-group">
                 <?php $class = $errors->has('price_' . $currency->id) != null ? 'form-control is-invalid' : 'form-control'; ?>
                 {!! Form::label('price_' . $currency->id, ucfirst($currency->currency)) !!}
-                {!! Form::text('price_' . $currency->id, null, array('placeholder' => ucfirst(__('fields.price')),
+                {!! Form::number('price_' . $currency->id, null, array('min' => 0, 'placeholder' => ucfirst(__('fields.price')),
                 'class'=>$class)) !!}
                 @error('price_' . $currency->id)
                 <div class="invalid-feedback">

@@ -41,6 +41,15 @@
   visibility: hidden;
 }
 
+input[type = number] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
 // Draft
 @import "./modules/draft/draft.scss";
 @import "./modules/draft/rich-editor.scss";
