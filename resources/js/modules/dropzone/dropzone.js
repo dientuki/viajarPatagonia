@@ -4,12 +4,9 @@ import { storageAvailable } from '../helpers/validators';
 export default class DropzoneMiddleware {
 
   constructor(query) {
+    const previewTemplate = document.querySelector('.template-dropzone').content.cloneNode(true);
+
     Dropzone.autoDiscover = false;
-    const previewNode = document.querySelector('.template'),
-      previewTemplate = previewNode.parentNode.innerHTML;
-
-    // previewNode.parentNode.removeChild(previewNode);
-
     DropzoneMiddleware.loadOlds();
 
     this.element = document.querySelector(query);
@@ -17,7 +14,7 @@ export default class DropzoneMiddleware {
     this.config = {
       clickable: '.fileinput-button',
       parallelUploads: 1,
-      previewTemplate: previewTemplate,
+      previewTemplate: previewTemplate.querySelector('.template').outerHTML,
       previewsContainer: '#previews',
       url: this.element.dataset.url
     };
@@ -50,12 +47,14 @@ export default class DropzoneMiddleware {
       return;
     }
 
-    document.querySelectorAll('.old-image').forEach((element) => {
-      const image = localStorage.getItem(element.querySelector('input').value);
+    window.requestAnimationFrame(() => {
+      document.querySelectorAll('.old-image').forEach((element) => {
+        const image = localStorage.getItem(element.querySelector('input').value);
 
-      element.querySelector('.thumbnail').setAttribute('src', image);
-      element.querySelector('.delete').addEventListener('click', () => {
-        element.remove();
+        element.querySelector('.thumbnail').setAttribute('src', image);
+        element.querySelector('.delete').addEventListener('click', () => {
+          element.remove();
+        });
       });
     });
   }
