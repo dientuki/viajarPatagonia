@@ -10,3 +10,14 @@ export function storageAvailable(type) {
     return false;
   }
 }
+
+export function isValidUrl(url) {
+  try {
+    // eslint-disable-next-line no-unused-vars
+    const test = new URL(url);
+
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
