@@ -39,11 +39,11 @@
       @if (request()->old('images') != null)
         @foreach (request()->old('images') as $image)
           @if ($image != null)
-          <div class="file-row template">
+          <div class="file-row template old-image">
             <!-- This is used as the file preview template -->
-            <input type="hidden" name="images[]" value="{{ $image }}" />
+            <input type="text" name="images[]" value="{{ $image }}" />
             <div>
-                <span class="preview"><img class="thumbnail" data-dz-thumbnail /></span>
+                <span class="preview"><img class="thumbnail" data-dz-thumbnail/></span>
             </div>
             <div>
 
@@ -67,7 +67,7 @@
 
       <div class="file-row template">
         <!-- This is used as the file preview template -->
-        <input type="hidden" name="images[]" value="" />
+        <input type="text" name="images[]" value="" />
         <div>
             <span class="preview"><img class="thumbnail" data-dz-thumbnail /></span>
         </div>

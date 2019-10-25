@@ -10,6 +10,8 @@ export default class DropzoneMiddleware {
 
     // previewNode.parentNode.removeChild(previewNode);
 
+    DropzoneMiddleware.loadOlds();
+
     this.element = document.querySelector(query);
 
     this.config = {
@@ -37,10 +39,25 @@ export default class DropzoneMiddleware {
       file.previewTemplate.querySelector('input[name="images[]"]').setAttribute('value', response.name);
       window.requestAnimationFrame(() => {
         if (storageAvailable('localStorage') === true) {
-          localStorage.setItem(file.name, file.dataURL);
+          localStorage.setItem(response.name, file.dataURL);
         }
       });
     };
+  }
+
+  static loadOlds() {
+    if (storageAvailable('localStorage') === false) {
+      return;
+    }
+
+    document.querySelectorAll('.old-image').forEach((element) => {
+      const image = localStorage.getItem(element.querySelector('input').value);
+
+      element.querySelector('.thumbnail').setAttribute('src', image);
+      element.querySelector('.delete').addEventListener('click', () => {
+        element.remove();
+      });
+    });
   }
 
 }
