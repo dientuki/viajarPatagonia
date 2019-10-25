@@ -20,7 +20,7 @@
             <div class="form-group">
                 <?php $class = $errors->has('discount_' . $currency->id) != null ? 'form-control is-invalid' : 'form-control'; ?>
                 {!! Form::label('discount_' . $currency->id, ucfirst(__('fields.discount'))) !!}
-                {!! Form::text('discount_' . $currency->id, null, array('placeholder' => ucfirst(__('fields.discount')),
+                {!! Form::number('discount_' . $currency->id, null, array('min' => 0, 'placeholder' => ucfirst(__('fields.discount')),
                 'class'=>$class)) !!}
                 @error('discount_' . $currency->id)
                 <div class="invalid-feedback">
