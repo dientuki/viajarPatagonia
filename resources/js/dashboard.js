@@ -21,4 +21,10 @@ if (document.querySelectorAll('.modalOpener').length > 0) {
   });
 }
 
+if (document.querySelector('.loadMap') !== null) {
+  import(/* webpackChunkName: "loadmap" */ './modules/loadmap/loadmap').then((module) => {
+    module.loadmap(document.querySelector('.loadMap'));
+  });
+}
+
 window.$ = $;

@@ -18,7 +18,7 @@
         {!! Form::label('is_active', ucfirst(__('fields.active'))) !!}
     </div>
 
-    <div class="row">
+    <div class="row loadMap">
         <div class="col-sm">
             <div class="form-group">
                 <?php $class = $errors->has('map') != null ? 'form-control is-invalid' : 'form-control'; ?>
@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="col-sm">
-            <iframe src="about:blank" id="map"></iframe>
+            <iframe src="about:blank"></iframe>
         </div>
     </div>
 </fieldset>
