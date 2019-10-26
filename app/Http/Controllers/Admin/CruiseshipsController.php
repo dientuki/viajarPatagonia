@@ -236,7 +236,9 @@ class CruiseshipsController extends Controller
 
         try {
             CruiseshipsTranslation::where('fk_cruiseship', $id)->delete();
+            CruiseshipsPrices::where('fk_cruiseship', $id)->delete();
             $cruiseship->delete();
+
             Alert::success('Registro eliminado correctamente!')->flash();
         } catch (Exception $e) {
             Alert::error('No puedes eliminar el registro!')->flash();
