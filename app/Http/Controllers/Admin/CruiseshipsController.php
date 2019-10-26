@@ -115,7 +115,7 @@ class CruiseshipsController extends Controller
      */
     public function edit($id)
     {
-        $cruiseship = Cruiseships::getEdit($id);
+        $cruiseship = Cruiseships::find($id);
         $cruiseshipTranslation = CruiseshipsTranslation::getEdit($id);
         $cruiseshipType = CruiseshipsTypes::getLists();
         $cruiseshipPrice = CruiseshipsPrices::getEdits($id);
@@ -141,8 +141,18 @@ class CruiseshipsController extends Controller
 
         $data = $request->validated();
 
+        $data['is_active'] = isset($data['is_active']) ? 1 : 0;
+
         $cruiseship->fill($data)->save();
 
+        $this->_updateLanguages($id, $data);
+        $this->_updateCurrencies($id, $data);
+
+        return redirect()->route('admin.cruiseships.index');
+    }
+
+    private function _updateLanguages($id, $data)
+    {
         $languages = Language::getAll();
         foreach ($languages as $language) {
             if (isset($data['fk_language_' . $language->id])) {
@@ -161,7 +171,9 @@ class CruiseshipsController extends Controller
                 ])->save();
             }            
         }
+    }
 
+    private function _updateCurrencies($id, $data) {
         $currencies = Currency::getAll();
         foreach ($currencies as $currency) {
             if (isset($data['fk_currency_' . $currency->id]) && $data['price_' . $currency->id] != null) {
@@ -173,27 +185,23 @@ class CruiseshipsController extends Controller
 
                 $cruiseshipPrice = CruiseshipsPrices::getUpdate($where);
 
-                //dd(is_null($cruiseshipPrice));
-
                 if (is_null($cruiseshipPrice)) {
                     CruiseshipsPrices::create([
                         'fk_currency' => $data['fk_currency_' . $currency->id],
                         'fk_cruiseship' => $id,
                         'price' => $data['price_' . $currency->id],
                         'discount' => $data['discount_' . $currency->id],
-                        'is_active' => isset($data['is_active_' . $currency->id]) ? true : false
+                        'is_active' => isset($data['is_active_' . $currency->id]) ? 1 : 0
                     ]);
                 } else {
-                    $cruiseshipTranslation->fill([
+                    $cruiseshipPrice->fill([
                         'price' => $data['price_' . $currency->id],
                         'discount' => $data['discount_' . $currency->id],
-                        'is_active' => isset($data['is_active_' . $currency->id]) ? true : false
+                        'is_active' => isset($data['is_active_' . $currency->id]) ? 1 : 0
                     ])->save();
                 }
             }            
         }
-
-        return redirect()->route('admin.cruiseships.index');
     }
 
     /**
