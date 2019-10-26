@@ -1,6 +1,5 @@
 import Dropzone from 'dropzone';
 import { storageAvailable } from '../helpers/validators';
-import { create } from 'domain';
 
 export default class DropzoneMiddleware {
 
