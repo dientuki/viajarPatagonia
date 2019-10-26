@@ -1,3 +1,5 @@
+import 'bootstrap/js/dist/modal';
+
 export function preventDelete() {
   const modalButton = document.querySelector('#deleteModal .btn-danger');
 

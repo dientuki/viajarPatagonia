@@ -35,6 +35,8 @@ Route::group(['namespace' => 'Admin',
     Route::resource('cruiseships-types', 'CruiseshipsTypesController')->except(['show']);
     Route::resource('excursions-types', 'ExcursionsTypesController')->except(['show']);
     Route::resource('cruiseships', 'CruiseshipsController')->except(['show']);
+
+    Route::post('images', 'ImagesController@store')->name('images.store');
 });
 
 Auth::routes(['register' => false]);
