@@ -54,4 +54,7 @@ return [
 
     // Tipo de excursiones
     'excursionType' => 'tipo de excursion',
+
+    // Excursiones
+    'excursion' => 'excursiones',    
 ];

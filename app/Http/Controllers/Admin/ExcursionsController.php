@@ -13,7 +13,7 @@ use Prologue\Alerts\Facades\Alert;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreExcursion;
 use Spatie\MediaLibrary\Models\Media;
-use App\Http\Requests\StoreExcursion;
+use App\Http\Requests\EditExcursion;
 use App\Translations\ExcursionsTranslation;
 
 class ExcursionsController extends Controller

@@ -40,7 +40,7 @@ class Excursions extends Model implements HasMedia
 
       foreach ($languages as $language) {
         $excursions->addSelect("ct$language->id.name as title$language->id")
-          ->join("excursions_translation as ct$language->id", 'excursions.id', '=', "ct$language->id.fk_cruiseship")
+          ->join("excursions_translation as ct$language->id", 'excursions.id', '=', "ct$language->id.fk_excursion")
           ->join("languages as l$language->id", "l$language->id.id", '=', "ct$language->id.fk_language")
           ->where("l$language->id.iso", $language->iso);
       }
