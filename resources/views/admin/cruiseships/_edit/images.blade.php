@@ -33,11 +33,12 @@
   </div>
 
   <ul class="table table-striped files" id="previews">
+    
     @foreach ($cruiseship->getMedia('products') as $image)
-    <li class="file-row template image-row">
+    <li class="file-row template image-row db-image">
       <!-- This is used as the file preview template -->
 
-      <input type="text" name="images[]" value="{{ $image->getFullUrl() }}" />
+      <input type="hidden" name="delete_{{ $image->id }}" value="{{ $image->id }}" />
 
       <div class="col-image" >
         <div class="preview aspect-1-1">

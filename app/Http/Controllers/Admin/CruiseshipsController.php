@@ -12,6 +12,7 @@ use App\Translations\Language;
 use Prologue\Alerts\Facades\Alert;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EditCruiseship;
+use Spatie\MediaLibrary\Models\Media;
 use App\Http\Requests\StoreCruiseship;
 use App\Translations\CruiseshipsTranslation;
 
@@ -58,16 +59,13 @@ class CruiseshipsController extends Controller
     {      
         $data = $request->validated();
 
+        $data['is_active'] = isset($data['is_active']) ? 1 : 0;
+
         $cruiseship = Cruiseships::create($data);
 
         $this->storeLanguages($cruiseship->id, $data);
         $this->storeCurrencies($cruiseship->id, $data);
-
-        if (isset($data['images'])) {
-          foreach ($data['images'] as $file) {
-            $cruiseship->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('products');
-          }
-        }
+        $this->storeImages($cruiseship, $data);
 
         return redirect()->route('admin.cruiseships.index');
     }
@@ -107,6 +105,14 @@ class CruiseshipsController extends Controller
         }  
     }
 
+    private function storeImages($model, $data) {
+      if (isset($data['images'])) {
+        foreach ($data['images'] as $file) {
+          $model->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('products');
+        }
+      }
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -139,19 +145,23 @@ class CruiseshipsController extends Controller
     {
         $cruiseship = Cruiseships::getEdit($id);
 
+
+
         $data = $request->validated();
 
         $data['is_active'] = isset($data['is_active']) ? 1 : 0;
 
         $cruiseship->fill($data)->save();
 
-        $this->_updateLanguages($id, $data);
-        $this->_updateCurrencies($id, $data);
+        $this->updateLanguages($id, $data);
+        $this->updateCurrencies($id, $data);
+        $this->updateImage($id, $data);
+        $this->storeImages($cruiseship, $data);
 
         return redirect()->route('admin.cruiseships.index');
     }
 
-    private function _updateLanguages($id, $data)
+    private function updateLanguages($id, $data)
     {
         $languages = Language::getAll();
         foreach ($languages as $language) {
@@ -173,7 +183,7 @@ class CruiseshipsController extends Controller
         }
     }
 
-    private function _updateCurrencies($id, $data) {
+    private function updateCurrencies($id, $data) {
         $currencies = Currency::getAll();
         foreach ($currencies as $currency) {
             if (isset($data['fk_currency_' . $currency->id]) && $data['price_' . $currency->id] != null) {
@@ -202,6 +212,16 @@ class CruiseshipsController extends Controller
                 }
             }            
         }
+    }
+
+    private function updateImage($id, $data) {
+      if (isset($data['delete'])) {
+        try {
+            Media::whereIn('id', $data['delete'])->delete();
+        } catch (Exception $e) {
+            Alert::error('No puedes eliminar las imagenes!')->flash();
+        }  
+      }
     }
 
     /**

@@ -1,5 +1,6 @@
 import Dropzone from 'dropzone';
 import { storageAvailable } from '../helpers/validators';
+import { create } from 'domain';
 
 export default class DropzoneMiddleware {
 
@@ -20,6 +21,7 @@ export default class DropzoneMiddleware {
     };
     this.setHeader();
     this.setEvents();
+    DropzoneMiddleware.removeDB();
 
     return new Dropzone(document.body, this.config);
   }
@@ -53,6 +55,23 @@ export default class DropzoneMiddleware {
 
         element.querySelector('.thumbnail').setAttribute('src', image);
         element.querySelector('.delete').addEventListener('click', () => {
+          element.remove();
+        });
+      });
+    });
+  }
+
+  static removeDB() {
+    document.querySelectorAll('.db-image').forEach((element) => {
+      element.querySelector('.delete').addEventListener('click', () => {
+        const input = document.createElement('INPUT');
+
+        input.setAttribute('name', 'delete[]');
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('value', element.querySelector('input').value);
+
+        window.requestAnimationFrame(() => {
+          element.parentNode.append(input);
           element.remove();
         });
       });
