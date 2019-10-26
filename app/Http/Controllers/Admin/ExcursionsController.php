@@ -39,7 +39,7 @@ class ExcursionsController extends Controller
      */
     public function create()
     {
-        $excursions = new Excursions();
+        $excursion = new Excursions();
         $action = 'create';
         $form_data = array('route' => 'admin.excursions.store', 'method' => 'POST');
         $excursionType = ExcursionsTypes::getLists();
@@ -48,7 +48,7 @@ class ExcursionsController extends Controller
 
         $languages = Language::getAll();
         
-        return view('admin/excursions/create', compact('action', 'excursion',  'form_data', 'languages', 'excursionType', 'currencies'));
+        return view('admin/excursions/create', compact('action', 'excursion',  'form_data', 'languages', 'excursionType', 'currencies', 'destination'));
     }
 
     /**

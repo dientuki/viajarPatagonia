@@ -10,6 +10,7 @@
         {!! Form::select('fk_excursion_type', $excursionType, $excursion->fk_excursion_type,
         array('placeholder' =>
         ucfirst(__('fields.excursionType_select_placeholder')), 'class' => $class) ) !!}
+        
         @error('fk_excursion_type')
         <div class="invalid-feedback">
           <strong>{{ $message }}</strong>
