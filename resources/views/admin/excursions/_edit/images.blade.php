@@ -34,7 +34,7 @@
 
   <ul class="table table-striped files" id="previews">
     
-    @foreach ($cruiseship->getMedia('products') as $image)
+    @foreach ($excursion->getMedia('products') as $image)
     <li class="file-row template image-row db-image">
       <!-- This is used as the file preview template -->
 
@@ -91,6 +91,6 @@
 
   </ul>
 
-  @include('admin.cruiseships.template')
+  @include('admin.excursions.template')
 
 </fieldset>

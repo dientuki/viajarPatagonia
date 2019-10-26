@@ -31,7 +31,7 @@ class ExcursionsPrices extends Model
 
     static function getEdits($where){
 
-      $result = CruiseshipsPrices::select('id', 'price', 'discount', 'is_active', 'fk_currency');
+      $result = ExcursionsPrices::select('id', 'price', 'discount', 'is_active', 'fk_currency');
 
       if (is_array($where)) {
         $result->where($where);
@@ -50,7 +50,7 @@ class ExcursionsPrices extends Model
 
     static function getEdit($id){
 
-      return CruiseshipsPrices::select('id', 'price', 'discount', 'is_active', 'fk_currency')
+      return ExcursionsPrices::select('id', 'price', 'discount', 'is_active', 'fk_currency')
         ->where('fk_excursion', $id)
         ->orderBy('fk_currency')
         ->get();
@@ -58,7 +58,7 @@ class ExcursionsPrices extends Model
 
     static function getUpdate($where){
 
-      return CruiseshipsPrices::select('id', 'price', 'discount', 'is_active', 'fk_currency')
+      return ExcursionsPrices::select('id', 'price', 'discount', 'is_active', 'fk_currency')
         ->where($where)
         ->get()->first();
     }    

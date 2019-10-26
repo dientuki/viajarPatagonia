@@ -33,7 +33,7 @@ class ExcursionsTranslation extends Model
 
     static function getEdit($id){
 
-      return CruiseshipsTranslation::select('id', 'fk_language', 'name', 'summary', 'body')
+      return ExcursionsTranslation::select('id', 'fk_language', 'name', 'summary', 'body')
         ->where('fk_excursion', $id)
         ->orderBy('fk_language')
         ->get();
@@ -41,7 +41,7 @@ class ExcursionsTranslation extends Model
 
     static function getUpdate($where){
 
-      return CruiseshipsTranslation::select('id', 'fk_language', 'name', 'summary', 'body')
+      return ExcursionsTranslation::select('id', 'fk_language', 'name', 'summary', 'body')
         ->where($where)
         ->get()->first();
     }    

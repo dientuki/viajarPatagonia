@@ -54,8 +54,8 @@ class Excursions extends Model implements HasMedia
 
     static function getEdit($id){
 
-      $cruiseship = Excursions::select('id', 'is_active', 'map', 'fk_excursion_type', 'fk_destination');
-      $result = $cruiseship->where('id', $id)->get()->first();
+      $excursions = Excursions::select('id', 'is_active', 'map', 'fk_excursion_type', 'fk_destination');
+      $result = $excursions->where('id', $id)->get()->first();
   
       if (is_array($id)) {
         if (count($result) == count(array_unique($id))) {

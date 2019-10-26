@@ -126,14 +126,15 @@ class ExcursionsController extends Controller
         $excursion = Excursions::find($id);
         $excursionTranslation = ExcursionsTranslation::getEdit($id);
         $excursionType = ExcursionsTypes::getLists();
-        $excursionType = ExcursionsPrices::getEdits($id);
+        $destination = Destination::getLists();
+        $excursionPrice = ExcursionsPrices::getEdits($id);
         $currencies = Currency::getAll();
 
         $action    = 'update';
         $form_data = array('route' => array('admin.excursions.update', $excursion->id), 'method' => 'PATCH');
         $languages = Language::getAll();
 
-        return view('admin/excursions/edit', compact('action', 'excursion', 'form_data', 'languages', 'excursionTranslation', 'excursionType', 'currencies', 'excursionPrice'));
+        return view('admin/excursions/edit', compact('action', 'excursion', 'form_data', 'languages', 'excursionTranslation', 'excursionType', 'currencies', 'excursionPrice', 'destination'));
     }
 
     /**
