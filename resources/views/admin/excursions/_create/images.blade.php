@@ -58,6 +58,6 @@
 
   </ul>
 
-  @include('admin.cruiseships.template')
+  @include('admin.excursions.template')
 
 </fieldset>

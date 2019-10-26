@@ -19,6 +19,7 @@ return [
 
     // Destino
     'destination' => 'destino',
+    'destination_select_placeholder' => 'Seleccione un destino...',
 
     // Moneda
     'sign' => 'signo',

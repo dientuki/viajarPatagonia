@@ -5,15 +5,16 @@ namespace App\Http\Controllers\Admin;
 use Exception;
 use App\Currency;
 use App\Excursions;
+use App\Destination;
 use App\ExcursionsTypes;
 use App\ExcursionsPrices;
 use Illuminate\Http\Request;
 use App\Translations\Language;
 use Prologue\Alerts\Facades\Alert;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EditExcursion;
 use App\Http\Requests\StoreExcursion;
 use Spatie\MediaLibrary\Models\Media;
-use App\Http\Requests\EditExcursion;
 use App\Translations\ExcursionsTranslation;
 
 class ExcursionsController extends Controller
@@ -42,6 +43,7 @@ class ExcursionsController extends Controller
         $action = 'create';
         $form_data = array('route' => 'admin.excursions.store', 'method' => 'POST');
         $excursionType = ExcursionsTypes::getLists();
+        $destination = Destination::getLists();
         $currencies = Currency::getAll();
 
         $languages = Language::getAll();
