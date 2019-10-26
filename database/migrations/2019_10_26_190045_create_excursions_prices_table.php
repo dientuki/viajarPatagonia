@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExcursionsTranslationTable extends Migration
+class CreateExcursionsPricesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,19 @@ class CreateExcursionsTranslationTable extends Migration
      */
     public function up()
     {
-        Schema::create('excursions_translation', function (Blueprint $table) {
+        Schema::create('excursions_prices', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
 
             $table->smallIncrements('id');
-            $table->tinyInteger('fk_language')->unsigned();
+            $table->mediumInteger('price');
+            $table->mediumInteger('discount')->nullable(true);
+            $table->boolean('is_active')->default(false);
+            $table->tinyInteger('fk_currency')->unsigned();
             $table->smallInteger('fk_excursion')->unsigned();
-            $table->string('name');
-            $table->string('summary');
-            $table->mediumText('body');
 
-            $table->foreign('fk_language')->references('id')->on('languages');
+            $table->foreign('fk_currency')->references('id')->on('currencies');
             $table->foreign('fk_excursion')->references('id')->on('excursions');
         });
     }
@@ -37,6 +37,6 @@ class CreateExcursionsTranslationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('excursions_translation');
+        Schema::dropIfExists('excursions_prices');
     }
 }
