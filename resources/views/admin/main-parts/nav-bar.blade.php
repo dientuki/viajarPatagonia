@@ -72,7 +72,7 @@
     </ul>
 
     <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">
-        <a href="#" class="nav-link text-dark font-italic bg-light">
+        <a href="{{route('admin.packages.index')}}" class="nav-link text-dark font-italic bg-light">
             <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
             Paquetes
         </a>
