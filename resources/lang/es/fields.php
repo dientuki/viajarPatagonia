@@ -19,6 +19,7 @@ return [
 
     // Destino
     'destination' => 'destino',
+    'destination_select_placeholder' => 'Seleccione un destino...',
 
     // Moneda
     'sign' => 'signo',
@@ -54,4 +55,8 @@ return [
 
     // Tipo de excursiones
     'excursionType' => 'tipo de excursion',
+    'excursionType_select_placeholder' => 'Seleccione un tipo de excursion...',
+
+    // Excursiones
+    'excursion' => 'excursiones',    
 ];

@@ -19,11 +19,15 @@ class DatabaseSeeder extends Seeder
             LanguagesTableSeeder::class,
             CruiseshipsTypesTableSeeder::class,
             CruiseshipsTypesTranslationSeeder::class,
-            ExcursionsTypesTableSeeder::class,
-            ExcursionsTypesTranslationSeeder::class,
             CruiseshipsTableSeeder::class,
             CruiseshipsTranslationSeeder::class,
-            CruiseshipsPricesSeeder::class            
+            CruiseshipsPricesSeeder::class,
+
+            ExcursionsTypesTableSeeder::class,
+            ExcursionsTypesTranslationSeeder::class,
+            ExcursionsTableSeeder::class,
+            ExcursionsTranslationSeeder::class,
+            ExcursionsPricesSeeder::class,
         ]);
     }
 }
