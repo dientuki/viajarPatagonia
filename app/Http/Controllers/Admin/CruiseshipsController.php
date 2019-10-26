@@ -57,15 +57,16 @@ class CruiseshipsController extends Controller
     public function store(StoreCruiseship $request)
     {      
         $data = $request->validated();
-       // dd($data);
 
         $cruiseship = Cruiseships::create($data);
 
-        //$this.storeLanguages($cruiseship->id, $data);
-        //$this.storeCurrencies($cruiseship->id, $data);
+        $this->storeLanguages($cruiseship->id, $data);
+        $this->storeCurrencies($cruiseship->id, $data);
 
-        foreach ($data['images'] as $file) {
+        if (isset($data['images'])) {
+          foreach ($data['images'] as $file) {
             $cruiseship->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('products');
+          }
         }
 
         return redirect()->route('admin.cruiseships.index');
@@ -96,7 +97,7 @@ class CruiseshipsController extends Controller
             if (isset($data['fk_currency_' . $currency->id]) && $data['price_' . $currency->id] != null) {
 
                 CruiseshipsPrices::create([
-                    'fk_currency' => $data['fk_currency_' . $language->id],
+                    'fk_currency' => $data['fk_currency_' . $currency->id],
                     'fk_cruiseship' => $id,
                     'price' => $data['price_' . $currency->id],
                     'discount' => $data['discount_' . $currency->id],
