@@ -21,9 +21,6 @@ class CreatePackagesTable extends Migration
             $table->smallIncrements('id');
             $table->text('map')->nullable(true);
             $table->boolean('is_active')->default(false);
-            $table->tinyInteger('fk_destination')->unsigned();
-
-            $table->foreign('fk_destination')->references('id')->on('destinations');
         });
     }
 
