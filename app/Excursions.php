@@ -7,6 +7,7 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\Models\Media;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
+use App\Translations\ExcursionsTranslation;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -49,7 +50,9 @@ class Excursions extends Model implements HasMedia
     }
 
     static function getLists() {
-      //return Region::orderBy('region')->pluck('region', 'id');
+      return ExcursionsTranslation::orderBy('name')
+        ->where('fk_language', '1')
+        ->pluck('name', 'fk_excursion');
     }  
 
     static function getEdit($id){

@@ -41,12 +41,13 @@ class PackagesController extends Controller
         $package = new Packages();
         $action = 'create';
         $form_data = array('route' => 'admin.packages.store', 'method' => 'POST');
-        $destination = Destination::getLists();
+        $destinations = Destination::getLists();
+        $excursions = Excursions::getLists();
         $currencies = Currency::getAll();
 
         $languages = Language::getAll();
         
-        return view('admin/packages/create', compact('action', 'package',  'form_data', 'languages', 'excursionType', 'currencies', 'destination'));
+        return view('admin/packages/create', compact('action', 'package',  'form_data', 'languages', 'excursions', 'currencies', 'destinations'));
     }
 
     /**
