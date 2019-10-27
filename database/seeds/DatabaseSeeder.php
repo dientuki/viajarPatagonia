@@ -22,12 +22,17 @@ class DatabaseSeeder extends Seeder
             CruiseshipsTableSeeder::class,
             CruiseshipsTranslationSeeder::class,
             CruiseshipsPricesSeeder::class,
-
             ExcursionsTypesTableSeeder::class,
             ExcursionsTypesTranslationSeeder::class,
             ExcursionsTableSeeder::class,
             ExcursionsTranslationSeeder::class,
             ExcursionsPricesSeeder::class,
+            PackagesTableSeeder::class,
+            PackagesTranslationSeeder::class,
+            PackagesPricesSeeder::class,
+
+            Package2ExcursionSeeder::class,
+            Package2DestinationSeeder::class,
         ]);
     }
 }
