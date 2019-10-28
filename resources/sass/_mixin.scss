@@ -1,7 +1,8 @@
+/* stylelint-disable at-rule-empty-line-before */
 @function rem($pixels) {
- @return ($pixels / 16) * 1rem
+  @return ($pixels / 16) * 1rem;
 }
 
 @function em($pixels, $fs: 16) {
- @return ($pixels / $fs) * 1em
+  @return ($pixels / $fs) * 1em;
 }
