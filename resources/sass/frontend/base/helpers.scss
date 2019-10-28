@@ -41,44 +41,6 @@
   clear: both;
 }
 
-[class *= ico-] {
-  width: auto;
-  height: auto;
-}
-
-[class *= aspect-] {
-  margin: 0;
-  width: 100%;
-  height: 0;
-  position: relative;
-  display: block;
-  background: $placeholder url(../images/placeholder.svg) no-repeat center center;
-  background-size: 60% auto;
-  overflow: hidden;
-  z-index: 0;
-
-  .brick:first-of-type & {
-    background-image: none;
-  }
-
-  img,
-  iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .error {
-    $tfs:12;
-    font-size: #{$tfs/$fs}em;
-    box-sizing: border-box;
-    padding: (10em/$tfs);
-    color: $hr;
-  }
-}
-
 .aspect-1-1 {
   padding-bottom: 100%;
 }
