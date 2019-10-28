@@ -111,6 +111,50 @@ li {
   }
 }
 
+.tag-list {
+  min-height: (23rem/$fs);
+
+  .tag-list-item {
+    display: inline-block;
+    padding: 0 (20rem/$fs) 0 (5rem/$fs);
+    background: $blue;
+    border-radius: (5rem/$fs);
+    position: relative;
+    margin-right: (12rem/$fs);
+    cursor: pointer;
+
+    &:last-child {
+      margin: 0;
+    }
+
+    &:before {
+      top: 50%;
+      transform: translateY(-50%);
+      content: "x";
+      font-size: (10rem/$fs);
+      height: (16em/10);
+      width: (16em/10);
+      text-align: center;
+      line-height: (16em/10);
+      border-radius: 10em;
+      background: $indigo;
+      right: (2em/10);
+      position: absolute;
+    }
+  }
+}
+
+select {
+  option {
+    cursor: pointer;
+  }
+
+  .disabled {
+    color: graytext;
+    cursor: default;
+  }
+}
+
 // Draft
 @import "./modules/draft/draft.scss";
 @import "./modules/draft/rich-editor.scss";

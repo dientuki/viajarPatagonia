@@ -7,7 +7,7 @@ export function multiselect(elements) {
       select = element.querySelector('select'),
       ul = element.querySelector('ul');
 
-    li.classList.add('algo');
+    li.classList.add('tag-list-item');
 
     select.addEventListener('click', (e) => {
       if (e.target.nodeName !== 'OPTION') {
