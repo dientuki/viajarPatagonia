@@ -26,7 +26,8 @@ Route::group(['namespace' => 'Admin',
     App::setLocale('es');
 
     // Dashboard
-    Route::get('dashboard.html', ['uses' => 'ShowDashboard', 'as' => 'dashboard']);
+    //Route::get('dashboard.html', ['uses' => 'ShowDashboard', 'as' => 'dashboard']);
+    Route::get('dashboard.html', ['uses' => 'PackagesController@index', 'as' => 'dashboard']);
 
     Route::resource('regions', 'RegionsController')->except(['show']);
     Route::resource('destinations', 'DestinationsController')->except(['show']);
