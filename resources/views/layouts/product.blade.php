@@ -8,6 +8,8 @@
     @include ('widgets/alerts')
 
     @include ('front/main-parts/header')
+
+    @include ('front/widget/slider-header')
     
     @yield('content')
 
