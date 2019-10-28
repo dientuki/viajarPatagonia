@@ -38,7 +38,4 @@ if (document.querySelector('.multiselect') !== null) {
   });
 }
 
-
-
-
 window.$ = $;
