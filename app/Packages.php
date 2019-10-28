@@ -7,11 +7,10 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\Models\Media;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
-use App\Translations\ExcursionsTranslation;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class Excursions extends Model implements HasMedia
+class Packages extends Model implements HasMedia
 {
   use HasMediaTrait;
     /**
@@ -19,7 +18,7 @@ class Excursions extends Model implements HasMedia
      *
      * @var string
      */
-    protected $table = 'excursions';
+    protected $table = 'packages';
 
     /**
      * Indicates if the model should be timestamped.
@@ -33,42 +32,30 @@ class Excursions extends Model implements HasMedia
      *
      * @var array
      */
-    protected $fillable = ['is_active', 'map', 'fk_excursion_type', 'fk_destination'];    
+    protected $fillable = ['is_active', 'map'];    
 
     static public function getAll(){
-      $excursions = Excursions::select('excursions.id', 'excursions.is_active');
+      $packages = Packages::select('packages.id', 'packages.is_active');
       $languages = Language::getAll();
 
       foreach ($languages as $language) {
-        $excursions->addSelect("ct$language->id.name as title$language->id")
-          ->join("excursions_translation as ct$language->id", 'excursions.id', '=', "ct$language->id.fk_excursion")
+        $packages->addSelect("ct$language->id.name as title$language->id")
+          ->join("packages_translation as ct$language->id", 'packages.id', '=', "ct$language->id.fk_package")
           ->join("languages as l$language->id", "l$language->id.id", '=', "ct$language->id.fk_language")
           ->where("l$language->id.iso", $language->iso);
       }
 
-      return $excursions->get();
+      return $packages->get();
     }
 
     static function getLists() {
-      return ExcursionsTranslation::orderBy('name')
-        ->where('fk_language', '1')
-        ->pluck('name', 'fk_excursion');
+      //return Region::orderBy('region')->pluck('region', 'id');
     }  
-
-    static function getPackageCombo() {
-      $excursions = Excursions::select('excursions.id as id', 'excursions_translation.name as name', 'fk_destination');
-      $excursions->join("excursions_translation", 'excursions.id', '=', "excursions_translation.fk_excursion");
-      $excursions->where('is_active', true);
-      $excursions->where('fk_language', '1');
-      $excursions->orderBy('name');
-
-      return $excursions->get();
-    }     
 
     static function getEdit($id){
 
-      $excursions = Excursions::select('id', 'is_active', 'map', 'fk_excursion_type', 'fk_destination');
-      $result = $excursions->where('id', $id)->get()->first();
+      $package = Packages::select('id', 'is_active', 'map');
+      $result = $package->where('id', $id)->get()->first();
   
       if (is_array($id)) {
         if (count($result) == count(array_unique($id))) {

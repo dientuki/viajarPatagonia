@@ -59,4 +59,7 @@ return [
 
     // Excursiones
     'excursion' => 'excursiones',    
+
+    // Paquetes
+    'package' => 'paquetes',   
 ];
