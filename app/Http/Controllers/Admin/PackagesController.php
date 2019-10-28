@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\EditExcursion;
 use App\Http\Requests\StoreExcursion;
 use Spatie\MediaLibrary\Models\Media;
+use App\Translations\PackageTranslation;
 use App\Translations\ExcursionsTranslation;
 
 class PackagesController extends Controller
@@ -62,11 +63,13 @@ class PackagesController extends Controller
 
         $data['is_active'] = isset($data['is_active']) ? 1 : 0;
 
-        $excursion = Packages::create($data);
+        $package = Packages::create($data);
 
-        $this->storeLanguages($excursion->id, $data);
-        $this->storeCurrencies($excursion->id, $data);
-        $this->storeImages($excursion, $data);
+        $this->storeLanguages($package->id, $data);
+        $this->storeCurrencies($package->id, $data);
+        $this->storeImages($package, $data);
+        $this->storeDestination($package->id, $data);
+        $this->storeExcursion($package->id, $data);
 
         return redirect()->route('admin.packages.index');
     }
@@ -77,9 +80,9 @@ class PackagesController extends Controller
 
         foreach ($languages as $language) {
             if (isset($data['fk_language_' . $language->id])) {
-                ExcursionsTranslation::create([
+                PackageTranslation::create([
                     'fk_language' => $data['fk_language_' . $language->id],
-                    'fk_excursion' => $id,
+                    'fk_package' => $id,
                     'name' => $data['name_' . $language->id],
                     'summary' => $data['summary_' . $language->id],
                     'body' => $data['body_' . $language->id]
@@ -97,7 +100,7 @@ class PackagesController extends Controller
 
                 ExcursionsPrices::create([
                     'fk_currency' => $data['fk_currency_' . $currency->id],
-                    'fk_excursion' => $id,
+                    'fk_package' => $id,
                     'price' => $data['price_' . $currency->id],
                     'discount' => $data['discount_' . $currency->id],
                     'is_active' => isset($data['is_active_' . $currency->id]) ? true : false
@@ -111,6 +114,32 @@ class PackagesController extends Controller
         foreach ($data['images'] as $file) {
           $model->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('products');
         }
+      }
+    }
+
+    private function storeDestination($id, $data)
+    {
+      $destinations = explode('|', $data['destination']);
+
+      foreach ($destinations as $destination) {
+
+        Package2destination::create([
+          'fk_destination' => $destination,
+          'fk_package' => $id
+        ]);
+      }
+    }
+
+    private function storeExcursion($id, $data)
+    {
+      $excursions = explode('|', $data['excursion']);
+
+      foreach ($excursions as $excursion) {
+
+        Package2destination::create([
+          'fk_excursion' => $excursion,
+          'fk_package' => $id
+        ]);
       }
     }
 
