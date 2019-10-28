@@ -12,6 +12,6 @@ class PackageController extends Controller
      */
     public function show()
     {
-        return view('admin/packages/index', compact('packages', 'languages'));
+        return view('front/package');
     }
 }
