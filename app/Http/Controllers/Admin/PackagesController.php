@@ -18,7 +18,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreExcursion;
 use Spatie\MediaLibrary\Models\Media;
 use App\Translations\PackageTranslation;
-use App\Translations\ExcursionsTranslation;
 
 class PackagesController extends Controller
 {
@@ -46,7 +45,7 @@ class PackagesController extends Controller
         $action = 'create';
         $form_data = array('route' => 'admin.packages.store', 'method' => 'POST');
         $destinations = Destination::getLists();
-        $excursions = Excursions::getPackageComgo();
+        $excursions = Excursions::getPackageCombo();
         $currencies = Currency::getAll();
 
         $languages = Language::getAll();
@@ -154,18 +153,18 @@ class PackagesController extends Controller
      */
     public function edit($id)
     {
-        $excursion = Packages::find($id);
-        $excursionTranslation = ExcursionsTranslation::getEdit($id);
-        $excursionType = ExcursionsTypes::getLists();
-        $destination = Destination::getLists();
-        $excursionPrice = ExcursionsPrices::getEdits($id);
+        $package = Packages::find($id);
+        $packageTranslation = PackageTranslation::getEdit($id);
+        $destinations = Destination::getLists();
+        $excursions = Excursions::getPackageCombo();
+        $packagePrice = ExcursionsPrices::getEdits($id);
         $currencies = Currency::getAll();
 
         $action    = 'update';
-        $form_data = array('route' => array('admin.packages.update', $excursion->id), 'method' => 'PATCH');
+        $form_data = array('route' => array('admin.packages.update', $package->id), 'method' => 'PATCH');
         $languages = Language::getAll();
 
-        return view('admin/packages/edit', compact('action', 'package', 'form_data', 'languages', 'excursionTranslation', 'excursionType', 'currencies', 'excursionPrice', 'destination'));
+        return view('admin/packages/edit', compact('action', 'package', 'form_data', 'languages', 'packageTranslation', 'currencies', 'packagePrice', 'destinations', 'excursions'));
     }
 
     /**

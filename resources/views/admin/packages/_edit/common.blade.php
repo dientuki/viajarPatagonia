@@ -49,14 +49,14 @@
       </div>
 
       <div class="form-check">
-        {!! Form::checkbox('is_active', 1, false, array('class' => 'form-check-input', 'id' => 'is_active') ) !!}
+        {!! Form::checkbox('is_active', 1, $package->is_active, array('class' => 'form-check-input') ) !!}
         {!! Form::label('is_active', ucfirst(__('fields.active'))) !!}
       </div>
 
       <div class="form-group">
         <?php $class = $errors->has('map') != null ? 'form-control is-invalid' : 'form-control'; ?>
         {!! Form::label('map', ucfirst(__('fields.map'))) !!}
-        {!! Form::text('map', null, array('placeholder' => ucfirst(__('fields.map')), 'class'=>$class)) !!}
+        {!! Form::text('map', $package->map, array('placeholder' => ucfirst(__('fields.map')), 'class'=>$class)) !!}
         @error('map')
         <div class="invalid-feedback">
           <strong>{{ $message }}</strong>

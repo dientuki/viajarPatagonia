@@ -55,7 +55,7 @@ class Excursions extends Model implements HasMedia
         ->pluck('name', 'fk_excursion');
     }  
 
-    static function getPackageComgo() {
+    static function getPackageCombo() {
       $excursions = Excursions::select('excursions.id as id', 'excursions_translation.name as name', 'fk_destination');
       $excursions->join("excursions_translation", 'excursions.id', '=', "excursions_translation.fk_excursion");
       $excursions->where('is_active', true);

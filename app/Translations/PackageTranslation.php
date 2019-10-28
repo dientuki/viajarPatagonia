@@ -34,7 +34,7 @@ class PackageTranslation extends Model
     static function getEdit($id){
 
       return PackageTranslation::select('id', 'fk_language', 'name', 'summary', 'body')
-        ->where('fk_cruiseship', $id)
+        ->where('fk_package', $id)
         ->orderBy('fk_language')
         ->get();
     }    
