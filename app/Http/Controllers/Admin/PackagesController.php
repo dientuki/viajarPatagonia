@@ -10,6 +10,7 @@ use App\Destination;
 use Illuminate\Http\Request;
 use App\Translations\Language;
 use Prologue\Alerts\Facades\Alert;
+use App\Http\Requests\StorePackage;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EditExcursion;
 use App\Http\Requests\StoreExcursion;
@@ -54,10 +55,10 @@ class PackagesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreExcursion  $request
+     * @param  \App\Http\Requests\StorePackage  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreExcursion $request)
+    public function store(StorePackage $request)
     {      
         $data = $request->validated();
 
