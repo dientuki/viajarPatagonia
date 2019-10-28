@@ -2,10 +2,42 @@
   <h2 class="sticky-head">Datos</h2>
 
   <div class="row">
-    <div class="col-sm">
+    <div class="col-5">
+
+      <div class="form-group multiselect" data-children=".multichildren">
+
+        <?php $class = $errors->has('fk_excursion_type') != null ? 'form-control is-invalid' : 'form-control'; ?>
+        {!! Form::label('destination', ucfirst(__('fields.destination'))) !!}
+        {!! Form::hidden('destination', '') !!}
+        <ul class="form-control tag-list"></ul>
+        
+        <select class="form-control" multiple="" size="4">
+          <option selected="selected" value="">{{ucfirst(__('fields.destination_select_placeholder'))}}</option>
+            @foreach ($destinations as $key => $value)
+              <option value="{{$key}}">{{$value}}</option>
+            @endforeach
+        </select>
+
+      </div>
+
+      <div class="form-group multiselect multichildren" data-data="destination">
+
+        <?php $class = $errors->has('fk_excursion_type') != null ? 'form-control is-invalid' : 'form-control'; ?>
+        {!! Form::label('excursion', ucfirst(__('fields.excursion'))) !!}
+        {!! Form::hidden('excursion', '') !!}
+        <ul class="form-control tag-list"></ul>
+        
+        <select class="form-control" multiple="" size="4">
+          <option selected="selected" value="">{{ucfirst(__('fields.excursionType_select_placeholder'))}}</option>
+            @foreach ($excursions as $excursion)
+              <option value="{{$excursion->id}}" data-destination="{{$excursion->fk_destination}}" class="hidden">{{$excursion->name}}</option>
+            @endforeach
+        </select>
+
+      </div>
 
       <div class="form-check">
-        {!! Form::checkbox('is_active', 1, false, array('class' => 'form-check-input') ) !!}
+        {!! Form::checkbox('is_active', 1, false, array('class' => 'form-check-input', 'id' => 'is_active') ) !!}
         {!! Form::label('is_active', ucfirst(__('fields.active'))) !!}
       </div>
 
@@ -20,7 +52,7 @@
         @enderror
       </div>
     </div>
-    <div class="col-sm">
+    <div class="col-7">
       <div class="aspect-16-9">
         <iframe class="map" src="about:blank"></iframe>
       </div>

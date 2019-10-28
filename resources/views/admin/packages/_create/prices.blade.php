@@ -30,7 +30,7 @@
             </div>
 
             <div class="form-check">
-                {!! Form::checkbox('is_active_' . $currency->id, 1, false, array('class' => 'form-check-input') ) !!}
+                {!! Form::checkbox('is_active_' . $currency->id, 1, false, array('class' => 'form-check-input', 'id' => 'is_active_' . $currency->id) ) !!}
                 {!! Form::label('is_active_' . $currency->id, ucfirst(__('fields.active'))) !!}
             </div>
 
