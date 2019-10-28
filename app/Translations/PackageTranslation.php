@@ -11,7 +11,7 @@ class PackageTranslation extends Model
      *
      * @var string
      */
-    protected $table = 'package_translation';
+    protected $table = 'packages_translation';
 
     /**
      * Indicates if the model should be timestamped.

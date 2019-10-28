@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Exception;
 use App\Currency;
 use App\Packages;
 use App\Excursions;
 use App\Destination;
-use Illuminate\Http\Request;
+use App\PackagePrices;
+use App\ExcursionsTypes;
+use App\ExcursionsPrices;
+use App\Package2excursion;
+use App\Package2destination;
 use App\Translations\Language;
 use Prologue\Alerts\Facades\Alert;
 use App\Http\Requests\StorePackage;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\EditExcursion;
 use App\Http\Requests\StoreExcursion;
 use Spatie\MediaLibrary\Models\Media;
 use App\Translations\PackageTranslation;
@@ -99,7 +101,7 @@ class PackagesController extends Controller
         foreach ($currencies as $currency) {
             if (isset($data['fk_currency_' . $currency->id]) && $data['price_' . $currency->id] != null) {
 
-                ExcursionsPrices::create([
+                PackagePrices::create([
                     'fk_currency' => $data['fk_currency_' . $currency->id],
                     'fk_package' => $id,
                     'price' => $data['price_' . $currency->id],
@@ -137,7 +139,7 @@ class PackagesController extends Controller
 
       foreach ($excursions as $excursion) {
 
-        Package2destination::create([
+        Package2excursion::create([
           'fk_excursion' => $excursion,
           'fk_package' => $id
         ]);
