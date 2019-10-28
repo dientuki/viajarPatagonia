@@ -1,0 +1,44 @@
+@font-face {
+  font-family: PatuaOne-regular;
+  src: url(../fonts/patuaone-regular.woff2) format("woff2"),
+    url(../fonts/patuaone-regular.woff) format("woff");
+  font-weight: $normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Cabin-regular;
+  src: url(../fonts/cabin-regular.woff2) format("woff2"),
+    url(../fonts/cabin-regular.woff) format("woff");
+  font-weight: $normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url(../fonts/montserrat-regular.woff2) format("woff2"),
+    url(../fonts/montserrat-regular.woff) format("woff");
+  font-weight: $normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Montserrat-Medium;
+  src: url(../fonts/montserrat-medium.woff2) format("woff2"),
+    url(../fonts/montserrat-medium.woff) format("woff");
+  font-weight: $normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Cabin-Medium;
+  src: url(../fonts/Cabin-Medium.woff2) format("woff2"),
+    url(../fonts/Cabin-Medium.woff) format("woff");
+  font-weight: $normal;
+  font-style: normal;
+  font-display: swap;
+}
