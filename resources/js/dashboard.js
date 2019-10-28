@@ -31,4 +31,14 @@ if (document.querySelector('.loadMap') !== null) {
   });
 }
 
+// Load multiselect
+if (document.querySelector('.multiselect') !== null) {
+  import(/* webpackChunkName: "multiselect" */ './modules/multiselect/multiselect').then((module) => {
+    module.multiselect(document.querySelectorAll('.multiselect'));
+  });
+}
+
+
+
+
 window.$ = $;

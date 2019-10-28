@@ -42,7 +42,7 @@ class PackagesController extends Controller
         $action = 'create';
         $form_data = array('route' => 'admin.packages.store', 'method' => 'POST');
         $destinations = Destination::getLists();
-        $excursions = Excursions::getLists();
+        $excursions = Excursions::getPackageComgo();
         $currencies = Currency::getAll();
 
         $languages = Language::getAll();
