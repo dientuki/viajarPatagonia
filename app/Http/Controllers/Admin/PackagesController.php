@@ -70,8 +70,8 @@ class PackagesController extends Controller
         $this->storeLanguages($package->id, $data);
         $this->storeCurrencies($package->id, $data);
         $this->storeImages($package, $data);
-        $this->storeDestination($package->id, $data);
-        $this->storeExcursion($package->id, $data);
+        $this->storeDestination($package->id, $data['destination']);
+        $this->storeExcursion($package->id, $data['excursion']);
 
         return redirect()->route('admin.packages.index');
     }
@@ -121,7 +121,7 @@ class PackagesController extends Controller
 
     private function storeDestination($id, $data)
     {
-      $destinations = explode('|', $data['destination']);
+      $destinations = explode('|', $data);
 
       foreach ($destinations as $destination) {
 
@@ -134,7 +134,7 @@ class PackagesController extends Controller
 
     private function storeExcursion($id, $data)
     {
-      $excursions = explode('|', $data['excursion']);
+      $excursions = explode('|', $data);
 
       foreach ($excursions as $excursion) {
 
@@ -192,6 +192,8 @@ class PackagesController extends Controller
         $this->updateCurrencies($id, $data);
         $this->updateImage($id, $data);
         $this->storeImages($excursion, $data);
+        $this->updateDestination($package->id, $data);
+        $this->updateExcursion($package->id, $data);        
 
         return redirect()->route('admin.packages.index');
     }
@@ -258,6 +260,40 @@ class PackagesController extends Controller
         }  
       }
     }
+
+    private function updateDestination($id, $data)
+    {
+      $inputs = explode('|', $data['destination']);
+      $dbs = Package2destination::getAll($id);
+
+      foreach ($dbs as $db) {
+        $index = array_search($ib, $inputs);
+        if ($index === false) {
+          Package2destination::where('fk_package', $id)->where('fk_destination', $db)->delete();
+        } else {
+          $inputs = array_splice($inputs, $index, 1);
+        }
+      }
+
+      $this->storeDestination($id, implode('|', $input));
+    }
+
+    private function updateExcursion($id, $data)
+    {
+      $inputs = explode('|', $data['excursion']);
+      $dbs = Package2excursion::getAll($id);
+
+      foreach ($dbs as $db) {
+        $index = array_search($ib, $inputs);
+        if ($index === false) {
+          Package2excursion::where('fk_package', $id)->where('fk_excursion', $db)->delete();
+        } else {
+          $inputs = array_splice($inputs, $index, 1);
+        }
+      }
+
+      $this->storeExcursion($id, implode('|', $input));
+    }    
 
     /**
      * Remove the specified resource from storage.
