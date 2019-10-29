@@ -16,10 +16,6 @@ class Package2ExcursionSeeder extends Seeder
             'fk_excursion' => 1,
         ]);
         DB::table('package2excursion')->insert([
-            'fk_package' => 1,
-            'fk_excursion' => 2,
-        ]);    
-        DB::table('package2excursion')->insert([
             'fk_package' => 2,
             'fk_excursion' => 2,
         ]);            
