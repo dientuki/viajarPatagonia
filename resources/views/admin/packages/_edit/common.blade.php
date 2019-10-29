@@ -8,7 +8,7 @@
 
         <?php $class = $errors->has('destination') != null ? 'form-control is-invalid' : 'form-control'; ?>
         {!! Form::label('destination', ucfirst(__('fields.destination'))) !!}
-        {!! Form::hidden('destination', '') !!}
+        {!! Form::hidden('destination', $plucked['destination']) !!}
         <ul class="{{$class}} tag-list"></ul>
         
         @error('destination')
@@ -30,7 +30,7 @@
 
         <?php $class = $errors->has('excursion') != null ? 'form-control is-invalid' : 'form-control'; ?>
         {!! Form::label('excursion', ucfirst(__('fields.excursion'))) !!}
-        {!! Form::hidden('excursion', '') !!}
+        {!! Form::hidden('excursion', $plucked['excursion']) !!}
         <ul class="{{$class}} tag-list"></ul>
         
         @error('excursion')
