@@ -159,12 +159,16 @@ class PackagesController extends Controller
         $excursions = Excursions::getPackageCombo();
         $packagePrice = ExcursionsPrices::getEdits($id);
         $currencies = Currency::getAll();
+        $plucked = [
+          'destination' => implode('|', Package2destination::getAll($id)),
+          'excursion' => implode('|', Package2excursion::getAll($id))
+        ];
 
         $action    = 'update';
         $form_data = array('route' => array('admin.packages.update', $package->id), 'method' => 'PATCH');
         $languages = Language::getAll();
 
-        return view('admin/packages/edit', compact('action', 'package', 'form_data', 'languages', 'packageTranslation', 'currencies', 'packagePrice', 'destinations', 'excursions'));
+        return view('admin/packages/edit', compact('action', 'package', 'form_data', 'languages', 'packageTranslation', 'currencies', 'packagePrice', 'destinations', 'excursions', 'plucked'));
     }
 
     /**

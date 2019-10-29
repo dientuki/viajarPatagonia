@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Package2destination;
 use Illuminate\Database\Eloquent\Model;
 
 class Package2destination extends Model
@@ -26,4 +27,8 @@ class Package2destination extends Model
      * @var array
      */
     protected $fillable = ['fk_package', 'fk_destination'];    
+
+    static function getAll($package) {
+      return Package2destination::select('fk_destination')->where('fk_package', $package)->orderBy('fk_destination')->pluck('fk_destination')->all();
+    }
   }
