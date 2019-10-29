@@ -24,7 +24,10 @@ export function multiselect(elements) {
       e.target.classList.toggle('disabled');
       nli.innerHTML = e.target.innerHTML;
       nli.dataset.id = e.target.value;
-      values.push(e.target.value);
+
+      if (values.indexOf(e.target.value) === -1) {
+        values.push(e.target.value);
+      }
 
       window.requestAnimationFrame(() => {
         if (children !== null) {
@@ -68,6 +71,12 @@ export function multiselect(elements) {
         e.target.remove();
       });
     });
+
+    if (input.value !== '') {
+      input.value.split('|').forEach((value) => {
+        select.querySelector(`option[value="${value}"]`).click();
+      });
+    }
 
   });
 
