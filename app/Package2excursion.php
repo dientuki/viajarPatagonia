@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Package2excursion;
 use Illuminate\Database\Eloquent\Model;
 
 class Package2excursion extends Model
@@ -26,4 +27,8 @@ class Package2excursion extends Model
      * @var array
      */
     protected $fillable = ['fk_package', 'fk_excursion'];    
+
+    static function getAll($package) {
+      return Package2excursion::select('fk_excursion')->where('fk_package', $package)->orderBy('fk_excursion')->pluck('fk_excursion')->all();
+    }
   }

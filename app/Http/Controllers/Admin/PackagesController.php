@@ -15,7 +15,6 @@ use App\Translations\Language;
 use Prologue\Alerts\Facades\Alert;
 use App\Http\Requests\StorePackage;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreExcursion;
 use Spatie\MediaLibrary\Models\Media;
 use App\Translations\PackageTranslation;
 
@@ -70,8 +69,8 @@ class PackagesController extends Controller
         $this->storeLanguages($package->id, $data);
         $this->storeCurrencies($package->id, $data);
         $this->storeImages($package, $data);
-        $this->storeDestination($package->id, $data);
-        $this->storeExcursion($package->id, $data);
+        $this->storeDestination($package->id, $data['destination']);
+        $this->storeExcursion($package->id, $data['excursion']);
 
         return redirect()->route('admin.packages.index');
     }
@@ -121,7 +120,7 @@ class PackagesController extends Controller
 
     private function storeDestination($id, $data)
     {
-      $destinations = explode('|', $data['destination']);
+      $destinations = explode('|', $data);
 
       foreach ($destinations as $destination) {
 
@@ -134,7 +133,7 @@ class PackagesController extends Controller
 
     private function storeExcursion($id, $data)
     {
-      $excursions = explode('|', $data['excursion']);
+      $excursions = explode('|', $data);
 
       foreach ($excursions as $excursion) {
 
@@ -159,35 +158,41 @@ class PackagesController extends Controller
         $excursions = Excursions::getPackageCombo();
         $packagePrice = ExcursionsPrices::getEdits($id);
         $currencies = Currency::getAll();
+        $plucked = [
+          'destination' => implode('|', Package2destination::getAll($id)),
+          'excursion' => implode('|', Package2excursion::getAll($id))
+        ];
 
         $action    = 'update';
         $form_data = array('route' => array('admin.packages.update', $package->id), 'method' => 'PATCH');
         $languages = Language::getAll();
 
-        return view('admin/packages/edit', compact('action', 'package', 'form_data', 'languages', 'packageTranslation', 'currencies', 'packagePrice', 'destinations', 'excursions'));
+        return view('admin/packages/edit', compact('action', 'package', 'form_data', 'languages', 'packageTranslation', 'currencies', 'packagePrice', 'destinations', 'excursions', 'plucked'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\StoreExcursion  $request
+     * @param  \App\Http\Requests\StorePackage  $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreExcursion $request, $id)
+    public function update(StorePackage $request, $id)
     {
-        $excursion = Packages::getEdit($id);
+        $package = Packages::getEdit($id);
 
         $data = $request->validated();
 
         $data['is_active'] = isset($data['is_active']) ? 1 : 0;
 
-        $excursion->fill($data)->save();
+        $package->fill($data)->save();
 
         $this->updateLanguages($id, $data);
         $this->updateCurrencies($id, $data);
         $this->updateImage($id, $data);
-        $this->storeImages($excursion, $data);
+        $this->storeImages($package, $data);
+        $this->updateDestination($id, $data);
+        $this->updateExcursion($id, $data);        
 
         return redirect()->route('admin.packages.index');
     }
@@ -200,12 +205,12 @@ class PackagesController extends Controller
 
                 $where = array(
                     ['fk_language', $data['fk_language_' . $language->id]],
-                    ['fk_excursion', $id]
+                    ['fk_package', $id]
                 );
 
-                $excursionTranslation = ExcursionsTranslation::getUpdate($where);
+                $packageTranslation = PackageTranslation::getUpdate($where);
 
-                $excursionTranslation->fill([
+                $packageTranslation->fill([
                     'name' => $data['name_' . $language->id],
                     'summary' => $data['summary_' . $language->id],
                     'body' => $data['body_' . $language->id]
@@ -221,21 +226,21 @@ class PackagesController extends Controller
 
                 $where = array(
                     ['fk_currency', $data['fk_currency_' . $currency->id]],
-                    ['fk_excursion', $id]
+                    ['fk_package', $id]
                 );
 
-                $excursionType = ExcursionsPrices::getUpdate($where);
+                $packagePrice = PackagePrices::getUpdate($where);
 
-                if (is_null($excursionType)) {
-                    ExcursionsPrices::create([
+                if (is_null($packagePrice)) {
+                    PackagePrices::create([
                         'fk_currency' => $data['fk_currency_' . $currency->id],
-                        'fk_excursion' => $id,
+                        'fk_package' => $id,
                         'price' => $data['price_' . $currency->id],
                         'discount' => $data['discount_' . $currency->id],
                         'is_active' => isset($data['is_active_' . $currency->id]) ? 1 : 0
                     ]);
                 } else {
-                    $excursionType->fill([
+                    $packagePrice->fill([
                         'price' => $data['price_' . $currency->id],
                         'discount' => $data['discount_' . $currency->id],
                         'is_active' => isset($data['is_active_' . $currency->id]) ? 1 : 0
@@ -254,6 +259,46 @@ class PackagesController extends Controller
         }  
       }
     }
+
+    private function updateDestination($id, $data)
+    {
+      $inputs = explode('|', $data['destination']);
+      $dbs = Package2destination::getAll($id);
+
+      foreach ($dbs as $db) {
+        $index = array_search($db, $inputs);
+
+        if ($index === false) {
+          Package2destination::where('fk_package', $id)->where('fk_destination', $db)->delete();
+        } else {
+          unset($inputs[$index]);  
+        }
+      }
+
+      if (count($inputs) > 0 ) {
+        $this->storeDestination($id, implode('|', $inputs));
+      }
+      
+    }
+
+    private function updateExcursion($id, $data)
+    {
+      $inputs = explode('|', $data['excursion']);
+      $dbs = Package2excursion::getAll($id);
+
+      foreach ($dbs as $db) {
+        $index = array_search($db, $inputs);
+        if ($index === false) {
+          Package2excursion::where('fk_package', $id)->where('fk_excursion', $db)->delete();
+        } else {
+          unset($inputs[$index]);  
+        }
+      }
+
+      if (count($inputs) > 0 ) {
+        $this->storeExcursion($id, implode('|', $inputs));
+      }
+    }    
 
     /**
      * Remove the specified resource from storage.
