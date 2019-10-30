@@ -98,6 +98,7 @@ jobs:
       - run:
           name: Install exiftool
           command: |
+            sudo apt-get install update
             sudo apt-get install exiftool
             docker-php-ext-configure exif
             docker-php-ext-install exif
