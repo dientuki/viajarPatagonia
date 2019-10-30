@@ -215,7 +215,6 @@ workflows:
             branches:
               only:
                 - master
-                - stage
       - install_laravel:
           requires:
             - checkout_code        
@@ -225,7 +224,6 @@ workflows:
             branches:
               only:
                 - master
-                - stage
       - optimize_laravel:
           requires:
             - install_laravel
@@ -236,7 +234,6 @@ workflows:
             branches:
               only:
                 - master
-                - stage
       - build_targz:
           requires:
             - optimize_laravel
@@ -244,14 +241,13 @@ workflows:
             - build_webpack     
           filters:
             tags:
-              only: /^v.*/
+              only: /.*/
             branches:
-              only: master
+              only:
+                - master              
       - release:
           requires:
             - build_targz   
           filters:              
             tags:
               only: /^v.*/
-            branches:
-              only: master
