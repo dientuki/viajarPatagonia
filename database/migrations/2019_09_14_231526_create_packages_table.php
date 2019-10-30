@@ -19,9 +19,7 @@ class CreatePackagesTable extends Migration
             $table->collation = 'utf8_unicode_ci';
 
             $table->smallIncrements('id');
-            $table->mediumInteger('price_peso')->unsigned();
-            $table->mediumInteger('price_dolar')->unsigned();
-            $table->string('map');
+            $table->text('map')->nullable(true);
             $table->boolean('is_active')->default(false);
         });
     }

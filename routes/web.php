@@ -26,7 +26,8 @@ Route::group(['namespace' => 'Admin',
     App::setLocale('es');
 
     // Dashboard
-    Route::get('dashboard.html', ['uses' => 'ShowDashboard', 'as' => 'dashboard']);
+    //Route::get('dashboard.html', ['uses' => 'ShowDashboard', 'as' => 'dashboard']);
+    Route::get('dashboard.html', ['uses' => 'PackagesController@index', 'as' => 'dashboard']);
 
     Route::resource('regions', 'RegionsController')->except(['show']);
     Route::resource('destinations', 'DestinationsController')->except(['show']);
@@ -35,6 +36,10 @@ Route::group(['namespace' => 'Admin',
     Route::resource('cruiseships-types', 'CruiseshipsTypesController')->except(['show']);
     Route::resource('excursions-types', 'ExcursionsTypesController')->except(['show']);
     Route::resource('cruiseships', 'CruiseshipsController')->except(['show']);
+    Route::resource('excursions', 'ExcursionsController')->except(['show']);
+    Route::resource('packages', 'PackagesController')->except(['show']);
+
+    Route::post('images', 'ImagesController@store')->name('images.store');
 });
 
 Auth::routes(['register' => false]);

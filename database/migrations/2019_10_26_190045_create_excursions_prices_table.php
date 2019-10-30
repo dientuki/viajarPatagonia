@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePricesPackagesTable extends Migration
+class CreateExcursionsPricesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,20 @@ class CreatePricesPackagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('prices_packages', function (Blueprint $table) {
+        Schema::create('excursions_prices', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
 
             $table->smallIncrements('id');
             $table->mediumInteger('price');
-            $table->mediumInteger('discount');
+            $table->mediumInteger('discount')->nullable(true);
             $table->boolean('is_active')->default(false);
             $table->tinyInteger('fk_currency')->unsigned();
-            $table->smallInteger('fk_package')->unsigned();
+            $table->smallInteger('fk_excursion')->unsigned();
 
             $table->foreign('fk_currency')->references('id')->on('currencies');
-            $table->foreign('fk_package')->references('id')->on('packages');
+            $table->foreign('fk_excursion')->references('id')->on('excursions');
         });
     }
 
@@ -37,6 +37,6 @@ class CreatePricesPackagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prices_packages');
+        Schema::dropIfExists('excursions_prices');
     }
 }

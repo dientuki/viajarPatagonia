@@ -28,7 +28,7 @@ class Destination extends Model
     protected $fillable = ['destination', 'fk_region'];    
 
     static function getLists() {
-      //return Region::orderBy('region')->lists('region', 'id');
+      return Destination::orderBy('destination')->pluck('destination', 'id');
     }
 
     static public function getAll(){
