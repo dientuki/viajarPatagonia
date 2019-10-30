@@ -46,7 +46,9 @@ class EditCruiseship extends FormRequest
         $validation['is_active'] = 'boolean';
         $validation['map'] = 'url|nullable';
         $validation['fk_cruiseship_type'] = 'required|numeric|exists:cruiseships_types,id';
-        
+        $validation['images'] = 'nullable';
+        $validation['delete'] = 'nullable';
+
         return $validation;
     }
 
@@ -77,7 +79,8 @@ class EditCruiseship extends FormRequest
 
         $validation['is_active'] = __('fields.active');
         $validation['fk_cruiseship_type'] = __('fields.cruiseshipType');
-        $validation['map'] = __('fields.map');        
+        $validation['map'] = __('fields.map');    
+        $validation['images[]'] = 'dunno';        
 
         return $validation;
     }    

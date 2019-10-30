@@ -21,9 +21,9 @@ class CreateExcursionsTranslationTable extends Migration
             $table->smallIncrements('id');
             $table->tinyInteger('fk_language')->unsigned();
             $table->smallInteger('fk_excursion')->unsigned();
-            $table->string('title');
-            $table->string('body');
-            $table->string('dropline');
+            $table->string('name');
+            $table->string('summary');
+            $table->mediumText('body');
 
             $table->foreign('fk_language')->references('id')->on('languages');
             $table->foreign('fk_excursion')->references('id')->on('excursions');

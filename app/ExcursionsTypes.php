@@ -4,6 +4,7 @@ namespace App;
 
 use App\Translations\Language;
 use Illuminate\Database\Eloquent\Model;
+use App\Translations\ExcursionsTypesTranslation;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ExcursionsTypes extends Model
@@ -22,13 +23,6 @@ class ExcursionsTypes extends Model
      */
     public $timestamps = false;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    //protected $fillable = ['region'];    
-
     static public function getAll(){
       $excursionsTypes = ExcursionsTypes::select('excursions_types.id');
       $languages = Language::getAll();
@@ -44,7 +38,9 @@ class ExcursionsTypes extends Model
     }
 
     static function getLists() {
-      //return Region::orderBy('region')->pluck('region', 'id');
+      return ExcursionsTypesTranslation::orderBy('type')
+        ->where('fk_language', '1')
+        ->pluck('type', 'fk_excursion_type');
     }  
 
     static function getEdit($id){

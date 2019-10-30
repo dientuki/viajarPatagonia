@@ -19,7 +19,7 @@ class CreateExcursionsTable extends Migration
             $table->collation = 'utf8_unicode_ci';
 
             $table->smallIncrements('id');
-            $table->string('map');
+            $table->text('map')->nullable(true);
             $table->boolean('is_active')->default(false);
             $table->tinyInteger('fk_excursion_type')->unsigned();
             $table->tinyInteger('fk_destination')->unsigned();

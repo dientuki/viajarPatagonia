@@ -12,6 +12,7 @@ use App\Translations\Language;
 use Prologue\Alerts\Facades\Alert;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EditCruiseship;
+use Spatie\MediaLibrary\Models\Media;
 use App\Http\Requests\StoreCruiseship;
 use App\Translations\CruiseshipsTranslation;
 
@@ -58,37 +59,58 @@ class CruiseshipsController extends Controller
     {      
         $data = $request->validated();
 
+        $data['is_active'] = isset($data['is_active']) ? 1 : 0;
+
         $cruiseship = Cruiseships::create($data);
 
+        $this->storeLanguages($cruiseship->id, $data);
+        $this->storeCurrencies($cruiseship->id, $data);
+        $this->storeImages($cruiseship, $data);
+
+        return redirect()->route('admin.cruiseships.index');
+    }
+
+    private function storeLanguages($id, $data)
+    {
         $languages = Language::getAll();
-        $currencies = Currency::getAll();
 
         foreach ($languages as $language) {
             if (isset($data['fk_language_' . $language->id])) {
                 CruiseshipsTranslation::create([
                     'fk_language' => $data['fk_language_' . $language->id],
-                    'fk_cruiseship' => $cruiseship->id,
+                    'fk_cruiseship' => $id,
                     'name' => $data['name_' . $language->id],
                     'summary' => $data['summary_' . $language->id],
                     'body' => $data['body_' . $language->id]
                 ]);
             }
         }
+    }
 
+    private function storeCurrencies($id, $data)
+    {
+        $currencies = Currency::getAll();
+        
         foreach ($currencies as $currency) {
             if (isset($data['fk_currency_' . $currency->id]) && $data['price_' . $currency->id] != null) {
 
                 CruiseshipsPrices::create([
-                    'fk_currency' => $data['fk_currency_' . $language->id],
-                    'fk_cruiseship' => $cruiseship->id,
+                    'fk_currency' => $data['fk_currency_' . $currency->id],
+                    'fk_cruiseship' => $id,
                     'price' => $data['price_' . $currency->id],
                     'discount' => $data['discount_' . $currency->id],
                     'is_active' => isset($data['is_active_' . $currency->id]) ? true : false
                 ]);
             }
-        }            
+        }  
+    }
 
-        return redirect()->route('admin.cruiseships.index');
+    private function storeImages($model, $data) {
+      if (isset($data['images'])) {
+        foreach ($data['images'] as $file) {
+          $model->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('products');
+        }
+      }
     }
 
     /**
@@ -99,7 +121,7 @@ class CruiseshipsController extends Controller
      */
     public function edit($id)
     {
-        $cruiseship = Cruiseships::getEdit($id);
+        $cruiseship = Cruiseships::find($id);
         $cruiseshipTranslation = CruiseshipsTranslation::getEdit($id);
         $cruiseshipType = CruiseshipsTypes::getLists();
         $cruiseshipPrice = CruiseshipsPrices::getEdits($id);
@@ -123,10 +145,24 @@ class CruiseshipsController extends Controller
     {
         $cruiseship = Cruiseships::getEdit($id);
 
+
+
         $data = $request->validated();
+
+        $data['is_active'] = isset($data['is_active']) ? 1 : 0;
 
         $cruiseship->fill($data)->save();
 
+        $this->updateLanguages($id, $data);
+        $this->updateCurrencies($id, $data);
+        $this->updateImage($id, $data);
+        $this->storeImages($cruiseship, $data);
+
+        return redirect()->route('admin.cruiseships.index');
+    }
+
+    private function updateLanguages($id, $data)
+    {
         $languages = Language::getAll();
         foreach ($languages as $language) {
             if (isset($data['fk_language_' . $language->id])) {
@@ -145,7 +181,9 @@ class CruiseshipsController extends Controller
                 ])->save();
             }            
         }
+    }
 
+    private function updateCurrencies($id, $data) {
         $currencies = Currency::getAll();
         foreach ($currencies as $currency) {
             if (isset($data['fk_currency_' . $currency->id]) && $data['price_' . $currency->id] != null) {
@@ -157,27 +195,33 @@ class CruiseshipsController extends Controller
 
                 $cruiseshipPrice = CruiseshipsPrices::getUpdate($where);
 
-                //dd(is_null($cruiseshipPrice));
-
                 if (is_null($cruiseshipPrice)) {
                     CruiseshipsPrices::create([
                         'fk_currency' => $data['fk_currency_' . $currency->id],
                         'fk_cruiseship' => $id,
                         'price' => $data['price_' . $currency->id],
                         'discount' => $data['discount_' . $currency->id],
-                        'is_active' => isset($data['is_active_' . $currency->id]) ? true : false
+                        'is_active' => isset($data['is_active_' . $currency->id]) ? 1 : 0
                     ]);
                 } else {
-                    $cruiseshipTranslation->fill([
+                    $cruiseshipPrice->fill([
                         'price' => $data['price_' . $currency->id],
                         'discount' => $data['discount_' . $currency->id],
-                        'is_active' => isset($data['is_active_' . $currency->id]) ? true : false
+                        'is_active' => isset($data['is_active_' . $currency->id]) ? 1 : 0
                     ])->save();
                 }
             }            
         }
+    }
 
-        return redirect()->route('admin.cruiseships.index');
+    private function updateImage($id, $data) {
+      if (isset($data['delete'])) {
+        try {
+            Media::whereIn('id', $data['delete'])->delete();
+        } catch (Exception $e) {
+            Alert::error('No puedes eliminar las imagenes!')->flash();
+        }  
+      }
     }
 
     /**
@@ -192,7 +236,9 @@ class CruiseshipsController extends Controller
 
         try {
             CruiseshipsTranslation::where('fk_cruiseship', $id)->delete();
+            CruiseshipsPrices::where('fk_cruiseship', $id)->delete();
             $cruiseship->delete();
+
             Alert::success('Registro eliminado correctamente!')->flash();
         } catch (Exception $e) {
             Alert::error('No puedes eliminar el registro!')->flash();
