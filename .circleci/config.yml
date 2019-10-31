@@ -99,9 +99,9 @@ jobs:
           name: Install exiftool
           command: |
             sudo apt-get update
-            sudo apt-get install exiftool
-            docker-php-ext-configure exif
-            docker-php-ext-install exif
+            sudo apt-get install libfreetype6-dev libjpeg62-turbo-dev libpng-dev -y
+            docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
+            docker-php-ext-install -j$(nproc) gd
       - run:
           name: Install Laravel with Autoloader Optimization
           command: composer install --optimize-autoloader --no-dev
