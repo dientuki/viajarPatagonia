@@ -7,28 +7,28 @@ use App\Translations\Language;
 
 <header id="header">
   <div class="wrapper">
-    <a href="#">Viajar por patagonia</a>
+    <a href="#" title="{{ __('front.go_to_home') }}">Viajar por patagonia</a>
 
     <nav>
       <ul>
         <li>
-          <a href="#">Inicio</a>
+          <a href="#">{{ ucfirst(__('front.home')) }}</a>
         </li>
         <li>
-          <a href="#">Hoteles</a>
+          <a href="#">{{ ucfirst(__('front.hotels')) }}</a>
         </li>
         <li>
-          <a href="#">Autos</a>
+          <a href="#">{{ ucfirst(__('front.cars')) }}</a>
         </li>
       </ul>
     </nav>
 
     <form action="#">
-      <input />
+      <input placeholder="{{ ucfirst(__('front.search')) }}" />
     </form>
 
     <div>
-      <div>Moneda</div>
+      <div>{{ ucfirst(__('front.currency')) }}</div>
       <?php $currencies = Currency::getAll(); ?>
       <ul>
         @foreach ($currencies as $currency)
@@ -38,7 +38,7 @@ use App\Translations\Language;
     </div>
 
     <div>
-      <div>Idioma</div>
+      <div>{{ ucfirst(__('front.language')) }}</div>
       <?php $languages = Language::getAll(); ?>
       <ul>
         @foreach ($languages as $language)
