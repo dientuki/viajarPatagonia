@@ -166,7 +166,7 @@ jobs:
           paths:
             - build.tar.gz
 
-  release:
+  testing:
     <<: *wd
     <<: *ubuntu
     steps:
@@ -182,7 +182,7 @@ jobs:
             sudo apt-get install ftp-upload
       - run:
           name: Uploading build.tar.gz
-          command: ftp-upload -h mateclass.com -u mateclass --password $TESTING_PASSWORD -d vpp ftp-uploader
+          command: scp build.tar.gz mateclass@mateclass.com:vpp
       - run:
           name: Untar
           command: ssh mateclass@mateclass.com tar -xzf vpp/build.tar.gz -C vpp
@@ -190,7 +190,7 @@ jobs:
           name: Clean build.tar.gz
           command: ssh mateclass@mateclass.com tar -xzf vpp/build.tar.gz -C vpp
 
-  testing:
+  release:
     <<: *wd
     <<: *ubuntu
     steps:
