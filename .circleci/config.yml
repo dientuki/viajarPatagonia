@@ -172,6 +172,28 @@ jobs:
     steps:
       - attach_workspace:
           at: ./
+      - add_ssh_keys:
+          fingerprints:
+            - 78:6a:57:aa:89:28:da:c2:f6:c9:68:98:44:59:66:8e
+      - run:
+          name: Install ftp-uploader
+          command: sudo apt-get install
+      - run:
+          name: Uploading build.tar.gz
+          command: ftp-upload -h mateclass.com -u mateclass --password $TESTING_PASSWORD -d vpp ftp-uploader
+      - run:
+          name: Untar
+          command: ssh mateclass@mateclass.com tar -xzf vpp/build.tar.gz -C vpp
+      - run:
+          name: Clean build.tar.gz
+          command: ssh mateclass@mateclass.com tar -xzf vpp/build.tar.gz -C vpp
+
+  testing:
+    <<: *wd
+    <<: *ubuntu
+    steps:
+      - attach_workspace:
+          at: ./
       - run:
           name: Publish assets to Github
           command: |
@@ -251,6 +273,14 @@ workflows:
           requires:
             - build_targz   
           filters:              
+            tags:
+              only: /^v.*/
+            branches:
+              only: master
+      - testing:
+          requires:
+            - build_targz
+          filters:
             tags:
               only: /^v.*/
             branches:
