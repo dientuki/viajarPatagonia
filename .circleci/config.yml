@@ -98,7 +98,7 @@ jobs:
       - run:
           name: Install exiftool
           command: |
-            sudo apt-get install update
+            sudo apt-get update
             sudo apt-get install exiftool
             docker-php-ext-configure exif
             docker-php-ext-install exif
@@ -177,7 +177,9 @@ jobs:
             - 78:6a:57:aa:89:28:da:c2:f6:c9:68:98:44:59:66:8e
       - run:
           name: Install ftp-uploader
-          command: sudo apt-get install
+          command: |
+            sudo apt-get update
+            sudo apt-get install ftp-upload
       - run:
           name: Uploading build.tar.gz
           command: ftp-upload -h mateclass.com -u mateclass --password $TESTING_PASSWORD -d vpp ftp-uploader
