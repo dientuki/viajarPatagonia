@@ -98,10 +98,10 @@ jobs:
       - run:
           name: Install exiftool
           command: |
-            sudo apt-get install update
+            sudo apt-get update
             sudo apt-get install exiftool
-            docker-php-ext-configure exif
-            docker-php-ext-install exif
+            sudo docker-php-ext-configure exif
+            sudo docker-php-ext-install exif
       - run:
           name: Install Laravel with Autoloader Optimization
           command: composer install --optimize-autoloader --no-dev
@@ -153,7 +153,8 @@ jobs:
             rm -rf phpunit.xml
             rm -rf postcss.config.js
             rm -rf stylelint.json
-            rm -rf scripts            
+            rm -rf scripts
+            rm -rf bootstrap/cache/config.php
       - run:
           name: Making build.tar.gz
           command: |
@@ -165,6 +166,30 @@ jobs:
           root: ./
           paths:
             - build.tar.gz
+
+  testing:
+    <<: *wd
+    <<: *ubuntu
+    steps:
+      - attach_workspace:
+          at: ./
+      - add_ssh_keys:
+          fingerprints:
+            - 78:6a:57:aa:89:28:da:c2:f6:c9:68:98:44:59:66:8e
+      - run:
+          name: Install ftp-uploader
+          command: |
+            sudo apt-get update
+            sudo apt-get install ftp-upload
+      - run:
+          name: Uploading build.tar.gz
+          command: scp build.tar.gz mateclass@mateclass.com:vpp
+      - run:
+          name: Untar
+          command: ssh mateclass@mateclass.com tar -xzf vpp/build.tar.gz -C vpp
+      - run:
+          name: Clean build.tar.gz
+          command: ssh mateclass@mateclass.com tar -xzf vpp/build.tar.gz -C vpp
 
   release:
     <<: *wd
@@ -251,3 +276,13 @@ workflows:
           filters:              
             tags:
               only: /^v.*/
+            branches:
+              only: master
+      - testing:
+          requires:
+            - build_targz
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              only: master
