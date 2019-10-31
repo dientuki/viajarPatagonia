@@ -153,7 +153,8 @@ jobs:
             rm -rf phpunit.xml
             rm -rf postcss.config.js
             rm -rf stylelint.json
-            rm -rf scripts            
+            rm -rf scripts
+            rm -rf bootstrap/cache/config.php
       - run:
           name: Making build.tar.gz
           command: |
