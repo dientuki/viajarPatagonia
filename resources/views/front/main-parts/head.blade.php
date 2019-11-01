@@ -11,8 +11,8 @@
 <script src="{{ load_resource('frontJs.js') }}" defer crossorigin="anonymous"></script>
 
 <!-- Fonts -->
-<link rel="preload" href="{{ load_resource('Roboto-Regular.woff2') }}" as="font" type="font/woff2" crossorigin />
-<link rel="preload" href="{{ load_resource('Roboto-Regular.woff') }}" as="font" type="font/woff" crossorigin />
+<link rel="preload" href="{{ load_resource('Maven-pro-Regular.woff2') }}" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="{{ load_resource('Maven-pro-Regular.woff') }}" as="font" type="font/woff" crossorigin />
 
 <!-- Styles -->
 <link href="{{ load_resource('frontStyle.css') }}" rel="preload" as="style" onload="this.rel = 'stylesheet'" />
