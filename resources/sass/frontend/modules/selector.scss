@@ -1,0 +1,31 @@
+.selector {
+  height: rem(20);
+
+  &--current {
+    height: 100%;
+    font-size: rem(14.5);
+    line-height: rem(20);
+    color: map-get($colors, 'navigation');
+  }
+
+  &__ul {
+    padding: rem(10) rem(5);
+    background: map-get($color, 'black');
+  }
+
+  &__li {
+    margin-top: rem(10);
+    cursor: pointer;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .ico-down {
+    width: rem(11);
+    height: rem(6);
+    display: inline-block;
+    margin-left: rem(7);
+  }
+}

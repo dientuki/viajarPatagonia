@@ -5,6 +5,11 @@
 .navigation__ {
   &li {
     float: left;
+    margin-left: rem(30);
+
+    &:first-child {
+      margin: 0;
+    }
   }
 
   &link {
