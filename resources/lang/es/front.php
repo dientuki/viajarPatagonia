@@ -21,6 +21,9 @@ return [
     'search' => 'buscar',
     'currency' => 'moneda',
     'language' => 'idioma',
-    'change_to' => 'cambiar a'
+    'change_to' => 'cambiar a',
+
+    //Footer
+    'afip' => 'Datos fiscales'
 
 ];

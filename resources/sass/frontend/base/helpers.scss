@@ -71,3 +71,11 @@
   overflow: hidden;
   text-indent: -99rem;
 }
+
+.bold {
+  font-weight: map-get($font-weight, "bold");
+}
+
+.block {
+  display: block;
+}
