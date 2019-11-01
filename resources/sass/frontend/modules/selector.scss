@@ -1,6 +1,12 @@
 .selector {
   height: rem(20);
 
+  &:hover {
+    .selector__ul {
+      max-height: rem(100);
+    }
+  }
+
   &--current {
     height: 100%;
     font-size: rem(14.5);
@@ -9,12 +15,14 @@
   }
 
   &__ul {
-    padding: rem(10) rem(5);
-    background: map-get($color, "black");
+    background: map-get($colors, "white");
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 500ms;
   }
 
   &__li {
-    margin-top: rem(10);
+    padding: rem(5) rem(2.5);
     cursor: pointer;
 
     &:first-child {

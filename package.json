@@ -2,7 +2,8 @@
     "private": true,
     "scripts": {
         "dev": "npm run development",
-        "development": "cross-env NODE_ENV=development webpack --progress --hide-modules --config=webpack/webpack.config.js && npm run svg",
+        "development": "cross-env NODE_ENV=development webpack --progress --hide-modules --config=webpack/webpack.config.js",
+        "postdevelopment": "npm run svg",
         "eslint:js": "eslint ./resources/js/**/*.js",
         "eslint:jsx": "eslint ./resources/js/**/*.jsx",
         "prod": "npm run production",

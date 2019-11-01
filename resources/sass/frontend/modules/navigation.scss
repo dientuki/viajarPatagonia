@@ -3,13 +3,13 @@
 }
 
 .navigation__ {
-  &li {
-    float: left;
-    margin-left: rem(30);
+  &ul {
+    display: flex;
+    justify-content: flex-end;
+  }
 
-    &:first-child {
-      margin: 0;
-    }
+  &li {
+    margin-right: rem(30);
   }
 
   &link {

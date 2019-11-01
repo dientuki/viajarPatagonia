@@ -23,8 +23,9 @@ use App\Translations\Language;
       </ul>
     </nav>
 
-    <form action="#">
-      <input placeholder="{{ ucfirst(__('front.search')) }}" />
+    <form action="#" id="search_form">
+      <input type="search" placeholder="{{ ucfirst(__('front.search')) }}" />
+      <button>{!! load_svg('ico-search') !!}</button>
     </form>
 
     <?php $currencies = Currency::getAll(); ?>
