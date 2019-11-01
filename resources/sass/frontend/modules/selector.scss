@@ -5,12 +5,12 @@
     height: 100%;
     font-size: rem(14.5);
     line-height: rem(20);
-    color: map-get($colors, 'navigation');
+    color: map-get($colors, "navigation");
   }
 
   &__ul {
     padding: rem(10) rem(5);
-    background: map-get($color, 'black');
+    background: map-get($color, "black");
   }
 
   &__li {

@@ -14,7 +14,7 @@
   &logo {
     width: rem(348);
     height: rem(70);
-    background: url(../../images/logo.png) no-repeat;
+    background: url("../../images/logo.png") no-repeat;
   }
 }
 
@@ -35,6 +35,6 @@
   &link {
     font-size: rem(22);
     line-height: rem(40);
-    color: map-get($colors, 'navigation');
+    color: map-get($colors, "navigation");
   }
 }
