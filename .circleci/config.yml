@@ -178,7 +178,7 @@ jobs:
             - d6:76:36:42:0e:a9:6b:54:68:7b:0d:bf:d3:f6:43:46
       - run:
           name: Install ftp-uploader
-          command: ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
+          command: ssh-keyscan -H 173.230.133.213 >> ~/.ssh/known_hosts
       - run:
           name: Uploading build.tar.gz
           command: scp build.tar.gz mateclass@mateclass.com:vpp
