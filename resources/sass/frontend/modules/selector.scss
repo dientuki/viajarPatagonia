@@ -1,5 +1,6 @@
 .selector {
   height: rem(20);
+  margin-left: rem(30);
 
   &:hover {
     .selector__ul {
@@ -8,9 +9,10 @@
   }
 
   &--current {
-    height: 100%;
+    height: rem(20);
     font-size: rem(14.5);
-    line-height: rem(20);
+    display: flex;
+    align-items: center;
     color: map-get($colors, "navigation");
   }
 
@@ -35,5 +37,12 @@
     height: rem(6);
     display: inline-block;
     margin-left: rem(7);
+  }
+
+  [class*=lang-],
+  [class*=curr-] {
+    width: rem(32);
+    height: rem(20);
+    margin-right: rem(6);
   }
 }

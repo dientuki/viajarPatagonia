@@ -1,4 +1,4 @@
-#header {
+.header {
   height: rem(90);
   position: sticky;
   top: 0;
@@ -8,10 +8,8 @@
     display: flex;
     align-items: center;
   }
-}
 
-.header__ {
-  &logo {
+  &__logo {
     width: rem(348);
     height: rem(70);
     background: url("../../images/logo.png") no-repeat;

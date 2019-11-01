@@ -1,18 +1,16 @@
-#navigation {
+.navigation {
   flex-grow: 1;
-}
 
-.navigation__ {
-  &ul {
+  &__ul {
     display: flex;
     justify-content: flex-end;
   }
 
-  &li {
+  &__li {
     margin-right: rem(30);
   }
 
-  &link {
+  &__link {
     font-size: rem(22);
     line-height: rem(40);
     color: map-get($colors, "navigation");
