@@ -1,0 +1,15 @@
+#navigation {
+  flex-grow: 1;
+}
+
+.navigation__ {
+  &li {
+    float: left;
+  }
+
+  &link {
+    font-size: rem(22);
+    line-height: rem(40);
+    color: map-get($colors, 'navigation');
+  }
+}

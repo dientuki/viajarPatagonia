@@ -3,9 +3,11 @@
 
 @import "base/normalize";
 @import "base/vpp";
+@import "base/font-face";
 @import "base/helpers";
 
 @import "layout/gridlex";
 @import "layout/layout";
 
 @import "modules/header";
+@import "modules/navigation";

@@ -7,6 +7,12 @@
   .wrapper {
     display: flex;
   }
+}
 
-
+.header__ {
+  &logo {
+    width: rem(348);
+    height: rem(70);
+    background: url(../../images/logo.png) no-repeat;
+  }
 }

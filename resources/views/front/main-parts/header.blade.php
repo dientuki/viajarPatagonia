@@ -7,18 +7,18 @@ use App\Translations\Language;
 
 <header id="header">
   <div class="wrapper">
-    <a href="#" title="{{ __('front.go_to_home') }}">Viajar por patagonia</a>
+    <a class="header__logo text-hidden" href="#" title="{{ __('front.go_to_home') }}">Viajar por patagonia</a>
 
-    <nav>
-      <ul>
-        <li>
-          <a href="#">{{ ucfirst(__('front.home')) }}</a>
+    <nav id="navigation">
+      <ul class="navigation__ul">
+        <li class="navigation__li">
+          <a class="navigation__link" href="#">{{ ucfirst(__('front.home')) }}</a>
         </li>
-        <li>
-          <a href="#">{{ ucfirst(__('front.hotels')) }}</a>
+        <li class="navigation__li">
+          <a class="navigation__link" href="#">{{ ucfirst(__('front.hotels')) }}</a>
         </li>
-        <li>
-          <a href="#">{{ ucfirst(__('front.cars')) }}</a>
+        <li class="navigation__li">
+          <a class="navigation__link" href="#">{{ ucfirst(__('front.cars')) }}</a>
         </li>
       </ul>
     </nav>
@@ -28,7 +28,7 @@ use App\Translations\Language;
     </form>
 
     <div>
-      <div>{{ ucfirst(__('front.currency')) }}</div>
+      <div>{{ ucfirst(__('front.currency')) }}{!! load_svg('ico-down') !!}</div>
       <?php $currencies = Currency::getAll(); ?>
       <ul>
         @foreach ($currencies as $currency)

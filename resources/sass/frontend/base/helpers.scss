@@ -66,3 +66,8 @@
     transform: scale(1);
   }
 }
+
+.text-hidden {
+  overflow: hidden;
+  text-indent: -99rem;
+}
