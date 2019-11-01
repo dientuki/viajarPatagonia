@@ -14,7 +14,7 @@
    y="0px"
    viewBox="0 0 16.507 9.625"
    xml:space="preserve"
-   inkscape:version="0.91 r13725"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
    sodipodi:docname="ico-down.svg"
    class="ico-next"
    id="svg2"
@@ -22,7 +22,8 @@
    height="9.625"><metadata
      id="metadata11"><rdf:RDF><cc:Work
          rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs /><sodipodi:namedview
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+     id="defs3" /><sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
      borderopacity="1"
@@ -32,7 +33,7 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1920"
-     inkscape:window-height="1028"
+     inkscape:window-height="1024"
      id="namedview7"
      showgrid="false"
      fit-margin-top="0"
@@ -40,12 +41,12 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:zoom="13.882353"
-     inkscape:cx="-34.281034"
+     inkscape:cx="-38.587695"
      inkscape:cy="4.791"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg2" /><path
-     d="m 8.232,6.35 5.9,-5.9 c 0.6,-0.6 1.4,-0.6 2,0 0.5,0.5 0.5,1.4 0,1.9 l -6.9,6.9 c -0.5,0.5 -1.4,0.5 -1.9,0 l -6.9,-6.9 c -0.8,-1.1 -0.3,-1.7 0,-1.9 0.5,-0.5 1.4,-0.5 1.9,0 l 5.9,5.9 z"
+     d="m 8.232,6.35 5.9,-5.9 c 0.6,-0.6 1.4,-0.6 2,0 0.5,0.5 0.5,1.4 0,1.9 l -6.9,6.9 c -0.5,0.5 -1.4,0.5 -1.9,0 l -6.9,-6.9 c -0.8,-1.1 -0.3,-1.7 0,-1.9 0.5,-0.5 1.4,-0.5 1.9,0 z"
      inkscape:connector-curvature="0"
-     style="fill:#da261f" /></svg>
+     id="path6" /></svg>
