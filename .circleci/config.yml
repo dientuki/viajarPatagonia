@@ -84,6 +84,9 @@ jobs:
       - run:
           name: Building public assets
           command: npm run prod
+      - run:
+          name: Building svg files
+          command: npm run svg          
       - save_cache:
           key: public-assets-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:

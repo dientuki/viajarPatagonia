@@ -38,7 +38,7 @@ use App\Translations\Language;
     </div>
 
     <div>
-      <div>{{ ucfirst(__('front.language')) }}</div>
+      <div>{{ ucfirst(__('front.language')) }}{!! load_svg('ico-down') !!}</div>
       <?php $languages = Language::getAll(); ?>
       <ul>
         @foreach ($languages as $language)
