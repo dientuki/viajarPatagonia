@@ -1,0 +1,48 @@
+.selector {
+  height: rem(20);
+  margin-left: rem(30);
+
+  &__ul {
+    background: map-get($colors, "white");
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 500ms;
+  }
+
+  &:hover {
+    .selector__ul {
+      max-height: rem(100);
+    }
+  }
+
+  &--current {
+    height: rem(20);
+    font-size: rem(14.5);
+    display: flex;
+    align-items: center;
+    color: map-get($colors, "navigation");
+  }
+
+  &__li {
+    padding: rem(5) rem(2.5);
+    cursor: pointer;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .ico-down {
+    width: rem(11);
+    height: rem(6);
+    display: inline-block;
+    margin-left: rem(7);
+  }
+
+  [class *= lang-],
+  [class *= curr-] {
+    width: rem(32);
+    height: rem(20);
+    margin-right: rem(6);
+  }
+}

@@ -37,3 +37,14 @@ function load_critical_css($file = false) {
   //return str_replace('url(../', $cdn, $styles);
   return $styles;
 }
+
+function load_svg($file) {
+  $folder = '/dist/svg/';
+  $filename = public_path($folder . $file . '.svg');
+
+  if (file_exists($filename)) {
+    return file_get_contents($filename, FILE_USE_INCLUDE_PATH);
+  }
+
+  return false;
+}

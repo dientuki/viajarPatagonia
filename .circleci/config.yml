@@ -84,6 +84,9 @@ jobs:
       - run:
           name: Building public assets
           command: npm run prod
+      - run:
+          name: Building svg files
+          command: npm run svg          
       - save_cache:
           key: public-assets-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
@@ -175,12 +178,10 @@ jobs:
           at: ./
       - add_ssh_keys:
           fingerprints:
-            - 78:6a:57:aa:89:28:da:c2:f6:c9:68:98:44:59:66:8e
+            - d6:76:36:42:0e:a9:6b:54:68:7b:0d:bf:d3:f6:43:46
       - run:
           name: Install ftp-uploader
-          command: |
-            sudo apt-get update
-            sudo apt-get install ftp-upload
+          command: ssh-keyscan -H 173.230.133.213 >> ~/.ssh/known_hosts
       - run:
           name: Uploading build.tar.gz
           command: scp build.tar.gz mateclass@mateclass.com:vpp
@@ -240,7 +241,6 @@ workflows:
             branches:
               only:
                 - master
-                - stage
       - install_laravel:
           requires:
             - checkout_code        
@@ -250,7 +250,6 @@ workflows:
             branches:
               only:
                 - master
-                - stage
       - optimize_laravel:
           requires:
             - install_laravel
@@ -261,7 +260,6 @@ workflows:
             branches:
               only:
                 - master
-                - stage
       - build_targz:
           requires:
             - optimize_laravel
@@ -269,9 +267,10 @@ workflows:
             - build_webpack     
           filters:
             tags:
-              only: /^v.*/
+              only: /.*/
             branches:
-              only: master
+              only:
+                - master              
       - release:
           requires:
             - build_targz   

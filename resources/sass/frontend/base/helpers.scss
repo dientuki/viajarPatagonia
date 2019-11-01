@@ -1,0 +1,81 @@
+.hidden,
+.element-invisible {
+  display: none;
+  visibility: hidden;
+}
+
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: (1em/$fs);
+  margin: (-1em/$fs);
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: (1em/$fs);
+
+  &.focusable {
+    &:active,
+    &:focus {
+      clip: auto;
+      height: auto;
+      margin: 0;
+      overflow: visible;
+      position: static;
+      width: auto;
+    }
+  }
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.aspect-1-1 {
+  padding-bottom: 100%;
+}
+
+.aspect-16-9 {
+  padding-bottom: (9%/16*100);
+}
+
+.blured {
+  background-image: none;
+
+  .lzl {
+    filter: blur(10px);
+    transform: scale(1.02);
+  }
+
+  .loaded,
+  .error {
+    background: none !important;
+    filter: blur(0);
+    transition: filter 1s cubic-bezier(.08, .74, .39, .97), transform 1s cubic-bezier(.08, .74, .39, .97);
+    will-change: filter, transform;
+    transform: scale(1);
+  }
+}
+
+.text-hidden {
+  overflow: hidden;
+  text-indent: -99rem;
+}
+
+.bold {
+  font-weight: map-get($font-weight, "bold");
+}
+
+.block {
+  display: block;
+}

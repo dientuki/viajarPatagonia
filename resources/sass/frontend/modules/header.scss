@@ -1,0 +1,18 @@
+.header {
+  height: rem(90);
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  background: map-get($colors, "white");
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo {
+    width: rem(348);
+    height: rem(70);
+    background: url("../../images/logo.png") no-repeat;
+  }
+}
