@@ -2,6 +2,7 @@
 
 use App\Currency;
 use App\Translations\Language;
+use Illuminate\Support\Facades\Route;
 
 ?>
 
@@ -30,6 +31,7 @@ use App\Translations\Language;
 
     <?php $currencies = Currency::getAll(); ?>
     <div class="selector">
+      
       <div class="selector--current">{!! load_svg('lang-pt') !!}{{ ucfirst(__('front.currency')) }}{!! load_svg('ico-down') !!}</div>
       <ul class="selector__ul">
         @foreach ($currencies as $currency)
@@ -38,12 +40,18 @@ use App\Translations\Language;
       </ul>
     </div>
 
-    <?php $languages = Language::getAll(); ?>
+    <?php 
+      $languages = Language::getAll();
+      $parameters = Route::current()->parameters();
+    ?>
     <div class="selector">
       <div class="selector--current">{!! load_svg('lang-es') !!}{{ ucfirst(__('front.language')) }}{!! load_svg('ico-down') !!}</div>
       <ul class="selector__ul">
         @foreach ($languages as $language)
-          <li class="selector__li" title="{{ ucfirst(__('front.change_to')) }} {{ __('front.language') }} {{ $language->language }}">{{ $language->language }}</li>
+          <?php $parameters['locale'] = $language->iso; ?>
+          <li class="selector__li">
+            <a title="{{ ucfirst(__('front.change_to')) }} {{ __('front.language') }} {{ $language->language }}" href="{{route(Route::currentRouteName(), $parameters )}}">{{ $language->language }}</a>
+          </li>
         @endforeach
       </ul>
     </div>

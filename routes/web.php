@@ -48,17 +48,18 @@ Route::group(['prefix' => '{locale}',
 
     Route::get('/', 'HomeController@index')->name('home');
 
-    Route::get('/package/{name}_{id}', 'PackageController@show')
+    Route::get('/package/{name}_{id}.html', 'PackageController@show')
         ->name('package')
         ->where(['id' => '[0-9]+']);
-
-    Route::get('/excursion/{name}_{id}', 'ExcursionController@show')
+    /*
+    Route::get('/excursion/{name}_{id}.html', 'ExcursionController@show')
         ->name('excursion')
         ->where(['id' => '[0-9]+']);
 
-    Route::get('/cruises/{name}_{id}', 'CruiseshipsController@show')
+    Route::get('/cruises/{name}_{id}.html', 'CruiseshipsController@show')
         ->name('cruises')
         ->where(['id' => '[0-9]+']);
+    */
 });
 
 //Route::get('/home', 'HomeController@index')->name('home');
