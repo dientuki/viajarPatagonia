@@ -20,6 +20,7 @@ return [
     'cars' => 'autos',
     'search' => 'buscar',
     'currency' => 'moneda',
-    'language' => 'idioma'
+    'language' => 'idioma',
+    'change_to' => 'cambiar a'
 
 ];

@@ -6,6 +6,7 @@
 
   .wrapper {
     display: flex;
+    align-items: center;
   }
 }
 
@@ -14,5 +15,26 @@
     width: rem(348);
     height: rem(70);
     background: url(../../images/logo.png) no-repeat;
+  }
+}
+
+#navigation {
+  flex-grow: 1;
+}
+
+.navigation__ {
+  &li {
+    float: left;
+    margin-left: rem(30);
+
+    &:first-child {
+      margin: 0;
+    }
+  }
+
+  &link {
+    font-size: rem(22);
+    line-height: rem(40);
+    color: map-get($colors, 'navigation');
   }
 }

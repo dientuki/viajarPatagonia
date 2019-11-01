@@ -27,22 +27,22 @@ use App\Translations\Language;
       <input placeholder="{{ ucfirst(__('front.search')) }}" />
     </form>
 
-    <div>
-      <div>{{ ucfirst(__('front.currency')) }}{!! load_svg('ico-down') !!}</div>
-      <?php $currencies = Currency::getAll(); ?>
-      <ul>
+    <?php $currencies = Currency::getAll(); ?>
+    <div class="selector">
+      <div class="selector--current">{{ ucfirst(__('front.currency')) }}{!! load_svg('ico-down') !!}</div>
+      <ul class="selector__ul">
         @foreach ($currencies as $currency)
-          <li>{{ $currency->sign }} {{ $currency->iso }}</li>
+          <li class="selector__li" title="{{ ucfirst(__('front.change_to')) }} {{ __('front.currency') }} {{ $currency->currency }}">{{ $currency->sign }} {{ $currency->iso }}</li>
         @endforeach
       </ul>
     </div>
 
-    <div>
-      <div>{{ ucfirst(__('front.language')) }}{!! load_svg('ico-down') !!}</div>
-      <?php $languages = Language::getAll(); ?>
-      <ul>
+    <?php $languages = Language::getAll(); ?>
+    <div class="selector">
+      <div class="selector--current">{{ ucfirst(__('front.language')) }}{!! load_svg('ico-down') !!}</div>
+      <ul class="selector__ul">
         @foreach ($languages as $language)
-          <li>{{ $language->language }}</li>
+          <li class="selector__li" title="{{ ucfirst(__('front.change_to')) }} {{ __('front.language') }} {{ $language->language }}">{{ $language->language }}</li>
         @endforeach
       </ul>
     </div>
