@@ -8,18 +8,6 @@ plugins.push(
     new CleanWebpackPlugin()
 );
 
-if (process.env.NODE_ENV == 'development') {
-  const StyleLintPlugin = require('stylelint-webpack-plugin');
-  
-  plugins.push(
-    new StyleLintPlugin({
-        configFile : "stylelint.json",
-        sintax : 'scss',
-        files : 'resources/sass/**/*.scss',
-      }),
-  );
-}
-
 plugins.push(new MiniCssExtractPlugin({
     filename:'[name]-[contenthash].css'
 }));

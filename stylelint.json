@@ -9,7 +9,7 @@
 
     "font-family-name-quotes": "always-where-recommended",
     "font-family-no-duplicate-names": true,
-    "font-weight-notation": "numeric",
+    
 
     "function-calc-no-unspaced-operator": true,
     "function-comma-newline-after":"never-multi-line",

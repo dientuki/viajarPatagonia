@@ -44,4 +44,6 @@ Route::group(['namespace' => 'Admin',
 
 Auth::routes(['register' => false]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/package/{id}', 'PackageController@show')
+  ->name('package')
+  ->where(['id' => '[0-9]+']);

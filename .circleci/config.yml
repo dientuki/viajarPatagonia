@@ -84,6 +84,9 @@ jobs:
       - run:
           name: Building public assets
           command: npm run prod
+      - run:
+          name: Building svg files
+          command: npm run svg          
       - save_cache:
           key: public-assets-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
@@ -238,7 +241,6 @@ workflows:
             branches:
               only:
                 - master
-                - stage
       - install_laravel:
           requires:
             - checkout_code        
@@ -248,7 +250,6 @@ workflows:
             branches:
               only:
                 - master
-                - stage
       - optimize_laravel:
           requires:
             - install_laravel
@@ -259,7 +260,6 @@ workflows:
             branches:
               only:
                 - master
-                - stage
       - build_targz:
           requires:
             - optimize_laravel
@@ -267,9 +267,10 @@ workflows:
             - build_webpack     
           filters:
             tags:
-              only: /^v.*/
+              only: /.*/
             branches:
-              only: master
+              only:
+                - master              
       - release:
           requires:
             - build_targz   
