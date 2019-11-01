@@ -61,10 +61,3 @@ Route::group(['prefix' => '{locale}',
         ->where(['id' => '[0-9]+']);
     */
 });
-
-//Route::get('/home', 'HomeController@index')->name('home');
-/*
-Route::get('/package/{id}', 'PackageController@show')
-  ->name('package')
-  ->where(['id' => '[0-9]+']);
-*/
