@@ -13,8 +13,8 @@ class PackageController extends Controller
      */
     public function show($locale, $name, $id)
     {
-        $package = Packages::getShow($id);
+        $product = Packages::getShow($id);
 
-        return view('front/package', compact('package'));
+        return view('front/product', compact('product'));
     }
 }
