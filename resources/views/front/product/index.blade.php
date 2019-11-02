@@ -21,9 +21,11 @@
         {{ $product->body }}
       </main>
 
-      <div class="aspect-slider">
+      <div class="aspect-slider product__map">
         <iframe src="about:blank" data-original="{{ $product->map }}" class="lzl"></iframe>
       </div>
+
+      <div class="bold button button__cta col-bottom">{{ ucfirst(__('front.cta')) }}</div>
 
     </div>
     

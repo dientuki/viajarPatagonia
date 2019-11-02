@@ -15,6 +15,14 @@
     font-size: rem(20);
     color: map-get($colors, "text");
   }
+
+  &__map {
+    margin-top: rem(30);
+  }
+
+  .layout-main .button__cta {
+    margin-top: rem(40);
+  }
 }
 
 .price {
