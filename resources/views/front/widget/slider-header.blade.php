@@ -1,3 +1,4 @@
+<!--
 <div class="gallery-wrapper main-new-media">
   <div id="gallery">
     <figure class="gallery-item">
@@ -7,3 +8,4 @@
     </figure>
   </div>
 </div>
+-->
