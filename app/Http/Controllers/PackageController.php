@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Packages;
 
 class PackageController extends Controller
 {
@@ -10,8 +11,10 @@ class PackageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($locale, $name, $id)
     {
-        return view('front/package');
+        $package = Packages::getShow($id);
+
+        return view('front/package', compact('package'));
     }
 }

@@ -4,6 +4,7 @@ namespace App;
 
 use App\Translations\Language;
 use Spatie\Image\Manipulations;
+use Illuminate\Support\Facades\App;
 use Spatie\MediaLibrary\Models\Media;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -69,6 +70,18 @@ class Cruiseships extends Model implements HasMedia
       return abort(404);
   
       //throw (new ModelNotFoundException)->setModel(get_class($this->model));
+    }
+
+    static function getShow($id) {
+      $cruiseship = Cruiseships::select('cruiseships.id', 'map', 'cruiseships_translation.name', 'cruiseships_translation.summary', 'cruiseships_translation.body');
+      $cruiseship->join("cruiseships_translation", 'cruiseships.id', '=', "cruiseships_translation.fk_cruiseship");
+      $cruiseship->join("languages", 'languages.id', '=', "cruiseships_translation.fk_cruiseship");
+      $cruiseship->where([
+        ['cruiseships.id', '=', $id],
+        ['languages.iso', '=', App::getLocale()]
+      ]);
+
+      return $cruiseship->get()->first();
     }
 
     public function registerMediaConversions(Media $media = null)
