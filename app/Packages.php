@@ -94,6 +94,10 @@ class Packages extends Model implements HasMedia
     
         $this->addMediaConversion('slider')
           ->fit(Manipulations::FIT_CROP, 760, 420)
-          ->optimize();          
+          ->optimize();       
+          
+        $this->addMediaConversion('preview')
+          ->fit(Manipulations::FIT_CROP, .370, 200)
+          ->optimize();               
     }
   }
