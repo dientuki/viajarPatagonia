@@ -15,4 +15,8 @@ class HomeController extends Controller
     {
         return view('welcome');
     }
+
+    public function setLocale() {
+      return redirect(app()->getLocale());
+    }
 }
