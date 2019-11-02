@@ -124,7 +124,10 @@ jobs:
           command: php artisan config:cache
       - run:
           name: Optimizing Route Loading
-          command: php artisan route:cache                  
+          command: php artisan route:cache
+      - run:
+          name: Configure file storage
+          command: php artisan storage:link          
       - save_cache:
           key: laravel-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
@@ -190,7 +193,11 @@ jobs:
           command: ssh mateclass@mateclass.com tar -xzf vpp/build.tar.gz -C vpp
       - run:
           name: Clean build.tar.gz
-          command: ssh mateclass@mateclass.com tar -xzf vpp/build.tar.gz -C vpp
+          command: ssh mateclass@mateclass.com rm -rf vpp/build.tar.gz
+      - run:
+          name: Clean build.tar.gz
+          command: ssh mateclass@mateclass.com chmod 777 -R vpp/storage
+
 
   release:
     <<: *wd
