@@ -1,0 +1,14 @@
+.button {
+  background: map-get($colors, "button-bg");
+  border-radius: rem(5);
+
+  &__cta {
+    width: 100%;
+    height: rem(60);
+    line-height: rem(60);
+    font-size: rem(25);
+    color: map-get($colors, "white");
+    text-align: center;
+    cursor: pointer;
+  }
+}

@@ -46,6 +46,10 @@ ol {
   list-style: none;
 }
 
+iframe {
+  border: none;
+}
+
 /*
 ::selection {
   background-color: map-get($colors, "link");;

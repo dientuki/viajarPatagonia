@@ -41,12 +41,34 @@
   clear: both;
 }
 
+[class *= aspect-] {
+  margin: 0;
+  width: 100%;
+  height: 0;
+  position: relative;
+  display: block;
+  overflow: hidden;
+
+  img,
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
 .aspect-1-1 {
   padding-bottom: 100%;
 }
 
 .aspect-16-9 {
   padding-bottom: (9%/16*100);
+}
+
+.aspect-slider {
+  padding-bottom: (21%/38*100);
 }
 
 .blured {

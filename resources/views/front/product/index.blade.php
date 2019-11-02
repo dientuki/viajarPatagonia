@@ -7,22 +7,28 @@
       <h1 class="product__title">{{ $product->name }}</h1>
       <div class="layout-wrapper">
         @include('front.product.slider')
-        <div class="layout-aside">
+        <div class="layout-aside  grid-noGutter">
           @include('front.product.price')
-          <div>
+          <div class="header__summary">
             {!! nl2br($product->summary) !!}
-        </div>
+          </div>
+          <div class="bold button button__cta col-bottom">{{ ucfirst(__('front.cta')) }}</div>
       </div>
     </header>
 
-    <main class="layout-main">
-      {{ $product->body }}
+    <div class="layout-main">
+      <main>
+        {{ $product->body }}
+      </main>
 
-      <iframe src="about:blank" data-original="{{ $product->map }}" class="lzl"></iframe>
-    </main>
+      <div class="aspect-slider">
+        <iframe src="about:blank" data-original="{{ $product->map }}" class="lzl"></iframe>
+      </div>
+
+    </div>
     
     <aside class="layout-aside">
-
+      @include('front.product.aside')
     </aside>
 
   </article>

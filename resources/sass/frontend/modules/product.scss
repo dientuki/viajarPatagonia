@@ -3,11 +3,17 @@
 
   &__header {
     width: 100%;
+    margin-bottom: rem(30);
   }
 
   &__title {
     color: map-get($colors, "product-title");
     margin-bottom: rem(30);
+  }
+
+  &__summary {
+    font-size: rem(20);
+    color: map-get($colors, "text");
   }
 }
 
@@ -22,17 +28,19 @@
 
     &--discount {
       font-size: rem(35);
-      overflow: hidden;
       position: relative;
+      display: inline-block;
 
       &:before {
         content: "";
-        width: 100%;
+        width: 115%;
         height: rem(4);
         background: map-get($colors, "red");
         top: 50%;
-        transform: translateY(-50%) rotate(-10deg);
+        left: 50%;
+        transform: translateY(-50%) translateX(-50%) rotate(-10deg);
         position: absolute;
+        border-radius: rem(10);
       }
     }
 

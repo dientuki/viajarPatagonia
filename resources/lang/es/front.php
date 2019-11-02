@@ -29,5 +29,12 @@ return [
     //Price
     'before' => 'antes',
     'now' => 'ahora',
+    'final' => 'final',
+
+    //Call to action
+    'cta' => 'consultar',
+
+    //Sidebar
+    'another_packages' => 'otros paquetes'
 
 ];
