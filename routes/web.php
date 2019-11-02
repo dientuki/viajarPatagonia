@@ -14,10 +14,8 @@
 // Admin
 Route::group(['namespace' => 'Admin',
               'prefix' => 'admin',
-              'middleware' => ['auth'],
+              'middleware' => ['auth', 'setadminlocale'],
               'as' => 'admin.'], function() {
-
-    App::setLocale('es');
 
     // Dashboard
     //Route::get('dashboard.html', ['uses' => 'ShowDashboard', 'as' => 'dashboard']);
