@@ -11,19 +11,11 @@
 |
 */
 
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-*/
-
 // Admin
 Route::group(['namespace' => 'Admin',
               'prefix' => 'admin',
-              'middleware' => ['auth'],
+              'middleware' => ['auth', 'setadminlocale'],
               'as' => 'admin.'], function() {
-
-    App::setLocale('es');
 
     // Dashboard
     //Route::get('dashboard.html', ['uses' => 'ShowDashboard', 'as' => 'dashboard']);
@@ -44,6 +36,26 @@ Route::group(['namespace' => 'Admin',
 
 Auth::routes(['register' => false]);
 
-Route::get('/package/{id}', 'PackageController@show')
-  ->name('package')
-  ->where(['id' => '[0-9]+']);
+Route::get('/', function () {
+    return redirect(app()->getLocale());
+});
+
+Route::group(['prefix' => '{locale}',
+              'where' => ['locale' => '[a-zA-Z]{2}'],
+              'middleware' => 'setlocale'], function() {
+
+    Route::get('/', 'HomeController@index')->name('home');
+
+    Route::get('/package/{name}_{id}.html', 'PackageController@show')
+        ->name('package')
+        ->where(['id' => '[0-9]+']);
+    /*
+    Route::get('/excursion/{name}_{id}.html', 'ExcursionController@show')
+        ->name('excursion')
+        ->where(['id' => '[0-9]+']);
+
+    Route::get('/cruises/{name}_{id}.html', 'CruiseshipsController@show')
+        ->name('cruises')
+        ->where(['id' => '[0-9]+']);
+    */
+});
