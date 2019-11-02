@@ -3,10 +3,47 @@
 
   &__header {
     width: 100%;
-    margin-bottom: rem(30);
   }
 
   &__title {
     color: map-get($colors, "product-title");
+    margin-bottom: rem(30);
+  }
+}
+
+.price {
+  &__title {
+    color: map-get($colors, "price-title");
+    font-size: rem(25);
+  }
+
+  &__value {
+    color: map-get($colors, "product-title");
+
+    &--discount {
+      font-size: rem(35);
+      overflow: hidden;
+      position: relative;
+
+      &:before {
+        content: "";
+        width: 100%;
+        height: rem(4);
+        background: map-get($colors, "red");
+        top: 50%;
+        transform: translateY(-50%) rotate(-10deg);
+        position: absolute;
+      }
+    }
+
+    &--regular {
+      font-size: rem(45);
+      text-align: right;
+    }
+
+    &--full {
+      font-size: rem(45);
+      text-align: center;
+    }
   }
 }

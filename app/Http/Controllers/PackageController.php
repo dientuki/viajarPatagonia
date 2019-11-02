@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Packages;
+use App\PackagePrices;
 
 class PackageController extends Controller
 {
@@ -14,7 +15,8 @@ class PackageController extends Controller
     public function show($locale, $name, $id)
     {
         $product = Packages::getShow($id);
+        $price = PackagePrices::getPrice($id);
 
-        return view('front/product', compact('product'));
+        return view('front/product/index', compact('product', 'price'));
     }
 }

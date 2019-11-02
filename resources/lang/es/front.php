@@ -24,6 +24,10 @@ return [
     'change_to' => 'cambiar a',
 
     //Footer
-    'afip' => 'Datos fiscales'
+    'afip' => 'Datos fiscales',
+
+    //Price
+    'before' => 'antes',
+    'now' => 'ahora',
 
 ];

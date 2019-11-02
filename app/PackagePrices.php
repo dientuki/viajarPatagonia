@@ -4,6 +4,7 @@ namespace App;
 
 use App\PackagePrices;
 use Illuminate\Database\Eloquent\Model;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class PackagePrices extends Model
@@ -62,5 +63,24 @@ class PackagePrices extends Model
         ->where($where)
         ->get()->first();
     }    
+
+    static function getPrice($id) {
+      $result = null;
+      $price = PackagePrices::select('price', 'discount', 'is_active', 'currencies.iso');
+      $price->join("currencies", 'currencies.id', '=', "packages_prices.fk_currency");
+
+      if (session()->has('appcurrency')) {
+        $price->where('fk_currency', Session::get('appcurrency'));
+        $result = $price->get()->first();
+      }
+      
+      if ($result == null || session()->has('appcurrency') == false ) {
+        $price->where('currencies.iso', 'ars');
+        $result = $price->get()->first();
+      }
+
+      return $result;
+
+    }
     
 }
