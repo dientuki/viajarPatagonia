@@ -9,7 +9,7 @@
         @include('front.product.slider')
         <div class="layout-aside  grid-noGutter">
           @include('front.product.price')
-          <div class="header__summary">
+          <div class="product__summary">
             {!! nl2br($product->summary) !!}
           </div>
           <div class="bold button button__cta col-bottom">{{ ucfirst(__('front.cta')) }}</div>
@@ -17,7 +17,7 @@
     </header>
 
     <div class="layout-main">
-      <main>
+      <main class="product__content">
         {{ $product->body }}
       </main>
 
