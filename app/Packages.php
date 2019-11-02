@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Package2destination;
 use App\Translations\Language;
 use Spatie\Image\Manipulations;
 use Illuminate\Support\Facades\App;
@@ -84,7 +85,23 @@ class Packages extends Model implements HasMedia
           //dd($package->toSql());
 
       return $package->get()->first();
-    }    
+    }  
+    
+    static function getRelated($id) {
+      $currentDestinations = Package2destination::orderBy('id')->where('fk_package', $id)->pluck('fk_destination');
+
+      $related = Packages::select('packages.id', 'packages_translation.name', 'packages_translation.summary', 'package2destination.id', 'package2destination.fk_destination');
+      $related->join("packages_translation", 'packages.id', '=', "packages_translation.fk_package");
+      $related->join("languages", 'languages.id', '=', "packages_translation.fk_language");
+      $related->join("package2destination", 'packages.id', '=', "package2destination.fk_package");
+      
+      $related->where([
+        ['packages.id', '!=', $id],
+        ['languages.iso', '=', App::getLocale()],
+      ])->whereIn('package2destination.fk_destination', $currentDestinations)->limit(3);
+
+      return $related->get();
+    }
 
     public function registerMediaConversions(Media $media = null)
     {

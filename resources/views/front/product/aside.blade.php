@@ -1,10 +1,12 @@
 <h6>Otros paquetes</h6>
 
-<article>
-  <figure>
-    <img />
-  </figure>
-  <h1>titulo</h1>
-  <div>bajada</div>
-  <div>precio</div>
-</article>
+@foreach ($relateds as $related)
+  <article>
+    <figure class="aspect-preview">
+      <img src="about:blank" data-original="" class="lzl" />
+    </figure>
+    <h1>{{ $related->name }}</h1>
+    <div>{{ $related->summary }}</div>
+    <div>precio</div>
+  </article>
+@endforeach
