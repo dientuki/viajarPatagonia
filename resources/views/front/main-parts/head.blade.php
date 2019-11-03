@@ -5,7 +5,13 @@
 <!-- CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-<title>Titulo</title>
+<title>@yield('title') - Viajar por Patagonia</title>
+@stack('meta');
+
+<meta name="og:site_name" content="Viajar por Patagonia">
+<meta name="og:region" content="Patagonia">
+<meta name="og:country_name" content="Argentina">
+@stack('facebook');
 
 <!-- Scripts -->
 <script src="{{ load_resource('frontJs.js') }}" defer crossorigin="anonymous"></script>
