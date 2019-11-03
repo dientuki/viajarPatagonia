@@ -3,6 +3,7 @@
   color: map-get($colors, "white");
   padding: rem(40) 0 rem(25) 0;
   font-size: rem(14);
+  margin-top: rem(40);
 
   &__top {
     display: flex;

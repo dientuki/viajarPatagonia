@@ -90,5 +90,12 @@ class Excursions extends Model implements HasMedia
           ->fit(Manipulations::FIT_CROP, 120, 120)
           ->optimize();
     
+        $this->addMediaConversion('slider')
+          ->fit(Manipulations::FIT_CROP, 760, 420)
+          ->optimize();            
+
+        $this->addMediaConversion('preview')
+          ->fit(Manipulations::FIT_CROP, .370, 204)
+          ->optimize();             
     }
   }

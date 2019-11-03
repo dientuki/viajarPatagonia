@@ -9,13 +9,19 @@ $font-size-base: .9rem;
 $line-height-base: 1.6;
 
 $colors: (
-  "link": #3490dc,
-  "navigation": #333,
   "white": #fff,
   "black": #000,
+  "red": #f00,
+  "link": #3490dc,
+  "navigation": #333,
   "light-grey": #eaeaea,
+  "price-title": #a2a2a2,
   "dark-grey": #909090,
-  "footer": #0d3048
+  "footer": #0d3048,
+  "product-title": #238cd6,
+  "text": #4a4a4a,
+  "button-bg": #007aff,
+  "button-price": #00aeed
 );
 
 $font-weight: (

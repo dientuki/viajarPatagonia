@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Packages;
+use App\PackagePrices;
 
 class PackageController extends Controller
 {
@@ -10,8 +12,12 @@ class PackageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($locale, $name, $id)
     {
-        return view('front/package');
+        $product = Packages::getShow($id);
+        $price = PackagePrices::getPrice($id);
+        $relateds = Packages::getRelated($id);
+
+        return view('front/product/index', compact('product', 'price', 'relateds'));
     }
 }
