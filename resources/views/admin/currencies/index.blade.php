@@ -1,7 +1,3 @@
-@push('scripts')
-  <script src="{{ load_resource('adminAbm-list.js') }}" defer crossorigin="anonymous"></script>
-@endpush
-
 @extends('layouts.admin')
 
 @section ('content')

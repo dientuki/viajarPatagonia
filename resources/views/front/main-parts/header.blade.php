@@ -1,6 +1,7 @@
 <?php 
 
 use App\Currency;
+use App\Http\Helpers\Helpers;
 use App\Translations\Language;
 use Illuminate\Support\Facades\Route;
 
@@ -26,13 +27,13 @@ use Illuminate\Support\Facades\Route;
 
     <form action="#" class="search_form">
       <input class="search_form__input" type="search" placeholder="{{ ucfirst(__('front.search')) }}" />
-      <button class="search_form__submit">{!! load_svg('ico-search') !!}</button>
+      <button class="search_form__submit">{!! Helpers::load_svg('ico-search') !!}</button>
     </form>
 
     <?php $currencies = Currency::getAll(); ?>
     <div class="selector">
       
-      <div class="selector--current">{!! load_svg('lang-pt') !!}{{ ucfirst(__('front.currency')) }}{!! load_svg('ico-down') !!}</div>
+      <div class="selector--current">{!! Helpers::load_svg('lang-pt') !!}{{ ucfirst(__('front.currency')) }}{!! Helpers::load_svg('ico-down') !!}</div>
       <ul class="selector__ul">
         @foreach ($currencies as $currency)
           <li class="selector__li" title="{{ ucfirst(__('front.change_to')) }} {{ __('front.currency') }} {{ $currency->currency }}">{{ $currency->sign }} {{ $currency->iso }}</li>
@@ -45,7 +46,7 @@ use Illuminate\Support\Facades\Route;
       $parameters = Route::current()->parameters();
     ?>
     <div class="selector">
-      <div class="selector--current">{!! load_svg('lang-es') !!}{{ ucfirst(__('front.language')) }}{!! load_svg('ico-down') !!}</div>
+      <div class="selector--current">{!! Helpers::load_svg('lang-es') !!}{{ ucfirst(__('front.language')) }}{!! Helpers::load_svg('ico-down') !!}</div>
       <ul class="selector__ul">
         @foreach ($languages as $language)
           <?php $parameters['locale'] = $language->iso; ?>
