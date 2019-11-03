@@ -60,9 +60,11 @@
     
     <aside class="layout-aside">
       <h6 class="aside__title">{{ __('front.another_packages') }}</h6>
-      @include('front/widget/product-preview', ['products' => $relateds])
+      @include('front/widgets/product-preview', ['products' => $relateds])
     </aside>
 
   </article>
+
+  @include('front/widgets/product-inquiries', ['products' => $relateds])
 
 @endsection

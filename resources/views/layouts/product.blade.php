@@ -9,7 +9,7 @@
 
     @include ('front/main-parts/header')
 
-    @include ('front/widget/slider-header')
+    @include ('front/widgets/slider-header')
     
     @yield('content')
 

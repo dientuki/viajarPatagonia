@@ -13,30 +13,6 @@ return [
   |
   */
 
-    //Header
-    'go_to_home' => 'Ir a la pagina principal',
-    'home' => 'inicio',
-    'hotels' => 'hoteles',
-    'cars' => 'autos',
-    'search' => 'buscar',
-    'currency' => 'moneda',
-    'language' => 'idioma',
-    'change_to' => 'cambiar a',
-
-    //Footer
-    'afip' => 'Datos fiscales',
-
-    //Price
-    'before' => 'antes',
-    'now' => 'ahora',
-    'final' => 'final',
-
-    //Call to action
-    'cta' => 'consultar',
-
-    //Sidebar
-    'another_packages' => 'otros paquetes',
-
     //Inquiries
     'name' => 'nombre',
     'email' => 'email',
@@ -45,5 +21,4 @@ return [
     'adults' => 'adultos',
     'childs' => 'infantes',
     'comments' => 'comentarios'
-
 ];
