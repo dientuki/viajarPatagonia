@@ -36,7 +36,7 @@ class Helpers {
     }
 
     //$cdn = 'url(' . ciu_util_get_base_url('front') . '/' . path_to_theme() . '/dist/';
-    $styles = file_get_contents(load_resource($file, false));
+    $styles = file_get_contents(Helpers::load_resource($file, false));
     //return str_replace('url(../', $cdn, $styles);
     return $styles;
   }
