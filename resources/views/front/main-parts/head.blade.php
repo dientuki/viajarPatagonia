@@ -1,3 +1,6 @@
+<?php
+  use App\Http\Helpers\Helpers;
+?>
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
@@ -14,11 +17,11 @@
 @stack('facebook');
 
 <!-- Scripts -->
-<script src="{{ load_resource('frontJs.js') }}" defer crossorigin="anonymous"></script>
+<script src="{{ Helpers::load_resource('frontJs.js') }}" defer crossorigin="anonymous"></script>
 
 <!-- Fonts -->
-<link rel="preload" href="{{ load_resource('Maven-pro-Regular.woff2') }}" as="font" type="font/woff2" crossorigin />
-<link rel="preload" href="{{ load_resource('Maven-pro-Regular.woff') }}" as="font" type="font/woff" crossorigin />
+<link rel="preload" href="{{ Helpers::load_resource('Maven-pro-Regular.woff2') }}" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="{{ Helpers::load_resource('Maven-pro-Regular.woff') }}" as="font" type="font/woff" crossorigin />
 
 <!-- Styles -->
-<link href="{{ load_resource('frontStyle.css') }}" rel="preload" as="style" onload="this.rel = 'stylesheet'" />
+<link href="{{ Helpers::load_resource('frontStyle.css') }}" rel="preload" as="style" onload="this.rel = 'stylesheet'" />

@@ -44,5 +44,5 @@ class PackageTranslation extends Model
       return PackageTranslation::select('id', 'fk_language', 'name', 'summary', 'body')
         ->where($where)
         ->get()->first();
-    }    
+    }
 }

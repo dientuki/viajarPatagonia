@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Package2destination;
+use App\Http\Helpers\Helpers;
 use App\Translations\Language;
 use Spatie\Image\Manipulations;
 use Illuminate\Support\Facades\App;
@@ -103,8 +104,12 @@ class Packages extends Model implements HasMedia
       return $related->get();
     }
 
-    function getPrice() {
+    public function getPrice() {
       return 'ARS 1236';
+    }
+
+    public function getBodyHtmlAttribute() {
+      return Helpers::draft2html($this->attributes['body']);
     }
 
     public function registerMediaConversions(Media $media = null)

@@ -1,3 +1,6 @@
+<?php 
+  use App\Http\Helpers\Helpers;
+?>
 <footer class="footer">
   <div class="wrapper">
     <div class="footer__top">
@@ -21,9 +24,9 @@
     </div>
     <div class="footer__bottom">
       <ul class="footer__socials">
-        <li class="footer__sociali"><a class="footer__social_link" target="_blank" rel="noopener" href="https://www.facebook.com/viajarporpatagonia">{!! load_svg('ico-facebook') !!}</a></li>
-        <li class="footer__sociali"><a class="footer__social_link" target="_blank" rel="noopener" href="https://www.facebook.com/viajarporpatagonia">{!! load_svg('ico-instagram') !!}</a></li>
-        <li class="footer__sociali"><a class="footer__social_link" target="_blank" rel="noopener" href="https://www.facebook.com/viajarporpatagonia">{!! load_svg('ico-skype') !!}</a></li>
+        <li class="footer__sociali"><a class="footer__social_link" target="_blank" rel="noopener" href="https://www.facebook.com/viajarporpatagonia">{!! Helpers::load_svg('ico-facebook') !!}</a></li>
+        <li class="footer__sociali"><a class="footer__social_link" target="_blank" rel="noopener" href="https://www.facebook.com/viajarporpatagonia">{!! Helpers::load_svg('ico-instagram') !!}</a></li>
+        <li class="footer__sociali"><a class="footer__social_link" target="_blank" rel="noopener" href="https://www.facebook.com/viajarporpatagonia">{!! Helpers::load_svg('ico-skype') !!}</a></li>
       </ul>
       <div class="footer__contactus">Gales al Sur E.V.yT. - Legajo #9298 - Sarmiento 784, Esquel, Chubut</div>
     </div>

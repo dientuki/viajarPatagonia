@@ -46,7 +46,8 @@
 
     <div class="layout-main">
       <main class="product__content">
-        {{ $product->body }}
+
+        {!! $product->body_html !!}
       </main>
 
       <div class="aspect-slider product__map">

@@ -62,7 +62,7 @@ class PackagePrices extends Model
       return PackagePrices::select('id', 'price', 'discount', 'is_active', 'fk_currency')
         ->where($where)
         ->get()->first();
-    }    
+    }   
 
     static function getPrice($id) {
       $result = null;
