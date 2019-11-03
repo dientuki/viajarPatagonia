@@ -1,0 +1,32 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(map-get($colors, "black"), .5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+
+  &__wrapper {
+    background: map-get($colors, "white");
+    padding: rem(20);
+    border-radius: rem(5);
+    max-width: rem(900);
+    position: relative;
+  }
+
+  &__close {
+    position: absolute;
+    right: rem(-15);
+    top: rem(-15);
+    width: rem(30);
+    height: rem(30);
+    background: red;
+    border-radius: rem(100);
+  }
+}
