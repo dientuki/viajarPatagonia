@@ -1,4 +1,32 @@
+<?php 
+  use Spatie\Image\Image;
+?>
+
 @extends('layouts.product')
+
+@section('title', $product->name)
+
+@push('meta')
+    <?php $desc = trim(str_replace("\r\n","",$product->summary)); ?>
+    <meta name="description" content="{{ substr($desc, 0, 155)}}">
+@endpush
+
+@push('facebook')
+    <meta property="og:type" content="place" />
+    <meta property="og:url" content="{{url()->full()}}" />
+    <meta property="og:title" content="{{$product->name}}" />
+    <?php $desc = trim(str_replace("\r\n","",$product->summary)); ?>
+    <meta property="og:description" content="{{ substr($desc, 0, 155)}}">
+    
+    <?php $media = $product->getFirstMedia('products'); ?>
+    <?php $image = Image::load($media->getPath('facebook')); ?>
+
+    <meta property="og:image" content="{{ $media->getFullUrl('facebook') }}" />
+    <meta property="og:image:width" content="{{ $image->getWidth() }}">
+    <meta property="og:image:height" content="{{ $image->getHeight() }}">
+    <meta property="og:image:type" content="{{$media->mime_type}}" />
+    <meta property="fb:app_id" content="1494084460xxxxxx">
+@endpush
 
 @section ('content')
 

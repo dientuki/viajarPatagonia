@@ -95,7 +95,11 @@ class Excursions extends Model implements HasMedia
           ->optimize();            
 
         $this->addMediaConversion('preview')
-          ->fit(Manipulations::FIT_CROP, .370, 204)
-          ->optimize();             
+          ->fit(Manipulations::FIT_CROP, 370, 204)
+          ->optimize();        
+          
+        $this->addMediaConversion('facebook')
+          ->fit(Manipulations::FIT_CROP, 500, 261)
+          ->optimize();            
     }
   }
