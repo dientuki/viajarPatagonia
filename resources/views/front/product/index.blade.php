@@ -30,7 +30,8 @@
     </div>
     
     <aside class="layout-aside">
-      @include('front.product.aside')
+      <h6 class="aside__title">{{ __('front.another_packages') }}</h6>
+      @include('front/widget/product-preview', ['products' => $relateds])
     </aside>
 
   </article>

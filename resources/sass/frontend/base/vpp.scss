@@ -7,6 +7,7 @@ body {
   font-family: Maven-regular, Helvetica, Arial, sans-serif;
   word-wrap: break-word;
   -webkit-font-smoothing: antialiased; //Fix to mac, because we are poor
+  color: map-get($colors, "text");
 }
 
 h1,

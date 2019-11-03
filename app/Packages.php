@@ -90,7 +90,7 @@ class Packages extends Model implements HasMedia
     static function getRelated($id) {
       $currentDestinations = Package2destination::orderBy('id')->where('fk_package', $id)->pluck('fk_destination');
 
-      $related = Packages::select('packages.id', 'packages_translation.name', 'packages_translation.summary', 'package2destination.id', 'package2destination.fk_destination');
+      $related = Packages::select('packages.id', 'packages_translation.name', 'packages_translation.summary', 'package2destination.fk_destination');
       $related->join("packages_translation", 'packages.id', '=', "packages_translation.fk_package");
       $related->join("languages", 'languages.id', '=', "packages_translation.fk_language");
       $related->join("package2destination", 'packages.id', '=', "package2destination.fk_package");
@@ -101,6 +101,10 @@ class Packages extends Model implements HasMedia
       ])->whereIn('package2destination.fk_destination', $currentDestinations)->limit(3);
 
       return $related->get();
+    }
+
+    function getPrice() {
+      return 'ARS 1236';
     }
 
     public function registerMediaConversions(Media $media = null)
@@ -114,7 +118,7 @@ class Packages extends Model implements HasMedia
           ->optimize();       
           
         $this->addMediaConversion('preview')
-          ->fit(Manipulations::FIT_CROP, .370, 200)
+          ->fit(Manipulations::FIT_CROP, .370, 204)
           ->optimize();               
     }
   }

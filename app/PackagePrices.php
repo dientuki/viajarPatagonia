@@ -81,6 +81,33 @@ class PackagePrices extends Model
 
       return $result;
 
+      /*
+            $result = null;
+      $currency = 'ars';
+
+      if (session()->has('currency') == false) {
+        $currency = session()->get('currency');
+      } else {
+        session()->set('currency', $currency);
+      }
+
+
+      $price = PackagePrices::select('price', 'discount', 'is_active', 'currencies.iso');
+      $price->join("currencies", 'currencies.id', '=', "packages_prices.fk_currency");
+      
+      $tmp = $price;
+      $tmp->where('currencies.iso', $currency);
+      $result = $tmp->get()->first();
+
+      if ($result == null) {
+        $tmp = $price;
+        $tmp->where('currencies.iso', 'usd');
+        $result = $tmp->get()->first();
+      }
+
+      return $result;
+      */
+
     }
     
 }
