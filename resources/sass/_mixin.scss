@@ -15,3 +15,8 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+@mixin hidden() {
+  display: none;
+  visibility: hidden;
+}

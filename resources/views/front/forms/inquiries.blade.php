@@ -1,4 +1,4 @@
-<form class="grid-1" role="form" method="POST" action="{{ route('api.forms.inquiries') }}">
+<form class="grid-1 form" role="form" method="POST" action="{{ route('api.forms.inquiries') }}">
   {{ csrf_field() }}
   <input type="hidden" name="product" value="">
   <input type="hidden" name="id" value="">
@@ -9,7 +9,7 @@
 
     @if ($errors->has('name'))
       <div class="invalid-feedback">
-        <strong>jkhhui khug klg ghk yu</strong>
+        <strong>{{ $errors->first('name') }}</strong>
       </div>
     @endif
   </div>
@@ -21,7 +21,7 @@
 
       @if ($errors->has('email'))
         <div class="invalid-feedback">
-          <strong>{{ $message }}</strong>
+          <strong>{{ $errors->first('email') }}</strong>
         </div>
       @endif
     </div>    
@@ -35,7 +35,7 @@
 
       @if ($errors->has('phone'))
         <div class="invalid-feedback">
-          <strong>{{ $message }}</strong>
+          <strong>{{ $errors->first('phone') }}</strong>
         </div>
       @endif
     </div>  
@@ -49,7 +49,7 @@
 
       @if ($errors->has('departure'))
         <div class="invalid-feedback">
-          <strong>{{ $message }}</strong>
+          <strong>{{ $errors->first('departure') }}</strong>
         </div>
       @endif
     </div>      
@@ -64,7 +64,7 @@
 
         @if ($errors->has('adults'))
           <div class="invalid-feedback">
-            <strong>{{ $message }}</strong>
+            <strong>{{ $errors->first('adults') }}</strong>
           </div>
         @endif
 
@@ -76,7 +76,7 @@
 
         @if ($errors->has('childs'))
           <div class="invalid-feedback">
-            <strong>{{ $message }}</strong>
+            <strong>{{ $errors->first('childs') }}</strong>
           </div>
         @endif
 
@@ -90,7 +90,7 @@
 
     @if ($errors->has('comment'))
       <div class="invalid-feedback">
-        <strong>{{ $message }}</strong>
+        <strong>{{ $errors->first('comment') }}</strong>
       </div>
     @endif    
   </div>
