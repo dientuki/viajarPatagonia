@@ -9,12 +9,11 @@
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 <title>@yield('title') - Viajar por Patagonia</title>
-@stack('meta');
-
+@stack('meta')
 <meta name="og:site_name" content="Viajar por Patagonia">
 <meta name="og:region" content="Patagonia">
 <meta name="og:country_name" content="Argentina">
-@stack('facebook');
+@stack('facebook')
 
 <!-- Scripts -->
 <script src="{{ Helpers::load_resource('frontJs.js') }}" defer crossorigin="anonymous"></script>
