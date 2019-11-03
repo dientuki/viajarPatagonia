@@ -19,6 +19,11 @@
     "globals": {
         "__webpack_public_path__": "writable"
     },
+    "settings": {
+      "react": {
+        "version": "16.10"
+      }
+    },
     "rules": {
         //http://eslint.org/docs/rules/
 
