@@ -57,3 +57,9 @@ Route::group(['prefix' => '{locale}',
         ->where(['id' => '[0-9]+']);
     */
 });
+
+Route::group(['prefix' => 'api', 'as' => 'api.'], function() {
+  Route::group(['prefix' => 'forms', 'as' => 'forms.'], function() {
+    Route::post('inquiries', 'InquiriesController@store')->name('inquiries');
+  });
+});

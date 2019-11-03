@@ -40,7 +40,7 @@
           <div class="product__summary">
             {!! nl2br($product->summary) !!}
           </div>
-          <div class="bold button button__cta col-bottom">{{ ucfirst(__('front.cta')) }}</div>
+          <div class="bold button button__cta col-bottom openOverlay">{{ ucfirst(__('front.cta')) }}</div>
       </div>
     </header>
 
@@ -54,15 +54,17 @@
         <iframe src="about:blank" data-original="{{ $product->map }}" class="lzl"></iframe>
       </div>
 
-      <div class="bold button button__cta col-bottom">{{ ucfirst(__('front.cta')) }}</div>
+      <div class="bold button button__cta col-bottom openOverlay">{{ ucfirst(__('front.cta')) }}</div>
 
     </div>
     
     <aside class="layout-aside">
       <h6 class="aside__title">{{ __('front.another_packages') }}</h6>
-      @include('front/widget/product-preview', ['products' => $relateds])
+      @include('front/widgets/product-preview', ['products' => $relateds])
     </aside>
 
   </article>
+
+  @include('front/widgets/product-inquiries', ['products' => $relateds])
 
 @endsection
