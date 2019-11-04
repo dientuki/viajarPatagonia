@@ -19,3 +19,9 @@ if ('IntersectionObserver' in window) {
     module.vanilla(settings_lzl);
   });
 }
+
+if (document.querySelectorAll('.openOverlay').length > 0) {
+  import(/* webpackChunkName: "modalForms" */ './modules/modalForms/modalForms').then((module) => {
+    module.modalForms(document.querySelectorAll('.openOverlay'));
+  });
+}

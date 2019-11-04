@@ -37,10 +37,18 @@ return [
     //Sidebar
     'another_packages' => 'otros paquetes',
 
+    //Inquiries
+    'name' => 'nombre',
+    'email' => 'email',
+    'phone' => 'telefono',
+    'departure' => 'fecha de salida',
+    'adults' => 'adultos',
+    'childs' => 'infantes',
+    'comments' => 'comentarios',    
+
     //Home
     'packages' => 'paquetes',
     'cruiseships' => 'cruceros',
     'excursions' => 'excursiones',
     'view-all' => 'ver todos'    
-
 ];
