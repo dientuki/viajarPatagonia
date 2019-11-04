@@ -1,4 +1,8 @@
 .section {
+  margin-top: rem(35);
+  padding-bottom: rem(40-10);
+  border-bottom: solid rem(2) map-get($colors, "c-grey");
+
   &__header {
     justify-content: space-between;
     align-items: center;
@@ -21,4 +25,8 @@
     text-decoration: underline;
     display: block;
   }
+}
+
+.home-main .section:last-child {
+  border-bottom: none;
 }

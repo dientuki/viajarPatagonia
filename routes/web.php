@@ -47,15 +47,14 @@ Route::group(['prefix' => '{locale}',
     Route::get('/package/{name}_{id}.html', 'PackageController@show')
         ->name('package')
         ->where(['id' => '[0-9]+']);
-    /*
+
     Route::get('/excursion/{name}_{id}.html', 'ExcursionController@show')
         ->name('excursion')
         ->where(['id' => '[0-9]+']);
 
-    Route::get('/cruises/{name}_{id}.html', 'CruiseshipsController@show')
-        ->name('cruises')
+    Route::get('/cruise/{name}_{id}.html', 'CruiseshipsController@show')
+        ->name('cruise')
         ->where(['id' => '[0-9]+']);
-    */
 });
 
 Route::group(['prefix' => 'api', 'as' => 'api.'], function() {

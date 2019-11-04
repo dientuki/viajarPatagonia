@@ -24,7 +24,7 @@
       </header>
 
       <main class="grid section__main">
-        @include('front/product-preview/vertical', ['products' => $packages, 'grid' => 'col-4'])
+        @include('front/product-preview/vertical', ['products' => $packages, 'grid' => 'col-4', 'route' => 'package'])
       </main>
     </section>
 
@@ -35,7 +35,7 @@
       </header>
 
       <main class="grid section__main">
-        @include('front/product-preview/vertical', ['products' => $cruiseships, 'grid' => 'col'])
+        @include('front/product-preview/vertical', ['products' => $cruiseships, 'grid' => 'col', 'route' => 'cruise'])
       </main>
     </section>
 
@@ -46,7 +46,7 @@
       </header>
 
       <main class="grid section__main">
-        @include('front/product-preview/horizontal', ['products' => $excursions])
+        @include('front/product-preview/horizontal', ['products' => $excursions, 'route' => 'excursion'])
       </main>
     </section>  
 
