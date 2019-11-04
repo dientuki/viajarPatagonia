@@ -92,7 +92,7 @@ class Excursions extends Model implements HasMedia
     }    
 
     public function getPrice() {
-      return 'precion';
+      return 'ARS ' . number_format(rand(5000, 199999), 0, null, '.');
     }
 
     public function registerMediaConversions(Media $media = null)

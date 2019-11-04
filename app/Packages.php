@@ -111,7 +111,7 @@ class Packages extends Model implements HasMedia
     }
 
     public function getPrice() {
-      return 'ARS 1236';
+      return 'ARS ' . number_format(rand(5000, 199999), 0, null, '.');
     }
 
     public function getBodyHtmlAttribute() {

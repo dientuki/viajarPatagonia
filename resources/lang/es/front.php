@@ -37,6 +37,8 @@ return [
     //Sidebar
     'another_packages' => 'otros paquetes',
 
+    'details_packages' => 'detalles del paquete',
+
     //Inquiries
     'name' => 'nombre',
     'email' => 'email',
