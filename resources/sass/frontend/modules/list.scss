@@ -3,11 +3,13 @@
     margin-top: rem(15);
     font-size: rem(22);
     line-height: rem(40);
+    color: map-get($colors, "product-title");
   }
 
   &__summary {
     font-size: rem(18);
     line-height: rem(20);
+    margin-top: rem(20);
     @include clamp(3);
   }
 

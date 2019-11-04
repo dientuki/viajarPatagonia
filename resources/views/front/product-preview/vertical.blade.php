@@ -11,7 +11,7 @@
     <figure class="aspect-preview list__figure">
       <img src="about:blank" data-original="{{ $img }}" class="lzl" />
     </figure>
-    <h1 class="list__title">{{ $product->name }}</h1>
+    <h1 class="list__title bold">{{ $product->name }}</h1>
     <div class="list__summary">{!! nl2br($product->summary) !!}</div>
     <div class="button button__price">{{ $product->getPrice() }}</div>
   </article>
