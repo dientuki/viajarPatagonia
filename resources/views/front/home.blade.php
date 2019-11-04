@@ -15,11 +15,11 @@
 
 @section ('content')
 
-  <main class="wrapper">
+  <main class="wrapper home-main">
 
     <section class="section">
-      <header class="section__header">
-        <h6 class="section__title">{{ ucfirst(__('front.packages')) }}</div>
+      <header class="section__header flex">
+        <h6 class="section__title">{{ ucfirst(__('front.packages')) }}</h6>
         <a class="section__view-all" href="#">{{ ucfirst(__('front.view-all')) }}</a>
       </header>
 
@@ -29,8 +29,8 @@
     </section>
 
     <section class="section">
-      <header class="section__header">
-        <h6 class="section__title">{{ ucfirst(__('front.cruiseships')) }}</div>
+      <header class="section__header flex">
+        <h6 class="section__title">{{ ucfirst(__('front.cruiseships')) }}</h6>
         <a class="section__view-all" href="#">{{ ucfirst(__('front.view-all')) }}</a>
       </header>
 
@@ -40,8 +40,8 @@
     </section>
 
     <section class="section">
-      <header class="section__header">
-        <h6 class="section__title">{{ ucfirst(__('front.excursions')) }}</div>
+      <header class="section__header flex">
+        <h6 class="section__title">{{ ucfirst(__('front.excursions')) }}</h6>
         <a class="section__view-all" href="#">{{ ucfirst(__('front.view-all')) }}</a>
       </header>
 
