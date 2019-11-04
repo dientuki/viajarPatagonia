@@ -2,7 +2,7 @@
   use Spatie\Image\Image;
 ?>
 
-@extends('layouts.product')
+@extends('layouts.front')
 
 @section('title', $product->name)
 
@@ -46,7 +46,7 @@
 
     <div class="layout-main">
       <main class="product__content">
-
+        <div class="aside__title">{{ ucfirst(__('front.details_packages')) }}</div>
         {!! $product->body_html !!}
       </main>
 
@@ -58,9 +58,9 @@
 
     </div>
     
-    <aside class="layout-aside">
+    <aside class="layout-aside aside">
       <h6 class="aside__title">{{ __('front.another_packages') }}</h6>
-      @include('front/widgets/product-preview', ['products' => $relateds])
+      @include('front/product-preview/vertical', ['products' => $relateds, 'route' => 'package'])
     </aside>
 
   </article>

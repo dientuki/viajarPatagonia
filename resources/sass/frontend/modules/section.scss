@@ -1,0 +1,32 @@
+.section {
+  margin-top: rem(35);
+  padding-bottom: rem(40-10);
+  border-bottom: solid rem(2) map-get($colors, "c-grey");
+
+  &__header {
+    justify-content: space-between;
+    align-items: center;
+    height: rem(30);
+  }
+
+  &__title {
+    color: map-get($colors, "product-title");
+    font-size: rem(30);
+    height: rem(30);
+  }
+
+  &__main {
+    margin-top: rem(40);
+  }
+
+  &__view-all {
+    font-size: rem(22);
+    color: map-get($colors, "navigation");
+    text-decoration: underline;
+    display: block;
+  }
+}
+
+.home-main .section:last-child {
+  border-bottom: none;
+}

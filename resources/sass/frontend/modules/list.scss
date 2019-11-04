@@ -2,16 +2,33 @@
   &__title {
     margin-top: rem(15);
     font-size: rem(22);
-    line-height: rem(40);
+    color: map-get($colors, "product-title");
   }
 
   &__summary {
     font-size: rem(18);
-    line-height: rem(20);
+    margin-top: rem(20);
     @include clamp(3);
+  }
+
+  &__data-extra {
+    font-size: rem(18);
+    color: map-get($colors, "evil-grey");
   }
 
   .button {
     margin-top: rem(25);
+  }
+
+  &--horizontal {
+    .list {
+      &__title {
+        margin: 0;
+      }
+    }
+
+    .button {
+      margin: 0;
+    }
   }
 }

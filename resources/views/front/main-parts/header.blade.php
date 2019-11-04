@@ -6,15 +6,14 @@ use App\Translations\Language;
 use Illuminate\Support\Facades\Route;
 
 ?>
-
 <header class="header">
   <div class="wrapper">
-    <a class="header__logo text-hidden" href="#" title="{{ __('front.go_to_home') }}">Viajar por patagonia</a>
+    <a class="header__logo text-hidden" href="{{route('home', app()->getLocale())}}" title="{{ __('front.go_to_home') }}">Viajar por patagonia</a>
 
     <nav class="navigation">
       <ul class="navigation__ul">
         <li class="navigation__li">
-          <a class="navigation__link" href="#">{{ ucfirst(__('front.home')) }}</a>
+          <a class="navigation__link" href="{{route('home', app()->getLocale())}}">{{ ucfirst(__('front.home')) }}</a>
         </li>
         <li class="navigation__li">
           <a class="navigation__link" href="#">{{ ucfirst(__('front.hotels')) }}</a>

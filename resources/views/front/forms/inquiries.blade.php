@@ -45,7 +45,7 @@
 
     <div>
       <label class="label" for="departure">{{ ucfirst(__('front.departure')) }}</label>
-      <input id="departure" type="text" class="form-control" name="departure" value="{{ old('departure') }}" required autofocus placeholder="{{ ucfirst(__('front.departure')) }}">
+      <input id="departure" type="text" class="form-control" name="departure" value="{{ old('departure') }}" required autofocus placeholder="31/12/2012">
 
       @if ($errors->has('departure'))
         <div class="invalid-feedback">
@@ -60,7 +60,7 @@
     <div class="col-6 {{ $errors->has('adults') ? 'is-invalid' : '' }}">    
 
         <label class="label" for="adults">{{ ucfirst(__('front.adults')) }}</label>
-        <input id="adults" type="number" min="0" class="form-control" name="adults" value="{{ old('adults') }}" required autofocus placeholder="{{ ucfirst(__('front.adults')) }}">
+        <input id="adults" type="number" min="0" max="10" class="form-control" name="adults" value="{{ old('adults') }}" required autofocus placeholder="{{ ucfirst(__('front.adults')) }}">
 
         @if ($errors->has('adults'))
           <div class="invalid-feedback">
@@ -72,7 +72,7 @@
 
     <div class="col-6 {{ $errors->has('childs') ? 'is-invalid' : '' }}">    
         <label class="label" for="childs">{{ ucfirst(__('front.childs')) }}</label>
-        <input id="childs" type="number" min="0" class="form-control" name="childs" value="{{ old('childs') }}" required autofocus placeholder="{{ ucfirst(__('front.childs')) }}">
+        <input id="childs" type="number" min="0" max="10" class="form-control" name="childs" value="{{ old('childs') }}" required autofocus placeholder="{{ ucfirst(__('front.childs')) }}">
 
         @if ($errors->has('childs'))
           <div class="invalid-feedback">
@@ -85,7 +85,7 @@
   </div>
 
   <div class="col {{ $errors->has('comment') ? 'is-invalid' : '' }}">    
-    <label class="label" for="comment">{{ ucfirst(__('front.departure')) }}</label>
+    <label class="label" for="comment">{{ ucfirst(__('front.comments')) }}</label>
     <textarea name="comment" class="form-control textarea"></textarea>
 
     @if ($errors->has('comment'))
