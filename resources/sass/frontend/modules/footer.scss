@@ -49,6 +49,10 @@
     margin: 0 rem(20);
     background: map-get($colors, "white");
     border-radius: rem(100);
+
+    &:last-child {
+      background: map-get($colors, "footer");
+    }
   }
 
   &__contactus {
@@ -64,6 +68,15 @@
 
     path {
       fill: map-get($colors, "footer");
+    }
+  }
+
+  .ico-skype {
+    width: 100%;
+    height: 100%;
+
+    path {
+      fill: map-get($colors, "white");
     }
   }
 }
