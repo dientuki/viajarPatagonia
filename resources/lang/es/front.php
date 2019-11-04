@@ -52,5 +52,8 @@ return [
     'packages' => 'paquetes',
     'cruiseships' => 'cruceros',
     'excursions' => 'excursiones',
-    'view-all' => 'ver todos'    
+    'view-all' => 'ver todos',
+    
+    //Buy more
+    'buy-more-excursion' => 'podes contratar estas excursiones extra',
 ];
