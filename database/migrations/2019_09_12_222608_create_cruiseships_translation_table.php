@@ -22,7 +22,7 @@ class CreateCruiseshipsTranslationTable extends Migration
             $table->tinyInteger('fk_language')->unsigned();
             $table->smallInteger('fk_cruiseship')->unsigned();
             $table->string('name');
-            $table->string('summary');
+            $table->text('summary');
             $table->mediumText('body');
 
             $table->foreign('fk_language')->references('id')->on('languages');
