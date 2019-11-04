@@ -13,6 +13,8 @@
 
   &__afip {
     flex-basis: rem(55);
+    height: rem(75);
+    background: url("../../images/data-fiscal.png");
   }
 
   &__links {
@@ -20,10 +22,18 @@
     justify-content: space-between;
     align-content: flex-start;
     display: flex;
+
+    .footer__link {
+      text-decoration: underline;
+      color: map-get($colors, "white");
+      font-size: rem(15.5);
+      line-height: rem(23);      
+    }
   }
 
   &__li {
     flex-basis: 50%;
+
   }
 
   &__socials {
@@ -37,6 +47,8 @@
     width: rem(47);
     height: rem(47);
     margin: 0 rem(20);
+    background: map-get($colors, "white");
+    border-radius: rem(100);
   }
 
   &__contactus {
@@ -47,7 +59,11 @@
 
   [class *= ico-] {
     display: block;
-    width: 100%;
-    height: 100%;
+    width: 50%;
+    height: 50%;
+
+    path {
+      fill: map-get($colors, "footer");
+    }
   }
 }
