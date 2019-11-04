@@ -20,7 +20,10 @@
         @foreach ($packages as $package)
         <tr>
             @foreach ($languages as $language)
-                <td>{{$package['title' . $language->id]}}</td>
+              <?php $routeParams = array('locale' => $language->iso, 'name' => Str::slug($package['title' . $language->id], '-'), 'id' => $package->id); ?>
+              <td>
+                <a href="{{route('package', $routeParams)}}" rel="noopener" target="_blank">{{$package['title' . $language->id]}}</a>
+              </td>               
             @endforeach
             <td>{{ $package->is_active }}</td>
 
