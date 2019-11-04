@@ -82,13 +82,13 @@ class Excursions extends Model implements HasMedia
       return abort(404);
     }
 
-    static function getHome() {
+    static function getHome($limit = 4) {
       $home = Excursions::select('excursions.id', 'excursions_translation.name', 'excursions_translation.summary');
       $home->join("excursions_translation", 'excursions.id', '=', "excursions_translation.fk_excursion");
       $home->join("languages", 'languages.id', '=', "excursions_translation.fk_language");
       $home->where('is_active', 1)->where('languages.iso', App::getLocale());
 
-      return $home->limit(4)->get();
+      return $home->limit($limit)->get();
     }    
 
     public function getPrice() {
