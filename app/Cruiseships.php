@@ -84,6 +84,19 @@ class Cruiseships extends Model implements HasMedia
       return $cruiseship->get()->first();
     }
 
+    static function getHome() {
+      $home = Cruiseships::select('cruiseships.id', 'cruiseships_translation.name', 'cruiseships_translation.summary');
+      $home->join("cruiseships_translation", 'cruiseships.id', '=', "cruiseships_translation.fk_cruiseship");
+      $home->join("languages", 'languages.id', '=', "cruiseships_translation.fk_language");
+      $home->where('is_active', 1)->where('languages.iso', App::getLocale());
+
+      return $home->limit(2)->get();
+    }
+    
+    public function getPrice(){
+      return 'asdf';
+    }
+
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('backoffice')

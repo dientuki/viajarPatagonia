@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Packages;
+use App\Excursions;
+use App\Cruiseships;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -13,7 +17,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $packages = Packages::getHome();
+        $cruiseships = Cruiseships::getHome();
+        $excursions = Excursions::getHome();
+
+        return view('front/home', compact('packages', 'cruiseships', 'excursions'));
     }
 
     public function setLocale() {

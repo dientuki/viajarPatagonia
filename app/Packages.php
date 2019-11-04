@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Region;
+use App\Packages;
 use App\Package2destination;
 use App\Http\Helpers\Helpers;
 use App\Translations\Language;
@@ -11,7 +13,6 @@ use Spatie\MediaLibrary\Models\Media;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Packages extends Model implements HasMedia
 {
@@ -70,8 +71,6 @@ class Packages extends Model implements HasMedia
   
       //Laravel 4 fallback
       return abort(404);
-  
-      //throw (new ModelNotFoundException)->setModel(get_class($this->model));
     }
 
     static function getShow($id) {
@@ -82,8 +81,6 @@ class Packages extends Model implements HasMedia
         ['packages.id', '=', $id],
         ['languages.iso', '=', App::getLocale()]
       ]);
-
-          //dd($package->toSql());
 
       return $package->get()->first();
     }  
@@ -102,6 +99,15 @@ class Packages extends Model implements HasMedia
       ])->whereIn('package2destination.fk_destination', $currentDestinations)->limit(3);
 
       return $related->get();
+    }
+
+    static function getHome() {
+      $home = Packages::select('packages.id', 'packages_translation.name', 'packages_translation.summary');
+      $home->join("packages_translation", 'packages.id', '=', "packages_translation.fk_package");
+      $home->join("languages", 'languages.id', '=', "packages_translation.fk_language");
+      $home->where('is_active', 1)->where('languages.iso', App::getLocale());
+
+      return $home->limit(6)->get();
     }
 
     public function getPrice() {

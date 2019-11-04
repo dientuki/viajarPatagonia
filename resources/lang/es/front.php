@@ -35,6 +35,12 @@ return [
     'cta' => 'consultar',
 
     //Sidebar
-    'another_packages' => 'otros paquetes'
+    'another_packages' => 'otros paquetes',
+
+    //Home
+    'packages' => 'paquetes',
+    'cruiseships' => 'cruceros',
+    'excursions' => 'excursiones',
+    'view-all' => 'ver todos'    
 
 ];

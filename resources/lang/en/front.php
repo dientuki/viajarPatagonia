@@ -44,6 +44,12 @@ return [
     'departure' => 'departure',
     'adults' => 'adults',
     'childs' => 'childs',
-    'comments' => 'comments'
+    'comments' => 'comments',
+
+    //Home
+    'packages' => 'packages',
+    'cruiseships' => 'cruises ships',
+    'excursions' => 'excursions',
+    'view-all' => 'view all'
 
 ];
