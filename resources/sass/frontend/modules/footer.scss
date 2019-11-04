@@ -27,13 +27,12 @@
       text-decoration: underline;
       color: map-get($colors, "white");
       font-size: rem(15.5);
-      line-height: rem(23);      
+      line-height: rem(23);
     }
   }
 
   &__li {
     flex-basis: 50%;
-
   }
 
   &__socials {
