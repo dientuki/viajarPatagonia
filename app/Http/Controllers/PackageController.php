@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Packages;
 use App\PackagePrices;
+use App\Http\Controllers\Controller;
 
 class PackageController extends Controller
 {

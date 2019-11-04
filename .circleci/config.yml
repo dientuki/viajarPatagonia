@@ -124,10 +124,7 @@ jobs:
           command: php artisan config:cache
       - run:
           name: Optimizing Route Loading
-          command: php artisan route:cache
-      - run:
-          name: Configure file storage
-          command: php artisan storage:link          
+          command: php artisan route:cache       
       - save_cache:
           key: laravel-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:

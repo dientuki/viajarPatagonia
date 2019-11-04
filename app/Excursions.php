@@ -4,12 +4,12 @@ namespace App;
 
 use App\Translations\Language;
 use Spatie\Image\Manipulations;
+use Illuminate\Support\Facades\App;
 use Spatie\MediaLibrary\Models\Media;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use App\Translations\ExcursionsTranslation;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Excursions extends Model implements HasMedia
 {
@@ -80,8 +80,19 @@ class Excursions extends Model implements HasMedia
   
       //Laravel 4 fallback
       return abort(404);
-  
-      //throw (new ModelNotFoundException)->setModel(get_class($this->model));
+    }
+
+    static function getHome() {
+      $home = Excursions::select('excursions.id', 'excursions_translation.name', 'excursions_translation.summary');
+      $home->join("excursions_translation", 'excursions.id', '=', "excursions_translation.fk_excursion");
+      $home->join("languages", 'languages.id', '=', "excursions_translation.fk_language");
+      $home->where('is_active', 1)->where('languages.iso', App::getLocale());
+
+      return $home->limit(4)->get();
+    }    
+
+    public function getPrice() {
+      return 'precion';
     }
 
     public function registerMediaConversions(Media $media = null)

@@ -2,7 +2,7 @@
   use Spatie\Image\Image;
 ?>
 
-@extends('layouts.product')
+@extends('layouts.front')
 
 @section('title', $product->name)
 
@@ -60,7 +60,7 @@
     
     <aside class="layout-aside">
       <h6 class="aside__title">{{ __('front.another_packages') }}</h6>
-      @include('front/widgets/product-preview', ['products' => $relateds])
+      @include('front/product-preview/vertical', ['products' => $relateds])
     </aside>
 
   </article>

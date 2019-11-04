@@ -44,6 +44,11 @@ return [
     'departure' => 'fecha de salida',
     'adults' => 'adultos',
     'childs' => 'infantes',
-    'comments' => 'comentarios'
+    'comments' => 'comentarios',    
 
+    //Home
+    'packages' => 'paquetes',
+    'cruiseships' => 'cruceros',
+    'excursions' => 'excursiones',
+    'view-all' => 'ver todos'    
 ];
