@@ -20,7 +20,10 @@
         @foreach ($cruiseships as $cruiseship)
         <tr>
             @foreach ($languages as $language)
-                <td>{{$cruiseship['title' . $language->id]}}</td>
+              <?php $routeParams = array('locale' => $language->iso, 'name' => Str::slug($cruiseship['title' . $language->id], '-'), 'id' => $cruiseship->id); ?>
+              <td>
+                <a href="{{route('cruise', $routeParams)}}" rel="noopener" target="_blank">{{$cruiseship['title' . $language->id]}}</a>
+              </td>
             @endforeach
             <td>{{ $cruiseship->is_active }}</td>
 
