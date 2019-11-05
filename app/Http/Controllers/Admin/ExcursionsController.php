@@ -140,16 +140,16 @@ class ExcursionsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\StoreExcursion  $request
+     * @param  \App\Http\Requests\EditExcursion  $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreExcursion $request, $id)
+    public function update(EditExcursion $request, $id)
     {
         $excursion = Excursions::getEdit($id);
 
         $data = $request->validated();
-
+        
         $data['is_active'] = isset($data['is_active']) ? 1 : 0;
 
         $excursion->fill($data)->save();

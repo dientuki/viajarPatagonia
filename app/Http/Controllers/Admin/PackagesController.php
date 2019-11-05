@@ -12,6 +12,7 @@ use App\ExcursionsPrices;
 use App\Package2excursion;
 use App\Package2destination;
 use App\Translations\Language;
+use App\Http\Requests\EditPackage;
 use Prologue\Alerts\Facades\Alert;
 use App\Http\Requests\StorePackage;
 use App\Http\Controllers\Controller;
@@ -173,16 +174,16 @@ class PackagesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\StorePackage  $request
+     * @param  \App\Http\Requests\EditPackage  $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StorePackage $request, $id)
+    public function update(EditPackage $request, $id)
     {
         $package = Packages::getEdit($id);
 
         $data = $request->validated();
-
+        
         $data['is_active'] = isset($data['is_active']) ? 1 : 0;
 
         $package->fill($data)->save();
