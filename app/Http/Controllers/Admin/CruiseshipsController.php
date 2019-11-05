@@ -145,8 +145,6 @@ class CruiseshipsController extends Controller
     {
         $cruiseship = Cruiseships::getEdit($id);
 
-
-
         $data = $request->validated();
 
         $data['is_active'] = isset($data['is_active']) ? 1 : 0;
