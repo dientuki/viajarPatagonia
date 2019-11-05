@@ -1,4 +1,6 @@
 <?php 
+
+use App\Http\Helpers\Helpers;
   use Spatie\Image\Image;
 ?>
 
@@ -18,14 +20,28 @@
     <?php $desc = trim(str_replace("\r\n","",$product->summary)); ?>
     <meta property="og:description" content="{{ substr($desc, 0, 155)}}">
     
-    <?php $media = $product->getFirstMedia('products'); ?>
-    <?php $image = Image::load($media->getPath('facebook')); ?>
+    <?php 
+      $media = $product->getFirstMedia('products');
+      $image = Image::load($media->getPath('facebook'));
+      $place = array(
+        'lat' => Helpers::getLat($product->map),
+        'lon' => Helpers::getLon($product->map)
+      );
+    ?>
 
     <meta property="og:image" content="{{ $media->getFullUrl('facebook') }}" />
     <meta property="og:image:width" content="{{ $image->getWidth() }}">
     <meta property="og:image:height" content="{{ $image->getHeight() }}">
     <meta property="og:image:type" content="{{$media->mime_type}}" />
     <meta property="fb:app_id" content="1494084460xxxxxx">
+    <meta property="place:location" content="algun lugar">
+
+    @if ($place['lat'] != null)
+      <meta property="place:location:latitude" content="{{$place['lat']}}">
+    @endif
+    @if ($place['lon'] != null)
+      <meta property="place:location:longitude" content="{{$place['lon']}}">
+    @endif    
 @endpush
 
 @section ('content')
