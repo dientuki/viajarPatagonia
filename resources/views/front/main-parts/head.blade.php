@@ -10,9 +10,9 @@
 
 <title>@yield('title') - Viajar por Patagonia</title>
 @stack('meta')
-<meta name="og:site_name" content="Viajar por Patagonia">
-<meta name="og:region" content="Patagonia">
-<meta name="og:country_name" content="Argentina">
+<meta property="og:site_name" content="Viajar por Patagonia">
+<meta property="og:region" content="Patagonia">
+<meta property="og:country_name" content="Argentina">
 @stack('facebook')
 
 <!-- Scripts -->
