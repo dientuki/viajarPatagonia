@@ -35,6 +35,10 @@ class Language extends Model
       return Language::select('id', 'language', 'iso')->orderBy('id')->get();
     }
 
+    static function getLocale($iso) {
+      return Language::select('iso')->where('iso', $iso)->exists();
+    }
+
     static function getEdit($id){
 
         $result = Language::select('id', 'language', 'iso')
