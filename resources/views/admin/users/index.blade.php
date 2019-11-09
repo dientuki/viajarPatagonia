@@ -6,8 +6,8 @@
 <table class="table table-striped table-bordered table-hover table-sm">
     <thead class="thead-dark">
         <tr>
-            <th>{{ ucfirst(__('fields.sign')) }}</th>
-            <th>{{ ucfirst(__('fields.iso')) }}</th>
+            <th>{{ ucfirst(__('fields.name')) }}</th>
+            <th>{{ ucfirst(__('fields.email')) }}</th>
             <th class="column-action">Accion</th>
         </tr>
     </thead>

@@ -62,4 +62,8 @@ return [
 
     // Paquetes
     'package' => 'paquetes',   
+
+    // Ususarios
+    'user' => 'usuario',       
+    'email' => 'email',           
 ];
