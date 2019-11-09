@@ -55,4 +55,5 @@ return [
     
     //Buy more
     'buy-more-excursion' => 'podes contratar estas excursiones extra',
+    'included-excursion' => 'excursiones incluidas'
 ];

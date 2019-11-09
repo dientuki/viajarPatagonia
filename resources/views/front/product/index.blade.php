@@ -50,9 +50,14 @@
         {!! $product->body_html !!}
       </main>
 
+      <div class="extra__title">{{ ucfirst(__('front.included-excursion')) }}</div>
+      <div class="grid">
+        @include('front/product-preview/horizontal', ['products' => $excursionsRelated, 'route' => 'excursion', 'noprice' => true])
+      </div>
+            
       <div class="extra__title">{{ ucfirst(__('front.buy-more-excursion')) }}</div>
       <div class="grid">
-        @include('front/product-preview/horizontal', ['products' => $excursions, 'route' => 'excursion', 'noprice' => true])
+        @include('front/product-preview/horizontal', ['products' => $excursionsUnrelated, 'route' => 'excursion', 'noprice' => true])
       </div>
 
       <div class="aspect-slider product__map">
