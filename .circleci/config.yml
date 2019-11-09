@@ -260,7 +260,7 @@ workflows:
             - php_checks
           filters:
             tags:
-              only: /^v.*/
+              only: /.*/
             branches:
               only:
                 - master
@@ -271,7 +271,7 @@ workflows:
             - build_webpack     
           filters:
             tags:
-              only: /^v.*/
+              only: /.*/
             branches:
               only:
                 - master              
