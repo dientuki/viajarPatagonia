@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Package2destination;
 use App\Translations\Language;
 use Spatie\Image\Manipulations;
 use Illuminate\Support\Facades\App;
@@ -90,6 +91,34 @@ class Excursions extends Model implements HasMedia
 
       return $home->limit($limit)->get();
     }    
+
+    static function getRelatedPackage($id) {
+      $home = Excursions::select('excursions.id', 'excursions_translation.name', 'excursions_translation.summary');
+      $home->join("excursions_translation", 'excursions.id', '=', "excursions_translation.fk_excursion");
+      $home->join("languages", 'languages.id', '=', "excursions_translation.fk_language");
+      $home->join("package2excursion", 'excursions.id', '=', "package2excursion.fk_excursion");
+      $home->where('is_active', 1)
+        ->where('languages.iso', App::getLocale())
+        ->where('package2excursion.fk_package', $id);
+      
+      return $home->limit(3)->get();
+    }
+
+    static function getUnrelatedPackage($id) {
+      $currentDestinations = Package2destination::orderBy('id')->where('fk_package', $id)->pluck('fk_destination');
+      
+      $home = Excursions::select('excursions.id', 'excursions_translation.name', 'excursions_translation.summary');
+      $home->join("excursions_translation", 'excursions.id', '=', "excursions_translation.fk_excursion");
+      $home->join("languages", 'languages.id', '=', "excursions_translation.fk_language");
+      $home->join("package2excursion", 'excursions.id', '=', "package2excursion.fk_excursion");
+      $home->join("package2destination", 'packages.id', '=', "package2destination.fk_package");
+      $home->where('is_active', 1)
+        ->where('languages.iso', App::getLocale())
+        ->where('package2excursion.fk_package', '!=', $id)
+        ->whereIn('package2destination.fk_destination', $currentDestinations);
+      
+      return $home->limit(3)->get();
+    }
 
     public function getPrice() {
       return 'ARS ' . number_format(rand(5000, 199999), 0, null, '.');
