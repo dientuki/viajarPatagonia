@@ -256,7 +256,6 @@ workflows:
       - build_targz:
           requires:
             - optimize_laravel
-            - frontend_tests
             - build_webpack     
           filters:
             branches:
