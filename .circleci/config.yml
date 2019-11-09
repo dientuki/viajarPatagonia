@@ -236,37 +236,28 @@ workflows:
           filters:
             tags:
               only: /.*/
-    merge_master:
+  merge_master:
+    jobs:
       - commit
       - build_webpack: 
           filters:
-            tags:
-              only: /.*/
             branches:
-              ignore: /.*/
+              only: master
       - install_laravel:   
           filters:
-            tags:
-              only: /.*/
             branches:
-              ignore: /.*/
+              only: master
       - optimize_laravel:
           requires:
             - install_laravel
           filters:
-            tags:
-              only: /^v.*/
             branches:
-              ignore: /.*/
+              only: master
       - build_targz:
           requires:
             - optimize_laravel
             - frontend_tests
             - build_webpack     
           filters:
-            tags:
-              only: /^v.*/
             branches:
-              only: /.*/      
-    deploy:
-      - merge_master
+              only: master
