@@ -50,8 +50,8 @@ class UsersController extends Controller
 
         $user = User::create($data);
         // send mail
-        $token = Password::getRepository()->create($user);
-        $user->sendPasswordResetNotification($token);        
+        //$token = Password::getRepository()->create($user);
+        //$user->sendPasswordResetNotification($token);        
 
         return redirect()->route('admin.users.index');
     }
