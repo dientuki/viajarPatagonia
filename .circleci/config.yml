@@ -224,3 +224,30 @@ workflows:
       - frontend_tests:
           requires:
             - install_webpack        
+      - build_webpack:
+          requires:
+            - install_webpack        
+          filters:
+            branches:
+              only: master
+      - install_laravel:
+          requires:
+            - checkout_code        
+          filters:
+            branches:
+              only: master
+      - optimize_laravel:
+          requires:
+            - install_laravel
+            - php_checks
+          filters:
+            branches:
+              only: master
+      - build_targz:
+          requires:
+            - optimize_laravel
+            - frontend_tests
+            - build_webpack     
+          filters:
+            branches:
+              only: master
