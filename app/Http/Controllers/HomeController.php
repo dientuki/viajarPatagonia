@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Helpers\Helpers;
 use App\Packages;
 use App\Excursions;
 use App\Cruiseships;
-use Illuminate\Http\Request;
+use App\Translations\Language;
 use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
@@ -25,6 +26,16 @@ class HomeController extends Controller
     }
 
     public function setLocale() {
-      return redirect(app()->getLocale());
+      $locale = app()->getLocale();
+      $languages = Helpers::getLocale();
+      if ($languages != null) {
+          foreach($languages as $key => $value) {
+            if (Language::getLocale($key)) {
+                $locale = $key;
+                break;
+            }
+          }
+      }
+      return redirect($locale);
     }
 }
