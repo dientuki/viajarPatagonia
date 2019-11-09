@@ -266,21 +266,29 @@ workflows:
           filters:
             tags:
               only: /^v.*/
+            branches:
+              ignore: /.*/                    
       - php_checks:
           requires:
             - checkout_code              
           filters:
             tags:
-              only: /^v.*/           
+              only: /^v.*/      
+            branches:
+              ignore: /.*/                         
       - install_webpack:
           requires:
             - checkout_code        
           filters:
             tags:
-              only: /^v.*/                 
+              only: /^v.*/       
+            branches:
+              ignore: /.*/                              
       - frontend_tests:
           requires:
             - install_webpack      
           filters:
             tags:
               only: /^v.*/
+            branches:
+              ignore: /.*/                    
