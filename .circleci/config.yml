@@ -215,6 +215,9 @@ workflows:
   commit:
     jobs:
       - checkout_code
+          filters:
+            branches:
+              only: /^VPP-.*/          
       - php_checks:
           requires:
             - checkout_code              
