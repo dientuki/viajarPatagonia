@@ -140,7 +140,7 @@ jobs:
           key: public-assets-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           name: Add new version.txt
-          command: echo $CIRCLE_TAG-$(git rev-parse --short HEAD) >  ./_version.txt
+          command: echo commit-$(git rev-parse --short HEAD) >  ./_version.txt
       - run:
           name: Remove files
           command: |
