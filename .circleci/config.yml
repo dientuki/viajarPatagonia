@@ -214,7 +214,7 @@ workflows:
   version: 2
   commit:
     jobs:
-      - checkout_code
+      - checkout_code:
           filters:
             branches:
               only: /^VPP-.*/          
