@@ -214,7 +214,7 @@ workflows:
   version: 2
   build:
     jobs:
-      - checkout_code:
+      - checkout_code
       - php_checks:
           requires:
             - checkout_code              
@@ -224,4 +224,3 @@ workflows:
       - frontend_tests:
           requires:
             - install_webpack        
-            
