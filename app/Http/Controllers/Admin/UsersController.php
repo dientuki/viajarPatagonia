@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Exception;
 use App\User;
+use Exception;
 use Illuminate\Http\Request;
-use Prologue\Alerts\Facades\Alert;
 use App\Http\Requests\EditUser;
 use App\Http\Requests\StoreUser;
+use Prologue\Alerts\Facades\Alert;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Password;
 
 class UsersController extends Controller
 {
@@ -49,6 +50,8 @@ class UsersController extends Controller
 
         $user = User::create($data);
         // send mail
+        $token = Password::getRepository()->create($user);
+        $user->sendPasswordResetNotification($token);        
 
         return redirect()->route('admin.users.index');
     }
