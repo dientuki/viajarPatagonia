@@ -30,6 +30,7 @@ Route::group(['namespace' => 'Admin',
     Route::resource('cruiseships', 'CruiseshipsController')->except(['show']);
     Route::resource('excursions', 'ExcursionsController')->except(['show']);
     Route::resource('packages', 'PackagesController')->except(['show']);
+    Route::resource('users', 'UsersController')->except(['show']);
 
     Route::post('images', 'ImagesController@store')->name('images.store');
 });
