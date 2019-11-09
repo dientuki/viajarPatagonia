@@ -46,4 +46,22 @@ class User extends Authenticatable
     public function setPasswordAttribute($value){
         $this->attributes['password'] = bcrypt($value);
     }
+
+   static function getEdit($id){
+
+      $result = User::select('id', 'name', 'email')
+          ->where('id', $id)
+          ->get()->first();
+  
+      if (is_array($id)) {
+        if (count($result) == count(array_unique($id))) {
+          return $result;
+        }
+      } elseif (! is_null($result)) {
+        return $result;
+      }
+  
+      //Laravel 4 fallback
+      return abort(404);
+    }    
 }
