@@ -170,7 +170,7 @@ jobs:
           paths:
             - build.tar.gz
 
-  testing:
+  deploy_stage:
     <<: *wd
     <<: *ubuntu
     steps:
@@ -180,14 +180,23 @@ jobs:
           fingerprints:
             - d2:dd:97:8c:3c:1e:f3:b3:dc:9c:31:00:60:68:94:21
       - run:
-          name: Add to know host
+          name: Add testing server to know host file
           command: |
             echo $KNOW_HOST_1 >> ~/.ssh/known_hosts          
-            echo $KNOW_HOST_2 >> ~/.ssh/known_hosts            
+            echo $KNOW_HOST_2 >> ~/.ssh/known_hosts    
+      - run:
+          name: Uploading build.tar.gz
+          command: scp build.tar.gz mateclass@mateclass.com:vpp
+      - run:
+          name: Untar
+          command: ssh mateclass@mateclass.com tar -xzf vpp/build.tar.gz -C vpp
       - run:
           name: Clean build.tar.gz
-          command: ssh mateclass@mateclass.com chmod 777 -R vpp/storage
-
+          command: ssh mateclass@mateclass.com rm -rf vpp/build.tar.gz
+      - run:
+          name: Clean permisions
+          command: | 
+            ssh mateclass@mateclass.com chmod 777 -fR vpp/storage || :
 
   release:
     <<: *wd
@@ -207,5 +216,157 @@ workflows:
   version: 2
   commit:
     jobs:
-      - testing
-    
+      - checkout_code:
+          filters:
+            branches:
+              only: /^VPP-.*/          
+      - php_checks:
+          requires:
+            - checkout_code              
+          filters:
+            branches:
+              only: /^VPP-.*/                        
+      - install_webpack:
+          requires:
+            - checkout_code        
+          filters:
+            branches:
+              only: /^VPP-.*/                        
+      - frontend_tests:
+          requires:
+            - install_webpack      
+          filters:
+            branches:
+              only: /^VPP-.*/       
+  merge_master:
+    jobs:
+      - checkout_code:
+          filters:
+            branches:
+              only: master        
+      - php_checks:
+          requires:
+            - checkout_code              
+          filters:
+            branches:
+              only: master                    
+      - install_webpack:
+          requires:
+            - checkout_code        
+          filters:
+            branches:
+              only: master                       
+      - frontend_tests:
+          requires:
+            - install_webpack      
+          filters:
+            branches:
+              only: master
+      - build_webpack:
+          requires:
+            - install_webpack        
+          filters:
+            branches:
+              only: master
+      - install_laravel:
+          requires:
+            - checkout_code        
+          filters:
+            branches:
+              only: master
+      - optimize_laravel:
+          requires:
+            - install_laravel
+            - php_checks
+          filters:
+            branches:
+              only: master
+      - build_targz:
+          requires:
+            - optimize_laravel
+            - frontend_tests
+            - build_webpack     
+          filters:
+            branches:
+              only: master  
+      - deploy_stage:
+          requires:
+            - build_targz    
+          filters:
+            branches:
+              only: master                        
+  release:
+    jobs:
+      - checkout_code:
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/                    
+      - php_checks:
+          requires:
+            - checkout_code              
+          filters:
+            tags:
+              only: /^v.*/      
+            branches:
+              ignore: /.*/                         
+      - install_webpack:
+          requires:
+            - checkout_code        
+          filters:
+            tags:
+              only: /^v.*/       
+            branches:
+              ignore: /.*/                              
+      - frontend_tests:
+          requires:
+            - install_webpack      
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/    
+      - build_webpack:
+          requires:
+            - install_webpack        
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/   
+      - install_laravel:
+          requires:
+            - checkout_code        
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/   
+      - optimize_laravel:
+          requires:
+            - install_laravel
+            - php_checks
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/   
+      - build_targz:
+          requires:
+            - optimize_laravel
+            - frontend_tests
+            - build_webpack     
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/   
+      - release:
+          requires:
+            - build_targz   
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/                 
