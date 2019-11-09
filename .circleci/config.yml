@@ -217,23 +217,42 @@ workflows:
       - checkout_code
       - php_checks:
           requires:
-            - checkout_code              
+            - checkout_code   
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/                       
       - install_webpack:
           requires:
             - checkout_code        
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/            
       - frontend_tests:
           requires:
             - install_webpack        
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/            
       - build_webpack:
           requires:
             - install_webpack        
           filters:
+            tags:
+              only: /.*/
             branches:
               only: master
       - install_laravel:
           requires:
             - checkout_code        
           filters:
+            tags:
+              only: /.*/
             branches:
               only: master
       - optimize_laravel:
@@ -241,6 +260,8 @@ workflows:
             - install_laravel
             - php_checks
           filters:
+            tags:
+              only: /.*/
             branches:
               only: master
       - build_targz:
@@ -249,6 +270,8 @@ workflows:
             - frontend_tests
             - build_webpack     
           filters:
+            tags:
+              only: /.*/
             branches:
               only: master
       - release:
