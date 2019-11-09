@@ -251,3 +251,9 @@ workflows:
           filters:
             branches:
               only: master
+      - release:
+          requires:
+            - build_targz   
+          filters:              
+            tags:
+              only: /^v.*/         
