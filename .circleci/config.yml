@@ -212,51 +212,16 @@ jobs:
 
 workflows:
   version: 2
-  commit:
+  build:
     jobs:
       - checkout_code:
-          filters:
-            tags:
-              only: /.*/
       - php_checks:
           requires:
-            - checkout_code        
-          filters:
-            tags:
-              only: /.*/              
+            - checkout_code              
       - install_webpack:
           requires:
             - checkout_code        
-          filters:
-            tags:
-              only: /.*/
       - frontend_tests:
           requires:
             - install_webpack        
-          filters:
-            tags:
-              only: /.*/
-  merge_master:
-    jobs:
-      - commit
-      - build_webpack: 
-          filters:
-            branches:
-              only: master
-      - install_laravel:   
-          filters:
-            branches:
-              only: master
-      - optimize_laravel:
-          requires:
-            - install_laravel
-          filters:
-            branches:
-              only: master
-      - build_targz:
-          requires:
-            - optimize_laravel
-            - build_webpack     
-          filters:
-            branches:
-              only: master
+            
