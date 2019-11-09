@@ -260,6 +260,33 @@ workflows:
           filters:
             branches:
               only: master
+      - build_webpack:
+          requires:
+            - install_webpack        
+          filters:
+            branches:
+              only: master
+      - install_laravel:
+          requires:
+            - checkout_code        
+          filters:
+            branches:
+              only: master
+      - optimize_laravel:
+          requires:
+            - install_laravel
+            - php_checks
+          filters:
+            branches:
+              only: master
+      - build_targz:
+          requires:
+            - optimize_laravel
+            - frontend_tests
+            - build_webpack     
+          filters:
+            branches:
+              only: master           
   release:
     jobs:
       - checkout_code:
@@ -291,4 +318,47 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              ignore: /.*/                    
+              ignore: /.*/    
+      - build_webpack:
+          requires:
+            - install_webpack        
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/   
+      - install_laravel:
+          requires:
+            - checkout_code        
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/   
+      - optimize_laravel:
+          requires:
+            - install_laravel
+            - php_checks
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/   
+      - build_targz:
+          requires:
+            - optimize_laravel
+            - frontend_tests
+            - build_webpack     
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/   
+      - release:
+          requires:
+            - build_targz   
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/                 
