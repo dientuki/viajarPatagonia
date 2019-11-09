@@ -259,4 +259,28 @@ workflows:
             - install_webpack      
           filters:
             branches:
-              only: master                  
+              only: master
+  release:
+    jobs:
+      - checkout_code:
+          filters:
+            tags:
+              only: /^v.*/
+      - php_checks:
+          requires:
+            - checkout_code              
+          filters:
+            tags:
+              only: /^v.*/           
+      - install_webpack:
+          requires:
+            - checkout_code        
+          filters:
+            tags:
+              only: /^v.*/                 
+      - frontend_tests:
+          requires:
+            - install_webpack      
+          filters:
+            tags:
+              only: /^v.*/
