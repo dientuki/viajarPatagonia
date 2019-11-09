@@ -243,8 +243,7 @@ workflows:
             tags:
               only: /.*/
             branches:
-              only:
-                - master
+              ignore: /.*/
       - install_laravel:
           requires:
             - checkout_code        
@@ -252,8 +251,7 @@ workflows:
             tags:
               only: /.*/
             branches:
-              only:
-                - master
+              ignore: /.*/
       - optimize_laravel:
           requires:
             - install_laravel
@@ -262,8 +260,7 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              only:
-                - master
+              ignore: /.*/
       - build_targz:
           requires:
             - optimize_laravel
@@ -273,8 +270,7 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              only:
-                - master              
+              ignore: /.*/                       
       - release:
           requires:
             - build_targz   
@@ -282,4 +278,4 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              only: master
+              ignore: /.*/              
