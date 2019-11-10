@@ -5,16 +5,16 @@
   <article class="list {{ $grid ?? '' }}">
     <?php 
       $images = $product->getMedia('products');
-      //dd($images);
       $img = '';
+      $s = isset($grid) && $grid == 'col' ? 565 : 370;
       $routeParams = array('locale' => app()->getLocale(), 'name' => Str::slug($product->name, '-'), 'id' => $product->id);
       if (count($images) != 0) {
         $key = rand(0, count($images) - 1);
-        $img = implode('/', array('images', $images[$key]->id, $images[$key]->file_name));
+        $img = route('images', array('id' => $images[$key]->id, 'image' => $images[$key]->file_name));
       }
     ?>
     <figure class="aspect-preview list__figure">
-      <img src="about:blank" data-original="{{ $img }}" class="lzl"  sizes="(min-width: 1150px) 370px, 100vw"/>
+      <img src="about:blank" data-original="{{ $img }}" class="lzl"  sizes="(min-width: 1150px) {{ $s }}px, 100vw"/>
     </figure>
       <h1 class="list__title bold">
         <a href="{{route($route, $routeParams)}}" class="list_link">{{ $product->name }}</a>
