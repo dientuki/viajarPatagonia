@@ -62,3 +62,5 @@ Route::group(['prefix' => 'api', 'as' => 'api.'], function() {
     Route::post('inquiries', 'InquiriesController@store')->name('inquiries');
   });
 });
+
+Route::get('/images/{id}/{image}', 'ImagesController@getClientHint')->name('images');

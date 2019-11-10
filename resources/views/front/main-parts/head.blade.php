@@ -4,11 +4,14 @@
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+<meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
+<meta http-equiv="Accept-CH-Lifetime" content="86400">
 
 <!-- CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 <title>@yield('title') - Viajar por Patagonia</title>
+
 @stack('meta')
 <meta name="og:site_name" content="Viajar por Patagonia">
 <meta name="og:region" content="Patagonia">
