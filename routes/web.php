@@ -63,4 +63,4 @@ Route::group(['prefix' => 'api', 'as' => 'api.'], function() {
   });
 });
 
-Route::get('/images/{id}/{slug}.{ext}', 'ImagesController@getClientHint');
+Route::get('/images/{id}/{image}', 'ImagesController@getClientHint')->name('images');
