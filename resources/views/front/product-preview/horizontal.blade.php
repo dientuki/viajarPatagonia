@@ -10,13 +10,13 @@
       $routeParams = array('locale' => app()->getLocale(), 'name' => Str::slug($product->name, '-'), 'id' => $product->id);
       if (count($images) != 0) {
         $key = rand(0, count($images) - 1);
-        $img = $images[$key]->getFullUrl('preview');
+        $img = implode('/', array('images', $images[$key]->id, $images[$key]->file_name));
       }
       
     ?>
     <div class="col-{{$col}}">
       <figure class="aspect-preview list__figure">
-        <img src="about:blank" data-original="{{ $img }}" class="lzl" />
+        <img src="{{ $img }}" data-original="{{ $img }}" />
       </figure>
     </div>
     <div class="col">
