@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\ResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -46,4 +47,33 @@ class User extends Authenticatable
     public function setPasswordAttribute($value){
         $this->attributes['password'] = bcrypt($value);
     }
+
+   static function getEdit($id){
+
+    $result = User::select('id', 'name', 'email')
+        ->where('id', $id)
+        ->get()->first();
+
+    if (is_array($id)) {
+      if (count($result) == count(array_unique($id))) {
+        return $result;
+      }
+    } elseif (! is_null($result)) {
+      return $result;
+    }
+
+    //Laravel 4 fallback
+    return abort(404);
+  }   
+    
+  /**
+   * Send the password reset notification.
+   *
+   * @param  string  $token
+   * @return void
+   */
+  public function sendPasswordResetNotification($token)
+  {
+      $this->notify(new ResetPasswordNotification($token));
+  }    
 }

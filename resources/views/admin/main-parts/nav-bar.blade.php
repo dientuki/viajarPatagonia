@@ -106,7 +106,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link text-dark font-italic">
+            <a href="{{route('admin.users.index')}}" class="nav-link text-dark font-italic">
                 <i class="fa fa-line-chart mr-3 text-primary fa-fw"></i>
                 Usuarios
             </a>
