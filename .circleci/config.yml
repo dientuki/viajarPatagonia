@@ -219,25 +219,25 @@ workflows:
       - checkout_code:
           filters:
             branches:
-              ignore: master         
+              only: /^VPP-.*/          
       - php_checks:
           requires:
             - checkout_code              
           filters:
             branches:
-              ignore: master                        
+              only: /^VPP-.*/                        
       - install_webpack:
           requires:
             - checkout_code        
           filters:
             branches:
-              ignore: master                       
+              only: /^VPP-.*/                        
       - frontend_tests:
           requires:
             - install_webpack      
           filters:
             branches:
-              ignore: master       
+              only: /^VPP-.*/       
   merge_master:
     jobs:
       - checkout_code:

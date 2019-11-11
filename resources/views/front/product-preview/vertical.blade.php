@@ -6,15 +6,14 @@
     <?php 
       $images = $product->getMedia('products');
       $img = '';
-      $s = isset($grid) && $grid == 'col' ? 565 : 370;
       $routeParams = array('locale' => app()->getLocale(), 'name' => Str::slug($product->name, '-'), 'id' => $product->id);
       if (count($images) != 0) {
         $key = rand(0, count($images) - 1);
-        $img = route('images', array('id' => $images[$key]->id, 'image' => $images[$key]->file_name));
+        $img = $images[$key]->getFullUrl('preview');
       }
     ?>
     <figure class="aspect-preview list__figure">
-      <img src="about:blank" data-original="{{ $img }}" class="lzl"  sizes="(min-width: 1150px) {{ $s }}px, 100vw"/>
+      <img src="about:blank" data-original="{{ $img }}" class="lzl" />
     </figure>
       <h1 class="list__title bold">
         <a href="{{route($route, $routeParams)}}" class="list_link">{{ $product->name }}</a>
