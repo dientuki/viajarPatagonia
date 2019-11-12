@@ -65,15 +65,5 @@ class User extends Authenticatable
     //Laravel 4 fallback
     return abort(404);
   }   
-    
-  /**
-   * Send the password reset notification.
-   *
-   * @param  string  $token
-   * @return void
-   */
-  public function sendPasswordResetNotification($token)
-  {
-      $this->notify(new ResetPasswordNotification($token));
-  }    
+  
 }
