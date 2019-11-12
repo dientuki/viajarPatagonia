@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "arcanedev/log-viewer": "^5.1",
         "fideloper/proxy": "^4.0",
         "htmlmin/htmlmin": "^6.0",
         "laravel/framework": "^6.0",
