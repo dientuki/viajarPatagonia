@@ -16,6 +16,15 @@ $sidebar: (270rem/$fs);
 
   &.active {
     width: (60rem/$fs);
+
+    .selected {
+
+      .main-nav__icon:before {
+        opacity: 1;
+        transition-property: opacity;
+        transition-delay: .4s;        
+      }
+    }
   }
 }
 
@@ -34,26 +43,27 @@ $sidebar: (270rem/$fs);
     &.must-expand {
       cursor: pointer;
     }
-
-    &.selected {
-
-      &:before {
-        content: '';
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: (10rem/$fs) (15rem/$fs) (10rem/$fs) 0;
-        border-color: rgba(white, 0) rgba(white, 1) rgba(white, 0) rgba(white, 0);
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-    }
   }
 
   &__icon {
     width: (60rem/$fs);
+    position: relative;
+
+    &:before {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: (5rem/$fs) (10rem/$fs) (5rem/$fs) 0;
+      border-color: rgba(white, 0) rgba(white, 1) rgba(white, 0) rgba(white, 0);
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0;
+      transition-property: opacity;
+      transition-delay: 0;
+      content: '';
+    }
   }
 
   &__title {
@@ -82,6 +92,22 @@ $sidebar: (270rem/$fs);
 
     &.expanded {
       max-height: (600rem/$fs);
+    }
+
+    &.selected {
+
+      .main-nav__title-wrapper:before {
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: (10rem/$fs) (15rem/$fs) (10rem/$fs) 0;
+        border-color: rgba(white, 0) rgba(white, 1) rgba(white, 0) rgba(white, 0);
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
     }
   }
 }
