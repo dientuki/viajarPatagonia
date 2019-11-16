@@ -1,137 +1,92 @@
 <!-- Vertical navbar -->
-<div class="vertical-nav bg-white" id="sidebar">
-    <div class="py-4 px-3 mb-4 bg-light">
-        <div class="media d-flex align-items-center">
-            <img src="http://viajarporpatagonia.com/admin/images/logo.png" width="170" height="33" class="mr-3">
+<div class="vertical-nav" id="sidebar">
+  <div>
+      <img src="http://viajarporpatagonia.com/admin/images/logo.png" width="170" height="33" class="mr-3">
+  </div>
+
+  <div class="main-nav__title-wrapper">
+    <div class="main-nav__icon">icono</div>
+    <div class="main-nav__title">Collapsar</div>    
+  </div>
+  
+  <nav class="main-nav">
+    <ul>
+      <!-- paquetes -->
+      <li class="main-nav__item">
+        <div class="main-nav__title-wrapper must-expand">
+          <div class="main-nav__icon">icono</div>
+          <div class="main-nav__title">Paquetes</div>
         </div>
-    </div>
+        <ul class="main-nav__submenu">
+          <li class="main-nav__li"><a href="{{route('admin.packages.index')}}" class="main-nav__link">Ver paquetes</a></li>
+          <li class="main-nav__li"><a href="{{route('admin.packages.create')}}" class="main-nav__link">Nuevo paquete</a></li>
+        </ul>
+      </li>
+      
+      <!-- cruceros -->
+      <li class="main-nav__item">
+        <div class="main-nav__title-wrapper must-expand">
+          <div class="main-nav__icon">icono</div>
+          <div class="main-nav__title">Cruceros</div>
+        </div>
+        <ul class="main-nav__submenu">
+          <li class="main-nav__li"><a href="{{route('admin.cruiseships-types.index')}}" class="main-nav__link">Ver tipos de cruceros</a></li>  
+          <li class="main-nav__li"><a href="{{route('admin.cruiseships.index')}}" class="main-nav__link">Ver cruceros</a></li>
+          <li class="main-nav__li"><a href="{{route('admin.cruiseships.create')}}" class="main-nav__link">Nuevo crucero</a></li>
+        </ul>
+      </li>
 
-    <ul class="nav flex-column bg-white mb-0">
-        <li class="nav-item">
-            <a href="#" class="nav-link text-dark font-italic bg-light">
-                <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
-                Mensajes
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <div class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Lugares</div>
-
-            <ul class="nav flex-column bg-white mb-0">
-                <li class="nav-item">
-                    <a href="{{ route('admin.regions.index') }}" class="nav-link text-dark font-italic">
-                        <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-                        Regiones
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.destinations.index') }}" class="nav-link text-dark font-italic bg-light">
-                        <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
-                        Destinos
-                    </a>
-                </li>
-
-            </ul>
-        </li>
-    </ul>
-
-    <hr />
-
-    <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Cruceros</p>
-
-    <ul class="nav flex-column bg-white mb-0">
-        <li class="nav-item">
-            <a href="{{route('admin.cruiseships.index')}}" class="nav-link text-dark font-italic bg-light">
-                <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
-                Cruceros
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{route('admin.cruiseships-types.index')}}" class="nav-link text-dark font-italic">
-                <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-                Tipos de cruceros
-            </a>
-        </li>
-    </ul>
-
-    <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Excuriones</p>
-
-    <ul class="nav flex-column bg-white mb-0">
-        <li class="nav-item">
-            <a href="{{route('admin.availability.index')}}" class="nav-link text-dark font-italic bg-light">
-                <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
-                availability
-            </a>
-        </li>    
-        <li class="nav-item">
-            <a href="{{route('admin.duration.index')}}" class="nav-link text-dark font-italic bg-light">
-                <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
-                duration
-            </a>
-        </li>            
-        <li class="nav-item">
-            <a href="{{route('admin.excursions.index')}}" class="nav-link text-dark font-italic bg-light">
-                <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
-                Excuriones
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{route('admin.excursions-types.index')}}" class="nav-link text-dark font-italic">
-                <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-                Tipos de excuriones
-            </a>
-        </li>
-    </ul>
-
-    <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">
-        <a href="{{route('admin.packages.index')}}" class="nav-link text-dark font-italic bg-light">
-            <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
-            Paquetes
-        </a>
-    </p>
-
-    <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Configuraciones</p>
-
-    <ul class="nav flex-column bg-white mb-0">
-        <li class="nav-item">
-            <a href="{{route('admin.languages.index')}}" class="nav-link text-dark font-italic">
-                <i class="fa fa-area-chart mr-3 text-primary fa-fw"></i>
-                Lenguajes
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{route('admin.currencies.index')}}" class="nav-link text-dark font-italic">
-                <i class="fa fa-bar-chart mr-3 text-primary fa-fw"></i>
-                Monedas
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link text-dark font-italic">
-                <i class="fa fa-pie-chart mr-3 text-primary fa-fw"></i>
-                Mailchimp
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link text-dark font-italic">
-                <i class="fa fa-line-chart mr-3 text-primary fa-fw"></i>
-                Analitics
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{route('admin.users.index')}}" class="nav-link text-dark font-italic">
-                <i class="fa fa-line-chart mr-3 text-primary fa-fw"></i>
-                Usuarios
-            </a>
-        </li>
-    </ul>
-
-    <div class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">
+      <!-- excursiones -->
+      <li class="main-nav__item">
+        <div class="main-nav__title-wrapper must-expand">
+          <div class="main-nav__icon">icono</div>
+          <div class="main-nav__title">Excursiones</div>
+        </div>
+        <ul class="main-nav__submenu">
+          <li class="main-nav__li"><a href="{{route('admin.availability.index')}}" class="main-nav__link">Ver disponibilidad</a></li>  
+          <li class="main-nav__li"><a href="{{route('admin.duration.index')}}" class="main-nav__link">Ver duracion</a></li>
+          <li class="main-nav__li"><a href="{{route('admin.excursions-types.index')}}" class="main-nav__link">Ver tipo de excuriones</a></li>
+          <li class="main-nav__li"><a href="{{route('admin.excursions.index')}}" class="main-nav__link">Ver excursiones</a></li>
+          <li class="main-nav__li"><a href="{{route('admin.excursions.create')}}" class="main-nav__link">Nueva excursion</a></li>
+        </ul>
+      </li>   
+      
+      <!-- lugares -->
+      <li class="main-nav__item">
+        <div class="main-nav__title-wrapper must-expand">
+          <div class="main-nav__icon">icono</div>
+          <div class="main-nav__title">Lugares</div>
+        </div>
+        <ul class="main-nav__submenu">
+          <li class="main-nav__li"><a href="{{route('admin.regions.index')}}" class="main-nav__link">Regiones</a></li>  
+          <li class="main-nav__li"><a href="{{route('admin.destinations.index')}}" class="main-nav__link">Destinos</a></li>
+        </ul>
+      </li>   
+      
+      <!-- configuracion -->
+      <li class="main-nav__item">
+        <div class="main-nav__title-wrapper must-expand">
+          <div class="main-nav__icon">icono</div>
+          <div class="main-nav__title">Configuracion</div>
+        </div>
+        <ul class="main-nav__submenu">
+          <li class="main-nav__li"><a href="{{route('admin.languages.index')}}" class="main-nav__link">Lenguajes</a></li>  
+          <li class="main-nav__li"><a href="{{route('admin.currencies.index')}}" class="main-nav__link">Monedas</a></li>
+          <li class="main-nav__li"><a href="{{route('admin.users.index')}}" class="main-nav__link">Usuarios</a></li>
+        </ul>
+      </li>    
+      
+      <li class="main-nav__item">
         <form action="{{ route('logout') }}" method="POST">
-            {{ csrf_field() }}
-            <input type="submit" class="nav-link text-dark font-italic bg-light" value="Salir" />
+          {{ csrf_field() }}
+          <button class="main-nav__title-wrapper">
+            <div class="main-nav__icon">icono</div>
+            <div class="main-nav__title">Salir</div>            
+          </button>
         </form>
-
-
-    </div>
+      </li>
+    </ul>
+  </nav>
 </div>
+
 <!-- End vertical navbar -->
