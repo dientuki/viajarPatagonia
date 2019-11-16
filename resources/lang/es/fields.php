@@ -67,5 +67,8 @@ return [
     'user' => 'usuario',       
     'email' => 'email',           
     'password' => 'password',        
-    'password_confirm' => 'confirmacion del password',            
+    'password_confirm' => 'confirmacion del password',       
+    
+    // Disponibilidad
+    'availability' => 'disponibilidad'
 ];
