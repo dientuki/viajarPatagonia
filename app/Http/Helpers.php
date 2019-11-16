@@ -176,10 +176,30 @@ class Helpers {
 
     foreach($accepted as $value) {
       if (strpos($current , '.' . $value . '.') != false) {
-        return 'selected';
+        return 'selected expanded';
       }
     }
   }
 
-  static function sub_menu() {}
+  static function sub_menu($accepted, $excluded = null) {
+    $current = Route::currentRouteName();
+
+    if ($excluded != null) {
+      if (strpos($current, $excluded) != false) {
+        return;
+      }
+    }
+
+    if (strpos($current, '.' . $accepted . '.') != false) {
+      return 'selected';
+    }
+  }
+
+  static function sub_menu_only($accepted) {
+    $current = Route::currentRouteName();
+
+    if (strpos($current, $accepted) != false) {
+      return 'selected';
+    }
+  }  
 }

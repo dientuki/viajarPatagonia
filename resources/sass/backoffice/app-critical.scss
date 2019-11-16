@@ -72,6 +72,11 @@ $sidebar: (270rem/$fs);
 
   &__li {
     height: (45rem/$fs);
+
+    &.selected,
+    &:hover {
+      background:#3d4b5c;
+    }
   }
 
   &__link {
@@ -89,6 +94,7 @@ $sidebar: (270rem/$fs);
     max-height: (60rem/$fs);
     overflow: hidden;
     transition: max-height .4s;
+    margin-top: (5rem/$fs);
 
     &.expanded {
       max-height: (600rem/$fs);
@@ -109,6 +115,10 @@ $sidebar: (270rem/$fs);
         transform: translateY(-50%);
       }
     }
+  }
+
+  &__submenu {
+    margin: (10rem/$fs) 0;
   }
 }
 
