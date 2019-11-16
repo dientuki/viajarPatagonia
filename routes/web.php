@@ -28,6 +28,7 @@ Route::group(['namespace' => 'Admin',
     Route::resource('cruiseships-types', 'CruiseshipsTypesController')->except(['show']);
     Route::resource('excursions-types', 'ExcursionsTypesController')->except(['show']);
     Route::resource('availability', 'AvailabilityController')->except(['show']);
+    Route::resource('duration', 'DurationController')->except(['show']);
     Route::resource('cruiseships', 'CruiseshipsController')->except(['show']);
     Route::resource('excursions', 'ExcursionsController')->except(['show']);
     Route::resource('packages', 'PackagesController')->except(['show']);

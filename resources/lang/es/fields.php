@@ -70,5 +70,8 @@ return [
     'password_confirm' => 'confirmacion del password',       
     
     // Disponibilidad
-    'availability' => 'disponibilidad'
+    'availability' => 'disponibilidad',
+
+    // Duracion
+    'duration' => 'duracion'
 ];
