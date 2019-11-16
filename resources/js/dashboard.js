@@ -1,9 +1,10 @@
 import $ from 'jquery';
-import { toogleNav } from './modules/toogleNav/toogleNav';
+import { expandableItem, toogleNav } from './modules/sidebar/sidebar';
 import 'bootstrap/js/dist/alert';
 __webpack_public_path__ = `${window.location.protocol}//${window.location.host}/dist/`;
 
 toogleNav();
+expandableItem(document.querySelectorAll('.must-expand'));
 
 // Load draft js
 if (document.querySelectorAll('.draftjs').length > 0) {
