@@ -19,12 +19,15 @@
     <meta property="og:description" content="{{ substr($desc, 0, 155)}}">
     
     <?php $media = $product->getFirstMedia('products'); ?>
-    <?php $image = Image::load($media->getPath('facebook')); ?>
 
-    <meta property="og:image" content="{{ $media->getFullUrl('facebook') }}" />
-    <meta property="og:image:width" content="{{ $image->getWidth() }}">
-    <meta property="og:image:height" content="{{ $image->getHeight() }}">
-    <meta property="og:image:type" content="{{$media->mime_type}}" />
+    @if ($media != null)
+      <?php $image = Image::load($media->getPath('facebook')); ?>
+      <meta property="og:image" content="{{ $media->getFullUrl('facebook') }}" />
+      <meta property="og:image:width" content="{{ $image->getWidth() }}">
+      <meta property="og:image:height" content="{{ $image->getHeight() }}">
+      <meta property="og:image:type" content="{{$media->mime_type}}" />
+    @endif
+
     <meta property="fb:app_id" content="1494084460xxxxxx">
 @endpush
 
