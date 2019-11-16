@@ -1,3 +1,4 @@
+/* eslint-disable no-new */
 import lzl from './modules/lazyload/native';
 __webpack_public_path__ = `${window.location.protocol}//${window.location.host}/dist/`;
 
@@ -6,9 +7,25 @@ const settings_lzl = {
   elements_selector: '.lzl'
 };
 
-if (document.querySelectorAll('.Wallop').length > 0) {
+if (document.querySelector('#product-slider') !== null) {
   import(/* webpackChunkName: "slider" */ './modules/slider/slider').then((SliderMiddleware) => {
-    SliderMiddleware.initSlider(document.querySelectorAll('.Wallop'));
+    new SliderMiddleware.default({
+      arrowKeys: false,
+      autoHeight: true,
+      autoplay: true,
+      autoplayButtonOutput: false,
+      autoplayHoverPause: true,
+      autoplayTimeout: 5000,
+      container: '#product-slider',
+      controls: false,
+      items: 1,
+      lazyload: true,
+      loop: true,
+      mode: 'carousel',
+      nav: false,
+      rewind: true,
+      speed: 400
+    });
   });
 }
 

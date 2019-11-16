@@ -1,30 +1,33 @@
-import Wallop from 'wallop';
+import { tns } from 'tiny-slider/src/tiny-slider';
 
-export function initSlider(elements) {
+export default class slider {
 
-  function lzl(element) {
-    const next = element.querySelector('.Wallop-item--current').nextElementSibling;
+  constructor(settings) {
+    this.settings = settings;
 
-    if (next !== null) {
-      const img = next.querySelector('.wallop-lzl');
+    if (this.settings.wrapper === undefined) {
+      this.wrapper = document.querySelector(this.settings.container).parentNode;
+    } else {
+      this.wrapper = this.settings.wrapper;
+      delete this.settings.wrapper;
+    }
 
-      if (img !== null) {
-        window.requestAnimationFrame(() => {
-          img.src = img.dataset.original;
-          img.classList.remove('wallop-lzl');
-        });
-      }
+    this.slider = tns(this.settings);
+
+    this.autoplay();
+  }
+
+  autoplay() {
+    if (this.settings.autoplay === true) {
+      this.slider.play();
+    }
+
+    if (this.settings.autoHeight === true) {
+      window.addEventListener('resize', () => {
+        this.slider.updateSliderHeight();
+      });
+      window.dispatchEvent(new Event('resize'));
     }
   }
 
-  elements.forEach((element) => {
-    const slider = new Wallop(element);
-
-    lzl(element);
-
-    setInterval(() => {
-      slider.next();
-      lzl(element);
-    }, 3000);
-  });
 }
