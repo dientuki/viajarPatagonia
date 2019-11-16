@@ -63,10 +63,12 @@
         @include('front/product-preview/horizontal', ['products' => $excursionsUnrelated, 'route' => 'excursion', 'noprice' => true])
       </div>
 
-      <div class="aspect-slider product__map">
-        <iframe src="about:blank" data-original="{{ $product->map }}" class="lzl"></iframe>
-      </div>
-
+      @if ($product->map != '')
+        <div class="aspect-slider product__map">
+          <iframe src="about:blank" data-original="{{ $product->map }}" class="lzl"></iframe>
+        </div>
+      @endif
+      
       <div class="bold button button__cta col-bottom openOverlay">{{ ucfirst(__('front.cta')) }}</div>
 
     </div>
