@@ -47,6 +47,8 @@ class EditExcursion extends FormRequest
         $validation['map'] = 'url|nullable';
         $validation['fk_excursion_type'] = 'required|numeric|exists:excursions_types,id';
         $validation['fk_destination'] = 'required|numeric|exists:destinations,id';
+        $validation['fk_availability'] = 'required|numeric|exists:availability,id';
+        $validation['fk_duration'] = 'required|numeric|exists:duration,id';           
         $validation['images'] = 'nullable';
         $validation['delete'] = 'nullable';
 
@@ -81,6 +83,8 @@ class EditExcursion extends FormRequest
         $validation['is_active'] = __('fields.active');
         $validation['fk_cruiseship_type'] = __('fields.cruiseshipType');
         $validation['fk_destination'] = __('fields.destination');
+        $validation['fk_availability'] = __('fields.availability');
+        $validation['fk_duration'] = __('fields.duration');           
         $validation['map'] = __('fields.map');    
         $validation['images[]'] = 'dunno';        
 

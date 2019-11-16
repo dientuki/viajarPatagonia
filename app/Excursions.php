@@ -34,7 +34,7 @@ class Excursions extends Model implements HasMedia
      *
      * @var array
      */
-    protected $fillable = ['is_active', 'map', 'fk_excursion_type', 'fk_destination'];    
+    protected $fillable = ['is_active', 'map', 'fk_excursion_type', 'fk_destination', 'fk_availability', 'fk_duration'];    
 
     static public function getAll(){
       $excursions = Excursions::select('excursions.id', 'excursions.is_active');
@@ -68,7 +68,7 @@ class Excursions extends Model implements HasMedia
 
     static function getEdit($id){
 
-      $excursions = Excursions::select('id', 'is_active', 'map', 'fk_excursion_type', 'fk_destination');
+      $excursions = Excursions::select('id', 'is_active', 'map', 'fk_excursion_type', 'fk_destination', 'fk_availability', 'fk_duration');
       $result = $excursions->where('id', $id)->get()->first();
   
       if (is_array($id)) {
