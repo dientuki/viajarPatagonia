@@ -12,3 +12,17 @@ export function toogleNav() {
     });
   }
 }
+
+export function expandableItem(elements) {
+  if (elements.lenght === 0) {
+    return;
+  }
+
+  Array.from(elements).forEach((element) => {
+    element.addEventListener('click', (event) => {
+      const parent = event.target.closest('.main-nav__item');
+
+      parent.classList.toggle('expanded');
+    });
+  });
+}
