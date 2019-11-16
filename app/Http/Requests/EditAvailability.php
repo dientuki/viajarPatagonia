@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Translations\Language;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCruiseshipsTypes extends FormRequest
+class EditAvailability extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

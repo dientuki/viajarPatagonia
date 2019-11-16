@@ -2,7 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\LanApp\Translations\Languageguage;
+
+use App\Translations\Language;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreExcursionsTypes extends FormRequest

@@ -30,9 +30,10 @@ class DatabaseSeeder extends Seeder
             PackagesTableSeeder::class,
             PackagesTranslationSeeder::class,
             PackagesPricesSeeder::class,
-
             Package2ExcursionSeeder::class,
             Package2DestinationSeeder::class,
+            AvailabilityTableSeeder::class,
+            AvailabilityTranslationSeeder::class,
         ]);
     }
 }
