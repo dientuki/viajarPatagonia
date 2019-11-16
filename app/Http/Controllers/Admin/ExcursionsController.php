@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Exception;
 use App\Currency;
+use App\Duration;
 use App\Excursions;
 use App\Destination;
+use App\Availability;
 use App\ExcursionsTypes;
 use App\ExcursionsPrices;
 use Illuminate\Http\Request;
@@ -45,10 +47,12 @@ class ExcursionsController extends Controller
         $excursionType = ExcursionsTypes::getLists();
         $destination = Destination::getLists();
         $currencies = Currency::getAll();
+        $availability = Availability::getLists();
+        $duration = Duration::getLists();
 
         $languages = Language::getAll();
         
-        return view('admin/excursions/create', compact('action', 'excursion',  'form_data', 'languages', 'excursionType', 'currencies', 'destination'));
+        return view('admin/excursions/create', compact('action', 'excursion',  'form_data', 'languages', 'excursionType', 'currencies', 'destination', 'availability', 'duration'));
     }
 
     /**

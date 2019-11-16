@@ -71,7 +71,9 @@ return [
     
     // Disponibilidad
     'availability' => 'disponibilidad',
+    'availability_select_placeholder' => 'Seleccione una disponibilidad..',
 
     // Duracion
-    'duration' => 'duracion'
+    'duration' => 'duracion',
+    'duration_select_placeholder' => 'Seleccione una duracion..',
 ];

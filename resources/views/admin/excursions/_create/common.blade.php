@@ -31,6 +31,32 @@
         @enderror
       </div>
 
+      <div class="form-group">
+        <?php $class = $errors->has('fk_availability') != null ? 'form-control is-invalid' : 'form-control'; ?>
+        {!! Form::label('fk_availability', ucfirst(__('fields.availability'))) !!}
+        {!! Form::select('fk_availability', $availability, $excursion->fk_availability,
+        array('placeholder' =>
+        ucfirst(__('fields.availability_select_placeholder')), 'class' => $class) ) !!}
+        @error('fk_availability')
+        <div class="invalid-feedback">
+          <strong>{{ $message }}</strong>
+        </div>
+        @enderror
+      </div>   
+
+      <div class="form-group">
+        <?php $class = $errors->has('fk_duration') != null ? 'form-control is-invalid' : 'form-control'; ?>
+        {!! Form::label('fk_duration', ucfirst(__('fields.duration'))) !!}
+        {!! Form::select('fk_duration', $duration, $excursion->fk_duration,
+        array('placeholder' =>
+        ucfirst(__('fields.duration_select_placeholder')), 'class' => $class) ) !!}
+        @error('fk_duration')
+        <div class="invalid-feedback">
+          <strong>{{ $message }}</strong>
+        </div>
+        @enderror
+      </div>          
+
       <div class="form-check">
         {!! Form::checkbox('is_active', 1, false, array('class' => 'form-check-input') ) !!}
         {!! Form::label('is_active', ucfirst(__('fields.active'))) !!}
