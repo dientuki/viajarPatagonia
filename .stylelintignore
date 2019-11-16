@@ -2,3 +2,4 @@ resources/sass/backoffice/modules/draft/rich-editor.scss
 resources/sass/backoffice/modules/dropzone/*
 resources/sass/frontend/layout/gridlex*
 resources/sass/frontend/base/normalize.scss
+resources/sass/frontend/vendor/*
