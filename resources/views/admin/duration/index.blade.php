@@ -19,7 +19,7 @@
         @foreach ($duration as $item)
         <tr>
             @foreach ($languages as $language)
-                <td>{{$item['type' . $language->id]}}</td>
+                <td>{{$item['duration' . $language->id]}}</td>
             @endforeach
 
             <td class="column-action px-4">
