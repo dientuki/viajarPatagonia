@@ -29,9 +29,26 @@ $sidebar: (270rem/$fs);
     background: #61798d;
     width: 100%;
     border: none;
+    position: relative;
 
     &.must-expand {
       cursor: pointer;
+    }
+
+    &.selected {
+
+      &:before {
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: (10rem/$fs) (15rem/$fs) (10rem/$fs) 0;
+        border-color: rgba(white, 0) rgba(white, 1) rgba(white, 0) rgba(white, 0);
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
     }
   }
 

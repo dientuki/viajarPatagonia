@@ -3,6 +3,7 @@
 namespace App\Http\Helpers;
 
 use Request;
+use Illuminate\Support\Facades\Route;
 
 class Helpers {
   public static function load_resource($resource, $url = true) {
@@ -39,7 +40,6 @@ class Helpers {
 
     //$cdn = 'url(' . ciu_util_get_base_url('front') . '/' . path_to_theme() . '/dist/';
     $styles = file_get_contents(Helpers::load_resource($file, false));
-    //return str_replace('url(../', $cdn, $styles);
     return $styles;
   }
 
@@ -170,4 +170,16 @@ class Helpers {
 
     return $langs;
   }
+
+  static function main_menu($accepted) {
+    $current = Route::currentRouteName();
+
+    foreach($accepted as $value) {
+      if (strpos($current , '.' . $value . '.') != false) {
+        return 'selected';
+      }
+    }
+  }
+
+  static function sub_menu() {}
 }
