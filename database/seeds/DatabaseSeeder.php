@@ -34,6 +34,8 @@ class DatabaseSeeder extends Seeder
             Package2DestinationSeeder::class,
             AvailabilityTableSeeder::class,
             AvailabilityTranslationSeeder::class,
+            DurationTableSeeder::class,
+            DurationTranslationSeeder::class,            
         ]);
     }
 }
