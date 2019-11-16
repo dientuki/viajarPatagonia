@@ -62,7 +62,7 @@ class AvailabilityController extends Controller
                 AvailabilityTranslation::create([
                     'fk_language' => $data['fk_language_' . $language->id],
                     'fk_availability' => $availability->id,
-                    'type' => $data['language_' . $language->id]
+                    'availability' => $data['language_' . $language->id]
                 ]);
             }
         }        
@@ -112,7 +112,7 @@ class AvailabilityController extends Controller
                 $availabilityTranslation = AvailabilityTranslation::getEdit($where);
 
                 $availabilityTranslation->fill([
-                    'type' => $data['language_' . $language->id]
+                    'availability' => $data['language_' . $language->id]
                 ])->save();
             }
         }  
