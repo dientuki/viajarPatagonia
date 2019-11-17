@@ -37,7 +37,7 @@ export function sortable(wrapper) {
       }
     });
 
-    element.addEventListener('dragend', (e) => {
+    element.addEventListener('dragend', () => {
       selected = null;
 
       wrapper.querySelectorAll('.order').forEach((newOrder, index) => {
