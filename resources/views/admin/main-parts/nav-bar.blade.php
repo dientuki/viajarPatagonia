@@ -60,21 +60,21 @@
           <div class="main-nav__title">Lugares</div>
         </div>
         <ul class="main-nav__submenu">
-          <li class="main-nav__li"><a href="{{route('admin.regions.index')}}" class="main-nav__link {{ Helpers::sub_menu('regions') }}">Regiones</a></li>  
-          <li class="main-nav__li"><a href="{{route('admin.destinations.index')}}" class="main-nav__link {{ Helpers::sub_menu('destinations') }}">Destinos</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('regions') }}"><a href="{{route('admin.regions.index')}}" class="main-nav__link">Regiones</a></li>  
+          <li class="main-nav__li {{ Helpers::sub_menu('destinations') }}"><a href="{{route('admin.destinations.index')}}" class="main-nav__link">Destinos</a></li>
         </ul>
       </li> 
       
       <!-- slider -->
-      <li class="main-nav__item {{ Helpers::main_menu(['regions', 'destinations']) }}">
+      <li class="main-nav__item {{ Helpers::main_menu(['homeslider']) }}">
         <div class="main-nav__title-wrapper must-expand">
           <div class="main-nav__icon">icono</div>
           <div class="main-nav__title">Extras</div>
         </div>
         <ul class="main-nav__submenu">
-          <li class="main-nav__li"><a href="{{route('admin.regions.index')}}" class="main-nav__link {{ Helpers::sub_menu('regions') }}">Consultas</a></li>  
-          <li class="main-nav__li"><a href="{{route('admin.destinations.index')}}" class="main-nav__link {{ Helpers::sub_menu('destinations') }}">Slider Home</a></li>
-          <li class="main-nav__li"><a href="{{route('admin.destinations.index')}}" class="main-nav__link {{ Helpers::sub_menu('destinations') }}">Paginas</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('regions') }}"><a href="{{route('admin.regions.index')}}" class="main-nav__link {{ Helpers::sub_menu('regions') }}">Consultas</a></li>  
+          <li class="main-nav__li {{ Helpers::sub_menu('homeslider') }}"><a href="{{route('admin.homeslider.index')}}" class="main-nav__link">Slider Home</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('destinations') }}"><a href="{{route('admin.destinations.index')}}" class="main-nav__link {{ Helpers::sub_menu('destinations') }}">Paginas</a></li>
         </ul>
       </li>      
       
