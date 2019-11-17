@@ -63,7 +63,20 @@
           <li class="main-nav__li"><a href="{{route('admin.regions.index')}}" class="main-nav__link {{ Helpers::sub_menu('regions') }}">Regiones</a></li>  
           <li class="main-nav__li"><a href="{{route('admin.destinations.index')}}" class="main-nav__link {{ Helpers::sub_menu('destinations') }}">Destinos</a></li>
         </ul>
-      </li>   
+      </li> 
+      
+      <!-- slider -->
+      <li class="main-nav__item {{ Helpers::main_menu(['regions', 'destinations']) }}">
+        <div class="main-nav__title-wrapper must-expand">
+          <div class="main-nav__icon">icono</div>
+          <div class="main-nav__title">Extras</div>
+        </div>
+        <ul class="main-nav__submenu">
+          <li class="main-nav__li"><a href="{{route('admin.regions.index')}}" class="main-nav__link {{ Helpers::sub_menu('regions') }}">Consultas</a></li>  
+          <li class="main-nav__li"><a href="{{route('admin.destinations.index')}}" class="main-nav__link {{ Helpers::sub_menu('destinations') }}">Slider Home</a></li>
+          <li class="main-nav__li"><a href="{{route('admin.destinations.index')}}" class="main-nav__link {{ Helpers::sub_menu('destinations') }}">Paginas</a></li>
+        </ul>
+      </li>      
       
       <!-- configuracion -->
       <li class="main-nav__item {{ Helpers::main_menu(['languages', 'currencies', 'users']) }}">
@@ -74,6 +87,8 @@
         <ul class="main-nav__submenu">
           <li class="main-nav__li"><a href="{{route('admin.languages.index')}}" class="main-nav__link {{ Helpers::sub_menu('languages') }}">Lenguajes</a></li>  
           <li class="main-nav__li"><a href="{{route('admin.currencies.index')}}" class="main-nav__link {{ Helpers::sub_menu('currencies') }}">Monedas</a></li>
+          <li class="main-nav__li"><a href="{{route('admin.currencies.index')}}" class="main-nav__link {{ Helpers::sub_menu('currencies') }}">Third party</a></li>
+          <li class="main-nav__li"><a href="{{route('admin.currencies.index')}}" class="main-nav__link {{ Helpers::sub_menu('currencies') }}">Footer</a></li>
           <li class="main-nav__li"><a href="{{route('admin.users.index')}}" class="main-nav__link {{ Helpers::sub_menu('users') }}">Usuarios</a></li>
         </ul>
       </li>    
