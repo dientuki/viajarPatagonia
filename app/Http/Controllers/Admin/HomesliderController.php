@@ -29,5 +29,20 @@ class HomesliderController extends Controller
         return view('admin/homeslider/index', compact('homeslider', 'languages'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $homeslider = new Homeslider();
+        $action = 'create';
+        $form_data = array('route' => 'admin.homeslider.store', 'method' => 'POST');
+        $languages = Language::getAll();
+        
+        return view('admin/homeslider/create', compact('action', 'homeslider',  'form_data', 'languages'));
+    }    
+
     public function destroy() {}
 }

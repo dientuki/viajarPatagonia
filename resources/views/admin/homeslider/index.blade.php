@@ -44,7 +44,7 @@
 
 @include ('admin/widgets/modal-delete')
 
-<a href="{{route('admin.excursions.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(__('fields.slider')) }}">{{__('buttons.create')}} {{ ucfirst(__('fields.slider')) }}</a>
+<a href="{{route('admin.homeslider.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(__('fields.slider')) }}">{{__('buttons.create')}} {{ ucfirst(__('fields.slider')) }}</a>
 <a href="{{route('admin.homeslider.order')}}" class="btn btn-secondary" title="{{__('buttons.reorder')}} {{ ucfirst(__('fields.homeslider')) }}">{{__('buttons.reorder')}} {{ ucfirst(__('fields.homeslider')) }}</a>
 
 

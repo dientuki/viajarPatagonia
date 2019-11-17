@@ -76,4 +76,8 @@ return [
     // Duracion
     'duration' => 'duracion',
     'duration_select_placeholder' => 'Seleccione una duracion..',
+
+    // Slider
+    'homeslider' => 'slider de la home',
+    'slider' => 'slide'
 ];
