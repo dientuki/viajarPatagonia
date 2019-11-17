@@ -20,13 +20,13 @@ class CreateHomesliderTranslationTable extends Migration
 
             $table->tinyIncrements('id');
             $table->tinyInteger('fk_language')->unsigned();
-            $table->tinyInteger('fk_homesliders')->unsigned();            
+            $table->tinyInteger('fk_homeslider')->unsigned();            
             $table->string('title');
             $table->string('date');
             $table->string('description');
 
             $table->foreign('fk_language')->references('id')->on('languages');
-            $table->foreign('fk_homesliders')->references('id')->on('homesliders');
+            $table->foreign('fk_homeslider')->references('id')->on('homesliders');
         });
     }
 
