@@ -42,6 +42,7 @@ if (document.querySelectorAll('.multiselect').length > 0) {
 if (document.querySelector('.sortable') !== null) {
   import(/* webpackChunkName: "sortable" */ './modules/sortable/sortable').then((module) => {
     module.sortable(document.querySelector('.sortable'));
+    module.update(document.querySelector('.sortable-update'));
   });
 }
 

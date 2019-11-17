@@ -65,6 +65,10 @@ class Homeslider extends Model implements HasMedia
       return abort(404);
     }
 
+    static function updateOrder($id, $order) {
+      Homeslider::where('id', $id)->update(['order' => $order]);
+    }
+
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('backoffice')

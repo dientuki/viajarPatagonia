@@ -48,3 +48,25 @@ export function sortable(wrapper) {
 
   });
 }
+
+export function update(button) {
+  button.addEventListener('click', (e) => {
+    const data = [];
+
+    document.querySelectorAll('.order').forEach((element) => {
+      data.push({
+        id: element.dataset.id,
+        order: element.dataset.order
+      });
+    });
+
+    fetch(e.target.dataset.href, {
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+      },
+      method: 'POST'
+    });
+  });
+}

@@ -45,4 +45,12 @@ class HomesliderController extends Controller
     }    
 
     public function destroy() {}
+
+    public function order(Request $request) {
+      $data = json_decode($request->getContent(), true);
+
+      foreach($data as $order) {
+        Homeslider::updateOrder($order['id'], $order['order']);
+      }
+    }
 }
