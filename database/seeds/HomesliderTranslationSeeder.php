@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class HomeslidersTranslationSeeder extends Seeder
+class HomesliderTranslationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,42 +11,42 @@ class HomeslidersTranslationSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('homesliders_translation')->insert([
+        DB::table('homeslider_translation')->insert([
             'fk_language' => 1,
             'fk_homeslider' => 1,
             'title' => 'Patagonia excursion  es',
             'date' => 'Salida',
             'description' => 'bajada patagonia',
         ]);
-        DB::table('homesliders_translation')->insert([
+        DB::table('homeslider_translation')->insert([
             'fk_language' => 2,
             'fk_homeslider' => 1,
             'title' => 'Patagonia excursion  en',
             'date' => 'Salida',
             'description' => 'description patagonia',
         ]);
-        DB::table('homesliders_translation')->insert([
+        DB::table('homeslider_translation')->insert([
             'fk_language' => 3,
             'fk_homeslider' => 1,
             'title' => 'Patagonia excursion  pt',
             'date' => 'Salida',
             'description' => 'linha de queda patagonia',
         ]);
-        DB::table('homesliders_translation')->insert([
+        DB::table('homeslider_translation')->insert([
             'fk_language' => 1,
             'fk_homeslider' => 2,
             'title' => 'Antartida excursion  es',
             'date' => 'Salida',
             'description' => 'bajada Antartida excursion ',            
         ]);
-        DB::table('homesliders_translation')->insert([
+        DB::table('homeslider_translation')->insert([
             'fk_language' => 2,
             'fk_homeslider' => 2,
             'title' => 'Antartida excursion  en',
             'date' => 'Salida',
             'description' => 'description Antartida excursion ',  
         ]);
-        DB::table('homesliders_translation')->insert([
+        DB::table('homeslider_translation')->insert([
             'fk_language' => 3,
             'fk_homeslider' => 2,
             'title' => 'Antartida excursion  pt',
