@@ -2,13 +2,13 @@
 
 <!-- Vertical navbar -->
 <div class="vertical-nav" id="sidebar">
-  <div>
-      <img src="http://viajarporpatagonia.com/admin/images/logo.png" width="170" height="33" class="mr-3">
+  <div class="vertical-nav__image">
+      <img src="{{ asset('images/logo.png') }}" width="270" height="60">
   </div>
 
-  <div class="main-nav__title-wrapper">
-    <div class="main-nav__icon">icono</div>
-    <div class="main-nav__title">Collapsar</div>    
+  <div class="main-nav__title-wrapper" id="sidebarCollapse">
+    <div class="main-nav__icon">{!! Helpers::load_svg('ico-next') !!}</div>
+    <div class="main-nav__title">Colapsar</div>    
   </div>
 
   <nav class="main-nav">
