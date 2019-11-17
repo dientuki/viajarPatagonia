@@ -119,7 +119,7 @@ $sidebar: (270rem/$fs);
     }
 
     .main-nav__item {
-      height: (60rem/$fs);
+      max-height: (60rem/$fs);
     }
   }
 }
