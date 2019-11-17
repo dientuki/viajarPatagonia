@@ -20,9 +20,9 @@ export function expandableItem(elements) {
 
   Array.from(elements).forEach((element) => {
     element.addEventListener('click', (event) => {
-      const parent = event.target.closest('.main-nav__item');
-
-      parent.classList.toggle('expanded');
+      if (event.target.closest('.active') === null) {
+        event.target.closest('.main-nav__item').classList.toggle('expanded');
+      }
     });
   });
 }

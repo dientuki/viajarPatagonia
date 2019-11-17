@@ -25,6 +25,10 @@ $sidebar: (270rem/$fs);
         transition-delay: .4s;        
       }
     }
+
+    .main-nav__item {
+      height: (60rem/$fs);
+    }
   }
 }
 
