@@ -3,22 +3,6 @@
 
 $sidebar: (270rem/$fs);
 
-.vertical-nav {
-  width: $sidebar;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  box-shadow: (3em/$fs) (3em/$fs) (10em/$fs) rgba(0, 0, 0, .1);
-  transition: width .4s;
-  overflow: hidden;
-  background: #364150;
-
-  &.active {
-    width: (60rem/$fs);
-  }
-}
-
 .main-nav {
   width: (270rem/$fs);
 
@@ -29,6 +13,7 @@ $sidebar: (270rem/$fs);
     background: #61798d;
     width: 100%;
     border: none;
+    position: relative;
 
     &.must-expand {
       cursor: pointer;
@@ -37,6 +22,23 @@ $sidebar: (270rem/$fs);
 
   &__icon {
     width: (60rem/$fs);
+    position: relative;
+
+    &:before {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: (5rem/$fs) (10rem/$fs) (5rem/$fs) 0;
+      border-color: rgba(#fff, 0) rgba(#fff, 1) rgba(#fff, 0) rgba(#fff, 0);
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0;
+      transition-property: opacity;
+      transition-delay: 0;
+      content: "";
+    }
   }
 
   &__title {
@@ -45,6 +47,11 @@ $sidebar: (270rem/$fs);
 
   &__li {
     height: (45rem/$fs);
+
+    &.selected,
+    &:hover {
+      background: #3d4b5c;
+    }
   }
 
   &__link {
@@ -62,9 +69,57 @@ $sidebar: (270rem/$fs);
     max-height: (60rem/$fs);
     overflow: hidden;
     transition: max-height .4s;
+    margin-top: (5rem/$fs);
 
     &.expanded {
       max-height: (600rem/$fs);
+    }
+
+    &.selected {
+      .main-nav__title-wrapper:before {
+        content: "";
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: (10rem/$fs) (15rem/$fs) (10rem/$fs) 0;
+        border-color: rgba(#fff, 0) rgba(#fff, 1) rgba(#fff, 0) rgba(#fff, 0);
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+
+  &__submenu {
+    margin: (10rem/$fs) 0;
+  }
+}
+
+.vertical-nav {
+  width: $sidebar;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: (3em/$fs) (3em/$fs) (10em/$fs) rgba(0, 0, 0, .1);
+  transition: width .4s;
+  overflow: hidden;
+  background: #364150;
+
+  &.active {
+    width: (60rem/$fs);
+
+    .selected {
+      .main-nav__icon:before {
+        opacity: 1;
+        transition-property: opacity;
+        transition-delay: .4s;
+      }
+    }
+
+    .main-nav__item {
+      max-height: (60rem/$fs);
     }
   }
 }
