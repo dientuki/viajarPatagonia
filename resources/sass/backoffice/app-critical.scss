@@ -3,6 +3,12 @@
 
 $sidebar: (270rem/$fs);
 
+#sidebarCollapse {
+  margin: (5rem/$fs) 0;
+  cursor: pointer !important;
+  color: #fff;
+}
+
 .main-nav {
   width: (270rem/$fs);
 
@@ -11,7 +17,7 @@ $sidebar: (270rem/$fs);
     display: flex;
     align-items: center;
     background: #61798d;
-    width: 100%;
+    width: (270rem/$fs);
     border: none;
     position: relative;
 
@@ -22,6 +28,10 @@ $sidebar: (270rem/$fs);
 
   &__icon {
     width: (60rem/$fs);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
 
     &:before {
@@ -47,6 +57,11 @@ $sidebar: (270rem/$fs);
 
   &__li {
     height: (45rem/$fs);
+    margin-top: (3rem/$fs);
+
+    &:first-child {
+      margin-top: 0;
+    }
 
     &.selected,
     &:hover {
@@ -61,6 +76,11 @@ $sidebar: (270rem/$fs);
     align-items: center;
     padding-left: (15rem/$fs);
     color: #fff;
+
+    &:hover {
+      color: #fff;
+      text-decoration: none;
+    }
   }
 
   &__item {
@@ -76,17 +96,23 @@ $sidebar: (270rem/$fs);
     }
 
     &.selected {
-      .main-nav__title-wrapper:before {
-        content: "";
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: (10rem/$fs) (15rem/$fs) (10rem/$fs) 0;
-        border-color: rgba(#fff, 0) rgba(#fff, 1) rgba(#fff, 0) rgba(#fff, 0);
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
+      .main-nav__title-wrapper {
+        background: #3390dc;
+        color: #fff;
+
+        /* stylelint-disable max-nesting-depth */
+        &:before {
+          content: "";
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: (10rem/$fs) (15rem/$fs) (10rem/$fs) 0;
+          border-color: rgba(#fff, 0) rgba(#fff, 1) rgba(#fff, 0) rgba(#fff, 0);
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+        }
       }
     }
   }
@@ -107,6 +133,12 @@ $sidebar: (270rem/$fs);
   overflow: hidden;
   background: #364150;
 
+  .ico-next {
+    height: (20rem/$fs);
+    transform: scaleX(-1);
+    transition: transform .4s;
+  }
+
   &.active {
     width: (60rem/$fs);
 
@@ -121,6 +153,18 @@ $sidebar: (270rem/$fs);
     .main-nav__item {
       max-height: (60rem/$fs);
     }
+
+    .ico-next {
+      transform: scaleX(1);
+    }
+
+    .must-expand {
+      cursor: default;
+    }
+  }
+
+  &__image {
+    background: #fff;
   }
 }
 
