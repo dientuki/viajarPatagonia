@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHomeslidersTable extends Migration
+class CreateHomesliderTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateHomeslidersTable extends Migration
      */
     public function up()
     {
-        Schema::create('homesliders', function (Blueprint $table) {
+        Schema::create('homeslider', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
@@ -23,6 +23,7 @@ class CreateHomeslidersTable extends Migration
             $table->string('url');
             $table->string('hotel');
             $table->tinyInteger('stars');
+            $table->tinyInteger('order');
         });
     }
 
@@ -33,6 +34,6 @@ class CreateHomeslidersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('homesliders');
+        Schema::dropIfExists('homeslider');
     }
 }

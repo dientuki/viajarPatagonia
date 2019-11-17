@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHomeslidersTranslationTable extends Migration
+class CreateHomesliderTranslationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,20 @@ class CreateHomeslidersTranslationTable extends Migration
      */
     public function up()
     {
-        Schema::create('homesliders_translation', function (Blueprint $table) {
+        Schema::create('homeslider_translation', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
 
             $table->tinyIncrements('id');
             $table->tinyInteger('fk_language')->unsigned();
-            $table->tinyInteger('fk_homeslider')->unsigned();            
+            $table->tinyInteger('fk_slider')->unsigned();            
             $table->string('title');
             $table->string('date');
             $table->string('description');
 
             $table->foreign('fk_language')->references('id')->on('languages');
-            $table->foreign('fk_homeslider')->references('id')->on('homesliders');
+            $table->foreign('fk_slider')->references('id')->on('homeslider');
         });
     }
 
@@ -37,6 +37,6 @@ class CreateHomeslidersTranslationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('homesliders_translation');
+        Schema::dropIfExists('homeslider_translation');
     }
 }
