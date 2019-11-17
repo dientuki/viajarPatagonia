@@ -35,12 +35,12 @@ class Homeslider extends Model implements HasMedia
     protected $fillable = ['is_active', 'url', 'hotel', 'stars', 'order'];
 
     static public function getAll(){
-      $homeslider = Homesliders::select('homeslider.id', 'homeslider.is_active');
+      $homeslider = Homeslider::select('homeslider.id', 'homeslider.is_active');
       $languages = Language::getAll();
 
       foreach ($languages as $language) {
         $homeslider->addSelect("ct$language->id.title as title$language->id")
-          ->join("homeslider_translation as ct$language->id", 'homeslider.id', '=', "ct$language->id.fk_homeslider")
+          ->join("homeslider_translation as ct$language->id", 'homeslider.id', '=', "ct$language->id.fk_slider")
           ->join("languages as l$language->id", "l$language->id.id", '=', "ct$language->id.fk_language")
           ->where("l$language->id.iso", $language->iso);
       }
@@ -50,7 +50,7 @@ class Homeslider extends Model implements HasMedia
 
     static function getEdit($id){
 
-      $homeslider = homeslider::select('id', 'is_active', 'url', 'hotel', 'stars', 'order');
+      $homeslider = Homeslider::select('id', 'is_active', 'url', 'hotel', 'stars', 'order');
       $result = $homeslider->where('id', $id)->get()->first();
   
       if (is_array($id)) {
