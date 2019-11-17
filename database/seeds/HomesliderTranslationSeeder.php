@@ -52,6 +52,27 @@ class HomesliderTranslationSeeder extends Seeder
             'title' => 'Antartida excursion  pt',
             'date' => 'Salida',
             'description' => 'linha de queda Antartida excursion ',  
-        ]);                  
+        ]);   
+        DB::table('homeslider_translation')->insert([
+            'fk_language' => 1,
+            'fk_slider' => 3,
+            'title' => '3 Antartida excursion  es',
+            'date' => 'Salida',
+            'description' => 'bajada Antartida excursion ',            
+        ]);
+        DB::table('homeslider_translation')->insert([
+            'fk_language' => 2,
+            'fk_slider' => 3,
+            'title' => '3 Antartida excursion  en',
+            'date' => 'Salida',
+            'description' => 'description Antartida excursion ',  
+        ]);
+        DB::table('homeslider_translation')->insert([
+            'fk_language' => 3,
+            'fk_slider' => 3,
+            'title' => '3 Antartida excursion  pt',
+            'date' => 'Salida',
+            'description' => 'linha de queda Antartida excursion ',  
+        ]);                       
     }
 }

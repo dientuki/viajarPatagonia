@@ -33,9 +33,15 @@ if (document.querySelector('.loadMap') !== null) {
 }
 
 // Load multiselect
-if (document.querySelector('.multiselect') !== null) {
+if (document.querySelectorAll('.multiselect').length > 0) {
   import(/* webpackChunkName: "multiselect" */ './modules/multiselect/multiselect').then((module) => {
     module.multiselect(document.querySelectorAll('.multiselect'));
+  });
+}
+
+if (document.querySelector('.sortable') !== null) {
+  import(/* webpackChunkName: "sortable" */ './modules/sortable/sortable').then((module) => {
+    module.sortable(document.querySelector('.sortable'));
   });
 }
 

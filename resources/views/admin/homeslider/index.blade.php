@@ -3,7 +3,7 @@
 @section ('content')
 
 @if (isset($homeslider))
-<table class="table table-striped table-bordered table-hover table-sm">
+<table class="table table-striped table-bordered table-hover table-sm sortable">
     <thead class="thead-dark">
         <tr>
         <th colspan="{{count($languages)}}">{{ ucfirst(__('fields.homeslider')) }}</th>
@@ -18,13 +18,13 @@
     </thead>
     <tbody>
         @foreach ($homeslider as $slider)
-        <tr>
+        <tr class="order" data-order="{{$slider->order}}" data-id="{{$slider->id}}" draggable="true">
             @foreach ($languages as $language)
               <td>
                 {{$slider['title' . $language->id]}}
               </td>            
             @endforeach
-            <td>{{ $slider->is_active }}</td>
+            <td>{{ $slider->is_active }} - {{$slider->order}}</td>
 
             <td class="column-action px-4">
                 <div class="row">

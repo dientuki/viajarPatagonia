@@ -35,7 +35,7 @@ class Homeslider extends Model implements HasMedia
     protected $fillable = ['is_active', 'url', 'hotel', 'stars', 'order'];
 
     static public function getAll(){
-      $homeslider = Homeslider::select('homeslider.id', 'homeslider.is_active');
+      $homeslider = Homeslider::select('homeslider.id', 'homeslider.is_active', 'homeslider.order');
       $languages = Language::getAll();
 
       foreach ($languages as $language) {

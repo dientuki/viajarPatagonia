@@ -23,7 +23,14 @@ class HomesliderTableSeeder extends Seeder
             'url' => 'http://www.ciudad.com.ar',
             'hotel' => 'Las casitas',
             'stars' => '2',
+            'order' => 3
+        ]);  
+        DB::table('homeslider')->insert([
+            'is_active' => false,
+            'url' => 'http://www.ciudad.com.ar',
+            'hotel' => 'Las casitas',
+            'stars' => '2',
             'order' => 2
-        ]);    
+        ]);           
     }
 }
