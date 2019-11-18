@@ -24,6 +24,17 @@ export default class DropzoneMiddleware {
     this.setEvents();
     DropzoneMiddleware.removeDB();
 
+    setTimeout(() => {
+      if (this.config.maxFiles !== null) {
+        if (document.querySelectorAll('.db-image').length === this.config.maxFiles) {
+          window.dropzone.removeEventListeners();
+        }
+        if (document.querySelectorAll('.old-image').length === this.config.maxFiles) {
+          window.dropzone.removeEventListeners();
+        }
+      }
+    }, 100);
+
     return new Dropzone(document.body, this.config);
   }
 
@@ -71,6 +82,7 @@ export default class DropzoneMiddleware {
         element.querySelector('.thumbnail').setAttribute('src', image);
         element.querySelector('.delete').addEventListener('click', () => {
           element.remove();
+          window.dropzone.setupEventListeners();
         });
       });
     });
@@ -88,6 +100,7 @@ export default class DropzoneMiddleware {
         window.requestAnimationFrame(() => {
           element.parentNode.append(input);
           element.remove();
+          window.dropzone.setupEventListeners();
         });
       });
     });

@@ -37,7 +37,7 @@ class StoreSlider extends FormRequest
         $validation['is_active'] = 'boolean';
         $validation['url'] = 'required';
         $validation['hotel'] = 'required';
-        $validation['stars'] = 'required|numeric';      
+        $validation['stars'] = 'required|integer|min:1|max:5';      
         $validation['images'] = 'nullable';
         
         return $validation;

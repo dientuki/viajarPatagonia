@@ -81,16 +81,16 @@ class Homeslider extends Model implements HasMedia
           ->fit(Manipulations::FIT_CROP, 120, 120)
           ->optimize();
     
-        $this->addMediaConversion('slider')
-          ->fit(Manipulations::FIT_CROP, 760, 420)
+        $this->addMediaConversion('slider_desktop')
+          ->fit(Manipulations::FIT_CROP, 2000, 580)
           ->optimize();            
 
-        $this->addMediaConversion('preview')
-          ->fit(Manipulations::FIT_CROP, 370, 204)
+        $this->addMediaConversion('slider_tablet')
+          ->fit(Manipulations::FIT_CROP, 1024, 297)
           ->optimize();        
           
-        $this->addMediaConversion('facebook')
-          ->fit(Manipulations::FIT_CROP, 500, 261)
+        $this->addMediaConversion('slider_mobile')
+          ->fit(Manipulations::FIT_CROP, 768, 223)
           ->optimize();            
     }
   }
