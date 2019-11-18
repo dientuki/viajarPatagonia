@@ -26,10 +26,10 @@
     </div>
 
     <div class="form-group">
-      <?php $class = $errors->has('url') != null ? 'form-control is-invalid' : 'form-control'; ?>
-      {!! Form::label('url', ucfirst(__('fields.url'))) !!}
-      {!! Form::text('url', null, array('placeholder' => ucfirst(__('fields.url')), 'class'=>$class)) !!}
-      @error('url')
+      <?php $class = $errors->has('urlstring') != null ? 'form-control is-invalid' : 'form-control'; ?>
+      {!! Form::label('urlstring', ucfirst(__('fields.url'))) !!}
+      {!! Form::text('urlstring', null, array('placeholder' => ucfirst(__('fields.url')), 'class'=>$class)) !!}
+      @error('urlstring')
       <div class="invalid-feedback">
         <strong>{{ $message }}</strong>
       </div>
@@ -38,18 +38,23 @@
         Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
       </small>
 
-      <select class="form-control" multiple="" size="8" name="products">
-        <option selected="selected" value="">{{ucfirst(__('fields.excursionType_select_placeholder'))}}</option>
+      <select class="form-control" size="8" name="products" id="products">
+        <option value="0">{{ucfirst(__('fields.excursionType_select_placeholder'))}}</option>
           @foreach ($products as $label => $value)
             <optgroup label="{{$label}}">
             @foreach ($value as $id => $name)
-              <option value="{{$id}}">{{$name}}</option>
+              <option value="{{$label}}:{{$id}}">{{$name}}</option>
             @endforeach
             </optgroup>
             
           @endforeach
 
-      </select>      
+      </select>    
+      @error('products')
+      <div class="invalid-feedback">
+        <strong>{{ $message }}</strong>
+      </div>
+      @enderror  
 
 
     </div>    

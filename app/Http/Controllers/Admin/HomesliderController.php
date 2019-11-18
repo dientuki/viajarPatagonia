@@ -45,9 +45,9 @@ class HomesliderController extends Controller
         $form_data = array('route' => 'admin.homeslider.store', 'method' => 'POST');
         $languages = Language::getAll();
         $products = [
-          'Paquetes' => Packages::getSlider(),
-          'Excursiones' => Excursions::getSlider(),
-          'Cruceros' => Cruiseships::getSlider()
+          'package' => Packages::getSlider(),
+          'excursion' => Excursions::getSlider(),
+          'cruiseships' => Cruiseships::getSlider()
         ];
         
         return view('admin/homeslider/create', compact('action', 'homeslider',  'form_data', 'languages', 'products'));
@@ -65,6 +65,7 @@ class HomesliderController extends Controller
 
         $data['is_active'] = isset($data['is_active']) ? 1 : 0;
         $data['order'] = Homeslider::getLastOrder() + 1;
+        $data['url'] = $this->buildUrl($data);
 
         $slider = Homeslider::create($data);
 
@@ -73,6 +74,12 @@ class HomesliderController extends Controller
 
         return redirect()->route('admin.homeslider.index');
     }  
+
+    private function buildUrl($data) {
+      if (isset($data['products'])) {
+        
+      }
+    }
     
     private function storeLanguages($id, $data)
     {

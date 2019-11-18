@@ -39,10 +39,18 @@ if (document.querySelectorAll('.multiselect').length > 0) {
   });
 }
 
+// Sortable
 if (document.querySelector('.sortable') !== null) {
   import(/* webpackChunkName: "sortable" */ './modules/sortable/sortable').then((module) => {
     module.sortable(document.querySelector('.sortable'));
     module.update(document.querySelector('.sortable-update'));
+  });
+}
+
+// Product to url
+if (document.querySelector('#products') !== null) {
+  import(/* webpackChunkName: "urlSelect" */ './modules/urlSelect/urlSelect').then((module) => {
+    module.urlSelect(document.querySelector('#products'));
   });
 }
 
