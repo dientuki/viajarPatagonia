@@ -6,27 +6,15 @@
 
       <div class="col-lg-7">
         <!-- The fileinput-button span is used to style the file input field as button -->
-        <div class="btn btn-success fileinput-button" id="dropzone" data-url="{{ route('admin.images.store') }}">
+        <div class="btn btn-success fileinput-button" id="dropzone" data-url="{{ route('admin.images.store') }}" data-maxfiles="1">
           <i class="glyphicon glyphicon-plus"></i>
-          <span>Add files...</span>
+          <span>Add file...</span>
         </div>
         <div type="reset" class="btn btn-warning cancel">
           <i class="glyphicon glyphicon-ban-circle"></i>
           <span>Cancel upload</span>
         </div>
       </div>
-      
-      <!-- The global file processing state
-      <div class="col-lg-5">
-        
-        <div class="fileupload-process">
-          <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0"
-            aria-valuemax="100" aria-valuenow="0">
-            <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
-          </div>
-        </div>
-      </div>
-       -->
 
     </div>
 
@@ -34,7 +22,7 @@
 
   <ul class="table table-striped files" id="previews">
     
-    @foreach ($excursion->getMedia('products') as $image)
+    @foreach ($homeslider->getMedia('sliderHome') as $image)
     <li class="file-row template image-row db-image">
       <!-- This is used as the file preview template -->
 
@@ -67,7 +55,7 @@
     @if ($image != null)
     <li class="file-row template old-image row">
       <!-- This is used as the file preview template -->
-      <input type="hidden" name="images[]" value="{{ $image }}" />
+      <input type="hidden" class="image" name="images" value="{{ $image }}" />
       <div class="col-image" >
         <div class="preview aspect-1-1">
           <img class="thumbnail" />
@@ -91,6 +79,6 @@
 
   </ul>
 
-  @include('admin.excursions.template')
+  @include('admin.homeslider.template')
 
 </fieldset>
