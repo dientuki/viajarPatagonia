@@ -1,6 +1,6 @@
 export function urlSelect(select) {
 
-  let selected = parseInt(select.querySelector('[selected="selected"]').value, 10);
+  let selected = parseInt(select.querySelector('[selected]').value, 10);
 
   select.querySelectorAll('option').forEach((option) => {
     option.addEventListener('click', (e) => {

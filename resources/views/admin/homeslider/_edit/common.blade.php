@@ -26,9 +26,12 @@
     </div>
 
     <div class="form-group">
-      <?php $class = $errors->has('urlstring') != null ? 'form-control is-invalid' : 'form-control'; ?>
+      <?php 
+        $class = $errors->has('urlstring') != null ? 'form-control is-invalid' : 'form-control';
+        $url = 'https://algo.com'; //$homeslider->url
+      ?>
       {!! Form::label('urlstring', ucfirst(__('fields.url'))) !!}
-      {!! Form::text('urlstring', $homeslider->url, array('placeholder' => ucfirst(__('fields.url')), 'class'=>$class)) !!}
+      {!! Form::url('urlstring', $url, array('placeholder' => ucfirst(__('fields.url')), 'class'=>$class, 'pattern'=>"https?://.+")) !!}
       @error('urlstring')
       <div class="invalid-feedback">
         <strong>{{ $message }}</strong>
