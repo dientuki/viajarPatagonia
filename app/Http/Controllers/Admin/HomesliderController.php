@@ -76,9 +76,7 @@ class HomesliderController extends Controller
     }  
 
     private function buildUrl($data) {
-      if (isset($data['products'])) {
-        
-      }
+      return isset($data['products']) ? $data['products'] : $data['urlstring'];
     }
     
     private function storeLanguages($id, $data)
