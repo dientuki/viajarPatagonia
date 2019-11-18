@@ -26,10 +26,10 @@
     </div>
 
     <div class="form-group">
-      <?php $class = $errors->has('url') != null ? 'form-control is-invalid' : 'form-control'; ?>
-      {!! Form::label('url', ucfirst(__('fields.url'))) !!}
-      {!! Form::text('url', $homeslider->url, array('placeholder' => ucfirst(__('fields.url')), 'class'=>$class)) !!}
-      @error('url')
+      <?php $class = $errors->has('urlstring') != null ? 'form-control is-invalid' : 'form-control'; ?>
+      {!! Form::label('urlstring', ucfirst(__('fields.url'))) !!}
+      {!! Form::text('urlstring', $homeslider->url, array('placeholder' => ucfirst(__('fields.url')), 'class'=>$class)) !!}
+      @error('urlstring')
       <div class="invalid-feedback">
         <strong>{{ $message }}</strong>
       </div>
@@ -43,7 +43,8 @@
           @foreach ($products as $label => $value)
             <optgroup label="{{$label}}">
             @foreach ($value as $id => $name)
-              <option value="{{$label}}:{{$id}}">{{$name}}</option>
+              <?php $selected = ($label. ':'. $id == $homeslider->url) ? 'selected' : ''; ?>
+              <option value="{{$label}}:{{$id}}" {{$selected}}>{{$name}}</option>
             @endforeach
             </optgroup>
             

@@ -139,6 +139,7 @@ class HomesliderController extends Controller
         $data = $request->validated();
         
         $data['is_active'] = isset($data['is_active']) ? 1 : 0;
+        $data['url'] = $this->buildUrl($data);
 
         $slider->fill($data)->save();
 

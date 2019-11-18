@@ -35,7 +35,8 @@ class EditSlider extends FormRequest
         }
 
         $validation['is_active'] = 'boolean';
-        $validation['url'] = 'required';
+        $validation['urlstring'] = 'required_without:products';
+        $validation['products'] = 'required_without:urlstring';
         $validation['hotel'] = 'required';
         $validation['stars'] = 'required|integer|min:1|max:5';      
         $validation['images'] = 'nullable';
@@ -62,7 +63,8 @@ class EditSlider extends FormRequest
         }
 
         $validation['is_active'] = __('fields.active');
-        $validation['url'] = __('fields.url');
+        $validation['urlstring'] = __('fields.url');
+        $validation['products'] = __('fields.product');
         $validation['hotel'] = __('fields.hotel');
         $validation['stars'] = __('fields.stars');     
         $validation['images[]'] = 'dunno';       
