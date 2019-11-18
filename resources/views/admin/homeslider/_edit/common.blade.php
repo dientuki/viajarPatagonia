@@ -13,7 +13,7 @@
         @enderror
       </div>
 
-      <div class="form-group col-">
+      <div class="form-group col-1">
         <?php $class = $errors->has('stars') != null ? 'form-control is-invalid' : 'form-control'; ?>
         {!! Form::label('stars', ucfirst(__('fields.stars'))) !!}
         {!! Form::text('stars', $homeslider->stars, array('placeholder' => ucfirst(__('fields.stars')), 'class'=>$class)) !!}
@@ -28,7 +28,7 @@
     <div class="form-group">
       <?php 
         $class = $errors->has('urlstring') != null ? 'form-control is-invalid' : 'form-control';
-        $url = 'https://algo.com'; //$homeslider->url
+        $url = filter_var($homeslider->url, FILTER_VALIDATE_URL) ? $homeslider->url : null;
       ?>
       {!! Form::label('urlstring', ucfirst(__('fields.url'))) !!}
       {!! Form::url('urlstring', $url, array('placeholder' => ucfirst(__('fields.url')), 'class'=>$class, 'pattern'=>"https?://.+")) !!}
