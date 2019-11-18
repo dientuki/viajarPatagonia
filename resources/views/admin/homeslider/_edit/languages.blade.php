@@ -31,7 +31,7 @@
         <div class="form-group">
             <?php $class = $errors->has('description_' . $language->id) != null ? 'form-control is-invalid' : 'form-control'; ?>
             {!! Form::label('description_' . $language->id, ucfirst(__('fields.description'))) !!}
-            {!! Form::text('title_' . $language->id, $slider->description, array('placeholder' => ucfirst(__('fields.description')),
+            {!! Form::text('description_' . $language->id, $slider->description, array('placeholder' => ucfirst(__('fields.description')),
             'class'=>$class)) !!}
             @error('description_' . $language->id)
             <div class="invalid-feedback">
