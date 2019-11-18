@@ -50,6 +50,14 @@ class Excursions extends Model implements HasMedia
       return $excursions->get();
     }
 
+    static public function getSlider(){
+      return Excursions::orderBy('name')
+        ->join("excursions_translation", 'excursions.id', '=', "fk_excursion")
+        ->where('excursions.is_active', 1)
+        ->where('fk_language', 1)
+        ->pluck('name', 'excursions.id');
+    }        
+
     static function getLists() {
       return ExcursionsTranslation::orderBy('name')
         ->where('fk_language', '1')

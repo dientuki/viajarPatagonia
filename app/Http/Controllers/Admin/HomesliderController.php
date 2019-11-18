@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Exception;
 
+use App\Packages;
+use App\Excursions;
 use App\Homeslider;
+use App\Cruiseships;
 use Illuminate\Http\Request;
 use App\Translations\Language;
 use App\Http\Requests\EditSlider;
@@ -41,8 +44,13 @@ class HomesliderController extends Controller
         $action = 'create';
         $form_data = array('route' => 'admin.homeslider.store', 'method' => 'POST');
         $languages = Language::getAll();
+        $products = [
+          'Paquetes' => Packages::getSlider(),
+          'Excursiones' => Excursions::getSlider(),
+          'Cruceros' => Cruiseships::getSlider()
+        ];
         
-        return view('admin/homeslider/create', compact('action', 'homeslider',  'form_data', 'languages'));
+        return view('admin/homeslider/create', compact('action', 'homeslider',  'form_data', 'languages', 'products'));
     }
 
     /**
