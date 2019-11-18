@@ -116,8 +116,13 @@ class HomesliderController extends Controller
         $action    = 'update';
         $form_data = array('route' => array('admin.homeslider.update', $homeslider->id), 'method' => 'PATCH');
         $languages = Language::getAll();
+        $products = [
+          'package' => Packages::getSlider(),
+          'excursion' => Excursions::getSlider(),
+          'cruiseships' => Cruiseships::getSlider()
+        ];        
 
-        return view('admin/homeslider/edit', compact('action', 'homeslider', 'form_data', 'languages', 'homesliderTranslation'));
+        return view('admin/homeslider/edit', compact('action', 'homeslider', 'form_data', 'languages', 'homesliderTranslation', 'products'));
     }
 
     /**
