@@ -87,6 +87,24 @@ class HomesliderController extends Controller
       if (isset($data['images'])) {
         $model->addMedia(storage_path('tmp/uploads/' . $data['images']))->toMediaCollection('sliderHome');
       }
+    }  
+    
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $homeslider = Homeslider::find($id);
+        $homesliderTranslation = HomesliderTranslation::getEdit($id);
+
+        $action    = 'update';
+        $form_data = array('route' => array('admin.homeslider.update', $homeslider->id), 'method' => 'PATCH');
+        $languages = Language::getAll();
+
+        return view('admin/homeslider/edit', compact('action', 'homeslider', 'form_data', 'languages', 'homesliderTranslation'));
     }    
 
     public function destroy() {}

@@ -34,7 +34,7 @@ class HomesliderTranslation extends Model
     static function getEdit($id){
 
       return HomesliderTranslation::select('id', 'fk_language', 'title', 'date', 'description')
-        ->where('fk_excursion', $id)
+        ->where('fk_slider', $id)
         ->orderBy('fk_language')
         ->get();
     }    
