@@ -24,7 +24,7 @@
                 {{$slider['title' . $language->id]}}
               </td>            
             @endforeach
-            <td>{{ $slider->is_active }} - {{$slider->order}}</td>
+            <td>{{ $slider->is_active }}</td>
 
             <td class="column-action px-4">
                 <div class="row">

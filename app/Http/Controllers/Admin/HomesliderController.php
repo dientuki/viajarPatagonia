@@ -7,11 +7,12 @@ use Exception;
 use App\Homeslider;
 use Illuminate\Http\Request;
 use App\Translations\Language;
+use App\Http\Requests\StoreSlider;
 use Prologue\Alerts\Facades\Alert;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EditHomeslider;
-use App\Http\Requests\CreateHomeslider;
 use Spatie\MediaLibrary\Models\Media;
+use App\Http\Requests\CreateHomeslider;
 use App\Translations\HomesliderTranslation;
 
 class HomesliderController extends Controller
@@ -42,6 +43,50 @@ class HomesliderController extends Controller
         $languages = Language::getAll();
         
         return view('admin/homeslider/create', compact('action', 'homeslider',  'form_data', 'languages'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\StoreExcursion  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreSlider $request)
+    {      
+        $data = $request->validated();
+
+        $data['is_active'] = isset($data['is_active']) ? 1 : 0;
+        $data['order'] = Homeslider::getLastOrder() + 1;
+
+        $slider = Homeslider::create($data);
+
+        $this->storeLanguages($slider->id, $data);
+        $this->storeImages($slider, $data);
+
+        return redirect()->route('admin.homeslider.index');
+    }  
+    
+    private function storeLanguages($id, $data)
+    {
+      $languages = Language::getAll();
+
+      foreach ($languages as $language) {
+        if (isset($data['fk_language_' . $language->id])) {
+          HomesliderTranslation::create([
+            'fk_language' => $data['fk_language_' . $language->id],
+            'fk_slider' => $id,
+            'title' => $data['title_' . $language->id],
+            'date' => $data['date_' . $language->id],
+            'description' => $data['description_' . $language->id]
+          ]);
+        }
+      }
+    }
+
+    private function storeImages($model, $data) {
+      if (isset($data['images'])) {
+        $model->addMedia(storage_path('tmp/uploads/' . $data['images']))->toMediaCollection('sliderHome');
+      }
     }    
 
     public function destroy() {}

@@ -1,3 +1,4 @@
+<?php use App\Homeslider; ?>
 @extends('layouts.admin')
 
 @section ('content')

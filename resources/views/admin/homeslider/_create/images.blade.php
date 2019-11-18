@@ -6,9 +6,9 @@
 
       <div class="col-lg-7">
         <!-- The fileinput-button span is used to style the file input field as button -->
-        <div class="btn btn-success fileinput-button" id="dropzone" data-url="{{ route('admin.images.store') }}">
+        <div class="btn btn-success fileinput-button" id="dropzone" data-url="{{ route('admin.images.store') }}" data-maxfiles="1">
           <i class="glyphicon glyphicon-plus"></i>
-          <span>Add files...</span>
+          <span>Add file...</span>
         </div>
         <div type="reset" class="btn btn-warning cancel">
           <i class="glyphicon glyphicon-ban-circle"></i>
@@ -26,7 +26,7 @@
     @if ($image != null)
     <li class="file-row template old-image row">
       <!-- This is used as the file preview template -->
-      <input type="text" name="images[]" value="{{ $image }}" />
+      <input type="text" class="image" name="images" value="{{ $image }}" />
       <div class="col-2">
         <span class="preview"><img class="thumbnail" data-dz-thumbnail /></span>
       </div>
@@ -46,6 +46,6 @@
 
   </ul>
 
-  @include('admin.excursions.template')
+  @include('admin.homeslider.template')
 
 </fieldset>

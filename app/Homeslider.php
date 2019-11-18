@@ -69,6 +69,12 @@ class Homeslider extends Model implements HasMedia
       Homeslider::where('id', $id)->update(['order' => $order]);
     }
 
+    static function getLastOrder() {
+      return Homeslider::orderBy('order', 'DESC')
+        ->limit(1)
+        ->value('order');      
+    }
+
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('backoffice')
