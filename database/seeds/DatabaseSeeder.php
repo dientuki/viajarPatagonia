@@ -36,6 +36,8 @@ class DatabaseSeeder extends Seeder
             PackagesPricesSeeder::class,
             Package2ExcursionSeeder::class,
             Package2DestinationSeeder::class,     
+            HomesliderTableSeeder::class,
+            HomesliderTranslationSeeder::class,               
         ]);
     }
 }

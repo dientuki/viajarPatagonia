@@ -13,14 +13,27 @@ export default class DropzoneMiddleware {
 
     this.config = {
       clickable: '.fileinput-button',
+      maxFiles: this.element.dataset.maxfiles === undefined ? null : parseInt(this.element.dataset.maxfiles, 10),
       parallelUploads: 1,
       previewTemplate: previewTemplate.querySelector('.template').outerHTML,
       previewsContainer: '#previews',
       url: this.element.dataset.url
     };
+
     this.setHeader();
     this.setEvents();
     DropzoneMiddleware.removeDB();
+
+    setTimeout(() => {
+      if (this.config.maxFiles !== null) {
+        if (document.querySelectorAll('.db-image').length === this.config.maxFiles) {
+          window.dropzone.removeEventListeners();
+        }
+        if (document.querySelectorAll('.old-image').length === this.config.maxFiles) {
+          window.dropzone.removeEventListeners();
+        }
+      }
+    }, 100);
 
     return new Dropzone(document.body, this.config);
   }
@@ -34,12 +47,26 @@ export default class DropzoneMiddleware {
   setEvents() {
 
     this.config.success = (file, response) => {
-      file.previewTemplate.querySelector('input[name="images[]"]').setAttribute('value', response.name);
+      file.previewTemplate.querySelector('input.image').setAttribute('value', response.name);
       window.requestAnimationFrame(() => {
         if (storageAvailable('localStorage') === true) {
           localStorage.setItem(response.name, file.dataURL);
         }
       });
+    };
+
+    this.config.maxfilesreached = () => {
+      window.dropzone.removeEventListeners();
+    };
+
+    this.config.removedfile = (file) => {
+      if (file.previewElement !== null && file.previewElement.parentNode !== null) {
+        file.previewElement.parentNode.removeChild(file.previewElement);
+        window.dropzone.setupEventListeners();
+      }
+
+      // eslint-disable-next-line no-underscore-dangle
+      return window.dropzone._updateMaxFilesReachedClass();
     };
   }
 
@@ -55,6 +82,7 @@ export default class DropzoneMiddleware {
         element.querySelector('.thumbnail').setAttribute('src', image);
         element.querySelector('.delete').addEventListener('click', () => {
           element.remove();
+          window.dropzone.setupEventListeners();
         });
       });
     });
@@ -72,6 +100,7 @@ export default class DropzoneMiddleware {
         window.requestAnimationFrame(() => {
           element.parentNode.append(input);
           element.remove();
+          window.dropzone.setupEventListeners();
         });
       });
     });

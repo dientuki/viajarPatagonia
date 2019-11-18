@@ -17,4 +17,5 @@ return [
     'update' => 'Actualizar',
     'edit' => 'Editar',
     'delete' => 'Borrar',
+    'reorder' => 'reordenar'
 ];

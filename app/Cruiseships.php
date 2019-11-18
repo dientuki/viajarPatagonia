@@ -49,6 +49,14 @@ class Cruiseships extends Model implements HasMedia
       return $cruiseships->get();
     }
 
+    static public function getSlider(){
+      return Cruiseships::orderBy('name')
+        ->join("cruiseships_translation", 'cruiseships.id', '=', "fk_cruiseship")
+        ->where('cruiseships.is_active', 1)
+        ->where('fk_language', 1)
+        ->pluck('name', 'cruiseships.id');
+    }    
+
     static function getLists() {
       //return Region::orderBy('region')->pluck('region', 'id');
     }  

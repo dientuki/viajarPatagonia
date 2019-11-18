@@ -52,6 +52,14 @@ class Packages extends Model implements HasMedia
       return $packages->get();
     }
 
+    static public function getSlider(){
+      return Packages::orderBy('name')
+        ->join("packages_translation", 'packages.id', '=', "fk_package")
+        ->where('packages.is_active', 1)
+        ->where('fk_language', 1)
+        ->pluck('name', 'packages.id');
+    }    
+
     static function getLists() {
       //return Region::orderBy('region')->pluck('region', 'id');
     }  

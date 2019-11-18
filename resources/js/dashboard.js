@@ -33,9 +33,24 @@ if (document.querySelector('.loadMap') !== null) {
 }
 
 // Load multiselect
-if (document.querySelector('.multiselect') !== null) {
+if (document.querySelectorAll('.multiselect').length > 0) {
   import(/* webpackChunkName: "multiselect" */ './modules/multiselect/multiselect').then((module) => {
     module.multiselect(document.querySelectorAll('.multiselect'));
+  });
+}
+
+// Sortable
+if (document.querySelector('.sortable') !== null) {
+  import(/* webpackChunkName: "sortable" */ './modules/sortable/sortable').then((module) => {
+    module.sortable(document.querySelector('.sortable'));
+    module.update(document.querySelector('.sortable-update'));
+  });
+}
+
+// Product to url
+if (document.querySelector('#products') !== null) {
+  import(/* webpackChunkName: "urlSelect" */ './modules/urlSelect/urlSelect').then((module) => {
+    module.urlSelect(document.querySelector('#products'));
   });
 }
 

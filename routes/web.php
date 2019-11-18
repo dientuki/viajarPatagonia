@@ -33,6 +33,8 @@ Route::group(['namespace' => 'Admin',
     Route::resource('excursions', 'ExcursionsController')->except(['show']);
     Route::resource('packages', 'PackagesController')->except(['show']);
     Route::resource('users', 'UsersController')->except(['show']);
+    Route::resource('homeslider', 'HomesliderController')->except(['show']);
+    Route::post('homeslider/order', 'HomesliderController@order')->name('homeslider.order');
 
     Route::post('images', 'ImagesController@store')->name('images.store');
 });
