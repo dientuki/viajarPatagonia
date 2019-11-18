@@ -5,7 +5,7 @@
       <div class="form-group">
         <?php $class = $errors->has('hotel') != null ? 'form-control is-invalid' : 'form-control'; ?>
         {!! Form::label('hotel', ucfirst(__('fields.hotel'))) !!}
-        {!! Form::text('hotel', null, array('placeholder' => ucfirst(__('fields.hotel')), 'class'=>$class)) !!}
+        {!! Form::text('hotel', $homeslider->hotel, array('placeholder' => ucfirst(__('fields.hotel')), 'class'=>$class)) !!}
         @error('hotel')
         <div class="invalid-feedback">
           <strong>{{ $message }}</strong>
@@ -16,7 +16,7 @@
       <div class="form-group">
         <?php $class = $errors->has('stars') != null ? 'form-control is-invalid' : 'form-control'; ?>
         {!! Form::label('stars', ucfirst(__('fields.stars'))) !!}
-        {!! Form::text('stars', null, array('placeholder' => ucfirst(__('fields.stars')), 'class'=>$class)) !!}
+        {!! Form::text('stars', $homeslider->stars, array('placeholder' => ucfirst(__('fields.stars')), 'class'=>$class)) !!}
         @error('stars')
         <div class="invalid-feedback">
           <strong>{{ $message }}</strong>
@@ -27,7 +27,7 @@
       <div class="form-group">
         <?php $class = $errors->has('url') != null ? 'form-control is-invalid' : 'form-control'; ?>
         {!! Form::label('url', ucfirst(__('fields.url'))) !!}
-        {!! Form::text('url', null, array('placeholder' => ucfirst(__('fields.url')), 'class'=>$class)) !!}
+        {!! Form::text('url', $homeslider->url, array('placeholder' => ucfirst(__('fields.url')), 'class'=>$class)) !!}
         @error('url')
         <div class="invalid-feedback">
           <strong>{{ $message }}</strong>
@@ -36,7 +36,7 @@
       </div>    
 
       <div class="form-check">
-        {!! Form::checkbox('is_active', 1, false, array('class' => 'form-check-input') ) !!}
+        {!! Form::checkbox('is_active', 1, $homeslider->is_active, array('class' => 'form-check-input') ) !!}
         {!! Form::label('is_active', ucfirst(__('fields.active'))) !!}
       </div>
 

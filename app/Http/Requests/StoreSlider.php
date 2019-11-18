@@ -37,8 +37,7 @@ class StoreSlider extends FormRequest
         $validation['is_active'] = 'boolean';
         $validation['url'] = 'required';
         $validation['hotel'] = 'required';
-        $validation['stars'] = 'required|numeric';
-        $validation['order'] = 'required|numeric|nullable';        
+        $validation['stars'] = 'required|numeric';      
         $validation['images'] = 'nullable';
         
         return $validation;
@@ -64,8 +63,7 @@ class StoreSlider extends FormRequest
         $validation['is_active'] = __('fields.active');
         $validation['url'] = __('fields.url');
         $validation['hotel'] = __('fields.hotel');
-        $validation['stars'] = __('fields.stars');
-        $validation['order'] = __('fields.order');        
+        $validation['stars'] = __('fields.stars');     
         $validation['images[]'] = 'dunno';       
 
         return $validation;
