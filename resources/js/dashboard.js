@@ -2,13 +2,13 @@ import $ from 'jquery';
 import { expandableItem, toogleNav } from './modules/sidebar/sidebar';
 import 'bootstrap/js/dist/alert';
 __webpack_public_path__ = `${window.location.protocol}//${window.location.host}/dist/`;
-const alert = document.querySelector('.alert-close');
+const alertClose = document.querySelector('.alert-close');
 
 toogleNav();
 expandableItem(document.querySelectorAll('.must-expand'));
 
 if (alert !== null) {
-  button.addEventListener('click', (e) => {
+  alertClose.addEventListener('click', (e) => {
     e.target.closest('.animated').classList.add('zoomOut');
   });
 }
