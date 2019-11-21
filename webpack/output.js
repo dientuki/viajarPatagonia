@@ -2,6 +2,7 @@ const paths = require("./paths");
 const output = {
     publicPath: paths.publicPath,
     path: paths.dist,
+    pathinfo: false
 };
 
 if (process.env.NODE_ENV == 'development') {
