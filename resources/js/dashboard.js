@@ -7,7 +7,7 @@ const alertClose = document.querySelector('.alert-close');
 toogleNav();
 expandableItem(document.querySelectorAll('.must-expand'));
 
-if (alert !== null) {
+if (alertClose !== null) {
   alertClose.addEventListener('click', (e) => {
     e.target.closest('.animated').classList.add('zoomOut');
   });
