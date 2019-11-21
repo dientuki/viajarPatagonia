@@ -65,16 +65,16 @@
         </ul>
       </li> 
       
-      <!-- slider -->
-      <li class="main-nav__item {{ Helpers::main_menu(['homeslider']) }}">
+      <!-- extras -->
+      <li class="main-nav__item {{ Helpers::main_menu(['homeslider', 'inquiries']) }}">
         <div class="main-nav__title-wrapper must-expand">
           <div class="main-nav__icon">icono</div>
           <div class="main-nav__title">Extras</div>
         </div>
         <ul class="main-nav__submenu">
-          <li class="main-nav__li {{ Helpers::sub_menu('regions') }}"><a href="{{route('admin.regions.index')}}" class="main-nav__link {{ Helpers::sub_menu('regions') }}">Consultas</a></li>  
+          <li class="main-nav__li {{ Helpers::sub_menu('inquiries') }}"><a href="{{route('admin.inquiries.index')}}" class="main-nav__link">Consultas</a></li>  
           <li class="main-nav__li {{ Helpers::sub_menu('homeslider') }}"><a href="{{route('admin.homeslider.index')}}" class="main-nav__link">Slider Home</a></li>
-          <li class="main-nav__li {{ Helpers::sub_menu('destinations') }}"><a href="{{route('admin.destinations.index')}}" class="main-nav__link {{ Helpers::sub_menu('destinations') }}">Paginas</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('destinations') }}"><a href="{{route('admin.destinations.index')}}" class="main-nav__link">Paginas</a></li>
         </ul>
       </li>      
       
