@@ -51,10 +51,10 @@
       </li>   
       
       <!-- lugares -->
-      <li class="main-nav__item {{ Helpers::main_menu(['regions', 'destinations']) }}">
+      <li class="main-nav__item {{ Helpers::main_menu(['inquiries']) }}">
         <div class="main-nav__title-wrapper">
           <div class="main-nav__icon">{!! Helpers::load_svg('ico-inquiries') !!}</div>
-          <div class="main-nav__title"><a href="{{route('admin.regions.index')}}" class="main-nav__link {{ Helpers::sub_menu('regions') }}">Consultas</a></div>
+          <div class="main-nav__title"><a href="{{route('admin.inquiries.index')}}" class="main-nav__link">Consultas</a></div>
         </div>
       </li> 
       
