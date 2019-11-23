@@ -1,5 +1,6 @@
 <?php
 
+use App\Inquiry;
 use Illuminate\Database\Seeder;
 
 class InquiriesTableSeeder extends Seeder
@@ -11,46 +12,13 @@ class InquiriesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('inquiries')->insert([
-            'name' => 'Juan Perez',
-            'email' => 'email@mail.com',
-            'phone' => '+549123456789',
-            'departure' => '2019-12-31',
-            'adult' => 1,
-            'child' => 0,
-            'comments' => 'la consulta',
-            'product' => 'excursions',
-            'product_id' => 1,
-            'fk_language' => 3,
-            'is_readed' => 0
-        ]);
+      factory(Inquiry::class, 50)->create()->each(function ($inquiry) {
+        $values = factory(Inquiry::class)->make();
 
-        DB::table('inquiries')->insert([
-            'name' => 'Juan Perez',
-            'email' => 'email@mail.com',
-            'phone' => '+549123456789',
-            'departure' => '2019-12-31',
-            'adult' => 1,
-            'child' => 1,
-            'comments' => 'la consulta',
-            'product' => 'packages',
-            'product_id' => 1,
-            'fk_language' => 1,
-            'is_readed' => 0
-        ]);
-
-        DB::table('inquiries')->insert([
-            'name' => 'Juan Perez',
-            'email' => 'email@mail.com',
-            'phone' => '+549123456789',
-            'departure' => '2019-12-31',
-            'adult' => 1,
-            'child' => 2,
-            'comments' => 'la consulta',
-            'product' => 'cruiseships',
-            'product_id' => 1,
-            'fk_language' => 2,
-            'is_readed' => 0
-        ]);              
+        if (is_array($values)) {
+          $inquiry->save($values);
+        }
+        
+      });      
     }
 }
