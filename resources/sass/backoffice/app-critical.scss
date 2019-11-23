@@ -32,6 +32,10 @@
     justify-content: center;
     position: relative;
 
+    svg {
+      width: 50%;
+    }
+
     &:before {
       width: 0;
       height: 0;
