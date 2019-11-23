@@ -31,6 +31,7 @@ class Inquiry extends Model
       $inquiries = Inquiry::select('inquiries.id', 'name', 'timestamp', 'product', 'product_id', 'languages.iso', 'is_readed', 'comment');
       $inquiries->join("languages", "languages.id", '=', "inquiries.fk_language");
 
+
       return $inquiries->get();
     }
 

@@ -1,3 +1,13 @@
+<?php
+
+use App\Http\Helpers\Helpers;
+use App\Translations\CruiseshipsTranslation;
+use App\Translations\ExcursionsTranslation;
+use App\Translations\PackageTranslation;
+
+
+?>
+
 @extends('layouts.admin')
 
 @section ('content')
@@ -20,8 +30,25 @@
         <tr>
             <td>{{ $inquiry->is_readed }}</td>
             <td>{{ $inquiry->name }}</td>
-            <td>{{ $inquiry->product }}</td>
-            <td>{{ $inquiry->iso }}</td>
+            <td>
+              <?php
+                switch ($inquiry->product) {
+                  case 'cruise':
+                    $title = CruiseshipsTranslation::getName($inquiry->product_id);
+                  break;
+                  case 'excursion':
+                    $title = ExcursionsTranslation::getName($inquiry->product_id);
+                  break;
+                  case 'package':
+                    $title = PackageTranslation::getName($inquiry->product_id);
+                  break;
+                }
+                
+                $routeParams = array('locale' => $inquiry->iso, 'name' => Str::slug($title, '-'), 'id' => $inquiry->product_id);
+              ?>
+              <a title="{{ $title }}" rel="noopener" target="_blank" href="{{route($inquiry->product, $routeParams)}}">{!! Helpers::load_svg('ico-' . $inquiry->product ) !!}</a>
+            </td>
+            <td>{!! Helpers::load_svg('lang-' . $inquiry->iso ) !!}</td>
             <td>{{ $inquiry->comment }}</td>
             <td>{{ $inquiry->timestamp }}</td>
 
