@@ -2,13 +2,10 @@
 
 <!-- Vertical navbar -->
 <div class="vertical-nav" id="sidebar">
-  <div class="vertical-nav__image">
-      <img src="{{ asset('images/logo.png') }}" width="270" height="60">
-  </div>
 
-  <div class="main-nav__title-wrapper" id="sidebarCollapse">
-    <div class="main-nav__icon">{!! Helpers::load_svg('ico-next') !!}</div>
-    <div class="main-nav__title">Colapsar</div>    
+  <div class="main-nav__title-wrapper" >
+    <div id="sidebarCollapse" class="main-nav__icon">{!! Helpers::load_svg('ico-menu') !!}</div>
+    <div class="main-nav__title"><img src="{{ asset('images/logo.png') }}" width="200"></div>    
   </div>
 
   <nav class="main-nav">

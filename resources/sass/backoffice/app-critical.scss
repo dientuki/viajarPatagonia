@@ -2,9 +2,7 @@
 @import "./variables";
 
 #sidebarCollapse {
-  margin: (5rem/$fs) 0;
   cursor: pointer !important;
-  color: #fff;
 }
 
 .main-nav {
@@ -145,10 +143,8 @@
   overflow: hidden;
   background: #364150;
 
-  .ico-next {
-    height: (20rem/$fs);
-    transform: scaleX(-1);
-    transition: transform .4s;
+  > .main-nav__title-wrapper {
+    background: #fff;
   }
 
   &.active {
