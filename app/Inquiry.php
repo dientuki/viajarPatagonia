@@ -18,22 +18,25 @@ class Inquiry extends Model
      *
      * @var bool
      */
-    public $timestamps = true;
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['region'];    
+    protected $fillable = ['region'];   
+    
+    static function getAll() {
+      $inquiries = Inquiry::select('inquiries.id', 'name', 'timestamp', 'product', 'product_id', 'languages.iso', 'is_readed', 'comment');
+      $inquiries->join("languages", "languages.id", '=', "inquiries.fk_language");
 
-    static function getLists() {
-      return Region::orderBy('region')->pluck('region', 'id');
-    }  
+      return $inquiries->get();
+    }
 
     static function getEdit($id){
 
-      $result = Region::select('id', 'region')
+      $result = Inquiry::select('id', 'region')
           ->where('id', $id)
           ->get()->first();
   
