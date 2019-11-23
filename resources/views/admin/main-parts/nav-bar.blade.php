@@ -2,13 +2,10 @@
 
 <!-- Vertical navbar -->
 <div class="vertical-nav" id="sidebar">
-  <div class="vertical-nav__image">
-      <img src="{{ asset('images/logo.png') }}" width="270" height="60">
-  </div>
 
-  <div class="main-nav__title-wrapper" id="sidebarCollapse">
-    <div class="main-nav__icon">{!! Helpers::load_svg('ico-next') !!}</div>
-    <div class="main-nav__title">Colapsar</div>    
+  <div class="main-nav__title-wrapper vertical-nav__action" >
+    <div id="sidebarCollapse" class="main-nav__icon">{!! Helpers::load_svg('ico-menu') !!}</div>
+    <div class="main-nav__title"><img src="{{ asset('images/logo.png') }}" width="200"></div>    
   </div>
 
   <nav class="main-nav">
@@ -55,27 +52,18 @@
       
       <!-- lugares -->
       <li class="main-nav__item {{ Helpers::main_menu(['regions', 'destinations']) }}">
-        <div class="main-nav__title-wrapper must-expand">
-          <div class="main-nav__icon">icono</div>
-          <div class="main-nav__title">Lugares</div>
+        <div class="main-nav__title-wrapper">
+          <div class="main-nav__icon">{!! Helpers::load_svg('ico-inquiries') !!}</div>
+          <div class="main-nav__title"><a href="{{route('admin.regions.index')}}" class="main-nav__link {{ Helpers::sub_menu('regions') }}">Consultas</a></div>
         </div>
-        <ul class="main-nav__submenu">
-          <li class="main-nav__li {{ Helpers::sub_menu('regions') }}"><a href="{{route('admin.regions.index')}}" class="main-nav__link">Regiones</a></li>  
-          <li class="main-nav__li {{ Helpers::sub_menu('destinations') }}"><a href="{{route('admin.destinations.index')}}" class="main-nav__link">Destinos</a></li>
-        </ul>
       </li> 
       
       <!-- slider -->
       <li class="main-nav__item {{ Helpers::main_menu(['homeslider']) }}">
-        <div class="main-nav__title-wrapper must-expand">
-          <div class="main-nav__icon">icono</div>
-          <div class="main-nav__title">Extras</div>
+        <div class="main-nav__title-wrapper">
+          <div class="main-nav__icon">{!! Helpers::load_svg('ico-slider') !!}</div>
+          <div class="main-nav__title"><a href="{{route('admin.homeslider.index')}}" class="main-nav__link">Slider</a></div>
         </div>
-        <ul class="main-nav__submenu">
-          <li class="main-nav__li {{ Helpers::sub_menu('regions') }}"><a href="{{route('admin.regions.index')}}" class="main-nav__link {{ Helpers::sub_menu('regions') }}">Consultas</a></li>  
-          <li class="main-nav__li {{ Helpers::sub_menu('homeslider') }}"><a href="{{route('admin.homeslider.index')}}" class="main-nav__link">Slider Home</a></li>
-          <li class="main-nav__li {{ Helpers::sub_menu('destinations') }}"><a href="{{route('admin.destinations.index')}}" class="main-nav__link {{ Helpers::sub_menu('destinations') }}">Paginas</a></li>
-        </ul>
       </li>      
       
       <!-- configuracion -->
@@ -85,11 +73,14 @@
           <div class="main-nav__title">Configuracion</div>
         </div>
         <ul class="main-nav__submenu">
+          <li class="main-nav__li {{ Helpers::sub_menu('users') }}"><a href="{{route('admin.users.index')}}" class="main-nav__link">Usuarios</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('destinations') }}"><a href="{{route('admin.destinations.index')}}" class="main-nav__link">Paginas</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('regions') }}"><a href="{{route('admin.regions.index')}}" class="main-nav__link">Regiones</a></li>  
+          <li class="main-nav__li {{ Helpers::sub_menu('destinations') }}"><a href="{{route('admin.destinations.index')}}" class="main-nav__link">Destinos</a></li>
           <li class="main-nav__li {{ Helpers::sub_menu('languages') }}"><a href="{{route('admin.languages.index')}}" class="main-nav__link">Lenguajes</a></li>  
           <li class="main-nav__li {{ Helpers::sub_menu('currencies') }}"><a href="{{route('admin.currencies.index')}}" class="main-nav__link">Monedas</a></li>
           <li class="main-nav__li {{ Helpers::sub_menu('currencies') }}"><a href="{{route('admin.currencies.index')}}" class="main-nav__link">Third party</a></li>
           <li class="main-nav__li {{ Helpers::sub_menu('currencies') }}"><a href="{{route('admin.currencies.index')}}" class="main-nav__link">Footer</a></li>
-          <li class="main-nav__li {{ Helpers::sub_menu('users') }}"><a href="{{route('admin.users.index')}}" class="main-nav__link">Usuarios</a></li>
         </ul>
       </li>    
       
