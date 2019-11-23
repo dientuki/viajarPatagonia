@@ -3,7 +3,7 @@
 <!-- Vertical navbar -->
 <div class="vertical-nav" id="sidebar">
 
-  <div class="main-nav__title-wrapper" >
+  <div class="main-nav__title-wrapper vertical-nav__action" >
     <div id="sidebarCollapse" class="main-nav__icon">{!! Helpers::load_svg('ico-menu') !!}</div>
     <div class="main-nav__title"><img src="{{ asset('images/logo.png') }}" width="200"></div>    
   </div>
