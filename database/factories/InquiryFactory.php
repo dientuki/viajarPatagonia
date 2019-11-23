@@ -17,7 +17,7 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(Inquiry::class, function (Faker $faker) {
-    $products = array('cruiseships', 'excursions', 'packages');
+    $products = array('cruise', 'excursion', 'package');
     return [
       'name' => $faker->name,
       'email' => $faker->safeEmail,
