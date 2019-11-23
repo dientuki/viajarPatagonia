@@ -16,7 +16,7 @@
       <!-- paquetes -->
       <li class="main-nav__item {{ Helpers::main_menu(['packages']) }}">
         <div class="main-nav__title-wrapper must-expand">
-          <div class="main-nav__icon">icono</div>
+          <div class="main-nav__icon">{!! Helpers::load_svg('ico-packages') !!}</div>
           <div class="main-nav__title">Paquetes</div>
         </div>
         <ul class="main-nav__submenu">
@@ -28,7 +28,7 @@
       <!-- cruceros -->
       <li class="main-nav__item {{ Helpers::main_menu(['cruiseships', 'cruiseships-types']) }}">
         <div class="main-nav__title-wrapper must-expand">
-          <div class="main-nav__icon">icono</div>
+          <div class="main-nav__icon">{!! Helpers::load_svg('ico-ship') !!}</div>
           <div class="main-nav__title">Cruceros</div>
         </div>
         <ul class="main-nav__submenu">
@@ -41,7 +41,7 @@
       <!-- excursiones -->
       <li class="main-nav__item {{ Helpers::main_menu(['excursions', 'availability', 'duration', 'excursions-types']) }}">
         <div class="main-nav__title-wrapper must-expand">
-          <div class="main-nav__icon">icono</div>
+          <div class="main-nav__icon">{!! Helpers::load_svg('ico-binoculars') !!}</div>
           <div class="main-nav__title">Excursiones</div>
         </div>
         <ul class="main-nav__submenu">
@@ -81,15 +81,15 @@
       <!-- configuracion -->
       <li class="main-nav__item {{ Helpers::main_menu(['languages', 'currencies', 'users']) }}">
         <div class="main-nav__title-wrapper must-expand">
-          <div class="main-nav__icon">icono</div>
+          <div class="main-nav__icon">{!! Helpers::load_svg('ico-settings') !!}</div>
           <div class="main-nav__title">Configuracion</div>
         </div>
         <ul class="main-nav__submenu">
-          <li class="main-nav__li"><a href="{{route('admin.languages.index')}}" class="main-nav__link {{ Helpers::sub_menu('languages') }}">Lenguajes</a></li>  
-          <li class="main-nav__li"><a href="{{route('admin.currencies.index')}}" class="main-nav__link {{ Helpers::sub_menu('currencies') }}">Monedas</a></li>
-          <li class="main-nav__li"><a href="{{route('admin.currencies.index')}}" class="main-nav__link {{ Helpers::sub_menu('currencies') }}">Third party</a></li>
-          <li class="main-nav__li"><a href="{{route('admin.currencies.index')}}" class="main-nav__link {{ Helpers::sub_menu('currencies') }}">Footer</a></li>
-          <li class="main-nav__li"><a href="{{route('admin.users.index')}}" class="main-nav__link {{ Helpers::sub_menu('users') }}">Usuarios</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('languages') }}"><a href="{{route('admin.languages.index')}}" class="main-nav__link">Lenguajes</a></li>  
+          <li class="main-nav__li {{ Helpers::sub_menu('currencies') }}"><a href="{{route('admin.currencies.index')}}" class="main-nav__link">Monedas</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('currencies') }}"><a href="{{route('admin.currencies.index')}}" class="main-nav__link">Third party</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('currencies') }}"><a href="{{route('admin.currencies.index')}}" class="main-nav__link">Footer</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('users') }}"><a href="{{route('admin.users.index')}}" class="main-nav__link">Usuarios</a></li>
         </ul>
       </li>    
       
