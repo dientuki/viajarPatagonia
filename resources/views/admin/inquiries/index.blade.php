@@ -6,14 +6,24 @@
 <table class="table table-striped table-bordered table-hover table-sm">
     <thead class="thead-dark">
         <tr>
-            <th>{{ ucfirst(__('fields.region')) }}</th>
+            <th>{{ ucfirst(__('fields.is_readed')) }}</th>
+            <th>{{ ucfirst(__('fields.name')) }}</th>
+            <th>{{ ucfirst(__('fields.product')) }}</th>
+            <th>{{ ucfirst(__('fields.language')) }}</th>
+            <th>{{ ucfirst(__('fields.comment')) }}</th>
+            <th>{{ ucfirst(__('fields.date')) }}</th>            
             <th class="column-action">Accion</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($inquiries as $inquiry)
         <tr>
-            <td>{{ $inquiry->region }}</td>
+            <td>{{ $inquiry->is_readed }}</td>
+            <td>{{ $inquiry->name }}</td>
+            <td>{{ $inquiry->product }}</td>
+            <td>{{ $inquiry->iso }}</td>
+            <td>{{ $inquiry->comment }}</td>
+            <td>{{ $inquiry->timestamp }}</td>
 
             <td class="column-action px-4">
                 <div class="row">

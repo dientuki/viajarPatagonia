@@ -79,5 +79,11 @@ return [
 
     // Slider
     'homeslider' => 'slider de la home',
-    'slider' => 'slide'
+    'slider' => 'slide',
+
+    // Consultas
+    'is_readed' => 'leido',
+    'product' => 'producto',
+    'comment' => 'consulta',
+    'date' => 'fecha'
 ];
