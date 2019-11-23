@@ -26,6 +26,16 @@ class Inquiry extends Model
      * @var array
      */
     protected $fillable = ['region'];   
+
+    protected $perPage = 10;
+
+    public function simplePaginate($perPage = 10, $pageName = 'page') {
+      $page = Paginator::resolveCurrentPage($pageName);
+
+      $this->skip(($page - 1) * $perPage)->take($perPage + 1);
+
+    }
+
     
     static function getAll() {
       $inquiries = Inquiry::select('inquiries.id', 'name', 'timestamp', 'product', 'product_id', 'languages.iso', 'is_readed', 'comment');
