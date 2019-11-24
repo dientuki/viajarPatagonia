@@ -179,7 +179,7 @@ table {
     }
 
     svg {
-      height: 40px;
+      height: (40rem/$fs);
     }
   }
 
@@ -188,17 +188,17 @@ table {
     width: (80em/$fs);
 
     svg {
-      height: 40px;
-    }    
+      height: (40rem/$fs);
+    }
   }
 
+  /* stylelint-disable value-no-vendor-prefix, property-no-vendor-prefix */
   .clamp {
     -webkit-line-clamp: 1;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
   }
-
 }
 
 .form-control {
