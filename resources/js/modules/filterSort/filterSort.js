@@ -6,6 +6,7 @@ export function filter(elements) {
   elements.forEach((element) => {
     element.addEventListener('change', (e) => {
 
+      /* eslint-disable sort-vars */
       const url = new URL(window.location),
         param = e.target.dataset.param,
         params = url.searchParams,
