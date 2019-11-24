@@ -27,14 +27,8 @@
       </div>
 
       <div class="form-group col-2">
-        <?php $class = $errors->has('timestamp') != null ? 'form-control is-invalid' : 'form-control'; ?>
         {!! Form::label('timestamp', ucfirst(__('fields.timestamp'))) !!}
-        {!! Form::text('timestamp', null, array('placeholder' => ucfirst(__('fields.timestamp')), 'class'=>$class, 'min' => 1, 'max' => 5)) !!}
-        @error('timestamp')
-        <div class="invalid-feedback">
-          <strong>{{ $message }}</strong>
-        </div>
-        @enderror
+        {!! Form::text('timestamp', null, array('placeholder' => ucfirst(__('fields.timestamp')), 'class'=>$class, 'disabled' => true)) !!}
       </div>
     </div>  
 
@@ -42,7 +36,7 @@
       <div class="form-group col">
         <?php $class = $errors->has('email') != null ? 'form-control is-invalid' : 'form-control'; ?>
         {!! Form::label('email', ucfirst(__('fields.email'))) !!}
-        {!! Form::text('email', null, array('placeholder' => ucfirst(__('fields.email')), 'class'=>$class)) !!}
+        {!! Form::email('email', null, array('placeholder' => ucfirst(__('fields.email')), 'class'=>$class)) !!}
         @error('email')
         <div class="invalid-feedback">
           <strong>{{ $message }}</strong>
@@ -64,7 +58,7 @@
       <div class="form-group col-2">
         <?php $class = $errors->has('departure') != null ? 'form-control is-invalid' : 'form-control'; ?>
         {!! Form::label('departure', ucfirst(__('fields.departure'))) !!}
-        {!! Form::text('departure', null, array('placeholder' => ucfirst(__('fields.departure')), 'class'=>$class, 'min' => 1, 'max' => 5)) !!}
+        {!! Form::text('departure', null, array('placeholder' => ucfirst(__('fields.departure')), 'class'=>$class)) !!}
         @error('departure')
         <div class="invalid-feedback">
           <strong>{{ $message }}</strong>
@@ -77,7 +71,7 @@
       <div class="form-group col-1">
         <?php $class = $errors->has('adult') != null ? 'form-control is-invalid' : 'form-control'; ?>
         {!! Form::label('adult', ucfirst(__('fields.adult'))) !!}
-        {!! Form::text('adult', null, array('placeholder' => ucfirst(__('fields.adult')), 'class'=>$class)) !!}
+        {!! Form::number('adult', null, array('placeholder' => ucfirst(__('fields.adult')), 'class'=>$class, 'min' => 1, 'max' => 10)) !!}
         @error('adult')
         <div class="invalid-feedback">
           <strong>{{ $message }}</strong>
@@ -88,7 +82,7 @@
       <div class="form-group col-1">
         <?php $class = $errors->has('child') != null ? 'form-control is-invalid' : 'form-control'; ?>
         {!! Form::label('child', ucfirst(__('fields.child'))) !!}
-        {!! Form::text('child', null, array('placeholder' => ucfirst(__('fields.child')), 'class'=>$class, 'min' => 1, 'max' => 5)) !!}
+        {!! Form::number('child', null, array('placeholder' => ucfirst(__('fields.child')), 'class'=>$class, 'min' => 1, 'max' => 10)) !!}
         @error('child')
         <div class="invalid-feedback">
           <strong>{{ $message }}</strong>
