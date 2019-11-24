@@ -192,13 +192,25 @@ table {
     }
   }
 
+  &__date {
+    width: (100em/$fs);
+    text-align: right;
+  }
+
   /* stylelint-disable value-no-vendor-prefix, property-no-vendor-prefix */
-  .clamp {
+  .clamp-one {
     -webkit-line-clamp: 1;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
   }
+
+  .clamp-two {
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }  
 }
 
 .form-control {

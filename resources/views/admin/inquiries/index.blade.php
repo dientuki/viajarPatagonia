@@ -58,13 +58,13 @@ use App\Translations\CruiseshipsTranslation;
         @foreach ($inquiries as $inquiry)
         <tr>
             <td>{{ $inquiry->is_readed }}</td>
-            <td>{{ $inquiry->name }}</td>
+            <td class="inquiry__name"><div class="clamp-two">{{ $inquiry->name }}</div></td>
             <td class="inquiry__product">
               <a title="{{ Helpers::product_title($inquiry) }}" rel="noopener" target="_blank" href="{{route($inquiry->product, Helpers::product_params($inquiry))}}">{!! Helpers::load_svg('ico-' . $inquiry->product ) !!}</a>
             </td>
             <td class="inquiry__flag">{!! Helpers::load_svg('lang-' . $inquiry->iso ) !!}</td>
-            <td class="inquiry__comment"><div class="clamp">{{ $inquiry->comment }}</div></td>
-            <td>{{ $inquiry->timestamp }}</td>
+            <td class="inquiry__comment"><div class="clamp-one">{{ $inquiry->comment }}</div></td>
+            <td class="inquiry__date">{{ $inquiry->timestamp }}</td>
 
             <td class="column-action px-4">
                 <div class="row">
