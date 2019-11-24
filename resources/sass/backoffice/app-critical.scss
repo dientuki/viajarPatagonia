@@ -15,6 +15,10 @@
   box-shadow: 0 0 (10rem/$fs) (3rem/$fs) rgba(#f8fafc, 1);
   top: 0;
   margin-bottom: (5rem/$fs);
+
+  .form-control {
+    width: 100% !important;
+  }
 }
 
 #sidebarCollapse {

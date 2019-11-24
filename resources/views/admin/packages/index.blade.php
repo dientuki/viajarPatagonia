@@ -2,7 +2,11 @@
 
 @section ('content')
 
-<div class="header-sticky">{{ ucfirst(trans_choice('fields.package', 2)) }}</div>
+<div class="header-sticky row">
+  <div class="col">{{ ucfirst(trans_choice('fields.package', 2)) }}</div>
+
+  @include ('admin/widgets/order')
+</div>
 
 @if (isset($packages))
 <table class="table table-striped table-bordered table-hover table-sm">

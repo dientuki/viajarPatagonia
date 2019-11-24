@@ -61,7 +61,7 @@ return [
     'excursion' => 'excursiones',    
 
     // Paquetes
-    'package' => 'paquete|paquetes',   
+    'package' => 'paquete|paquetes', 
 
     // Ususarios
     'user' => 'usuario',       
@@ -92,5 +92,11 @@ return [
     'departure' => 'fecha de salida',
     'adult' => 'adultos',
     'child' => 'niños',
-    'timestamp' => 'fecha'
+    'timestamp' => 'fecha',
+
+    //
+    'all' => 'todos',
+    'productPlaceholder' => 'Seleccione un producto',
+    'languagePlaceholder' => 'Seleccione un lenguage',
+    'readPlaceholder' => 'Seleccione un estado',
 ];
