@@ -201,6 +201,13 @@ table {
 
 }
 
+.form-control {
+  svg {
+    height: (20rem/$fs);
+    margin-right: (10em/$fs);
+  }
+}
+
 // Draft
 @import "./modules/draft/draft.scss";
 @import "./modules/draft/rich-editor.scss";
