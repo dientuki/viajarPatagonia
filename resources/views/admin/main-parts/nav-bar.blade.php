@@ -88,7 +88,7 @@
         <form action="{{ route('logout') }}" method="POST">
           {{ csrf_field() }}
           <button class="main-nav__title-wrapper">
-            <div class="main-nav__icon">icono</div>
+            <div class="main-nav__icon">{!! Helpers::load_svg('ico-logout') !!}</div>
             <div class="main-nav__title">Salir</div>            
           </button>
         </form>
