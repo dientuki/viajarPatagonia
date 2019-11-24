@@ -2,7 +2,9 @@
 
 namespace App;
 
+use DateTime;
 use App\Translations\Language;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Model;
 
 class Inquiry extends Model
@@ -26,7 +28,40 @@ class Inquiry extends Model
      *
      * @var array
      */
-    protected $fillable = ['region'];   
+    protected $fillable = ['region'];     
+
+    public function getTimestampAttribute() {
+      $current = explode('@', Route::currentRouteAction())[1];
+      $date = $this->attributes['timestamp'];
+
+      if ($current == 'edit') {
+        $date = date('d/m/Y g:H:s',strtotime($this->attributes['timestamp']));
+      }
+
+      if ($current == 'index') {
+
+        $today = new DateTime(); // This object represents current date/time
+        $today->setTime(0,0,0); // reset time part, to prevent partial comparison
+
+        $match_date = new DateTime($this->attributes['timestamp']); //DateTime::createFromFormat( "Y.m.d\\TH:i", strtotime($this->attributes['timestamp']) );
+        $match_date->setTime( 0, 0, 0 ); // reset time part, to prevent partial comparison
+
+        $diff = $today->diff( $match_date );
+        $diffDays = (integer)$diff->format( "%R%a" ); // Extract days count in interval        
+        
+        if ($diffDays == 0) {
+          $date = date('g:H:s',strtotime($this->attributes['timestamp']));
+        } else {
+          $date = date('d/m/Y',strtotime($this->attributes['timestamp']));
+        }
+      }
+
+      return $date;
+    }
+
+    public function getDepartureAttribute() {
+      return date('d/m/Y',strtotime($this->attributes['departure']));;
+    }    
 
     static function getIso($id) {
       return Language::where('id', $id)
