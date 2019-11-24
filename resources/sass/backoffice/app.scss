@@ -38,7 +38,7 @@
 
 .sticky-head {
   position: sticky;
-  top: 0;
+  top: (60rem/$fs);
   background: #f8fafc;
   box-shadow: 0 0 (10rem/$fs) (3rem/$fs) rgba(#f8fafc, 1);
   border-radius: 0 0 (10rem/$fs) (10rem/$fs);

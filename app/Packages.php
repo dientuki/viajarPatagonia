@@ -39,8 +39,10 @@ class Packages extends Model implements HasMedia
     protected $fillable = ['is_active', 'map'];    
 
     static public function getAll(){
+      $request = request();
       $packages = Packages::select('packages.id', 'packages.is_active');
       $languages = Language::getAll();
+      $queries = [];
 
       foreach ($languages as $language) {
         $packages->addSelect("ct$language->id.name as title$language->id")
@@ -49,7 +51,15 @@ class Packages extends Model implements HasMedia
           ->where("l$language->id.iso", $language->iso);
       }
 
-      return $packages->get();
+      if ($request->has('order')) {
+        $packages->orderBy('packages.id', $request->get('order'));
+        $queries['order'] = $request->get('order');
+      } else {
+        $packages->orderBy('packages.id', 'desc');
+        $queries['order'] = 'desc';
+      }  
+
+      return $packages->simplePaginate(1)->appends($queries);
     }
 
     static public function getSlider(){

@@ -10,15 +10,15 @@
 
   <nav class="main-nav">
     <ul>
-      <!-- paquetes -->
+      <!-- {{ trans_choice('fields.package', 2)}}  -->
       <li class="main-nav__item {{ Helpers::main_menu(['packages']) }}">
         <div class="main-nav__title-wrapper must-expand">
           <div class="main-nav__icon">{!! Helpers::load_svg('ico-package') !!}</div>
           <div class="main-nav__title">Paquetes</div>
         </div>
         <ul class="main-nav__submenu">
-          <li class="main-nav__li {{ Helpers::sub_menu('packages', 'create') }}"><a href="{{route('admin.packages.index')}}" class="main-nav__link">Ver paquetes</a></li>
-          <li class="main-nav__li {{ Helpers::sub_menu_only('packages.create') }}"><a href="{{route('admin.packages.create')}}" class="main-nav__link">Nuevo paquete</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('packages', 'create') }}"><a href="{{route('admin.packages.index')}}" class="main-nav__link">{{ ucfirst(__('buttons.show')) }} {{ trans_choice('fields.package', 2)}} </a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu_only('packages.create') }}"><a href="{{route('admin.packages.create')}}" class="main-nav__link">Nuevo {{ trans_choice('fields.package', 1)}} </a></li>
         </ul>
       </li>
       
@@ -29,8 +29,8 @@
           <div class="main-nav__title">Cruceros</div>
         </div>
         <ul class="main-nav__submenu">
-          <li class="main-nav__li {{ Helpers::sub_menu('cruiseships-types') }}"><a href="{{route('admin.cruiseships-types.index')}}" class="main-nav__link">Ver tipos de cruceros</a></li>  
-          <li class="main-nav__li {{ Helpers::sub_menu('cruiseships', 'create') }}"><a href="{{route('admin.cruiseships.index')}}" class="main-nav__link">Ver cruceros</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('cruiseships-types') }}"><a href="{{route('admin.cruiseships-types.index')}}" class="main-nav__link">{{ ucfirst(__('buttons.show')) }} tipos de cruceros</a></li>  
+          <li class="main-nav__li {{ Helpers::sub_menu('cruiseships', 'create') }}"><a href="{{route('admin.cruiseships.index')}}" class="main-nav__link">{{ ucfirst(__('buttons.show')) }} cruceros</a></li>
           <li class="main-nav__li {{ Helpers::sub_menu_only('cruiseships.create') }}"><a href="{{route('admin.cruiseships.create')}}" class="main-nav__link">Nuevo crucero</a></li>
         </ul>
       </li>
@@ -42,10 +42,10 @@
           <div class="main-nav__title">Excursiones</div>
         </div>
         <ul class="main-nav__submenu">
-          <li class="main-nav__li {{ Helpers::sub_menu('availability') }}"><a href="{{route('admin.availability.index')}}" class="main-nav__link">Ver disponibilidad</a></li>  
-          <li class="main-nav__li {{ Helpers::sub_menu('duration') }}"><a href="{{route('admin.duration.index')}}" class="main-nav__link ">Ver duracion</a></li>
-          <li class="main-nav__li {{ Helpers::sub_menu('excursions-types') }}"><a href="{{route('admin.excursions-types.index')}}" class="main-nav__link ">Ver tipo de excuriones</a></li>
-          <li class="main-nav__li {{ Helpers::sub_menu('excursions', 'create') }}"><a href="{{route('admin.excursions.index')}}" class="main-nav__link ">Ver excursiones</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('availability') }}"><a href="{{route('admin.availability.index')}}" class="main-nav__link">{{ ucfirst(__('buttons.show')) }} disponibilidad</a></li>  
+          <li class="main-nav__li {{ Helpers::sub_menu('duration') }}"><a href="{{route('admin.duration.index')}}" class="main-nav__link ">{{ ucfirst(__('buttons.show')) }} duracion</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('excursions-types') }}"><a href="{{route('admin.excursions-types.index')}}" class="main-nav__link ">{{ ucfirst(__('buttons.show')) }} tipo de excuriones</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('excursions', 'create') }}"><a href="{{route('admin.excursions.index')}}" class="main-nav__link ">{{ ucfirst(__('buttons.show')) }} excursiones</a></li>
           <li class="main-nav__li {{ Helpers::sub_menu_only('excursions.create') }}"><a href="{{route('admin.excursions.create')}}" class="main-nav__link ">Nueva excursion</a></li>
         </ul>
       </li>   

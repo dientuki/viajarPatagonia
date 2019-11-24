@@ -2,18 +2,17 @@
 
 @section ('content')
 
+<div class="header-sticky">{{ ucfirst(trans_choice('fields.package', 2)) }}</div>
+
 @if (isset($packages))
 <table class="table table-striped table-bordered table-hover table-sm">
     <thead class="thead-dark">
         <tr>
-        <th colspan="{{count($languages)}}">{{ ucfirst(__('fields.package')) }}</th>
-        <th rowspan="2">{{ ucfirst(__('fields.active')) }}</th>
-        <th class="column-action" rowspan="2">Accion</th>
-        </tr>
-        <tr>
         @foreach ($languages as $language)
             <th>{{$language->language}}</th>
         @endforeach
+        <th >{{ ucfirst(__('fields.active')) }}</th>
+        <th class="column-action" rowspan="2">Accion</th>        
         </tr>        
     </thead>
     <tbody>
@@ -44,9 +43,16 @@
     </tbody>
 </table>
 
-@include ('admin/widgets/modal-delete')
+<div class="row">
+  <div class="col-sm">
+    <a href="{{route('admin.packages.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(trans_choice('fields.package',1)) }}">{{__('buttons.create')}} {{ ucfirst(trans_choice('fields.package',1)) }}</a>
+  </div>
+  <div class="col-sm">
+    {{ $packages->links() }}
+  </div>
+</div>
 
-<a href="{{route('admin.packages.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(__('fields.package')) }}">{{__('buttons.create')}} {{ ucfirst(__('fields.package')) }}</a>
+@include ('admin/widgets/modal-delete')
 @endif
 
 @endsection

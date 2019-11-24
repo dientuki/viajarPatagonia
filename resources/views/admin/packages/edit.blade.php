@@ -2,6 +2,8 @@
 
 @section ('content')
 
+<div class="header-sticky">{{ ucfirst(__('fields.package')) }}</div>
+
   {!! Form::open(array_merge($form_data, array('role' => 'form', 'class' => 'form-horizontal', 'enctype' => "multipart/form-data"))) !!}
     <div>{{ ucfirst(__('fields.package')) }}</div>
 

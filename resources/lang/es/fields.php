@@ -61,7 +61,7 @@ return [
     'excursion' => 'excursiones',    
 
     // Paquetes
-    'package' => 'paquetes',   
+    'package' => 'paquete|paquetes',   
 
     // Ususarios
     'user' => 'usuario',       
