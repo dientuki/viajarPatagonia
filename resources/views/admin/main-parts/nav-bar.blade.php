@@ -14,7 +14,7 @@
       <li class="main-nav__item {{ Helpers::main_menu(['packages']) }}">
         <div class="main-nav__title-wrapper must-expand">
           <div class="main-nav__icon">{!! Helpers::load_svg('ico-package') !!}</div>
-          <div class="main-nav__title">Paquetes</div>
+          <div class="main-nav__title">{{ ucfirst(trans_choice('fields.package', 2)) }}</div>
         </div>
         <ul class="main-nav__submenu">
           <li class="main-nav__li {{ Helpers::sub_menu('packages', 'create') }}"><a href="{{route('admin.packages.index')}}" class="main-nav__link">{{ ucfirst(__('buttons.show')) }} {{ trans_choice('fields.package', 2)}} </a></li>

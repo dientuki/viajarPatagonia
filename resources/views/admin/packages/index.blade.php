@@ -47,7 +47,7 @@
   <div class="col-sm">
     <a href="{{route('admin.packages.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(trans_choice('fields.package',1)) }}">{{__('buttons.create')}} {{ ucfirst(trans_choice('fields.package',1)) }}</a>
   </div>
-  <div class="col-sm">
+  <div class="col-sm d-flex">
     {{ $packages->links() }}
   </div>
 </div>

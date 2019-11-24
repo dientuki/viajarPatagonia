@@ -5,8 +5,6 @@
 <div class="header-sticky">{{ __('buttons.' . $action) . ' ' . trans_choice('fields.package', 1) }}</div>
 
   {!! Form::open(array_merge($form_data, array('role' => 'form', 'class' => 'form-horizontal', 'enctype' => "multipart/form-data"))) !!}
-    <div>{{ ucfirst(__('fields.package')) }}</div>
-
     @include('admin.packages._create.languages')
     @include('admin.packages._create.common')
     @include('admin.packages._create.prices')

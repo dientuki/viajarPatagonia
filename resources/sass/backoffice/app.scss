@@ -21,6 +21,12 @@
   padding-top: 0 !important;
 }
 
+.d-flex {
+  > nav {
+    margin-left: auto !important;
+  }
+}
+
 .column-action {
   width: (250em/$fs);
 
