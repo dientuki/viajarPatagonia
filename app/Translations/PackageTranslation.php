@@ -31,6 +31,13 @@ class PackageTranslation extends Model
       //return Region::orderBy('region')->pluck('region', 'id');
     }
 
+    static function getName($fk) {
+      return PackageTranslation::where('fk_package', $fk)
+        ->where('fk_language', 1)
+        ->limit(1)
+        ->value('name');          
+    }    
+
     static function getEdit($id){
 
       return PackageTranslation::select('id', 'fk_language', 'name', 'summary', 'body')

@@ -17,6 +17,10 @@
 
 @import "modules/alerts.scss";
 
+.p-5 {
+  padding-top: 0 !important;
+}
+
 .column-action {
   width: (250em/$fs);
 
@@ -154,6 +158,65 @@ select {
   .disabled {
     color: graytext;
     cursor: default;
+  }
+}
+
+table {
+  svg {
+    width: 50%;
+  }
+}
+
+.inquiry {
+  &__product {
+    text-align: center;
+    width: (80em/$fs);
+
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    svg {
+      height: (40rem/$fs);
+    }
+  }
+
+  &__flag {
+    text-align: center;
+    width: (80em/$fs);
+
+    svg {
+      height: (40rem/$fs);
+    }
+  }
+
+  &__date {
+    width: (100em/$fs);
+    text-align: right;
+  }
+
+  /* stylelint-disable value-no-vendor-prefix, property-no-vendor-prefix */
+  .clamp-one {
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
+
+  .clamp-two {
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
+}
+
+.form-control {
+  svg {
+    height: (20rem/$fs);
+    margin-right: (10em/$fs);
   }
 }
 

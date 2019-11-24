@@ -31,6 +31,13 @@ class CruiseshipsTranslation extends Model
       //return Region::orderBy('region')->pluck('region', 'id');
     }
 
+    static function getName($fk) {
+      return CruiseshipsTranslation::where('fk_cruiseship', $fk)
+        ->where('fk_language', 1)
+        ->limit(1)
+        ->value('name');          
+    }
+
     static function getEdit($id){
 
       return CruiseshipsTranslation::select('id', 'fk_language', 'name', 'summary', 'body')

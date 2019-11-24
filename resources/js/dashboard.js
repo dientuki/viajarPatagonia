@@ -2,12 +2,13 @@ import $ from 'jquery';
 import { expandableItem, toogleNav } from './modules/sidebar/sidebar';
 import 'bootstrap/js/dist/alert';
 __webpack_public_path__ = `${window.location.protocol}//${window.location.host}/dist/`;
+
 const alertClose = document.querySelector('.alert-close');
 
 toogleNav();
 expandableItem(document.querySelectorAll('.must-expand'));
 
-if (alert !== null) {
+if (alertClose !== null) {
   alertClose.addEventListener('click', (e) => {
     e.target.closest('.animated').classList.add('zoomOut');
   });
@@ -58,6 +59,13 @@ if (document.querySelector('.sortable') !== null) {
 if (document.querySelector('#products') !== null) {
   import(/* webpackChunkName: "urlSelect" */ './modules/urlSelect/urlSelect').then((module) => {
     module.urlSelect(document.querySelector('#products'));
+  });
+}
+
+if (document.querySelector('.header-sticky') !== null) {
+  import(/* webpackChunkName: "urlSelect" */ './modules/filterSort/filterSort').then((module) => {
+    module.filter(document.querySelectorAll('.filter'));
+    module.sort(document.querySelector('.sort'));
   });
 }
 

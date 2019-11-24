@@ -13,7 +13,7 @@
       <!-- paquetes -->
       <li class="main-nav__item {{ Helpers::main_menu(['packages']) }}">
         <div class="main-nav__title-wrapper must-expand">
-          <div class="main-nav__icon">{!! Helpers::load_svg('ico-packages') !!}</div>
+          <div class="main-nav__icon">{!! Helpers::load_svg('ico-package') !!}</div>
           <div class="main-nav__title">Paquetes</div>
         </div>
         <ul class="main-nav__submenu">
@@ -25,7 +25,7 @@
       <!-- cruceros -->
       <li class="main-nav__item {{ Helpers::main_menu(['cruiseships', 'cruiseships-types']) }}">
         <div class="main-nav__title-wrapper must-expand">
-          <div class="main-nav__icon">{!! Helpers::load_svg('ico-ship') !!}</div>
+          <div class="main-nav__icon">{!! Helpers::load_svg('ico-cruise') !!}</div>
           <div class="main-nav__title">Cruceros</div>
         </div>
         <ul class="main-nav__submenu">
@@ -38,7 +38,7 @@
       <!-- excursiones -->
       <li class="main-nav__item {{ Helpers::main_menu(['excursions', 'availability', 'duration', 'excursions-types']) }}">
         <div class="main-nav__title-wrapper must-expand">
-          <div class="main-nav__icon">{!! Helpers::load_svg('ico-binoculars') !!}</div>
+          <div class="main-nav__icon">{!! Helpers::load_svg('ico-excursion') !!}</div>
           <div class="main-nav__title">Excursiones</div>
         </div>
         <ul class="main-nav__submenu">
@@ -51,10 +51,10 @@
       </li>   
       
       <!-- lugares -->
-      <li class="main-nav__item {{ Helpers::main_menu(['regions', 'destinations']) }}">
+      <li class="main-nav__item {{ Helpers::main_menu(['inquiries']) }}">
         <div class="main-nav__title-wrapper">
           <div class="main-nav__icon">{!! Helpers::load_svg('ico-inquiries') !!}</div>
-          <div class="main-nav__title"><a href="{{route('admin.regions.index')}}" class="main-nav__link {{ Helpers::sub_menu('regions') }}">Consultas</a></div>
+          <div class="main-nav__title"><a href="{{route('admin.inquiries.index')}}" class="main-nav__link">Consultas</a></div>
         </div>
       </li> 
       
@@ -67,7 +67,7 @@
       </li>      
       
       <!-- configuracion -->
-      <li class="main-nav__item {{ Helpers::main_menu(['languages', 'currencies', 'users']) }}">
+      <li class="main-nav__item {{ Helpers::main_menu(['users', 'destinations', 'regions', 'languages', 'currencies']) }}">
         <div class="main-nav__title-wrapper must-expand">
           <div class="main-nav__icon">{!! Helpers::load_svg('ico-settings') !!}</div>
           <div class="main-nav__title">Configuracion</div>
@@ -88,7 +88,7 @@
         <form action="{{ route('logout') }}" method="POST">
           {{ csrf_field() }}
           <button class="main-nav__title-wrapper">
-            <div class="main-nav__icon">icono</div>
+            <div class="main-nav__icon">{!! Helpers::load_svg('ico-logout') !!}</div>
             <div class="main-nav__title">Salir</div>            
           </button>
         </form>

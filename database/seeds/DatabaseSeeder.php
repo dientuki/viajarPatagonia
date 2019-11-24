@@ -37,7 +37,8 @@ class DatabaseSeeder extends Seeder
             Package2ExcursionSeeder::class,
             Package2DestinationSeeder::class,     
             HomesliderTableSeeder::class,
-            HomesliderTranslationSeeder::class,               
+            HomesliderTranslationSeeder::class,
+            InquiriesTableSeeder::class          
         ]);
     }
 }

@@ -39,6 +39,13 @@ class ExcursionsTranslation extends Model
         ->get();
     }    
 
+    static function getName($fk) {
+      return ExcursionsTranslation::where('fk_excursion', $fk)
+        ->where('fk_language', 1)
+        ->limit(1)
+        ->value('name');          
+    }    
+
     static function getUpdate($where){
 
       return ExcursionsTranslation::select('id', 'fk_language', 'name', 'summary', 'body')
