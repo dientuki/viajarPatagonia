@@ -85,5 +85,6 @@ return [
     'is_readed' => 'leido',
     'product' => 'producto',
     'comment' => 'consulta',
-    'date' => 'fecha'
+    'date' => 'fecha',
+    'inquiries' => 'consultas'
 ];
