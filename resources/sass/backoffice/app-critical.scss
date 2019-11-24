@@ -1,6 +1,22 @@
 // Variables
 @import "./variables";
 
+.p-5 {
+  padding-top: 0 !important;
+}
+
+.header-sticky {
+  height: (60rem/$fs);
+  font-size: (30em/$fs);
+  line-height: (60rem/$fs);
+  background: #f8fafc;
+  position: sticky;
+  z-index: 10;
+  box-shadow: 0 0 (10rem/$fs) (3rem/$fs) rgba(#f8fafc, 1);
+  top: 0;
+  margin-bottom: (5rem/$fs);
+}
+
 #sidebarCollapse {
   cursor: pointer !important;
 }

@@ -17,6 +17,10 @@
 
 @import "modules/alerts.scss";
 
+.p-5 {
+  padding-top: 0 !important;
+}
+
 .column-action {
   width: (250em/$fs);
 
@@ -155,6 +159,46 @@ select {
     color: graytext;
     cursor: default;
   }
+}
+
+table {
+  svg {
+    width: 50%;
+  }
+}
+
+.inquiry {
+  &__product {
+    text-align: center;
+    width: (80em/$fs);
+
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    svg {
+      height: 40px;
+    }
+  }
+
+  &__flag {
+    text-align: center;
+    width: (80em/$fs);
+
+    svg {
+      height: 40px;
+    }    
+  }
+
+  .clamp {
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
+
 }
 
 // Draft
