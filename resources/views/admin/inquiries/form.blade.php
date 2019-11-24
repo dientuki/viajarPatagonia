@@ -94,18 +94,7 @@
           <strong>{{ $message }}</strong>
         </div>
         @enderror
-      </div>
-
-      <div class="form-group col-3">
-        <?php $class = $errors->has('departure') != null ? 'form-control is-invalid' : 'form-control'; ?>
-        {!! Form::label('departure', ucfirst(__('fields.departure'))) !!}
-        {!! Form::text('departure', null, array('placeholder' => ucfirst(__('fields.departure')), 'class'=>$class, 'min' => 1, 'max' => 5)) !!}
-        @error('departure')
-        <div class="invalid-feedback">
-          <strong>{{ $message }}</strong>
-        </div>
-        @enderror
-      </div>     
+      </div>  
       
       <div class="form-group col">
         {!! Form::label(null, ucfirst(__('fields.product'))) !!}
