@@ -60,22 +60,7 @@ use App\Translations\CruiseshipsTranslation;
             <td>{{ $inquiry->is_readed }}</td>
             <td>{{ $inquiry->name }}</td>
             <td class="inquiry__product">
-              <?php
-                switch ($inquiry->product) {
-                  case 'cruise':
-                    $title = CruiseshipsTranslation::getName($inquiry->product_id);
-                  break;
-                  case 'excursion':
-                    $title = ExcursionsTranslation::getName($inquiry->product_id);
-                  break;
-                  case 'package':
-                    $title = PackageTranslation::getName($inquiry->product_id);
-                  break;
-                }
-                
-                $routeParams = array('locale' => $inquiry->iso, 'name' => Str::slug($title, '-'), 'id' => $inquiry->product_id);
-              ?>
-              <a title="{{ $title }}" rel="noopener" target="_blank" href="{{route($inquiry->product, $routeParams)}}">{!! Helpers::load_svg('ico-' . $inquiry->product ) !!}</a>
+              <a title="{{ Helpers::product_title($inquiry) }}" rel="noopener" target="_blank" href="{{route($inquiry->product, Helpers::product_params($inquiry))}}">{!! Helpers::load_svg('ico-' . $inquiry->product ) !!}</a>
             </td>
             <td class="inquiry__flag">{!! Helpers::load_svg('lang-' . $inquiry->iso ) !!}</td>
             <td class="inquiry__comment"><div class="clamp">{{ $inquiry->comment }}</div></td>
@@ -83,11 +68,11 @@ use App\Translations\CruiseshipsTranslation;
 
             <td class="column-action px-4">
                 <div class="row">
-                <a href="{{route('admin.inquiries.edit', $inquiry->id)}}" class="btn btn-primary col" title="{{__('buttons.edit')}} {{ $inquiry->region }}">{{__('buttons.edit')}}</a>
+                <a href="{{route('admin.inquiries.edit', $inquiry->id)}}" class="btn btn-primary col" title="{{__('buttons.show')}}">{{__('buttons.show')}}</a>
                 
                 {!! Form::open(array('route' => array('admin.inquiries.destroy', $inquiry->id), 'method' => 'DELETE', 'class' => 'col modalOpener', 'id' => 'id-' . $inquiry->id)) !!}
                 <button id="button-{{ $inquiry->id }}" type="submit" class="btn btn-danger modalDelete"
-                    title="{{__('buttons.delete')}} {{ $inquiry->region }}">
+                    title="{{__('buttons.delete')}}">
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     {{__('buttons.delete') }}</button>
                 {!! Form::close() !!}

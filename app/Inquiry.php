@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Translations\Language;
 use Illuminate\Database\Eloquent\Model;
 
 class Inquiry extends Model
@@ -27,6 +28,11 @@ class Inquiry extends Model
      */
     protected $fillable = ['region'];   
 
+    static function getIso($id) {
+      return Language::where('id', $id)
+        ->limit(1)
+        ->value('iso');  
+    }    
     
     static function getAll() {
       $request = request();
@@ -55,7 +61,7 @@ class Inquiry extends Model
 
     static function getEdit($id){
 
-      $result = Inquiry::select('id', 'region')
+      $result = Inquiry::select('id', 'name', 'email', 'phone', 'adult', 'child', 'departure', 'timestamp', 'product', 'product_id', 'fk_language', 'is_readed', 'comment')
           ->where('id', $id)
           ->get()->first();
   

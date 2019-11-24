@@ -3,7 +3,12 @@
 namespace App\Http\Helpers;
 
 use Request;
+use App\Inquiry;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
+use App\Translations\PackageTranslation;
+use App\Translations\ExcursionsTranslation;
+use App\Translations\CruiseshipsTranslation;
 
 class Helpers {
   public static function load_resource($resource, $url = true) {
@@ -218,5 +223,28 @@ class Helpers {
     }
 
     return $return;
+  }
+
+  static function product_params($inquiry) {
+    $title = Helpers::product_title($inquiry);
+    $iso = isset($inquiry->iso) ? $inquiry->iso : Inquiry::getIso($inquiry->fk_language);
+    
+    return array('locale' => $iso, 'name' => Str::slug($title, '-'), 'id' => $inquiry->product_id);
+  }
+
+  static function product_title($inquiry) {
+    switch ($inquiry->product) {
+      case 'cruise':
+        $title = CruiseshipsTranslation::getName($inquiry->product_id);
+      break;
+      case 'excursion':
+        $title = ExcursionsTranslation::getName($inquiry->product_id);
+      break;
+      case 'package':
+        $title = PackageTranslation::getName($inquiry->product_id);
+      break;
+    }
+    
+    return $title;
   }
 }

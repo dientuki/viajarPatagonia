@@ -30,6 +30,8 @@ class InquiriesController extends Controller
     public function edit($id)
     {
         $inquiry = Inquiry::getEdit($id);
+        $inquiry->is_readed = 1;
+        $inquiry->save();
 
         $action    = 'update';
         $form_data = array('route' => array('admin.inquiries.update', $inquiry->id), 'method' => 'PATCH');
