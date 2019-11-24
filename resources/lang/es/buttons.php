@@ -13,6 +13,7 @@ return [
     |
     */
 
+    'show' => 'Ver',
     'create' => 'Crear',
     'update' => 'Actualizar',
     'edit' => 'Editar',

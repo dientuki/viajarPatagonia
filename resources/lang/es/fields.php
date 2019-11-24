@@ -86,5 +86,11 @@ return [
     'product' => 'producto',
     'comment' => 'consulta',
     'date' => 'fecha',
-    'inquiries' => 'consultas'
+    'inquiries' => 'consultas',
+    'inquiry' => 'consulta',
+    'phone' => 'telefono',
+    'departure' => 'fecha de salida',
+    'adult' => 'adultos',
+    'child' => 'niños',
+    'timestamp' => 'fecha'
 ];
