@@ -50,7 +50,7 @@
         @enderror
       </div>
 
-      <div class="form-group col">
+      <div class="form-group col-2">
         <?php $class = $errors->has('phone') != null ? 'form-control is-invalid' : 'form-control'; ?>
         {!! Form::label('phone', ucfirst(__('fields.phone'))) !!}
         {!! Form::text('phone', null, array('placeholder' => ucfirst(__('fields.phone')), 'class'=>$class, 'min' => 1, 'max' => 5)) !!}
@@ -61,7 +61,7 @@
         @enderror
       </div>
 
-      <div class="form-group col">
+      <div class="form-group col-2">
         <?php $class = $errors->has('departure') != null ? 'form-control is-invalid' : 'form-control'; ?>
         {!! Form::label('departure', ucfirst(__('fields.departure'))) !!}
         {!! Form::text('departure', null, array('placeholder' => ucfirst(__('fields.departure')), 'class'=>$class, 'min' => 1, 'max' => 5)) !!}
