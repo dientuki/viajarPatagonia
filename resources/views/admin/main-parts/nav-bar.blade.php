@@ -13,7 +13,7 @@
       <!-- paquetes -->
       <li class="main-nav__item {{ Helpers::main_menu(['packages']) }}">
         <div class="main-nav__title-wrapper must-expand">
-          <div class="main-nav__icon">{!! Helpers::load_svg('ico-packages') !!}</div>
+          <div class="main-nav__icon">{!! Helpers::load_svg('ico-package') !!}</div>
           <div class="main-nav__title">Paquetes</div>
         </div>
         <ul class="main-nav__submenu">
@@ -25,7 +25,7 @@
       <!-- cruceros -->
       <li class="main-nav__item {{ Helpers::main_menu(['cruiseships', 'cruiseships-types']) }}">
         <div class="main-nav__title-wrapper must-expand">
-          <div class="main-nav__icon">{!! Helpers::load_svg('ico-ship') !!}</div>
+          <div class="main-nav__icon">{!! Helpers::load_svg('ico-cruise') !!}</div>
           <div class="main-nav__title">Cruceros</div>
         </div>
         <ul class="main-nav__submenu">
@@ -38,7 +38,7 @@
       <!-- excursiones -->
       <li class="main-nav__item {{ Helpers::main_menu(['excursions', 'availability', 'duration', 'excursions-types']) }}">
         <div class="main-nav__title-wrapper must-expand">
-          <div class="main-nav__icon">{!! Helpers::load_svg('ico-binoculars') !!}</div>
+          <div class="main-nav__icon">{!! Helpers::load_svg('ico-excursion') !!}</div>
           <div class="main-nav__title">Excursiones</div>
         </div>
         <ul class="main-nav__submenu">

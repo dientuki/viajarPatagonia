@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Exception;
 use App\Inquiry;
-use Illuminate\Http\Request;
 use App\Http\Requests\EditInquiry;
 use Prologue\Alerts\Facades\Alert;
 use App\Http\Controllers\Controller;

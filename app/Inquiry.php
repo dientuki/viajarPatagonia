@@ -27,22 +27,30 @@ class Inquiry extends Model
      */
     protected $fillable = ['region'];   
 
-    protected $perPage = 10;
-
-    public function simplePaginate($perPage = 10, $pageName = 'page') {
-      $page = Paginator::resolveCurrentPage($pageName);
-
-      $this->skip(($page - 1) * $perPage)->take($perPage + 1);
-
-    }
-
     
     static function getAll() {
-      $inquiries = Inquiry::select('inquiries.id', 'name', 'timestamp', 'product', 'product_id', 'languages.iso', 'is_readed', 'comment');
+      $request = request();
+      $inquiries = Inquiry::select('inquiries.id', 'name', 'timestamp', 'product', 'product_id', 'languages.iso as iso', 'is_readed', 'comment');
       $inquiries->join("languages", "languages.id", '=', "inquiries.fk_language");
+      $queries = [];
+      $columns = array('product', 'iso', 'is_readed');
 
+      foreach ($columns as $column) {
+        if ($request->has($column)) {
+          $inquiries->where($column, $request->get($column));
+          $queries[$column] = $request->get($column);
+        }
+      }
 
-      return $inquiries->get();
+      if ($request->has('order')) {
+        $inquiries->orderBy('id', $request->get('order'));
+        $queries['order'] = $request->get('order');
+      } else {
+        $inquiries->orderBy('id', 'desc');
+        $queries['order'] = 'desc';
+      }   
+
+      return $inquiries->simplePaginate(20)->appends($queries);
     }
 
     static function getEdit($id){
