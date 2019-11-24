@@ -201,5 +201,22 @@ class Helpers {
     if (strpos($current, $accepted) != false) {
       return 'selected';
     }
-  }  
+  }
+
+  static function selected_filter($param, $value, $default = false) {
+    $request = request();
+    $return = 'value="' . $value . '"';
+
+    if ($request->has($param)) {
+      if ($request->get($param) == $value) {
+        $return .= ' selected';
+      } 
+    } else {
+      if ($default == true) {
+        $return .= ' selected';
+      }
+    }
+
+    return $return;
+  }
 }
