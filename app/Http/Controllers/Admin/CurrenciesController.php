@@ -19,7 +19,7 @@ class CurrenciesController extends Controller
      */
     public function index()
     {
-        $currencies = Currency::all();
+        $currencies = Currency::getAll();
         return view('admin/currencies/index', compact('currencies'));
     }
 

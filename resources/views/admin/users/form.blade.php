@@ -2,6 +2,8 @@
 
 @section ('content')
 
+<div class="header-sticky">{{ __('buttons.' . $action) . ' ' . trans_choice('fields.user', 1) }}</div>
+
 {!! Form::model($user, array_merge($form_data, array('role' => 'form', 'class' => 'form-horizontal'))) !!}
 
   <div class="form-group">
@@ -51,7 +53,7 @@
   @endif
 
 
-  {!! Form::submit(__('buttons.' . $action) . ' ' .__('fields.user'), array('class'=>'btn btn-primary') ) !!}
+  {!! Form::submit(__('buttons.' . $action) . ' ' .trans_choice('fields.user', 1), array('class'=>'btn btn-primary') ) !!}
 
 
 {!! Form::close() !!}

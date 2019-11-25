@@ -1,3 +1,5 @@
+<?php use App\Http\Helpers\Helpers; ?>
+
 @extends('layouts.admin')
 
 @section ('content')
@@ -15,8 +17,8 @@
         @foreach ($languages as $language)
             <th>{{$language->language}}</th>
         @endforeach
-        <th >{{ ucfirst(__('fields.active')) }}</th>
-        <th class="column-action" rowspan="2">Accion</th>        
+        <th class="column-active">{{ ucfirst(__('fields.active')) }}</th>
+        <th class="column-action">Accion</th>        
         </tr>        
     </thead>
     <tbody>
@@ -28,7 +30,7 @@
                 <a href="{{route('package', $routeParams)}}" rel="noopener" target="_blank">{{$package['title' . $language->id]}}</a>
               </td>               
             @endforeach
-            <td>{{ $package->is_active }}</td>
+            <td class="column-active">{!! Helpers::get_active_icon($package->is_active ) !!}</td>
 
             <td class="column-action px-4">
                 <div class="row">

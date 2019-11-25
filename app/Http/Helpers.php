@@ -217,8 +217,10 @@ class Helpers {
         $return .= ' selected';
       } 
     } else {
-      if ($default == true) {
-        $return .= ' selected';
+      if ($default !== false) {
+        if ($value == $default) {
+          $return .= ' selected';
+        }
       }
     }
 
@@ -247,4 +249,14 @@ class Helpers {
     
     return $title;
   }
+
+  static function get_active_icon($value){
+    $values = array('inactive', 'active');
+    return Helpers::load_svg('ico-' . $values[$value]);
+  }
+
+  static function get_read_icon($value){
+    $values = array('unread', 'read');
+    return Helpers::load_svg('ico-' . $values[$value]);
+  }  
 }

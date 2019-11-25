@@ -27,6 +27,23 @@ class Region extends Model
      */
     protected $fillable = ['region'];    
 
+    static function getAll() {
+      $request = request();
+      $queries = [];
+      
+      $regions = Region::select('id', 'region');
+      
+      if ($request->has('order')) {
+        $regions->orderBy('id', $request->get('order'));
+        $queries['order'] = $request->get('order');
+      } else {
+        $regions->orderBy('id', 'desc');
+        $queries['order'] = 'desc';
+      }  
+
+      return $regions->simplePaginate(20)->appends($queries);      
+    }
+
     static function getLists() {
       return Region::orderBy('region')->pluck('region', 'id');
     }  

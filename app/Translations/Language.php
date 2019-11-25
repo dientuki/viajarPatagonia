@@ -32,7 +32,20 @@ class Language extends Model
     } 
     
     static function getAll() {
-      return Language::select('id', 'language', 'iso')->orderBy('id')->get();
+      $request = request();
+      $queries = [];
+
+      $languages = Language::select('id', 'language', 'iso');
+
+      if ($request->has('order')) {
+        $languages->orderBy('id', $request->get('order'));
+        $queries['order'] = $request->get('order');
+      } else {
+        $languages->orderBy('id', 'asc');
+        $queries['order'] = 'asc';
+      }  
+
+      return $languages->simplePaginate(20)->appends($queries);
     }
 
     static function getLocale($iso) {

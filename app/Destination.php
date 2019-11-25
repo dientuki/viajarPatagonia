@@ -32,11 +32,22 @@ class Destination extends Model
     }
 
     static public function getAll(){
+      $request = request();
+      $queries = [];
+
       $destinations = Destination::select('destinations.id', 'destinations.destination', 'regions.region')
-          ->join('regions', 'regions.id', '=', 'destinations.fk_region')
-          ->orderBy('regions.region')->orderBy('destinations.destination');
+          ->join('regions', 'regions.id', '=', 'destinations.fk_region');
+          //->orderBy('regions.region')->orderBy('destinations.destination');
+
+      if ($request->has('order')) {
+        $destinations->orderBy('regions.region', $request->get('order'));
+        $queries['order'] = $request->get('order');
+      } else {
+        $destinations->orderBy('regions.region', 'asc');
+        $queries['order'] = 'asc';
+      }            
   
-      return $destinations->get();
+      return $destinations->simplePaginate(20)->appends($queries);
     }
   
 

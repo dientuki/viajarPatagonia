@@ -2,12 +2,18 @@
 
 @section ('content')
 
+<div class="header-sticky row">
+  <div class="col">{{ ucfirst(trans_choice('fields.language', 2)) }}</div>
+
+  @include ('admin/widgets/order', ['default' => "asc"])
+</div>
+
 @if (isset($languages))
 <table class="table table-striped table-bordered table-hover table-sm">
     <thead class="thead-dark">
         <tr>
-            <th>{{ ucfirst(__('fields.language')) }}</th>
-            <th>{{ ucfirst(__('fields.iso')) }}</th>
+            <th>{{ ucfirst(trans_choice('fields.language',1)) }}</th>
+            <th>{{ ucfirst(__('fields.iso')) }} ISO 639-1</th>
             <th class="column-action">Accion</th>
         </tr>
     </thead>
@@ -34,9 +40,17 @@
     </tbody>
 </table>
 
+<div class="row">
+  <div class="col-sm">
+    <a href="{{route('admin.languages.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(trans_choice('fields.language',1)) }}">{{__('buttons.create')}} {{ ucfirst(trans_choice('fields.language',1)) }}</a>
+  </div>
+  <div class="col-sm d-flex">
+    {{ $languages->links() }}
+  </div>
+</div>
 @include ('admin/widgets/modal-delete')
 
-<a href="{{route('admin.languages.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(__('fields.language')) }}">{{__('buttons.create')}} {{ ucfirst(__('fields.language')) }}</a>
+
 @endif
 
 @endsection

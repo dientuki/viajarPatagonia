@@ -41,6 +41,11 @@
   }
 }
 
+.column-active {
+  width: (70em/$fs);
+  text-align: center;
+}
+
 .table {
   th,
   td {

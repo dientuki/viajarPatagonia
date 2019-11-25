@@ -6,7 +6,7 @@
 
       <div class="form-group">
         <?php $class = $errors->has('fk_cruiseship_type') != null ? 'form-control is-invalid' : 'form-control'; ?>
-        {!! Form::label('fk_cruiseship_type', ucfirst(__('fields.cruiseshipType'))) !!}
+        {!! Form::label('fk_cruiseship_type', ucfirst(trans_choice('fields.cruiseshipType',1))) !!}
         {!! Form::select('fk_cruiseship_type', $cruiseshipType, $cruiseship->fk_cruiseship_type, array('placeholder' => ucfirst(__('fields.cruiseshipType_select_placeholder')), 'class' => $class) ) !!}
         @error('fk_cruiseship_type')
         <div class="invalid-feedback">

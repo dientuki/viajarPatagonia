@@ -73,12 +73,12 @@
           <div class="main-nav__title">Configuracion</div>
         </div>
         <ul class="main-nav__submenu">
-          <li class="main-nav__li {{ Helpers::sub_menu('users') }}"><a href="{{route('admin.users.index')}}" class="main-nav__link">Usuarios</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('users') }}"><a href="{{route('admin.users.index')}}" class="main-nav__link">{{ ucfirst(trans_choice('fields.user', 2)) }}</a></li>
           <li class="main-nav__li {{ Helpers::sub_menu('destinations') }}"><a href="{{route('admin.destinations.index')}}" class="main-nav__link">Paginas</a></li>
-          <li class="main-nav__li {{ Helpers::sub_menu('regions') }}"><a href="{{route('admin.regions.index')}}" class="main-nav__link">Regiones</a></li>  
-          <li class="main-nav__li {{ Helpers::sub_menu('destinations') }}"><a href="{{route('admin.destinations.index')}}" class="main-nav__link">Destinos</a></li>
-          <li class="main-nav__li {{ Helpers::sub_menu('languages') }}"><a href="{{route('admin.languages.index')}}" class="main-nav__link">Lenguajes</a></li>  
-          <li class="main-nav__li {{ Helpers::sub_menu('currencies') }}"><a href="{{route('admin.currencies.index')}}" class="main-nav__link">Monedas</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('regions') }}"><a href="{{route('admin.regions.index')}}" class="main-nav__link">{{ ucfirst(trans_choice('fields.region', 2)) }}</a></li>  
+          <li class="main-nav__li {{ Helpers::sub_menu('destinations') }}"><a href="{{route('admin.destinations.index')}}" class="main-nav__link">{{ ucfirst(trans_choice('fields.destination', 2)) }}</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('languages') }}"><a href="{{route('admin.languages.index')}}" class="main-nav__link">{{ ucfirst(trans_choice('fields.language', 2)) }}</a></li>  
+          <li class="main-nav__li {{ Helpers::sub_menu('currencies') }}"><a href="{{route('admin.currencies.index')}}" class="main-nav__link">{{ ucfirst(trans_choice('fields.currency', 2)) }}</a></li>
           <li class="main-nav__li {{ Helpers::sub_menu('currencies') }}"><a href="{{route('admin.currencies.index')}}" class="main-nav__link">Third party</a></li>
           <li class="main-nav__li {{ Helpers::sub_menu('currencies') }}"><a href="{{route('admin.currencies.index')}}" class="main-nav__link">Footer</a></li>
         </ul>

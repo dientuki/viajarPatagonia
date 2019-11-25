@@ -6,7 +6,7 @@
 
       <div class="form-group">
         <?php $class = $errors->has('fk_excursion_type') != null ? 'form-control is-invalid' : 'form-control'; ?>
-        {!! Form::label('fk_excursion_type', ucfirst(__('fields.excursionType'))) !!}
+        {!! Form::label('fk_excursion_type', ucfirst(trans_choice('fields.excursionType',1))) !!}
         {!! Form::select('fk_excursion_type', $excursionType, $excursion->fk_excursion_type,
         array('placeholder' =>
         ucfirst(__('fields.excursionType_select_placeholder')), 'class' => $class) ) !!}
@@ -20,7 +20,7 @@
 
       <div class="form-group">
         <?php $class = $errors->has('fk_destination') != null ? 'form-control is-invalid' : 'form-control'; ?>
-        {!! Form::label('fk_destination', ucfirst(__('fields.destination'))) !!}
+        {!! Form::label('fk_destination', ucfirst(trans_choice('fields.destination',1))) !!}
         {!! Form::select('fk_destination', $destination, $excursion->fk_destination,
         array('placeholder' =>
         ucfirst(__('fields.destination_select_placeholder')), 'class' => $class) ) !!}
@@ -33,7 +33,7 @@
 
       <div class="form-group">
         <?php $class = $errors->has('fk_availability') != null ? 'form-control is-invalid' : 'form-control'; ?>
-        {!! Form::label('fk_availability', ucfirst(__('fields.availability'))) !!}
+        {!! Form::label('fk_availability', ucfirst(trans_choice('fields.availability',1))) !!}
         {!! Form::select('fk_availability', $availability, $excursion->fk_availability,
         array('placeholder' =>
         ucfirst(__('fields.availability_select_placeholder')), 'class' => $class) ) !!}

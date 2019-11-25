@@ -7,7 +7,7 @@
       <div class="form-group multiselect" data-children=".multichildren">
 
         <?php $class = $errors->has('destination') != null ? 'form-control is-invalid' : 'form-control'; ?>
-        {!! Form::label('destination', ucfirst(__('fields.destination'))) !!}
+        {!! Form::label('destination', ucfirst(trans_choice('fields.destination',2))) !!}
         {!! Form::hidden('destination', '') !!}
         <ul class="{{$class}} tag-list"></ul>
         
@@ -29,7 +29,7 @@
       <div class="form-group multiselect multichildren" data-data="destination">
 
         <?php $class = $errors->has('excursion') != null ? 'form-control is-invalid' : 'form-control'; ?>
-        {!! Form::label('excursion', ucfirst(__('fields.excursion'))) !!}
+        {!! Form::label('excursion', ucfirst(trans_choice('fields.excursion',2))) !!}
         {!! Form::hidden('excursion', '') !!}
         <ul class="{{$class}} tag-list"></ul>
         

@@ -14,22 +14,22 @@ return [
     */
 
     // Region
-    'region' => 'region',
+    'region' => 'region|regiones',
     'region_select_placeholder' => 'Seleccione una region...',
 
     // Destino
-    'destination' => 'destino',
+    'destination' => 'destino|destinos',
     'destination_select_placeholder' => 'Seleccione un destino...',
 
     // Moneda
     'sign' => 'signo',
     'code' => 'código',
-    'currency' => 'moneda',
+    'currency' => 'moneda|monedas',
     'amount' => 'cambio',
     'amount_long' => 'Cambio con respecto al dolar',
 
     // Lenguaje
-    'language' => 'lenguaje',
+    'language' => 'lenguaje|lenguajes',
     'iso' => 'código',
     
     // FK lenguajes
@@ -64,7 +64,7 @@ return [
     'package' => 'paquete|paquetes', 
 
     // Ususarios
-    'user' => 'usuario',       
+    'user' => 'usuario|usuarios',       
     'email' => 'email',           
     'password' => 'password',        
     'password_confirm' => 'confirmacion del password',       

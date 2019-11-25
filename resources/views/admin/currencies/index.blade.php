@@ -2,13 +2,19 @@
 
 @section ('content')
 
+<div class="header-sticky row">
+  <div class="col">{{ ucfirst(trans_choice('fields.currency', 2)) }}</div>
+
+  @include ('admin/widgets/order', ['default' => 'asc'])
+</div>
+
 @if (isset($currencies))
 <table class="table table-striped table-bordered table-hover table-sm">
     <thead class="thead-dark">
         <tr>
             <th>{{ ucfirst(__('fields.sign')) }}</th>
-            <th>{{ ucfirst(__('fields.iso')) }}</th>
-            <th>{{ ucfirst(__('fields.currency')) }}</th>
+            <th>{{ ucfirst(__('fields.iso')) }} ISO 4217</th>
+            <th>{{ ucfirst(trans_choice('fields.currency',1)) }}</th>
             <th>{{ ucfirst(__('fields.amount')) }}</th>
             <th class="column-action">Accion</th>
         </tr>
@@ -38,9 +44,18 @@
     </tbody>
 </table>
 
+<div class="row">
+  <div class="col-sm">
+    <a href="{{route('admin.currencies.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(trans_choice('fields.currency',1)) }}">{{__('buttons.create')}} {{ ucfirst(trans_choice('fields.currency',1)) }}</a>
+  </div>
+  <div class="col-sm d-flex">
+    {{ $currencies->links() }}
+  </div>
+</div>
+
 @include ('admin/widgets/modal-delete')
 
-<a href="{{route('admin.currencies.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(__('fields.currency')) }}">{{__('buttons.create')}} {{ ucfirst(__('fields.currency')) }}</a>
+
 @endif
 
 @endsection
