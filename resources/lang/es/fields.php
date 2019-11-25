@@ -82,12 +82,11 @@ return [
     'slider' => 'slide',
 
     // Consultas
+    'inquiry' => 'consulta|consultas',
     'is_readed' => 'leido',
     'product' => 'producto',
-    'comment' => 'consulta',
+    'comment' => 'comentario',
     'date' => 'fecha',
-    'inquiries' => 'consultas',
-    'inquiry' => 'consulta',
     'phone' => 'telefono',
     'departure' => 'fecha de salida',
     'adult' => 'adultos',
