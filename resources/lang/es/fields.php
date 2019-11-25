@@ -14,7 +14,7 @@ return [
     */
 
     // Region
-    'region' => 'region',
+    'region' => 'region|regiones',
     'region_select_placeholder' => 'Seleccione una region...',
 
     // Destino
