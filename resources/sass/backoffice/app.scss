@@ -46,6 +46,16 @@
   td {
     vertical-align: middle;
   }
+
+  th {
+    position: sticky;
+    top: (59rem/$fs);
+    z-index: 1;
+  }
+
+  svg {
+    width: 50%;
+  }
 }
 
 .sticky-head {
@@ -170,12 +180,6 @@ select {
   .disabled {
     color: graytext;
     cursor: default;
-  }
-}
-
-table {
-  svg {
-    width: 50%;
   }
 }
 

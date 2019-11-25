@@ -36,8 +36,10 @@ class Cruiseships extends Model implements HasMedia
     protected $fillable = ['is_active', 'map', 'fk_cruiseship_type'];    
 
     static public function getAll(){
+      $request = request();
       $cruiseships = Cruiseships::select('cruiseships.id', 'cruiseships.is_active');
       $languages = Language::getAll();
+      $queries = [];
 
       foreach ($languages as $language) {
         $cruiseships->addSelect("ct$language->id.name as title$language->id")
@@ -46,7 +48,15 @@ class Cruiseships extends Model implements HasMedia
           ->where("l$language->id.iso", $language->iso);
       }
 
-      return $cruiseships->get();
+      if ($request->has('order')) {
+        $cruiseships->orderBy('cruiseships.id', $request->get('order'));
+        $queries['order'] = $request->get('order');
+      } else {
+        $cruiseships->orderBy('cruiseships.id', 'desc');
+        $queries['order'] = 'desc';
+      }        
+
+      return $cruiseships->simplePaginate(20)->appends($queries);
     }
 
     static public function getSlider(){
