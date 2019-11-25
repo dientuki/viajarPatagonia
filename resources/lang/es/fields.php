@@ -29,7 +29,7 @@ return [
     'amount_long' => 'Cambio con respecto al dolar',
 
     // Lenguaje
-    'language' => 'lenguaje',
+    'language' => 'lenguaje|lenguajes',
     'iso' => 'código',
     
     // FK lenguajes
