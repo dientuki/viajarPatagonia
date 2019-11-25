@@ -18,6 +18,6 @@ return [
     'update' => 'Actualizar',
     'edit' => 'Editar',
     'delete' => 'Borrar',
-    'reorder' => 'reordenar',
-    'new' => 'Nuevo'
+    'new' => 'Nuevo|Nueva',
+    'apply' => 'Aplicar',    
 ];

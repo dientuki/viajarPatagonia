@@ -54,11 +54,11 @@ return [
     'discount' => 'descuento',
 
     // Tipo de excursiones
-    'excursionType' => 'tipo de excursion',
+    'excursionType' => 'tipo de excursion|tipo de excursiones',
     'excursionType_select_placeholder' => 'Seleccione un tipo de excursion...',
 
     // Excursiones
-    'excursion' => 'excursiones',    
+    'excursion' => 'excursion|excursiones',    
 
     // Paquetes
     'package' => 'paquete|paquetes', 
@@ -70,7 +70,7 @@ return [
     'password_confirm' => 'confirmacion del password',       
     
     // Disponibilidad
-    'availability' => 'disponibilidad',
+    'availability' => 'disponibilidad|disponibilidades',
     'availability_select_placeholder' => 'Seleccione una disponibilidad..',
 
     // Duracion
@@ -80,14 +80,19 @@ return [
     // Slider
     'homeslider' => 'slider de la home',
     'slider' => 'slide',
+    'order' => 'orden',
+    'title' => 'titulo',
+    'description' => 'descripcion',
+    'hotel' => 'hotel',
+    'url' => 'url',
+    'stars' => 'estrellas',
 
     // Consultas
+    'inquiry' => 'consulta|consultas',
     'is_readed' => 'leido',
     'product' => 'producto',
-    'comment' => 'consulta',
+    'comment' => 'comentario',
     'date' => 'fecha',
-    'inquiries' => 'consultas',
-    'inquiry' => 'consulta',
     'phone' => 'telefono',
     'departure' => 'fecha de salida',
     'adult' => 'adultos',

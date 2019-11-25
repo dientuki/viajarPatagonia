@@ -2,17 +2,20 @@
 
 @section ('content')
 
+<div class="header-sticky row">
+  <div class="col">{{ ucfirst(__('fields.duration')) }}</div>
+
+  @include ('admin/widgets/order')
+</div>
+
 @if (isset($duration))
 <table class="table table-striped table-bordered table-hover table-sm">
     <thead class="thead-dark">
         <tr>
-        <th colspan="{{count($languages)}}">{{ ucfirst(__('fields.duration')) }}</th>
-        <th class="column-action" rowspan="2">Accion</th>
-        </tr>
-        <tr>
         @foreach ($languages as $language)
             <th>{{$language->language}}</th>
         @endforeach
+        <th class="column-action">Accion</th>
         </tr>        
     </thead>
     <tbody>
@@ -39,9 +42,17 @@
     </tbody>
 </table>
 
+<div class="row">
+  <div class="col-sm">
+    <a href="{{route('admin.duration.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(__('fields.duration')) }}">{{__('buttons.create')}} {{ ucfirst(__('fields.duration')) }}</a>
+  </div>
+  <div class="col-sm d-flex">
+    {{ $duration->links() }}
+  </div>
+</div>
+
 @include ('admin/widgets/modal-delete')
 
-<a href="{{route('admin.duration.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(__('fields.duration')) }}">{{__('buttons.create')}} {{ ucfirst(__('fields.duration')) }}</a>
 @endif
 
 @endsection

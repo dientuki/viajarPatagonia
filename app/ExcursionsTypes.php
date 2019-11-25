@@ -24,8 +24,10 @@ class ExcursionsTypes extends Model
     public $timestamps = false;
 
     static public function getAll(){
+      $request = request();
       $excursionsTypes = ExcursionsTypes::select('excursions_types.id');
       $languages = Language::getAll();
+      $queries = [];
 
       foreach ($languages as $language) {
         $excursionsTypes->addSelect("ct$language->id.type as type$language->id", "l$language->id.iso as iso$language->id")
@@ -34,7 +36,15 @@ class ExcursionsTypes extends Model
           ->where("l$language->id.iso", $language->iso);
       }
 
-      return $excursionsTypes->get();
+      if ($request->has('order')) {
+        $excursionsTypes->orderBy('excursions_types.id', $request->get('order'));
+        $queries['order'] = $request->get('order');
+      } else {
+        $excursionsTypes->orderBy('excursions_types.id', 'desc');
+        $queries['order'] = 'desc';
+      }        
+
+      return $excursionsTypes->simplePaginate(20)->appends($queries);
     }
 
     static function getLists() {

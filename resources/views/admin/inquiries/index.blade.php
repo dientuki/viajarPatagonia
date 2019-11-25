@@ -12,7 +12,7 @@ use App\Translations\CruiseshipsTranslation;
 @section ('content')
 
   <div class="header-sticky row">
-    <div class="col">{{ ucfirst(__('fields.inquiries')) }}</div>
+    <div class="col">{{ ucfirst(trans_choice('fields.inquiry', 2)) }}</div>
     
     <div class="col form-inline row">
       <div class="col">

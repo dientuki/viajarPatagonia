@@ -2,17 +2,20 @@
 
 @section ('content')
 
+<div class="header-sticky row">
+  <div class="col">{{ ucfirst(trans_choice('fields.excursionType', 2)) }}</div>
+
+  @include ('admin/widgets/order')
+</div>
+
 @if (isset($excursionsTypes))
 <table class="table table-striped table-bordered table-hover table-sm">
     <thead class="thead-dark">
         <tr>
-        <th colspan="{{count($languages)}}">{{ ucfirst(__('fields.excursionType')) }}</th>
-        <th class="column-action" rowspan="2">Accion</th>
-        </tr>
-        <tr>
         @foreach ($languages as $language)
             <th>{{$language->language}}</th>
         @endforeach
+        <th class="column-action" >Accion</th>
         </tr>        
     </thead>
     <tbody>
@@ -39,9 +42,18 @@
     </tbody>
 </table>
 
+<div class="row">
+  <div class="col-sm">
+    <a href="{{route('admin.excursions-types.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(trans_choice('fields.excursionType', 1)) }}">{{__('buttons.create')}} {{ ucfirst(trans_choice('fields.excursionType', 1)) }}</a>
+  </div>
+  <div class="col-sm d-flex">
+    {{ $excursionsTypes->links() }}
+  </div>
+</div>
+
 @include ('admin/widgets/modal-delete')
 
-<a href="{{route('admin.excursions-types.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(__('fields.excursionType')) }}">{{__('buttons.create')}} {{ ucfirst(__('fields.excursionType')) }}</a>
+
 @endif
 
 @endsection

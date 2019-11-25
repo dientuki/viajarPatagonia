@@ -1,18 +1,23 @@
+<?php use App\Http\Helpers\Helpers; ?>
+
 @extends('layouts.admin')
 
 @section ('content')
 
+<div class="header-sticky">{{ __('buttons.' . $action) . ' ' . trans_choice('fields.availability', 1) }}</div>
+
 {!! Form::model($availability, array_merge($form_data, array('role' => 'form', 'class' => 'form-horizontal'))) !!}
-<div>{{ ucfirst(__('fields.availability')) }}</div>
-<div class="form-row align-items-center">
+
+  <fieldset class="form-group">
+  <div class="row">
 
     @foreach ($languages as $language)
       <?php $class = $errors->has('language_' . $language->id) != null ? 'form-control is-invalid' : 'form-control'; ?>
 
-      <div class="col-auto">
+      <div class="col">
           <div class="input-group">
               <div class="input-group-prepend">
-                  <div class="input-group-text">{{$language->iso}}</div>
+                  <div class="input-group-text">{!! Helpers::load_svg('lang-' . $language->iso) !!}</div>
               </div>
               {!! Form::text('language_' . $language->id, null, array('placeholder' => $language->language, 'class'=>$class, 'required' => true)) !!}
               @error('language_' . $language->id)
@@ -26,9 +31,10 @@
       </div>
     @endforeach
 
-</div>
+  </div>
+</fieldset>
 
-{!! Form::submit(__('buttons.' . $action) . ' ' . ucfirst(__('fields.availability')), array('class'=>'btn btn-primary') ) !!}
+{!! Form::submit(__('buttons.' . $action) . ' ' . ucfirst(trans_choice('fields.availability', 1)), array('class'=>'btn btn-primary') ) !!}
 
 
 {!! Form::close() !!}

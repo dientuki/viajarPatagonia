@@ -34,7 +34,7 @@ class Homeslider extends Model implements HasMedia
      */
     protected $fillable = ['is_active', 'url', 'hotel', 'stars', 'order'];
 
-    static public function getAll(){
+    static public function getAll(){  
       $homeslider = Homeslider::select('homeslider.id', 'homeslider.is_active', 'homeslider.order');
       $languages = Language::getAll();
 
@@ -44,8 +44,8 @@ class Homeslider extends Model implements HasMedia
           ->join("languages as l$language->id", "l$language->id.id", '=', "ct$language->id.fk_language")
           ->where("l$language->id.iso", $language->iso);
       }
-
-      return $homeslider->orderBy('homeslider.order')->get();
+      
+      return $homeslider->orderBy('homeslider.order')->simplePaginate(20);
     }
 
     static function getEdit($id){

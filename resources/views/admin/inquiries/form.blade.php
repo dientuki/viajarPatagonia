@@ -7,7 +7,7 @@
 @section ('content')
 
   <div class="header-sticky">
-    {{ ucfirst(__('fields.inquiry')) }}
+    {{ ucfirst(trans_choice('fields.inquiry', 1)) }}
   </div>
 
 {!! Form::model($inquiry, array_merge($form_data, array('role' => 'form', 'class' => 'form-horizontal'))) !!}
@@ -114,7 +114,7 @@
     @enderror
   </div>  
 
-  {!! Form::submit(__('buttons.' . $action) . ' '  . ucfirst(__('fields.inquiry')), array('class'=>'btn btn-primary') ) !!}
+  {!! Form::submit(__('buttons.' . $action) . ' '  . ucfirst(trans_choice('fields.inquiry', 1)), array('class'=>'btn btn-primary') ) !!}
 
 
 {!! Form::close() !!}
