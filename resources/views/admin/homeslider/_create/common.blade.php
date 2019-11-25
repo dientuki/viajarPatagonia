@@ -35,13 +35,13 @@
       </div>
       @enderror
       <small  class="form-text text-muted">
-        Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+        Elegi un producto o pone una url cualquiera.
       </small>
 
       <select class="form-control" size="8" name="products" id="products">
-        <option value="0">{{ucfirst(__('fields.excursionType_select_placeholder'))}}</option>
+        <option value="0">{{ucfirst(__('fields.productPlaceholder'))}}</option>
           @foreach ($products as $label => $value)
-            <optgroup label="{{$label}}">
+            <optgroup label="{{ucfirst(trans_choice('fields.' . $label, 2))}}">
             @foreach ($value as $id => $name)
               <option value="{{$label}}:{{$id}}">{{$name}}</option>
             @endforeach

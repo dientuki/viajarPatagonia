@@ -80,6 +80,12 @@ return [
     // Slider
     'homeslider' => 'slider de la home',
     'slider' => 'slide',
+    'order' => 'orden',
+    'title' => 'titulo',
+    'description' => 'descripcion',
+    'hotel' => 'hotel',
+    'url' => 'url',
+    'stars' => 'estrellas',
 
     // Consultas
     'inquiry' => 'consulta|consultas',

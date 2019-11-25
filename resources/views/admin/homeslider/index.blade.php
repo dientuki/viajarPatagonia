@@ -2,18 +2,19 @@
 
 @section ('content')
 
+<div class="header-sticky row">
+  <div class="col">{{ ucfirst(__('fields.homeslider')) }}</div>
+</div>
+
 @if (isset($homeslider))
 <table class="table table-striped table-bordered table-hover table-sm sortable">
     <thead class="thead-dark">
         <tr>
-        <th colspan="{{count($languages)}}">{{ ucfirst(__('fields.homeslider')) }}</th>
-        <th rowspan="2">{{ ucfirst(__('fields.active')) }}</th>
-        <th class="column-action" rowspan="2">Accion</th>
-        </tr>
-        <tr>
         @foreach ($languages as $language)
             <th>{{$language->language}}</th>
         @endforeach
+        <th rowspan="2">{{ ucfirst(__('fields.active')) }}</th>
+        <th class="column-action" rowspan="2">Accion</th>
         </tr>        
     </thead>
     <tbody>
@@ -42,10 +43,17 @@
     </tbody>
 </table>
 
+<div class="row">
+  <div class="col-sm">
+    <a href="{{route('admin.homeslider.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(__('fields.slider')) }}">{{__('buttons.create')}} {{ ucfirst(__('fields.slider')) }}</a>
+    <button data-href="{{route('admin.homeslider.order')}}" class="btn btn-secondary sortable-update" title="{{ucfirst(__('buttons.apply'))}} {{ ucfirst(__('fields.order')) }}">{{ ucfirst(__('buttons.apply')) }} {{ __('fields.order') }}</button>
+  </div>
+  <div class="col-sm d-flex">
+    {{ $homeslider->links() }}
+  </div>
+</div>
 @include ('admin/widgets/modal-delete')
 
-<a href="{{route('admin.homeslider.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(__('fields.slider')) }}">{{__('buttons.create')}} {{ ucfirst(__('fields.slider')) }}</a>
-<button data-href="{{route('admin.homeslider.order')}}" class="btn btn-secondary sortable-update" title="{{__('buttons.reorder')}} {{ ucfirst(__('fields.homeslider')) }}">{{__('buttons.reorder')}} {{ ucfirst(__('fields.homeslider')) }}</button>
 
 
 @endif
