@@ -254,4 +254,9 @@ class Helpers {
     $values = array('inactive', 'active');
     return Helpers::load_svg('ico-' . $values[$value]);
   }
+
+  static function get_read_icon($value){
+    $values = array('unread', 'read');
+    return Helpers::load_svg('ico-' . $values[$value]);
+  }  
 }

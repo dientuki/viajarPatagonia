@@ -51,10 +51,10 @@ use App\Translations\CruiseshipsTranslation;
 <table class="table table-striped table-bordered table-hover table-sm inquiry">
     <thead class="thead-dark">
         <tr>
-            <th>{{ ucfirst(__('fields.is_readed')) }}</th>
+            <th class="column-active">{{ ucfirst(__('fields.is_readed')) }}</th>
             <th>{{ ucfirst(__('fields.name')) }}</th>
             <th>{{ ucfirst(__('fields.product')) }}</th>
-            <th>{{ ucfirst(__('fields.language')) }}</th>
+            <th>{{ ucfirst(trans_choice('fields.language',1)) }}</th>
             <th>{{ ucfirst(__('fields.comment')) }}</th>
             <th>{{ ucfirst(__('fields.date')) }}</th>            
             <th class="column-action">Accion</th>
@@ -63,7 +63,7 @@ use App\Translations\CruiseshipsTranslation;
     <tbody>
         @foreach ($inquiries as $inquiry)
         <tr>
-            <td>{{ $inquiry->is_readed }}</td>
+            <td class="column-active">{!! Helpers::get_read_icon($inquiry->is_readed ) !!}</td>
             <td class="inquiry__name"><div class="clamp-two">{{ $inquiry->name }}</div></td>
             <td class="inquiry__product">
               <a title="{{ Helpers::product_title($inquiry) }}" rel="noopener" target="_blank" href="{{route($inquiry->product, Helpers::product_params($inquiry))}}">{!! Helpers::load_svg('ico-' . $inquiry->product ) !!}</a>
