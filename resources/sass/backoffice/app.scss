@@ -27,6 +27,12 @@
   }
 }
 
+.input-group-text {
+  svg {
+    height: (20em/$fs);
+  }
+}
+
 .column-action {
   width: (250em/$fs);
 

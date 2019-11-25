@@ -59,7 +59,7 @@ class Packages extends Model implements HasMedia
         $queries['order'] = 'desc';
       }  
 
-      return $packages->simplePaginate(1)->appends($queries);
+      return $packages->simplePaginate(20)->appends($queries);
     }
 
     static public function getSlider(){

@@ -26,12 +26,12 @@
       <li class="main-nav__item {{ Helpers::main_menu(['cruiseships', 'cruiseships-types']) }}">
         <div class="main-nav__title-wrapper must-expand">
           <div class="main-nav__icon">{!! Helpers::load_svg('ico-cruise') !!}</div>
-          <div class="main-nav__title">Cruceros</div>
+          <div class="main-nav__title">{{ ucfirst(trans_choice('fields.cruiseship', 2)) }}</div>
         </div>
         <ul class="main-nav__submenu">
-          <li class="main-nav__li {{ Helpers::sub_menu('cruiseships-types') }}"><a href="{{route('admin.cruiseships-types.index')}}" class="main-nav__link">{{ ucfirst(__('buttons.show')) }} tipos de cruceros</a></li>  
-          <li class="main-nav__li {{ Helpers::sub_menu('cruiseships', 'create') }}"><a href="{{route('admin.cruiseships.index')}}" class="main-nav__link">{{ ucfirst(__('buttons.show')) }} cruceros</a></li>
-          <li class="main-nav__li {{ Helpers::sub_menu_only('cruiseships.create') }}"><a href="{{route('admin.cruiseships.create')}}" class="main-nav__link">Nuevo crucero</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('cruiseships-types') }}"><a href="{{route('admin.cruiseships-types.index')}}" class="main-nav__link">{{ ucfirst(__('buttons.show')) }} {{ trans_choice('fields.cruiseshipType', 2) }}</a></li>  
+          <li class="main-nav__li {{ Helpers::sub_menu('cruiseships', 'create') }}"><a href="{{route('admin.cruiseships.index')}}" class="main-nav__link">{{ ucfirst(__('buttons.show')) }} {{ trans_choice('fields.cruiseship', 2) }}</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu_only('cruiseships.create') }}"><a href="{{route('admin.cruiseships.create')}}" class="main-nav__link">Nuevo {{ trans_choice('fields.cruiseship', 1) }}</a></li>
         </ul>
       </li>
 

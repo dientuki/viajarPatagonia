@@ -23,8 +23,10 @@ class CruiseshipsTypes extends Model
     public $timestamps = false;
 
     static public function getAll(){
+      $request = request();
       $cruiseshipsTypes = CruiseshipsTypes::select('cruiseships_types.id');
       $languages = Language::getAll();
+      $queries = [];
 
       foreach ($languages as $language) {
         $cruiseshipsTypes->addSelect("ct$language->id.type as type$language->id", "l$language->id.iso as iso$language->id")
@@ -33,7 +35,15 @@ class CruiseshipsTypes extends Model
           ->where("l$language->id.iso", $language->iso);
       }
 
-      return $cruiseshipsTypes->get();
+      if ($request->has('order')) {
+        $cruiseshipsTypes->orderBy('cruiseships_types.id', $request->get('order'));
+        $queries['order'] = $request->get('order');
+      } else {
+        $cruiseshipsTypes->orderBy('cruiseships_types.id', 'desc');
+        $queries['order'] = 'desc';
+      }  
+
+      return $cruiseshipsTypes->simplePaginate(20)->appends($queries);
     }
 
     static function getLists() {
