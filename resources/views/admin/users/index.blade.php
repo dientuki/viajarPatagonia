@@ -2,6 +2,12 @@
 
 @section ('content')
 
+<div class="header-sticky row">
+  <div class="col">{{ ucfirst(trans_choice('fields.user', 2)) }}</div>
+
+  @include ('admin/widgets/order')
+</div>
+
 @if (isset($users))
 <table class="table table-striped table-bordered table-hover table-sm">
     <thead class="thead-dark">
@@ -37,9 +43,17 @@
     </tbody>
 </table>
 
+<div class="row">
+  <div class="col-sm">
+    <a href="{{route('admin.users.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(trans_choice('fields.user',1)) }}">{{__('buttons.create')}} {{ ucfirst(trans_choice('fields.user',1)) }}</a>
+  </div>
+  <div class="col-sm d-flex">
+    {{ $users->links() }}
+  </div>
+</div>
 @include ('admin/widgets/modal-delete')
 
-<a href="{{route('admin.users.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(__('fields.user')) }}">{{__('buttons.create')}} {{ ucfirst(__('fields.user')) }}</a>
+
 @endif
 
 @endsection

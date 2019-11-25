@@ -64,7 +64,7 @@ return [
     'package' => 'paquete|paquetes', 
 
     // Ususarios
-    'user' => 'usuario',       
+    'user' => 'usuario|usuarios',       
     'email' => 'email',           
     'password' => 'password',        
     'password_confirm' => 'confirmacion del password',       

@@ -48,6 +48,23 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($value);
     }
 
+   static function getAll() {
+      $request = request();
+      $queries = [];
+
+      $users = User::select('id', 'name', 'email');
+
+      if ($request->has('order')) {
+        $users->orderBy('id', $request->get('order'));
+        $queries['order'] = $request->get('order');
+      } else {
+        $users->orderBy('id', 'desc');
+        $queries['order'] = 'desc';
+      }  
+
+      return $users->simplePaginate(20)->appends($queries);     
+   } 
+
    static function getEdit($id){
 
     $result = User::select('id', 'name', 'email')

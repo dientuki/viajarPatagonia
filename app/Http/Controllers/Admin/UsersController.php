@@ -20,8 +20,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('admin/users/index', compact('users'));
+      $users = User::getAll();
+      return view('admin/users/index', compact('users'));
     }
 
     /**
