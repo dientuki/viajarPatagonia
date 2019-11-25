@@ -24,7 +24,7 @@ return [
     // Moneda
     'sign' => 'signo',
     'code' => 'código',
-    'currency' => 'moneda',
+    'currency' => 'moneda|monedas',
     'amount' => 'cambio',
     'amount_long' => 'Cambio con respecto al dolar',
 

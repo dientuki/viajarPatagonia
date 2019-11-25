@@ -2,6 +2,8 @@
 
 @section ('content')
 
+<div class="header-sticky">{{ __('buttons.' . $action) . ' ' . trans_choice('fields.currency', 1) }}</div>
+
 {!! Form::model($currency, array_merge($form_data, array('role' => 'form', 'class' => 'form-horizontal'))) !!}
 
   <div class="form-group">
@@ -28,8 +30,8 @@
 
   <div class="form-group">
     <?php $class = $errors->has('currency') != null ? 'form-control is-invalid' : 'form-control'; ?>
-    {!! Form::label('currency', ucfirst(__('fields.currency'))) !!}
-    {!! Form::text('currency', null, array('placeholder' => ucfirst(__('fields.currency')), 'class'=>$class, 'required' => true))  !!}
+    {!! Form::label('currency', ucfirst(trans_choice('fields.currency',1))) !!}
+    {!! Form::text('currency', null, array('placeholder' => ucfirst(trans_choice('fields.currency',1)), 'class'=>$class, 'required' => true))  !!}
     @error('currency')
       <div class="invalid-feedback">
         <strong>{{ $message }}</strong>
@@ -48,7 +50,7 @@
     @enderror
   </div>      
 
-  {!! Form::submit(__('buttons.' . $action) . ' ' .__('fields.currency'), array('class'=>'btn btn-primary') ) !!}
+  {!! Form::submit(__('buttons.' . $action) . ' ' .trans_choice('fields.currency',1), array('class'=>'btn btn-primary') ) !!}
 
 
 {!! Form::close() !!}

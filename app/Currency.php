@@ -29,7 +29,21 @@ class Currency extends Model
 
 
     static function getAll() {
-      return Currency::select('id', 'sign', 'iso', 'currency')->orderBy('iso')->get();
+      $request = request();
+      $queries = [];
+
+      $currencies = Currency::select('id', 'sign', 'iso', 'currency');
+
+      if ($request->has('order')) {
+        $currencies->orderBy('iso', $request->get('order'));
+        $queries['order'] = $request->get('order');
+      } else {
+        $currencies->orderBy('iso', 'asc');
+        $queries['order'] = 'asc';
+      }  
+
+      return $currencies->simplePaginate(20)->appends($queries);
+      
     }
 
     static function getLists() {
