@@ -54,7 +54,7 @@ return [
     'discount' => 'descuento',
 
     // Tipo de excursiones
-    'excursionType' => 'tipo de excursion',
+    'excursionType' => 'tipo de excursion|tipo de excursiones',
     'excursionType_select_placeholder' => 'Seleccione un tipo de excursion...',
 
     // Excursiones
