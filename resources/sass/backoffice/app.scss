@@ -21,6 +21,18 @@
   padding-top: 0 !important;
 }
 
+.d-flex {
+  > nav {
+    margin-left: auto !important;
+  }
+}
+
+.input-group-text {
+  svg {
+    height: (20em/$fs);
+  }
+}
+
 .column-action {
   width: (250em/$fs);
 
@@ -34,11 +46,21 @@
   td {
     vertical-align: middle;
   }
+
+  th {
+    position: sticky;
+    top: (59rem/$fs);
+    z-index: 1;
+  }
+
+  svg {
+    width: 50%;
+  }
 }
 
 .sticky-head {
   position: sticky;
-  top: 0;
+  top: (60rem/$fs);
   background: #f8fafc;
   box-shadow: 0 0 (10rem/$fs) (3rem/$fs) rgba(#f8fafc, 1);
   border-radius: 0 0 (10rem/$fs) (10rem/$fs);
@@ -158,12 +180,6 @@ select {
   .disabled {
     color: graytext;
     cursor: default;
-  }
-}
-
-table {
-  svg {
-    width: 50%;
   }
 }
 

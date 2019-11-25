@@ -38,11 +38,11 @@ return [
     'fk_language_3' => 'lenguaje portugues',
 
     // Tipo de cruceros
-    'cruiseshipType' => 'tipo de crucero',
+    'cruiseshipType' => 'tipo de crucero|tipo de cruceros',
     'cruiseshipType_select_placeholder' => 'Seleccione un tipo de crucero...',
 
     // Cruceros
-    'cruiseship' => 'crucero',    
+    'cruiseship' => 'crucero|cruceros',    
     'active' => 'activo',   
     'name' => 'nombre',
     'summary' => 'resumen',
@@ -61,7 +61,7 @@ return [
     'excursion' => 'excursiones',    
 
     // Paquetes
-    'package' => 'paquetes',   
+    'package' => 'paquete|paquetes', 
 
     // Ususarios
     'user' => 'usuario',       
@@ -92,5 +92,11 @@ return [
     'departure' => 'fecha de salida',
     'adult' => 'adultos',
     'child' => 'niños',
-    'timestamp' => 'fecha'
+    'timestamp' => 'fecha',
+
+    //
+    'all' => 'todos',
+    'productPlaceholder' => 'Seleccione un producto',
+    'languagePlaceholder' => 'Seleccione un lenguage',
+    'readPlaceholder' => 'Seleccione un estado',
 ];

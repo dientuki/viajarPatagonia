@@ -11,34 +11,40 @@ use App\Translations\CruiseshipsTranslation;
 
 @section ('content')
 
-  <div class="header-sticky">
-    {{ ucfirst(__('fields.inquiries')) }}
-    Filter:
+  <div class="header-sticky row">
+    <div class="col">{{ ucfirst(__('fields.inquiries')) }}</div>
     
-    <select data-param="is_readed" class="filter">
-      <option {!!Helpers::selected_filter('is_readed', 'reset')!!}>Todos</option>
-      <option {!!Helpers::selected_filter('is_readed', 1)!!}>Leido</option>
-      <option {!!Helpers::selected_filter('is_readed', 0)!!}>No Leido</option>
-    </select>
-    <select data-param="product" class="filter">
-      <option {!!Helpers::selected_filter('product', 'reset')!!}>Todos</option>
-      <option {!!Helpers::selected_filter('product', 'cruise')!!}>Crucero</option>
-      <option {!!Helpers::selected_filter('product', 'excursion')!!}>Excursion</option>
-      <option {!!Helpers::selected_filter('product', 'package')!!}>Paquete</option>
-    </select>
-    
-    <?php $languages = Language::getAll(); ?>
-    <select data-param="iso" class="filter">
-     <option {!!Helpers::selected_filter('iso', 'reset')!!}>Todos</option>
-      @foreach ($languages as $language)
-        <option {!!Helpers::selected_filter('iso', $language->iso)!!}>{{ $language->language }}</option>
-      @endforeach
-    </select>        
+    <div class="col form-inline row">
+      <div class="col">
+        <select data-param="is_readed" class="filter form-control">
+          <option>{{ ucfirst(__('fields.readPlaceholder')) }}</option>
+          <option {!!Helpers::selected_filter('is_readed', 'reset')!!}>{{ ucfirst(__('fields.all')) }}</option>
+          <option {!!Helpers::selected_filter('is_readed', 1)!!}>Leido</option>
+          <option {!!Helpers::selected_filter('is_readed', 0)!!}>No Leido</option>
+        </select>
+      </div>
+      <div class="col">
+        <select data-param="product" class="filter form-control col">
+          <option>{{ ucfirst(__('fields.productPlaceholder')) }}</option>
+          <option {!!Helpers::selected_filter('product', 'reset')!!}>{{ ucfirst(__('fields.all')) }}</option>
+          <option {!!Helpers::selected_filter('product', 'cruise')!!}>Crucero</option>
+          <option {!!Helpers::selected_filter('product', 'excursion')!!}>Excursion</option>
+          <option {!!Helpers::selected_filter('product', 'package')!!}>{{ ucfirst(trans_choice('fields.package', 1)) }}</option>
+        </select>
+      </div>
+      <div class="col">
+        <?php $languages = Language::getAll(); ?>
+        <select data-param="iso" class="filter form-control col">
+        <option>{{ ucfirst(__('fields.languagePlaceholder')) }}</option>
+        <option {!!Helpers::selected_filter('iso', 'reset')!!}>{{ ucfirst(__('fields.all')) }}</option>
+          @foreach ($languages as $language)
+            <option {!!Helpers::selected_filter('iso', $language->iso)!!}>{{ $language->language }}</option>
+          @endforeach
+        </select>  
+      </div>      
+    </div>
 
-    <select data-param="order" class="sort">
-      <option {!!Helpers::selected_filter('order', 'asc')!!}>Asc</option>
-      <option {!!Helpers::selected_filter('order', 'desc', true)!!}>Desc</option>
-    </select>         
+    @include ('admin/widgets/order')
   </div>
 
 @if (isset($inquiries))
@@ -83,7 +89,13 @@ use App\Translations\CruiseshipsTranslation;
     </tbody>
 </table>
 
-{{ $inquiries->links() }}
+<div class="row">
+  <div class="col-sm d-flex">
+    {{ $inquiries->links() }}
+  </div>
+</div>
+
+
 
 @include ('admin/widgets/modal-delete')
 
