@@ -39,14 +39,14 @@
       <li class="main-nav__item {{ Helpers::main_menu(['excursions', 'availability', 'duration', 'excursions-types']) }}">
         <div class="main-nav__title-wrapper must-expand">
           <div class="main-nav__icon">{!! Helpers::load_svg('ico-excursion') !!}</div>
-          <div class="main-nav__title">Excursiones</div>
+          <div class="main-nav__title">{{ ucfirst(trans_choice('fields.excursion', 2)) }}</div>
         </div>
         <ul class="main-nav__submenu">
-          <li class="main-nav__li {{ Helpers::sub_menu('availability') }}"><a href="{{route('admin.availability.index')}}" class="main-nav__link">{{ ucfirst(__('buttons.show')) }} disponibilidad</a></li>  
+          <li class="main-nav__li {{ Helpers::sub_menu('availability') }}"><a href="{{route('admin.availability.index')}}" class="main-nav__link">{{ ucfirst(__('buttons.show')) }} {{ trans_choice('fields.availability', 1) }}</a></li>  
           <li class="main-nav__li {{ Helpers::sub_menu('duration') }}"><a href="{{route('admin.duration.index')}}" class="main-nav__link ">{{ ucfirst(__('buttons.show')) }} duracion</a></li>
           <li class="main-nav__li {{ Helpers::sub_menu('excursions-types') }}"><a href="{{route('admin.excursions-types.index')}}" class="main-nav__link ">{{ ucfirst(__('buttons.show')) }} tipo de excuriones</a></li>
-          <li class="main-nav__li {{ Helpers::sub_menu('excursions', 'create') }}"><a href="{{route('admin.excursions.index')}}" class="main-nav__link ">{{ ucfirst(__('buttons.show')) }} excursiones</a></li>
-          <li class="main-nav__li {{ Helpers::sub_menu_only('excursions.create') }}"><a href="{{route('admin.excursions.create')}}" class="main-nav__link ">Nueva excursion</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('excursions', 'create') }}"><a href="{{route('admin.excursions.index')}}" class="main-nav__link ">{{ ucfirst(__('buttons.show')) }} {{ trans_choice('fields.excursion', 2) }}</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu_only('excursions.create') }}"><a href="{{route('admin.excursions.create')}}" class="main-nav__link ">Nueva {{ trans_choice('fields.excursion', 1) }}</a></li>
         </ul>
       </li>   
       

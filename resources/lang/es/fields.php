@@ -58,7 +58,7 @@ return [
     'excursionType_select_placeholder' => 'Seleccione un tipo de excursion...',
 
     // Excursiones
-    'excursion' => 'excursiones',    
+    'excursion' => 'excursion|excursiones',    
 
     // Paquetes
     'package' => 'paquete|paquetes', 
@@ -70,7 +70,7 @@ return [
     'password_confirm' => 'confirmacion del password',       
     
     // Disponibilidad
-    'availability' => 'disponibilidad',
+    'availability' => 'disponibilidad|disponibilidades',
     'availability_select_placeholder' => 'Seleccione una disponibilidad..',
 
     // Duracion

@@ -24,8 +24,10 @@ class Availability extends Model
     public $timestamps = false;
 
     static public function getAll(){
+      $request = request();
       $availability = Availability::select('availability.id');
       $languages = Language::getAll();
+      $queries = [];
 
       foreach ($languages as $language) {
         $availability->addSelect("ct$language->id.availability as availability$language->id", "l$language->id.iso as iso$language->id")
@@ -34,7 +36,15 @@ class Availability extends Model
           ->where("l$language->id.iso", $language->iso);
       }
 
-      return $availability->get();
+      if ($request->has('order')) {
+        $availability->orderBy('availability.id', $request->get('order'));
+        $queries['order'] = $request->get('order');
+      } else {
+        $availability->orderBy('availability.id', 'desc');
+        $queries['order'] = 'desc';
+      }  
+
+      return $availability->simplePaginate(20)->appends($queries);
     }
 
     static function getLists() {
