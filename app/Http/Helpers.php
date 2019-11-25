@@ -249,4 +249,9 @@ class Helpers {
     
     return $title;
   }
+
+  static function get_active_icon($value){
+    $values = array('inactive', 'active');
+    return Helpers::load_svg('ico-' . $values[$value]);
+  }
 }

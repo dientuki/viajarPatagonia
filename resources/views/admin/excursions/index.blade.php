@@ -1,3 +1,5 @@
+<?php use App\Http\Helpers\Helpers; ?>
+
 @extends('layouts.admin')
 
 @section ('content')
@@ -15,7 +17,7 @@
         @foreach ($languages as $language)
             <th>{{$language->language}}</th>
         @endforeach
-        <th rowspan="2">{{ ucfirst(__('fields.active')) }}</th>
+        <th class="column-active">{{ ucfirst(__('fields.active')) }}</th>
         <th class="column-action">Accion</th>
         </tr>        
     </thead>
@@ -28,7 +30,7 @@
                 <a href="{{route('excursion', $routeParams)}}" rel="noopener" target="_blank">{{$excursion['title' . $language->id]}}</a>
               </td>            
             @endforeach
-            <td>{{ $excursion->is_active }}</td>
+            <td class="column-active">{!! Helpers::get_active_icon($excursion->is_active ) !!}</td>
 
             <td class="column-action px-4">
                 <div class="row">
