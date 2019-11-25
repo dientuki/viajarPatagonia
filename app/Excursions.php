@@ -37,8 +37,10 @@ class Excursions extends Model implements HasMedia
     protected $fillable = ['is_active', 'map', 'fk_excursion_type', 'fk_destination', 'fk_availability', 'fk_duration'];    
 
     static public function getAll(){
+      $request = request();
       $excursions = Excursions::select('excursions.id', 'excursions.is_active');
       $languages = Language::getAll();
+      $queries = [];
 
       foreach ($languages as $language) {
         $excursions->addSelect("ct$language->id.name as title$language->id")
@@ -47,7 +49,15 @@ class Excursions extends Model implements HasMedia
           ->where("l$language->id.iso", $language->iso);
       }
 
-      return $excursions->get();
+      if ($request->has('order')) {
+        $excursions->orderBy('excursions.id', $request->get('order'));
+        $queries['order'] = $request->get('order');
+      } else {
+        $excursions->orderBy('excursions.id', 'desc');
+        $queries['order'] = 'desc';
+      }        
+
+      return $excursions->simplePaginate(20)->appends($queries);
     }
 
     static public function getSlider(){
