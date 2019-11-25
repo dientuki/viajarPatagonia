@@ -18,7 +18,7 @@ return [
     'region_select_placeholder' => 'Seleccione una region...',
 
     // Destino
-    'destination' => 'destino',
+    'destination' => 'destino|destinos',
     'destination_select_placeholder' => 'Seleccione un destino...',
 
     // Moneda

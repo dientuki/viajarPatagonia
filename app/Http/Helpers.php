@@ -217,8 +217,10 @@ class Helpers {
         $return .= ' selected';
       } 
     } else {
-      if ($default == true) {
-        $return .= ' selected';
+      if ($default !== false) {
+        if ($value == $default) {
+          $return .= ' selected';
+        }
       }
     }
 

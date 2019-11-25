@@ -2,12 +2,18 @@
 
 @section ('content')
 
+<div class="header-sticky row">
+  <div class="col">{{ ucfirst(trans_choice('fields.destination', 2)) }}</div>
+
+  @include ('admin/widgets/order', ['default' => 'asc'])
+</div>
+
 @if (isset($destinations))
 <table class="table table-striped table-bordered table-hover table-sm">
     <thead class="thead-dark">
         <tr>
-            <th>{{ ucfirst(__('fields.destination')) }}</th>
-            <th>{{ ucfirst(__('fields.region')) }}</th>
+            <th>{{ ucfirst(trans_choice('fields.destination',1)) }}</th>
+            <th>{{ ucfirst(trans_choice('fields.region',1)) }}</th>
             <th class="column-action">Accion</th>
         </tr>
     </thead>
@@ -34,9 +40,16 @@
     </tbody>
 </table>
 
+<div class="row">
+  <div class="col-sm">
+    <a href="{{route('admin.destinations.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(trans_choice('fields.destination',1)) }}">{{__('buttons.create')}} {{ ucfirst(trans_choice('fields.destination',1)) }}</a>
+  </div>
+  <div class="col-sm d-flex">
+    {{ $destinations->links() }}
+  </div>
+</div>
 @include ('admin/widgets/modal-delete')
 
-<a href="{{route('admin.destinations.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(__('fields.destination')) }}">{{__('buttons.create')}} {{ ucfirst(__('fields.destination')) }}</a>
 @endif
 
 @endsection
