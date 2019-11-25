@@ -24,17 +24,27 @@ class Duration extends Model
     public $timestamps = false;
 
     static public function getAll(){
-      $excursionsTypes = Duration::select('duration.id');
+      $request = request();
+      $duration = Duration::select('duration.id');
       $languages = Language::getAll();
+      $queries = [];
 
       foreach ($languages as $language) {
-        $excursionsTypes->addSelect("ct$language->id.duration as duration$language->id", "l$language->id.iso as iso$language->id")
+        $duration->addSelect("ct$language->id.duration as duration$language->id", "l$language->id.iso as iso$language->id")
           ->join("duration_translation as ct$language->id", 'duration.id', '=', "ct$language->id.fk_duration")
           ->join("languages as l$language->id", "l$language->id.id", '=', "ct$language->id.fk_language")
           ->where("l$language->id.iso", $language->iso);
       }
 
-      return $excursionsTypes->get();
+      if ($request->has('order')) {
+        $duration->orderBy('duration.id', $request->get('order'));
+        $queries['order'] = $request->get('order');
+      } else {
+        $duration->orderBy('duration.id', 'desc');
+        $queries['order'] = 'desc';
+      }       
+
+      return $duration->simplePaginate(20)->appends($queries);
     }
 
     static function getLists() {
