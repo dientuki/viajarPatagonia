@@ -60,7 +60,7 @@ class Inquiry extends Model
     }
 
     public function setDepartureAttribute($value) {
-      $this->attributes['departure'] = date('Y-d-m',strtotime($value));
+      $this->attributes['departure'] = date('Y-m-d',strtotime($value));
     }
 
     public function getDepartureAttribute() {
