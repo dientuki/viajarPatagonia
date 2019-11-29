@@ -31,7 +31,7 @@
   <div class="form-group">
     <?php $class = $errors->has('currency') != null ? 'form-control is-invalid' : 'form-control'; ?>
     {!! Form::label('currency', ucfirst(trans_choice('fields.currency',1))) !!}
-    {!! Form::text('currency', null, array('placeholder' => ucfirst(trans_choice('fields.currency',1)), 'class'=>$class, 'required' => true))  !!}
+    {!! Form::text('currency', null, array('placeholder' => ucfirst(trans_choice('fields.currency',1)), 'class'=>$class, 'required' => true, 'maxlength' => 190))  !!}
     @error('currency')
       <div class="invalid-feedback">
         <strong>{{ $message }}</strong>

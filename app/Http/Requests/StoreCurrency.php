@@ -27,7 +27,7 @@ class StoreCurrency extends FormRequest
         return [
             'sign' => 'required|max:5',
             'code' => 'required|max:3',
-            'currency' => 'required',
+            'currency' => 'required|string|max:190',
             'amount' => 'required|numeric|between:0,99999999.99'            
         ];
     }
