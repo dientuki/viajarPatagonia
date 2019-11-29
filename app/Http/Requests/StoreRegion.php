@@ -16,7 +16,6 @@ class StoreRegion extends FormRequest
         return true;
     }
     
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,7 +24,7 @@ class StoreRegion extends FormRequest
     public function rules()
     {
         return [
-            'region' => 'required'
+            'region' => 'required|string|max:190'
         ];
     }
 

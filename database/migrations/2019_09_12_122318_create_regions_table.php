@@ -19,7 +19,7 @@ class CreateRegionsTable extends Migration
             $table->collation = 'utf8_unicode_ci';
 
             $table->tinyIncrements('id');
-            $table->string('region');
+            $table->string('region', 190);
         });
     }
 

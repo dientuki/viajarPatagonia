@@ -24,7 +24,7 @@ class EditRegion extends FormRequest
     public function rules()
     {
         return [
-            'region' => 'required'
+            'region' => 'required|string|max:190'
         ];
     }
 
