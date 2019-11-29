@@ -18,7 +18,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">{!! Helpers::load_svg('lang-' . $language->iso) !!}</div>
                 </div>
-                {!! Form::text('language_' . $language->id, null, array('placeholder' => $language->language, 'class'=>$class, 'required' => true)) !!}
+                {!! Form::text('language_' . $language->id, null, array('placeholder' => $language->language, 'class'=>$class,  'maxlength' => 190)) !!}
                 @error('language_' . $language->id)
               <div class="invalid-feedback">
                 <strong>{{ $message }}</strong>
