@@ -25,8 +25,8 @@ class StoreLanguage extends FormRequest
     public function rules()
     {
         return [
-            'language' => 'required',
-            'iso' => 'required|max:2',
+            'language' => 'required|string|max:190',
+            'iso' => 'required|string|max:2',
         ];
     }
 
