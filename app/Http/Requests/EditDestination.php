@@ -25,7 +25,7 @@ class EditDestination extends FormRequest
     public function rules()
     {
         return [
-            'destination' => 'required',
+            'destination' => 'required|string|max:190',
             'fk_region' => 'required|numeric|exists:regions,id'
         ];
     }

@@ -19,7 +19,7 @@ class CreateDetinationsTable extends Migration
             $table->collation = 'utf8_unicode_ci';
 
             $table->tinyIncrements('id');
-            $table->string('destination');
+            $table->string('destination', 190);
             $table->tinyInteger('fk_region')->unsigned();
 
             $table->foreign('fk_region')->references('id')->on('regions');

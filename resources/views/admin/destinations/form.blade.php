@@ -9,7 +9,7 @@
   <div class="form-group">
     <?php $class = $errors->has('destination') != null ? 'form-control is-invalid' : 'form-control'; ?>
     {!! Form::label('destination', ucfirst(trans_choice('fields.destination',1))) !!}
-    {!! Form::text('destination', null, array('placeholder' => ucfirst(trans_choice('fields.destination',1)), 'class'=>$class, 'required' => true))  !!}
+    {!! Form::text('destination', null, array('placeholder' => ucfirst(trans_choice('fields.destination',1)), 'class'=>$class, 'required' => true, 'maxlength' => 190))  !!}
     @error('destination')
       <div class="invalid-feedback">
         <strong>{{ $message }}</strong>
