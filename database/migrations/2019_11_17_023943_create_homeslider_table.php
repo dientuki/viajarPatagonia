@@ -19,7 +19,7 @@ class CreateHomesliderTable extends Migration
             $table->collation = 'utf8_unicode_ci';
 
             $table->tinyIncrements('id');
-            $table->boolean('is_active')->default(false);
+            $table->boolean('is_active')->unsigned()->default(false);
             $table->string('url');
             $table->string('hotel');
             $table->tinyInteger('stars');
