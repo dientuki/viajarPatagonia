@@ -31,9 +31,9 @@ class EditPackage extends FormRequest
         $validation = [];
 
         foreach ($languages as $language) {
-            $validation['name_' . $language->id] = 'required';
-            $validation['summary_' . $language->id] = 'required';
-            $validation['body_' . $language->id] = 'required';
+            $validation['name_' . $language->id] = 'required|string|max:190';
+            $validation['summary_' . $language->id] = 'required|string';
+            $validation['body_' . $language->id] = 'required|json';
             $validation['fk_language_' . $language->id] = 'required|in:'.$language->id;
         }
 
