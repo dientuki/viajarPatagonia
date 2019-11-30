@@ -19,9 +19,9 @@ class CreateCruiseshipsPricesTable extends Migration
             $table->collation = 'utf8_unicode_ci';
 
             $table->smallIncrements('id');
-            $table->mediumInteger('price');
-            $table->mediumInteger('discount')->nullable(true);
-            $table->boolean('is_active')->default(false);
+            $table->mediumInteger('price')->unsigned();
+            $table->mediumInteger('discount')->unsigned()->nullable(true);
+            $table->boolean('is_active')->unsigned()->default(false);
             $table->tinyInteger('fk_currency')->unsigned();
             $table->smallInteger('fk_cruiseship')->unsigned();
 

@@ -37,8 +37,8 @@ class EditExcursion extends FormRequest
         }
 
         foreach ($currencies as $currency) {
-            $validation['price_' . $currency->id] = 'integer|nullable';
-            $validation['discount_' . $currency->id] = 'integer|nullable';
+            $validation['price_' . $currency->id] = 'integer|nullable|between:1,16777214';
+            $validation['discount_' . $currency->id] = 'integer|nullable|between:1,16777214';
             $validation['is_active_' . $language->id] = 'boolean';
             $validation['fk_currency_' . $currency->id] = 'required|in:'.$currency->id;
         }

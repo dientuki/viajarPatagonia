@@ -13,7 +13,7 @@
                 ?>
                 {!! Form::label('price_' . $currency->id, ucfirst($currency->currency)) !!}
                 {!! Form::number('price_' . $currency->id, $value, array('min' => 0, 'placeholder' => ucfirst(__('fields.price')),
-                'class'=>$class)) !!}
+                'class'=>$class, 'max' => 16777214)) !!}
                 @error('price_' . $currency->id)
                 <div class="invalid-feedback">
                     <strong>{{ $message }}</strong>
@@ -28,7 +28,7 @@
                 ?>
                 {!! Form::label('discount_' . $currency->id, ucfirst(__('fields.discount'))) !!}
                 {!! Form::number('discount_' . $currency->id, $value, array('min' => 0, 'placeholder' => ucfirst(__('fields.discount')),
-                'class'=>$class)) !!}
+                'class'=>$class, 'max' => 16777214)) !!}
                 @error('discount_' . $currency->id)
                 <div class="invalid-feedback">
                     <strong>{{ $message }}</strong>
