@@ -27,6 +27,7 @@
   }
 }
 
+/* stylelint-disable selector-no-qualifying-type */
 textarea.form-control {
   height: (85rem/$fs);
 }
