@@ -20,7 +20,7 @@ class CreatePackagesTable extends Migration
 
             $table->smallIncrements('id');
             $table->text('map')->nullable(true);
-            $table->boolean('is_active')->default(false);
+            $table->boolean('is_active')->unsigned()->default(false);
         });
     }
 

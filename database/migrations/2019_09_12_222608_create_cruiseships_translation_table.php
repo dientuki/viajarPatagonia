@@ -21,7 +21,7 @@ class CreateCruiseshipsTranslationTable extends Migration
             $table->smallIncrements('id');
             $table->tinyInteger('fk_language')->unsigned();
             $table->smallInteger('fk_cruiseship')->unsigned();
-            $table->string('name');
+            $table->string('name', 190);
             $table->text('summary');
             $table->mediumText('body');
 

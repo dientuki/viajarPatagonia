@@ -1,5 +1,8 @@
 .draftjs {
   overflow: hidden;
+  position: relative;
+  z-index: 90;
+  height: (385rem/$fs);
 
   &.is-invalid {
     border: solid (1em/$fs) #e3342f;
@@ -9,4 +12,12 @@
       display: block;
     }
   }
+}
+
+.below-draft {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  border: solid (1rem/$fs) #ddd;
 }

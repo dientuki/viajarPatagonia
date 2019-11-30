@@ -16,7 +16,6 @@ class EditExcursionsTypes extends FormRequest
     {
         return true;
     }
-    
 
     /**
      * Get the validation rules that apply to the request.
@@ -29,7 +28,7 @@ class EditExcursionsTypes extends FormRequest
         $validation = [];
 
         foreach ($languages as $language) {
-            $validation['language_' . $language->id] = 'required';
+            $validation['language_' . $language->id] = 'required|string|max:190';
             $validation['fk_language_' . $language->id] = 'required|in:'.$language->id;
         }
         

@@ -17,7 +17,6 @@ class StoreCruiseshipsTypes extends FormRequest
         return true;
     }
     
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -29,8 +28,8 @@ class StoreCruiseshipsTypes extends FormRequest
         $validation = [];
 
         foreach ($languages as $language) {
-            $validation['language_' . $language->id] = 'required';
-            $validation['fk_language_' . $language->id] = 'required|in:'.$language->id;
+            $validation['language_' . $language->id] = 'required|string|max:190';
+            $validation['fk_language_' . $language->id] = 'required|integer|in:'.$language->id;
         }
         
         return $validation;
@@ -47,8 +46,8 @@ class StoreCruiseshipsTypes extends FormRequest
         $validation = [];
 
         foreach ($languages as $language) {
-            $validation['language_' . $language->id] = $language->$language;
-            $validation['fk_language_' . $language->id] = $language->$language;
+            $validation['language_' . $language->id] = 'en '. strtolower($language->language);
+            $validation['fk_language_' . $language->id] = $language->id;
         }
 
         return $validation;

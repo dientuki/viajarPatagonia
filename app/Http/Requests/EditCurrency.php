@@ -25,9 +25,9 @@ class EditCurrency extends FormRequest
     public function rules()
     {
         return [
-            'sign' => 'required|max:5',
-            'code' => 'required|max:3',
-            'currency' => 'required',
+            'sign' => 'required|string|max:5',
+            'code' => 'required|string|max:3',
+            'currency' => 'required|string|max:190',
             'amount' => 'required|numeric|between:0,99999999.99'            
         ];
     }
@@ -40,7 +40,10 @@ class EditCurrency extends FormRequest
     public function attributes()
     {
         return [
-            'currency' => 'moneda',
+            'sign' => __('fields.sign'),
+            'code' => __('fields.code'),
+            'currency' => __('fields.currency'),
+            'amount' => __('fields.amount'),
         ];
     }    
 }

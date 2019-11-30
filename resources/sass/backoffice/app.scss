@@ -27,6 +27,11 @@
   }
 }
 
+/* stylelint-disable selector-no-qualifying-type */
+textarea.form-control {
+  height: (85rem/$fs);
+}
+
 .input-group-text {
   svg {
     height: (20em/$fs);
@@ -239,6 +244,10 @@ select {
     height: (20rem/$fs);
     margin-right: (10em/$fs);
   }
+}
+
+.relative {
+  position: relative;
 }
 
 // Draft

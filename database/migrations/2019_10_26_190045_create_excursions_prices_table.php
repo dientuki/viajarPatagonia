@@ -21,7 +21,7 @@ class CreateExcursionsPricesTable extends Migration
             $table->smallIncrements('id');
             $table->mediumInteger('price');
             $table->mediumInteger('discount')->nullable(true);
-            $table->boolean('is_active')->default(false);
+            $table->boolean('is_active')->unsigned()->default(false);
             $table->tinyInteger('fk_currency')->unsigned();
             $table->smallInteger('fk_excursion')->unsigned();
 

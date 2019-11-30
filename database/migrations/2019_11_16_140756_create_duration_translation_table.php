@@ -21,7 +21,7 @@ class CreateDurationTranslationTable extends Migration
             $table->smallIncrements('id');
             $table->tinyInteger('fk_language')->unsigned();
             $table->tinyInteger('fk_duration')->unsigned();
-            $table->string('duration');
+            $table->string('duration', 190);
 
             $table->foreign('fk_language')->references('id')->on('languages');
             $table->foreign('fk_duration')->references('id')->on('duration');

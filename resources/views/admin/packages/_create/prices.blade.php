@@ -9,7 +9,7 @@
                 <?php $class = $errors->has('price_' . $currency->id) != null ? 'form-control is-invalid' : 'form-control'; ?>
                 {!! Form::label('price_' . $currency->id, ucfirst($currency->currency)) !!}
                 {!! Form::number('price_' . $currency->id, null, array('min' => 0, 'placeholder' => ucfirst(__('fields.price')),
-                'class'=>$class)) !!}
+                'class'=>$class, 'max' => 16777214)) !!}
                 @error('price_' . $currency->id)
                 <div class="invalid-feedback">
                     <strong>{{ $message }}</strong>
@@ -21,7 +21,7 @@
                 <?php $class = $errors->has('discount_' . $currency->id) != null ? 'form-control is-invalid' : 'form-control'; ?>
                 {!! Form::label('discount_' . $currency->id, ucfirst(__('fields.discount'))) !!}
                 {!! Form::number('discount_' . $currency->id, null, array('min' => 0, 'placeholder' => ucfirst(__('fields.discount')),
-                'class'=>$class)) !!}
+                'class'=>$class, 'max' => 16777214)) !!}
                 @error('discount_' . $currency->id)
                 <div class="invalid-feedback">
                     <strong>{{ $message }}</strong>

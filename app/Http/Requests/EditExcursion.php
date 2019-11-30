@@ -30,15 +30,15 @@ class EditExcursion extends FormRequest
         $validation = [];
 
         foreach ($languages as $language) {
-            $validation['name_' . $language->id] = 'required';
-            $validation['summary_' . $language->id] = 'required';
-            $validation['body_' . $language->id] = 'required';
+            $validation['name_' . $language->id] = 'required|string|max:190';
+            $validation['summary_' . $language->id] = 'required|string';
+            $validation['body_' . $language->id] = 'required|json';
             $validation['fk_language_' . $language->id] = 'required|in:'.$language->id;
         }
 
         foreach ($currencies as $currency) {
-            $validation['price_' . $currency->id] = 'integer|nullable';
-            $validation['discount_' . $currency->id] = 'integer|nullable';
+            $validation['price_' . $currency->id] = 'integer|nullable|between:1,16777214';
+            $validation['discount_' . $currency->id] = 'integer|nullable|between:1,16777214';
             $validation['is_active_' . $language->id] = 'boolean';
             $validation['fk_currency_' . $currency->id] = 'required|in:'.$currency->id;
         }
