@@ -20,10 +20,10 @@ class CreateHomesliderTable extends Migration
 
             $table->tinyIncrements('id');
             $table->boolean('is_active')->unsigned()->default(false);
-            $table->string('url');
-            $table->string('hotel');
-            $table->tinyInteger('stars');
-            $table->tinyInteger('order');
+            $table->string('url', 190);
+            $table->string('hotel', 190);
+            $table->tinyInteger('stars')->unsigned();
+            $table->tinyInteger('order')->unsigned();
         });
     }
 

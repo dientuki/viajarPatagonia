@@ -5,7 +5,7 @@
       <div class="form-group col">
         <?php $class = $errors->has('hotel') != null ? 'form-control is-invalid' : 'form-control'; ?>
         {!! Form::label('hotel', ucfirst(__('fields.hotel'))) !!}
-        {!! Form::text('hotel', $homeslider->hotel, array('placeholder' => ucfirst(__('fields.hotel')), 'class'=>$class)) !!}
+        {!! Form::text('hotel', $homeslider->hotel, array('placeholder' => ucfirst(__('fields.hotel')), 'class'=>$class, 'required' => true, 'maxlength' => 190)) !!}
         @error('hotel')
         <div class="invalid-feedback">
           <strong>{{ $message }}</strong>
@@ -16,7 +16,7 @@
       <div class="form-group col-1">
         <?php $class = $errors->has('stars') != null ? 'form-control is-invalid' : 'form-control'; ?>
         {!! Form::label('stars', ucfirst(__('fields.stars'))) !!}
-        {!! Form::text('stars', $homeslider->stars, array('placeholder' => ucfirst(__('fields.stars')), 'class'=>$class)) !!}
+        {!! Form::text('stars', $homeslider->stars, array('placeholder' => ucfirst(__('fields.stars')), 'class'=>$class, 'required' => true, 'maxlength' => 190)) !!}
         @error('stars')
         <div class="invalid-feedback">
           <strong>{{ $message }}</strong>

@@ -28,16 +28,16 @@ class StoreSlider extends FormRequest
         $validation = [];
 
         foreach ($languages as $language) {
-            $validation['title_' . $language->id] = 'required';
-            $validation['date_' . $language->id] = 'required';
-            $validation['description_' . $language->id] = 'required';
+            $validation['title_' . $language->id] = 'required|string|max:190';
+            $validation['date_' . $language->id] = 'required|string|max:190';
+            $validation['description_' . $language->id] = 'required|string|max:190';
             $validation['fk_language_' . $language->id] = 'required|in:'.$language->id;
         }
 
         $validation['is_active'] = 'boolean';
         $validation['urlstring'] = 'required_without:products';
         $validation['products'] = 'required_without:urlstring';
-        $validation['hotel'] = 'required';
+        $validation['hotel'] = 'required|string|max:190';
         $validation['stars'] = 'required|integer|min:1|max:5';      
         $validation['images'] = 'nullable';
         
