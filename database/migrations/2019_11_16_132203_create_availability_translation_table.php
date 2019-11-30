@@ -21,7 +21,7 @@ class CreateAvailabilityTranslationTable extends Migration
             $table->smallIncrements('id');
             $table->tinyInteger('fk_language')->unsigned();
             $table->tinyInteger('fk_availability')->unsigned();
-            $table->string('availability');
+            $table->string('availability', 190);
 
             $table->foreign('fk_language')->references('id')->on('languages');
             $table->foreign('fk_availability')->references('id')->on('availability');
