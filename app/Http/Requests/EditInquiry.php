@@ -24,12 +24,12 @@ class EditInquiry extends FormRequest
     public function rules()
     {
         return [
-          'name' => 'required',
-          'email' => 'required',         
-          'phone' => 'required',
+          'name' => 'required|string|max:190',
+          'email' => 'required|string|max:190',         
+          'phone' => 'required|string|max:190',
           'departure' => 'required',
-          'adult' => 'required|integer',
-          'child' => 'required|integer',
+          'adult' => 'required|integer|between:0,255',
+          'child' => 'required|integer|between:0,255',
           'comment' => 'required'             
         ];
     }

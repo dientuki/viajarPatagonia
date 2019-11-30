@@ -19,10 +19,10 @@ class CreateInquiriesTable extends Migration
             $table->collation = 'utf8_unicode_ci';
 
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name', 190);
             $table->timestampTz('timestamp');
-            $table->string('email');
-            $table->string('phone');
+            $table->string('email', 190);
+            $table->string('phone', 190);
             $table->date('departure');
             $table->tinyInteger('adult')->unsigned();
             $table->tinyInteger('child')->unsigned();
