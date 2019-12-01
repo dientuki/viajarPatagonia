@@ -35,7 +35,9 @@ return [
     'cta' => 'Call to action',
 
     //Sidebar
-    'another_packages' => 'another packages',
+    'another_package' => 'another paquetes',
+    'another_excursion' => 'another excursion',
+    'another_cruise' => 'another cruiseship',        
     'detail_package' => 'package detail',
     'detail_excursion' => 'excursion detail',
     'detail_cruise' => 'cruise detail',

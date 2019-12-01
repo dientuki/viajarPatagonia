@@ -74,8 +74,6 @@ class ExcursionsPrices extends Model
         $result = $price->get()->first();
       }
 
-      
-      dd($price->toSql());
       if ($result == null || session()->has('appcurrency') == false ) {
         $price->where('currencies.iso', 'ars');
         $result = $price->get()->first();

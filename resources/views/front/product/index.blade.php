@@ -78,7 +78,7 @@
     </div>
     
     <aside class="layout-aside aside">
-      <h6 class="aside__title">{{ __('front.another_packages') }}</h6>
+      <h6 class="aside__title">{{ __('front.another_' . $productType ) }}</h6>
       @include('front/product-preview/vertical', ['products' => $relateds, 'route' => 'package'])
     </aside>
 

@@ -17,9 +17,9 @@ class ExcursionController extends Controller
     {
         $product = Excursions::getShow($id);
         $price = ExcursionsPrices::getPrice($id);
-        //$relateds = Packages::getRelated($id);
+        $relateds = Excursions::getRelated($id);
         $productType = 'excursion';
 
-        return view('front/product/index', compact('product', 'productType'));      
+        return view('front/product/index', compact('product', 'price', 'relateds', 'productType'));      
     }
 }
