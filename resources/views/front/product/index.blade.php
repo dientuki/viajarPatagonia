@@ -53,15 +53,19 @@
         {!! $product->body_html !!}
       </main>
 
-      <div class="extra__title">{{ ucfirst(__('front.included-excursion')) }}</div>
-      <div class="grid">
-        @include('front/product-preview/horizontal', ['products' => $excursionsRelated, 'route' => 'excursion', 'noprice' => true])
-      </div>
+      @if ($excursionsRelated->isEmpty() == false)
+        <div class="extra__title">{{ ucfirst(__('front.included-excursion')) }}</div>
+        <div class="grid">
+          @include('front/product-preview/horizontal', ['products' => $excursionsRelated, 'route' => 'excursion', 'noprice' => true])
+        </div>
+      @endif
             
-      <div class="extra__title">{{ ucfirst(__('front.buy-more-excursion')) }}</div>
-      <div class="grid">
-        @include('front/product-preview/horizontal', ['products' => $excursionsUnrelated, 'route' => 'excursion', 'noprice' => true])
-      </div>
+      @if ($excursionsUnrelated->isEmpty() == false)
+        <div class="extra__title">{{ ucfirst(__('front.buy-more-excursion')) }}</div>
+        <div class="grid">
+          @include('front/product-preview/horizontal', ['products' => $excursionsUnrelated, 'route' => 'excursion', 'noprice' => true])
+        </div>
+      @endif
 
       @if ($product->map != '')
         <div class="aspect-slider product__map">
