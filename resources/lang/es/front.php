@@ -36,7 +36,9 @@ return [
 
     //Sidebar
     'another_packages' => 'otros paquetes',
-    'details_packages' => 'detalle del paquete',
+    'detail_package' => 'package detail',
+    'detail_excursion' => 'excursion detail',
+    'detail_cruise' => 'cruise detail',
 
     //Inquiries
     'name' => 'nombre',

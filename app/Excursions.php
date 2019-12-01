@@ -110,6 +110,19 @@ class Excursions extends Model implements HasMedia
       return $home->limit($limit)->get();
     }    
 
+
+    static function getShow($id) {
+      $excursion = Excursions::select('excursions.id', 'map', 'excursions_translation.name', 'excursions_translation.summary', 'excursions_translation.body');
+      $excursion->join("excursions_translation", 'excursions.id', '=', "excursions_translation.fk_excursion");
+      $excursion->join("languages", 'languages.id', '=', "excursions_translation.fk_language");
+      $excursion->where([
+        ['excursions.id', '=', $id],
+        ['languages.iso', '=', App::getLocale()]
+      ]);
+
+      return $excursion->get()->first();
+    }     
+
     static function getRelatedPackage($id) {
       $home = Excursions::select('excursions.id', 'excursions_translation.name', 'excursions_translation.summary', 'availability_translation.availability', 'duration_translation.duration');
       $home->join("package2excursion", 'excursions.id', '=', "package2excursion.fk_excursion");

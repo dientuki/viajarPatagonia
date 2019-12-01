@@ -21,7 +21,8 @@ class PackageController extends Controller
         $relateds = Packages::getRelated($id);
         $excursionsUnrelated = Excursions::getUnrelatedPackage($id);
         $excursionsRelated = Excursions::getRelatedPackage($id);
+        $productType = 'package';
 
-        return view('front/product/index', compact('product', 'price', 'relateds', 'excursionsUnrelated', 'excursionsRelated'));
+        return view('front/product/index', compact('product', 'price', 'relateds', 'excursionsUnrelated', 'excursionsRelated', 'productType'));
     }
 }
