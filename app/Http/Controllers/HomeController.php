@@ -18,7 +18,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $packages = Packages::getHome();
+        $packages = Packages::getList(6);
         $cruiseships = Cruiseships::getHome();
         $excursions = Excursions::getHome();
 
