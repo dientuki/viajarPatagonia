@@ -50,15 +50,15 @@ Route::group(['prefix' => '{locale}',
 
     Route::get('/', 'HomeController@index')->name('home');
 
-    Route::get('/package/{name}_{id}.html', 'PackageController@show')
+    Route::get('/package/{name}_{id}.html', 'ProductController@showPackage')
         ->name('package')
         ->where(['id' => '[0-9]+']);
 
-    Route::get('/excursion/{name}_{id}.html', 'ExcursionController@show')
+    Route::get('/excursion/{name}_{id}.html', 'ProductController@showExcursion')
         ->name('excursion')
         ->where(['id' => '[0-9]+']);
 
-    Route::get('/cruise/{name}_{id}.html', 'CruiseshipsController@show')
+    Route::get('/cruise/{name}_{id}.html', 'ProductController@showCruiseship')
         ->name('cruise')
         ->where(['id' => '[0-9]+']);
 });

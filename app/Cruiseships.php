@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Helpers\Helpers;
 use App\Translations\Language;
 use Spatie\Image\Manipulations;
 use Illuminate\Support\Facades\App;
@@ -93,7 +94,7 @@ class Cruiseships extends Model implements HasMedia
     static function getShow($id) {
       $cruiseship = Cruiseships::select('cruiseships.id', 'map', 'cruiseships_translation.name', 'cruiseships_translation.summary', 'cruiseships_translation.body');
       $cruiseship->join("cruiseships_translation", 'cruiseships.id', '=', "cruiseships_translation.fk_cruiseship");
-      $cruiseship->join("languages", 'languages.id', '=', "cruiseships_translation.fk_cruiseship");
+      $cruiseship->join("languages", 'languages.id', '=', "cruiseships_translation.fk_language");
       $cruiseship->where([
         ['cruiseships.id', '=', $id],
         ['languages.iso', '=', App::getLocale()]
@@ -104,16 +105,30 @@ class Cruiseships extends Model implements HasMedia
 
     static function getHome() {
       $home = Cruiseships::select('cruiseships.id', 'cruiseships_translation.name', 'cruiseships_translation.summary');
-      $home->join("cruiseships_translation", 'cruiseships.id', '=', "cruiseships_translation.fk_cruiseship");
-      $home->join("languages", 'languages.id', '=', "cruiseships_translation.fk_language");
+      $home->join("cruiseships_translation", 'cruiseships.id', '=', "cruiseships_translation.fk_language");
+      $home->join("languages", 'languages.id', '=', "cruiseships_translation.fk_cruiseship");
       $home->where('is_active', 1)->where('languages.iso', App::getLocale());
 
       return $home->limit(2)->get();
     }
+
+    static function getRelated($id) {
+      $home = Cruiseships::select('cruiseships.id', 'cruiseships_translation.name', 'cruiseships_translation.summary');
+      $home->join("cruiseships_translation", 'cruiseships.id', '=', "cruiseships_translation.fk_language");
+      $home->join("languages", 'languages.id', '=', "cruiseships_translation.fk_cruiseship");
+      $home->where('cruiseships.id', '!=', $id)->where('is_active', 1)->where('languages.iso', App::getLocale());
+
+      return $home->get();
+    }    
+    
     
     public function getPrice(){
       return 'ARS ' . number_format(rand(5000, 199999), 0, null, '.');
     }
+
+    public function getBodyHtmlAttribute() {
+      return Helpers::draft2html($this->attributes['body']);
+    }      
 
     public function registerMediaConversions(Media $media = null)
     {
