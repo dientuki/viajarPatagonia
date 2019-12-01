@@ -19,7 +19,7 @@ class PackageController extends Controller
         $product = Packages::getShow($id);
         $price = PackagePrices::getPrice($id);
         $relateds = Packages::getRelated($id);
-        $excursionsUnrelated = Excursions::getHome(3);
+        $excursionsUnrelated = Excursions::getUnrelatedPackage($id);
         $excursionsRelated = Excursions::getRelatedPackage($id);
 
         return view('front/product/index', compact('product', 'price', 'relateds', 'excursionsUnrelated', 'excursionsRelated'));
