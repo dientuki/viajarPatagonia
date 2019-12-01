@@ -119,14 +119,14 @@ class Packages extends Model implements HasMedia
       return $related->get();
     }
 
-    static function getList($items = false) {
+    static function getList($limit = false) {
       $list = Packages::select('packages.id', 'packages_translation.name', 'packages_translation.summary');
       $list->join("packages_translation", 'packages.id', '=', "packages_translation.fk_package");
       $list->join("languages", 'languages.id', '=', "packages_translation.fk_language");
       $list->where('is_active', 1)->where('languages.iso', App::getLocale());    
 
-      if ($items != false) {
-        $list = $list->limit($items)->get();
+      if ($limit != false) {
+        $list = $list->limit($limit)->get();
       } else {
         $list = $list->simplePaginate(10);      
       }
