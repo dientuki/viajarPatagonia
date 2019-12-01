@@ -111,12 +111,24 @@ class Excursions extends Model implements HasMedia
     }    
 
     static function getRelatedPackage($id) {
-      $home = Excursions::select('excursions.id', 'excursions_translation.name', 'excursions_translation.summary');
+      $home = Excursions::select('excursions.id', 'excursions_translation.name', 'excursions_translation.summary', 'availability_translation.availability', 'duration_translation.duration');
+      $home->join("package2excursion", 'excursions.id', '=', "package2excursion.fk_excursion");
+
       $home->join("excursions_translation", 'excursions.id', '=', "excursions_translation.fk_excursion");
       $home->join("languages", 'languages.id', '=', "excursions_translation.fk_language");
-      $home->join("package2excursion", 'excursions.id', '=', "package2excursion.fk_excursion");
+      
+      $home->join("availability", 'availability.id', '=', "excursions.fk_availability");
+      $home->join("availability_translation", 'availability.id', '=', "availability_translation.fk_availability");
+      $home->join("languages as la", 'la.id', '=', "availability_translation.fk_language");
+
+      $home->join("duration", 'duration.id', '=', "excursions.fk_duration");
+      $home->join("duration_translation", 'duration.id', '=', "duration_translation.fk_duration");
+      $home->join("languages as ld", 'ld.id', '=', "duration_translation.fk_language");
+
       $home->where('is_active', 1)
         ->where('languages.iso', App::getLocale())
+        ->where('la.iso', App::getLocale())
+        ->where('ld.iso', App::getLocale())
         ->where('package2excursion.fk_package', $id);
       
       return $home->limit(3)->get();
@@ -125,13 +137,23 @@ class Excursions extends Model implements HasMedia
     static function getUnrelatedPackage($id) {
       $currentDestinations = Package2destination::orderBy('id')->where('fk_package', $id)->pluck('fk_destination');
       
-      $home = Excursions::select('excursions.id', 'excursions_translation.name', 'excursions_translation.summary');
+      $home = Excursions::select('excursions.id', 'excursions_translation.name', 'excursions_translation.summary', 'availability_translation.availability', 'duration_translation.duration');
       $home->join("excursions_translation", 'excursions.id', '=', "excursions_translation.fk_excursion");
       $home->join("languages", 'languages.id', '=', "excursions_translation.fk_language");
       $home->join("package2excursion", 'excursions.id', '=', "package2excursion.fk_excursion");
 
+      $home->join("availability", 'availability.id', '=', "excursions.fk_availability");
+      $home->join("availability_translation", 'availability.id', '=', "availability_translation.fk_availability");
+      $home->join("languages as la", 'la.id', '=', "availability_translation.fk_language");
+
+      $home->join("duration", 'duration.id', '=', "excursions.fk_duration");
+      $home->join("duration_translation", 'duration.id', '=', "duration_translation.fk_duration");
+      $home->join("languages as ld", 'ld.id', '=', "duration_translation.fk_language");      
+
       $home->where('is_active', 1)
         ->where('languages.iso', App::getLocale())
+        ->where('la.iso', App::getLocale())
+        ->where('ld.iso', App::getLocale())        
         ->where('package2excursion.fk_package', '!=', $id)
         ->whereIn('excursions.fk_destination', $currentDestinations);
       
