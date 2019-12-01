@@ -37,10 +37,10 @@ return [
     //Sidebar
     'another_package' => 'another paquetes',
     'another_excursion' => 'another excursion',
-    'another_cruise' => 'another cruiseship',        
+    'another_cruiseship' => 'another cruiseship',        
     'detail_package' => 'package detail',
     'detail_excursion' => 'excursion detail',
-    'detail_cruise' => 'cruise detail',
+    'detail_cruiseship' => 'cruise detail',
 
     //Inquiries
     'name' => 'name',
