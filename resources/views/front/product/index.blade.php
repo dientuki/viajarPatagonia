@@ -49,18 +49,18 @@
 
     <div class="layout-main">
       <main class="product__content">
-        <div class="aside__title">{{ ucfirst(__('front.details_packages')) }}</div>
+        <div class="aside__title">{{ ucfirst(__('front.detail_' . $productType)) }}</div>
         {!! $product->body_html !!}
       </main>
 
-      @if ($excursionsRelated->isEmpty() == false)
+      @if (isset($excursionsRelated) && $excursionsRelated->isEmpty() == false)
         <div class="extra__title">{{ ucfirst(__('front.included-excursion')) }}</div>
         <div class="grid">
           @include('front/product-preview/horizontal', ['products' => $excursionsRelated, 'route' => 'excursion', 'noprice' => true])
         </div>
       @endif
             
-      @if ($excursionsUnrelated->isEmpty() == false)
+      @if (isset($excursionsUnrelated) && $excursionsUnrelated->isEmpty() == false)
         <div class="extra__title">{{ ucfirst(__('front.buy-more-excursion')) }}</div>
         <div class="grid">
           @include('front/product-preview/horizontal', ['products' => $excursionsUnrelated, 'route' => 'excursion', 'noprice' => true])
@@ -78,7 +78,7 @@
     </div>
     
     <aside class="layout-aside aside">
-      <h6 class="aside__title">{{ __('front.another_packages') }}</h6>
+      <h6 class="aside__title">{{ __('front.another_' . $productType ) }}</h6>
       @include('front/product-preview/vertical', ['products' => $relateds, 'route' => 'package'])
     </aside>
 

@@ -62,5 +62,52 @@ class ExcursionsPrices extends Model
         ->where($where)
         ->get()->first();
     }    
+
+    static function getPrice($id) {
+      $result = null;
+      $price = ExcursionsPrices::select('price', 'discount', 'is_active', 'currencies.iso', 'currencies.amount');
+      $price->join("currencies", 'currencies.id', '=', "excursions_prices.fk_currency");
+      $price->where('fk_excursion', $id);
+
+      if (session()->has('appcurrency')) {
+        $price->where('fk_currency', Session::get('appcurrency'));
+        $result = $price->get()->first();
+      }
+
+      if ($result == null || session()->has('appcurrency') == false ) {
+        $price->where('currencies.iso', 'ars');
+        $result = $price->get()->first();
+      }
+
+      return $result;
+
+      /*
+            $result = null;
+      $currency = 'ars';
+
+      if (session()->has('currency') == false) {
+        $currency = session()->get('currency');
+      } else {
+        session()->set('currency', $currency);
+      }
+
+
+      $price = PackagePrices::select('price', 'discount', 'is_active', 'currencies.iso');
+      $price->join("currencies", 'currencies.id', '=', "packages_prices.fk_currency");
+      
+      $tmp = $price;
+      $tmp->where('currencies.iso', $currency);
+      $result = $tmp->get()->first();
+
+      if ($result == null) {
+        $tmp = $price;
+        $tmp->where('currencies.iso', 'usd');
+        $result = $tmp->get()->first();
+      }
+
+      return $result;
+      */
+
+    }    
     
 }

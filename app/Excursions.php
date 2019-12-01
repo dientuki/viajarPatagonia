@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Package2destination;
+use App\Http\Helpers\Helpers;
 use App\Translations\Language;
 use Spatie\Image\Manipulations;
 use Illuminate\Support\Facades\App;
@@ -110,6 +111,23 @@ class Excursions extends Model implements HasMedia
       return $home->limit($limit)->get();
     }    
 
+
+    static function getShow($id) {
+      $excursion = Excursions::select('excursions.id', 'map', 'excursions_translation.name', 'excursions_translation.summary', 'excursions_translation.body');
+      $excursion->join("excursions_translation", 'excursions.id', '=', "excursions_translation.fk_excursion");
+      $excursion->join("languages", 'languages.id', '=', "excursions_translation.fk_language");
+      $excursion->where([
+        ['excursions.id', '=', $id],
+        ['languages.iso', '=', App::getLocale()]
+      ]);
+
+      return $excursion->get()->first();
+    }  
+    
+    public function getBodyHtmlAttribute() {
+      return Helpers::draft2html($this->attributes['body']);
+    }    
+
     static function getRelatedPackage($id) {
       $home = Excursions::select('excursions.id', 'excursions_translation.name', 'excursions_translation.summary', 'availability_translation.availability', 'duration_translation.duration');
       $home->join("package2excursion", 'excursions.id', '=', "package2excursion.fk_excursion");
@@ -158,6 +176,21 @@ class Excursions extends Model implements HasMedia
         ->whereIn('excursions.fk_destination', $currentDestinations);
       
       return $home->limit(3)->get();
+    }
+
+    static function getRelated($id) {
+      $currentDestinations = Package2destination::orderBy('id')->where('fk_package', $id)->pluck('fk_destination');
+
+      $home = Excursions::select('excursions.id', 'excursions_translation.name', 'excursions_translation.summary');
+      $home->join("excursions_translation", 'excursions.id', '=', "excursions_translation.fk_excursion");
+      $home->join("languages", 'languages.id', '=', "excursions_translation.fk_language");
+
+
+      $home->where('is_active', 1)
+        ->where('languages.iso', App::getLocale())
+        ->whereIn('excursions.fk_destination', $currentDestinations);   
+        
+      return $home->limit(3)->get();        
     }
 
     public function getPrice() {
