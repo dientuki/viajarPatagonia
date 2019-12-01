@@ -20,7 +20,7 @@ class HomeController extends Controller
     {
         $packages = Packages::getList(6);
         $cruiseships = Cruiseships::getHome();
-        $excursions = Excursions::getHome();
+        $excursions = Excursions::getList(4);
 
         return view('front/home', compact('packages', 'cruiseships', 'excursions'));
     }
