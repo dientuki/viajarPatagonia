@@ -55,5 +55,9 @@ return [
 
     //Buy more
     'buy-more-excursion' => 'buy more',
-    'included-excursion' => 'included excursions'    
+    'included-excursion' => 'included excursions',
+
+    // Disponibilidad
+    'availability' => 'availability',
+    'duration' => 'duration',    
 ];

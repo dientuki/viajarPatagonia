@@ -26,7 +26,11 @@
       @if (isset($product->dataExtra))
         <div class="list__summary">{!! nl2br($product->summary) !!}</div>
       @endif
-      <div class="list__data-extra bold">Disponible: Todo el año - Duración: Día Completo</div>
+
+      @if (isset($product->availability) && isset($product->duration))
+        <div class="list__data-extra bold">{{ucfirst(__('front.availability'))}}: {{ $product->availability }} - {{ucfirst(__('front.duration'))}}: {{ $product->duration }}</div>
+      @endif
+      
       <div class="list__summary">{!! nl2br($product->summary) !!}</div>
     </div>
     @if (isset($noprice) == false)

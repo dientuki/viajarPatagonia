@@ -55,5 +55,9 @@ return [
     
     //Buy more
     'buy-more-excursion' => 'podes contratar estas excursiones extra',
-    'included-excursion' => 'excursiones incluidas'
+    'included-excursion' => 'excursiones incluidas',
+
+    // Disponibilidad
+    'availability' => 'disponible',
+    'duration' => 'duración',
 ];
