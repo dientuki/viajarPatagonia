@@ -36,6 +36,7 @@ return [
 
     //Sidebar
     'another_packages' => 'another packages',
+    'details_packages' => 'package detail',
 
     //Inquiries
     'name' => 'name',
@@ -50,6 +51,9 @@ return [
     'packages' => 'packages',
     'cruiseships' => 'cruises ships',
     'excursions' => 'excursions',
-    'view-all' => 'view all'
+    'view-all' => 'view all',
 
+    //Buy more
+    'buy-more-excursion' => 'buy more',
+    'included-excursion' => 'included excursions'    
 ];
