@@ -103,10 +103,22 @@ class Excursions extends Model implements HasMedia
     }
 
     static function getList($limit = false) {
-      $list = Excursions::select('excursions.id', 'excursions_translation.name', 'excursions_translation.summary');
+      $list = Excursions::select('excursions.id', 'excursions_translation.name', 'excursions_translation.summary', 'availability_translation.availability', 'duration_translation.duration');
       $list->join("excursions_translation", 'excursions.id', '=', "excursions_translation.fk_excursion");
       $list->join("languages", 'languages.id', '=', "excursions_translation.fk_language");
-      $list->where('is_active', 1)->where('languages.iso', App::getLocale());
+
+      $list->join("availability", 'availability.id', '=', "excursions.fk_availability");
+      $list->join("availability_translation", 'availability.id', '=', "availability_translation.fk_availability");
+      $list->join("languages as la", 'la.id', '=', "availability_translation.fk_language");
+
+      $list->join("duration", 'duration.id', '=', "excursions.fk_duration");
+      $list->join("duration_translation", 'duration.id', '=', "duration_translation.fk_duration");
+      $list->join("languages as ld", 'ld.id', '=', "duration_translation.fk_language");      
+
+      $list->where('is_active', 1)
+        ->where('languages.iso', App::getLocale())
+        ->where('la.iso', App::getLocale())
+        ->where('ld.iso', App::getLocale());
 
       if ($limit != false) {
         $list = $list->limit($limit)->get();
