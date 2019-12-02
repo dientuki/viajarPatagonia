@@ -19,11 +19,11 @@
 
     <section class="section">
       <header class="section__header flex">
-        <h6 class="section__title">{{ ucfirst(__('front.excursions')) }}</h6>
+        <h6 class="section__title">{{ ucfirst(__('front.' . $productType)) }}</h6>
       </header>
 
       <main class="grid section__main">
-        @include('front/product-preview/horizontal', ['products' => $products, 'route' => 'excursion'])
+        @include('front/product-preview/horizontal', ['products' => $products, 'route' => $route])
       </main>
 
       <footer>

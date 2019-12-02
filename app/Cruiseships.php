@@ -103,13 +103,19 @@ class Cruiseships extends Model implements HasMedia
       return $cruiseship->get()->first();
     }
 
-    static function getHome() {
-      $home = Cruiseships::select('cruiseships.id', 'cruiseships_translation.name', 'cruiseships_translation.summary');
-      $home->join("cruiseships_translation", 'cruiseships.id', '=', "cruiseships_translation.fk_language");
-      $home->join("languages", 'languages.id', '=', "cruiseships_translation.fk_cruiseship");
-      $home->where('is_active', 1)->where('languages.iso', App::getLocale());
+    static function getList($limit = false) {
+      $list = Cruiseships::select('cruiseships.id', 'cruiseships_translation.name', 'cruiseships_translation.summary');
+      $list->join("cruiseships_translation", 'cruiseships.id', '=', "cruiseships_translation.fk_language");
+      $list->join("languages", 'languages.id', '=', "cruiseships_translation.fk_language");
+      $list->where('is_active', 1)->where('languages.iso', App::getLocale());
 
-      return $home->limit(2)->get();
+      if ($limit != false) {
+        $list = $list->limit($limit)->get();
+      } else {
+        $list = $list->simplePaginate(10);      
+      }
+
+      return $list;
     }
 
     static function getRelated($id) {

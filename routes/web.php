@@ -64,9 +64,12 @@ Route::group(['prefix' => '{locale}',
     Route::get('/excursions/{name}.html', 'ExcursionsController@list')
         ->name('excursions');        
 
-    Route::get('/cruise/{name}_{id}.html', 'ProductController@showCruiseship')
-        ->name('cruise')
+    Route::get('/cruise/{name}_{id}.html', 'CruiseshipsController@show')
+        ->name('cruiseship')
         ->where(['id' => '[0-9]+']);
+
+    Route::get('/cruiseships/{name}.html', 'CruiseshipsController@list')
+        ->name('cruiseships');          
 
 });
 
