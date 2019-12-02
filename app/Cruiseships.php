@@ -109,8 +109,6 @@ class Cruiseships extends Model implements HasMedia
       $list->join("languages", 'languages.id', '=', "cruiseships_translation.fk_language");
       $list->where('is_active', 1)->where('languages.iso', App::getLocale());
 
-      dd($list->toSql());
-
       if ($limit != false) {
         $list = $list->limit($limit)->get();
       } else {

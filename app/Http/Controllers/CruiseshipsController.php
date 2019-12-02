@@ -18,7 +18,7 @@ class CruiseshipsController extends Controller
         $product = Cruiseships::getShow($id);
         $price = CruiseshipsPrices::getPrice($id);
         $relateds = Cruiseships::getRelated($id);
-        $productType = 'cruiseship';
+        $productType = 'cruise';
 
         return view('front/product/index', compact('product', 'price', 'relateds', 'productType'));      
     }    
