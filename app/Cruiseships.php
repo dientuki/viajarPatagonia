@@ -105,9 +105,11 @@ class Cruiseships extends Model implements HasMedia
 
     static function getList($limit = false) {
       $list = Cruiseships::select('cruiseships.id', 'cruiseships_translation.name', 'cruiseships_translation.summary');
-      $list->join("cruiseships_translation", 'cruiseships.id', '=', "cruiseships_translation.fk_language");
+      $list->join("cruiseships_translation", 'cruiseships.id', '=', "cruiseships_translation.fk_cruiseship");
       $list->join("languages", 'languages.id', '=', "cruiseships_translation.fk_language");
       $list->where('is_active', 1)->where('languages.iso', App::getLocale());
+
+      dd($list->toSql());
 
       if ($limit != false) {
         $list = $list->limit($limit)->get();
