@@ -119,13 +119,19 @@ class Packages extends Model implements HasMedia
       return $related->get();
     }
 
-    static function getHome() {
-      $home = Packages::select('packages.id', 'packages_translation.name', 'packages_translation.summary');
-      $home->join("packages_translation", 'packages.id', '=', "packages_translation.fk_package");
-      $home->join("languages", 'languages.id', '=', "packages_translation.fk_language");
-      $home->where('is_active', 1)->where('languages.iso', App::getLocale());
+    static function getList($limit = false) {
+      $list = Packages::select('packages.id', 'packages_translation.name', 'packages_translation.summary');
+      $list->join("packages_translation", 'packages.id', '=', "packages_translation.fk_package");
+      $list->join("languages", 'languages.id', '=', "packages_translation.fk_language");
+      $list->where('is_active', 1)->where('languages.iso', App::getLocale());    
 
-      return $home->limit(6)->get();
+      if ($limit != false) {
+        $list = $list->limit($limit)->get();
+      } else {
+        $list = $list->simplePaginate(10);      
+      }
+
+      return $list;
     }
 
     public function getPrice() {

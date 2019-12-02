@@ -49,5 +49,11 @@ class ProductController extends Controller
         return view('front/product/index', compact('product', 'price', 'relateds', 'productType'));      
     }    
 
-    
+    public function listPackages($locale, $name, $id)
+    {
+        $products = Packages::getHome();
+        $productType = 'package';
+
+        return view('front/product/list', compact('product', 'price', 'relateds', 'excursionsUnrelated', 'excursionsRelated', 'productType'));
+    }    
 }

@@ -18,9 +18,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $packages = Packages::getHome();
-        $cruiseships = Cruiseships::getHome();
-        $excursions = Excursions::getHome();
+        $packages = Packages::getList(6);
+        $cruiseships = Cruiseships::getList(2);
+        $excursions = Excursions::getList(4);
 
         return view('front/home', compact('packages', 'cruiseships', 'excursions'));
     }

@@ -102,15 +102,20 @@ class Excursions extends Model implements HasMedia
       return abort(404);
     }
 
-    static function getHome($limit = 4) {
-      $home = Excursions::select('excursions.id', 'excursions_translation.name', 'excursions_translation.summary');
-      $home->join("excursions_translation", 'excursions.id', '=', "excursions_translation.fk_excursion");
-      $home->join("languages", 'languages.id', '=', "excursions_translation.fk_language");
-      $home->where('is_active', 1)->where('languages.iso', App::getLocale());
+    static function getList($limit = false) {
+      $list = Excursions::select('excursions.id', 'excursions_translation.name', 'excursions_translation.summary');
+      $list->join("excursions_translation", 'excursions.id', '=', "excursions_translation.fk_excursion");
+      $list->join("languages", 'languages.id', '=', "excursions_translation.fk_language");
+      $list->where('is_active', 1)->where('languages.iso', App::getLocale());
 
-      return $home->limit($limit)->get();
+      if ($limit != false) {
+        $list = $list->limit($limit)->get();
+      } else {
+        $list = $list->simplePaginate(10);      
+      }
+
+      return $list;
     }    
-
 
     static function getShow($id) {
       $excursion = Excursions::select('excursions.id', 'map', 'excursions_translation.name', 'excursions_translation.summary', 'excursions_translation.body');

@@ -1,3 +1,6 @@
+<?php
+  use Illuminate\Support\Str;
+?>
 @extends('layouts.front')
 
 @section('title', 'Viajar por Patagonia')
@@ -20,7 +23,7 @@
     <section class="section">
       <header class="section__header flex">
         <h6 class="section__title">{{ ucfirst(__('front.packages')) }}</h6>
-        <a class="section__view-all" href="#">{{ ucfirst(__('front.view-all')) }}</a>
+        <a class="section__view-all" href="{{ route('packages', array('locale' => app()->getLocale(), 'name' => Str::slug(__('front.view-all')))) }}">{{ ucfirst(__('front.view-all')) }}</a>
       </header>
 
       <main class="grid section__main">
@@ -31,7 +34,7 @@
     <section class="section">
       <header class="section__header flex">
         <h6 class="section__title">{{ ucfirst(__('front.cruiseships')) }}</h6>
-        <a class="section__view-all" href="#">{{ ucfirst(__('front.view-all')) }}</a>
+        <a class="section__view-all" href="{{ route('cruiseships', array('locale' => app()->getLocale(), 'name' => Str::slug(__('front.view-all')))) }}">{{ ucfirst(__('front.view-all')) }}</a>
       </header>
 
       <main class="grid section__main">
@@ -42,7 +45,7 @@
     <section class="section">
       <header class="section__header flex">
         <h6 class="section__title">{{ ucfirst(__('front.excursions')) }}</h6>
-        <a class="section__view-all" href="#">{{ ucfirst(__('front.view-all')) }}</a>
+        <a class="section__view-all" href="{{ route('excursions', array('locale' => app()->getLocale(), 'name' => Str::slug(__('front.view-all')))) }}">{{ ucfirst(__('front.view-all')) }}</a>
       </header>
 
       <main class="grid section__main">
