@@ -29,8 +29,9 @@ class PackagesController extends Controller
     public function list($locale, $name)
     {
         $products = Packages::getList();
-        $productType = 'package';
+        $productType = 'packages';
+        $route = 'package';
 
-        return view('front/product/list', compact('products', 'productType'));
+        return view('front/product/list', compact('products', 'productType', 'route'));
     }    
 }
