@@ -13,15 +13,16 @@ class InquiriesController extends Controller
       $message = [];
       
       $rules = [
-        'product' => 'nullable',
-        'id' => 'nullable',
-        'name' => 'required',
+        'product' => 'required|in:cruise,excursion,package',
+        'product_id' => 'required|integer',
+        'fk_language' => 'required|numeric|exists:languages,id',
+        'name' => 'required|string',
         'email' => 'required',
         'phone' => 'required',
         'departure' => 'required',
         'adults' => 'required|integer',
-        'childs' => 'integer|nullable',
-        'comment' => 'required'
+        'childs' => 'integer|integer|nullable',
+        'comment' => 'required|string'
       ];
 
       $validator = Validator::make($request->all(), $rules);
@@ -37,6 +38,7 @@ class InquiriesController extends Controller
       } else {
         $status = 'success';
         $message = '';
+        Inquiry::create($data);
       }
       
       return response()->json( array('status' => $status, 'message' => $message) );
