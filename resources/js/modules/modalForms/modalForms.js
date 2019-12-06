@@ -51,6 +51,7 @@ export function modalForms(elements) {
             case 'success':
               loading.classList.toggle('show');
               overlay.classList.toggle('show');
+              form.reset();
               break;
             case 'error':
               // eslint-disable-next-line array-callback-return
