@@ -1,7 +1,7 @@
 <form class="grid-1 form" role="form" method="POST" action="{{ route('api.forms.inquiries') }}">
   {{ csrf_field() }}
-  <input type="hidden" name="product" value="cruise">
-  <input type="hidden" name="product_id" value="1">
+  <input type="hidden" name="product" value="{{ $productType }}">
+  <input type="hidden" name="product_id" value="{{ $product->id}}">
   <input type="hidden" name="fk_language" value="1">
 
   <div class="col">
