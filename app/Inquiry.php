@@ -28,7 +28,7 @@ class Inquiry extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'phone', 'adult', 'child', 'departure', 'timestamp', 'product', 'product_id', 'fk_language', 'comment'];     
+    protected $fillable = ['name', 'email', 'phone', 'adults', 'childs', 'departure', 'timestamp', 'product', 'product_id', 'fk_language', 'comment'];     
 
     public function getTimestampAttribute() {
       $current = explode('@', Route::currentRouteAction())[1];

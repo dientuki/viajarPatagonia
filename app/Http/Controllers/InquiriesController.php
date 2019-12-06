@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Inquiry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,11 +18,11 @@ class InquiriesController extends Controller
         'product_id' => 'required|integer',
         'fk_language' => 'required|numeric|exists:languages,id',
         'name' => 'required|string',
-        'email' => 'required',
+        'email' => 'required|email',
         'phone' => 'required',
-        'departure' => 'required',
+        'departure' => 'required|date_format:d/m/Y',
         'adults' => 'required|integer',
-        'childs' => 'integer|integer|nullable',
+        'childs' => 'integer|integer',
         'comment' => 'required|string'
       ];
 
@@ -38,7 +39,7 @@ class InquiriesController extends Controller
       } else {
         $status = 'success';
         $message = '';
-        Inquiry::create($data);
+        Inquiry::create($validator->valid());
       }
       
       return response()->json( array('status' => $status, 'message' => $message) );
