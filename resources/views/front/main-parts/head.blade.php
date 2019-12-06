@@ -15,6 +15,16 @@
 <meta name="og:country_name" content="Argentina">
 @stack('facebook')
 
+<link rel="apple-touch-icon" sizes="72x72" href="{{ URL::asset('favicon/apple-touch-icon.png') }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ URL::asset('favicon/favicon-32x32.png') }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ URL::asset('favicon/favicon-16x16.png') }}">
+<link rel="manifest" href="{{ URL::asset('site.webmanifest') }}">
+<link rel="mask-icon" href="{{ URL::asset('favicon/safari-pinned-tab.svg') }}" color="#5bbad5">
+<meta name="apple-mobile-web-app-title" content="Viajar por patagonia">
+<meta name="application-name" content="Viajar por patagonia">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
 <!-- Scripts -->
 <script src="{{ Helpers::load_resource('frontJs.js') }}" defer crossorigin="anonymous"></script>
 
