@@ -9,7 +9,10 @@ class InquiriesController extends Controller
 {
     public function store(Request $request) {
 
-      $validator = Validator::make($request->all(), [
+      $status = 'error';
+      $message = [];
+      
+      $rules = [
         'product' => 'nullable',
         'id' => 'nullable',
         'name' => 'required',
@@ -19,12 +22,23 @@ class InquiriesController extends Controller
         'adults' => 'required|integer',
         'childs' => 'integer|nullable',
         'comment' => 'required'
-      ]);
+      ];
+
+      $validator = Validator::make($request->all(), $rules);
 
       if ($validator->fails()) {
-        return view('front/forms/inquiries')->withErrors($validator)->render();
+
+        foreach ($rules as $field => $validation) {
+          if ($validator->errors()->has($field)) {
+            $message[$field] = $validator->errors()->first($field);
+          }
+        }
+
+      } else {
+        $status = 'success';
+        $message = '';
       }
       
-      return response()->json( array('success' => true));
+      return response()->json( array('status' => $status, 'message' => $message) );
     }
 }
