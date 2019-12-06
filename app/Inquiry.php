@@ -28,7 +28,7 @@ class Inquiry extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'phone', 'adult', 'child', 'departure', 'comment'];     
+    protected $fillable = ['name', 'email', 'phone', 'adult', 'child', 'departure', 'timestamp', 'product', 'product_id', 'fk_language', 'comment'];     
 
     public function getTimestampAttribute() {
       $current = explode('@', Route::currentRouteAction())[1];
@@ -60,7 +60,8 @@ class Inquiry extends Model
     }
 
     public function setDepartureAttribute($value) {
-      $this->attributes['departure'] = date('Y-m-d',strtotime($value));
+      $date = DateTime::createFromFormat('d/m/Y', $value);
+      $this->attributes['departure'] = $date->format('Y-m-d');
     }
 
     public function getDepartureAttribute() {

@@ -84,6 +84,6 @@
 
   </article>
 
-  @include('front/widgets/product-inquiries', ['products' => $relateds])
+  @include('front/widgets/product-inquiries')
 
 @endsection
