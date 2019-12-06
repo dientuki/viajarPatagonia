@@ -7,9 +7,7 @@
     <label class="label" for="name">{{ ucfirst(__('front.name')) }}</label>
     <input id="name" type="text" class="form-control" name="name" autofocus placeholder="{{ ucfirst(__('front.name')) }}">
 
-    <div class="invalid-feedback">
-      <strong></strong>
-    </div>
+    <div class="invalid-feedback"></div>
   </div>
 
   <div class="col {{ $errors->has('email') ? 'is-invalid' : '' }}">
@@ -17,9 +15,7 @@
       <label class="label" for="email">{{ ucfirst(__('front.email')) }}</label>
       <input id="email" type="email" class="form-control" name="email" required placeholder="{{ ucfirst(__('front.email')) }}">
 
-      <div class="invalid-feedback">
-        <strong></strong>
-      </div>
+      <div class="invalid-feedback"></div>
     </div>    
   </div>
   
@@ -29,9 +25,7 @@
       <label class="label" for="phone">{{ ucfirst(__('front.phone')) }}</label>
       <input id="phone" type="text" class="form-control" name="phone" required placeholder="{{ ucfirst(__('front.phone')) }}">
 
-      <div class="invalid-feedback">
-        <strong></strong>
-      </div>
+      <div class="invalid-feedback"></div>
     </div>  
   </div>
   
@@ -41,9 +35,7 @@
       <label class="label" for="departure">{{ ucfirst(__('front.departure')) }}</label>
       <input id="departure" type="text" class="form-control" name="departure" required placeholder="31/12/2012">
 
-      <div class="invalid-feedback">
-        <strong></strong>
-      </div>
+      <div class="invalid-feedback"></div>
     </div>      
   </div>
   
@@ -54,9 +46,7 @@
         <label class="label" for="adults">{{ ucfirst(__('front.adults')) }}</label>
         <input id="adults" type="number" min="0" max="10" class="form-control" name="adults" required placeholder="{{ ucfirst(__('front.adults')) }}">
 
-        <div class="invalid-feedback">
-          <strong></strong>
-        </div>
+        <div class="invalid-feedback"></div>
 
     </div>  
 
@@ -64,9 +54,7 @@
         <label class="label" for="childs">{{ ucfirst(__('front.childs')) }}</label>
         <input id="childs" type="number" min="0" max="10" class="form-control" name="childs" required placeholder="{{ ucfirst(__('front.childs')) }}">
 
-        <div class="invalid-feedback">
-          <strong></strong>
-        </div>
+        <div class="invalid-feedback"></div>
 
     </div>     
 
@@ -76,9 +64,7 @@
     <label class="label" for="comment">{{ ucfirst(__('front.comments')) }}</label>
     <textarea name="comment" class="form-control textarea"></textarea>
 
-    <div class="invalid-feedback">
-      <strong></strong>
-    </div>
+    <div class="invalid-feedback"></div>
   </div>
 
   <div class="col">
