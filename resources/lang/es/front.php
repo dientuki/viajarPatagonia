@@ -47,8 +47,8 @@ return [
     'email' => 'email',
     'phone' => 'telefono',
     'departure' => 'fecha de salida',
-    'adults' => 'adultos',
-    'childs' => 'infantes',
+    'adult' => 'adultos',
+    'child' => 'infantes',
     'comments' => 'comentarios',    
 
     //Home

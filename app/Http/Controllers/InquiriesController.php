@@ -21,8 +21,8 @@ class InquiriesController extends Controller
         'email' => 'required|email',
         'phone' => 'required',
         'departure' => 'required|date_format:d/m/Y',
-        'adults' => 'required|integer',
-        'childs' => 'integer|integer',
+        'adult' => 'required|integer',
+        'child' => 'integer|integer',
         'comment' => 'required|string'
       ];
 

@@ -11,7 +11,7 @@
     <div class="invalid-feedback"></div>
   </div>
 
-  <div class="col {{ $errors->has('email') ? 'is-invalid' : '' }}">
+  <div class="col">
     <div>
       <label class="label" for="email">{{ ucfirst(__('front.email')) }}</label>
       <input id="email" type="email" class="form-control" name="email" required placeholder="{{ ucfirst(__('front.email')) }}">
@@ -20,7 +20,7 @@
     </div>    
   </div>
   
-  <div class="col {{ $errors->has('phone') ? 'is-invalid' : '' }}">     
+  <div class="col">
 
     <div>
       <label class="label" for="phone">{{ ucfirst(__('front.phone')) }}</label>
@@ -30,7 +30,7 @@
     </div>  
   </div>
   
-  <div class="col {{ $errors->has('departure') ? 'is-invalid' : '' }}">    
+  <div class="col">
 
     <div>
       <label class="label" for="departure">{{ ucfirst(__('front.departure')) }}</label>
@@ -42,18 +42,18 @@
   
   <div class="col grid">  
 
-    <div class="col-6 {{ $errors->has('adults') ? 'is-invalid' : '' }}">    
+    <div class="col-6">    
 
-        <label class="label" for="adults">{{ ucfirst(__('front.adults')) }}</label>
-        <input id="adults" type="number" min="0" max="10" class="form-control" name="adults" required placeholder="{{ ucfirst(__('front.adults')) }}">
+        <label class="label" for="adult">{{ ucfirst(__('front.adult')) }}</label>
+        <input id="adult" type="number" min="0" max="10" class="form-control" name="adult" required placeholder="{{ ucfirst(__('front.adult')) }}">
 
         <div class="invalid-feedback"></div>
 
     </div>  
 
-    <div class="col-6 {{ $errors->has('childs') ? 'is-invalid' : '' }}">    
-        <label class="label" for="childs">{{ ucfirst(__('front.childs')) }}</label>
-        <input id="childs" type="number" min="0" max="10" class="form-control" name="childs" required placeholder="{{ ucfirst(__('front.childs')) }}">
+    <div class="col-6">    
+        <label class="label" for="childs">{{ ucfirst(__('front.child')) }}</label>
+        <input id="child" type="number" min="0" max="10" class="form-control" name="child" required placeholder="{{ ucfirst(__('front.child')) }}">
 
         <div class="invalid-feedback"></div>
 
@@ -61,7 +61,7 @@
 
   </div>
 
-  <div class="col {{ $errors->has('comment') ? 'is-invalid' : '' }}">    
+  <div class="col">
     <label class="label" for="comment">{{ ucfirst(__('front.comments')) }}</label>
     <textarea name="comment" class="form-control textarea"></textarea>
 
