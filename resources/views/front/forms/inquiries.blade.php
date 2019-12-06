@@ -1,7 +1,8 @@
 <form class="grid-1 form" role="form" method="POST" action="{{ route('api.forms.inquiries') }}">
   {{ csrf_field() }}
   <input type="hidden" name="product" value="">
-  <input type="hidden" name="id" value="">
+  <input type="hidden" name="product_id" value="">
+  <input type="hidden" name="fk_language" value="">
 
   <div class="col">
     <label class="label" for="name">{{ ucfirst(__('front.name')) }}</label>
