@@ -1,6 +1,7 @@
 export function modalForms(elements) {
 
-  const overlay = document.querySelector('.overlay'),
+  const form = document.querySelector('.form'),
+    overlay = document.querySelector('.overlay'),
     // eslint-disable-next-line sort-vars
     loading = overlay.querySelector('.overlay__loading');
 
@@ -21,7 +22,7 @@ export function modalForms(elements) {
     });
   });
 
-  document.querySelector('.form').addEventListener('submit', (e) => {
+  form.addEventListener('submit', (e) => {
     const data = new URLSearchParams();
 
     e.preventDefault();
@@ -33,20 +34,38 @@ export function modalForms(elements) {
 
     fetch(e.target.action, {
       body: data,
-      headers: { 'X-CSRF-TOKEN': e.target.querySelector('input[name=_token]').value },
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'X-CSRF-TOKEN': e.target.querySelector('input[name=_token]').value
+      },
       method: 'post'
     }).then((response) => {
       const type = response.headers.get('Content-Type').split(';');
 
-      if (type[0] === 'text/html') {
-        response.text().then((resHTML) => {
-          e.target.innerHTML = resHTML;
-        });
-      }
-
       if (type[0] === 'application/json') {
-        loading.classList.toggle('show');
-        overlay.classList.toggle('show');
+        response.json().then((dataReturned) => {
+          window.data = dataReturned;
+
+          // eslint-disable-next-line default-case
+          switch (dataReturned.status) {
+            case 'success':
+              loading.classList.toggle('show');
+              overlay.classList.toggle('show');
+              break;
+            case 'error':
+              // eslint-disable-next-line array-callback-return
+              Object.keys(dataReturned.message).map((key) => {
+                const elem = form.querySelector(`[name="${key}"]`);
+
+                elem.closest('.col').classList.add('is-invalid');
+                elem.nextElementSibling.innerHTML(dataReturned.message[key]);
+              });
+
+              loading.classList.toggle('show');
+              break;
+          }
+        });
+
       }
     })
       .catch((error) => {
