@@ -1,3 +1,4 @@
+import { killBubling } from '../helpers/generic';
 import { tns } from 'tiny-slider/src/tiny-slider';
 
 export default class slider {
@@ -12,9 +13,15 @@ export default class slider {
       delete this.settings.wrapper;
     }
 
+    this.buttons = {
+      next: this.wrapper.querySelector('.slider-controls-next'),
+      prev: this.wrapper.querySelector('.slider-controls-prev')
+    };
+
     this.slider = tns(this.settings);
 
     this.autoplay();
+    this.nav();
   }
 
   autoplay() {
@@ -27,6 +34,56 @@ export default class slider {
         this.slider.updateSliderHeight();
       });
       window.dispatchEvent(new Event('resize'));
+    }
+  }
+
+  nav() {
+    if (this.buttons.prev !== null && this.buttons.next !== null) {
+      this.buttons.prev.addEventListener('click', (event) => {
+
+        const button = killBubling(event.target, 'DIV');
+
+        if (button.classList.contains(this.disabled)) {
+          return;
+        }
+        this.slider.goTo('prev');
+        this.toogleDisabled();
+      });
+
+      this.buttons.next.addEventListener('click', (event) => {
+
+        const button = killBubling(event.target, 'DIV');
+
+        if (button.classList.contains(this.disabled)) {
+          return;
+        }
+        this.slider.goTo('next');
+        this.toogleDisabled();
+      });
+
+      this.toogleDisabled();
+    }
+  }
+
+  toogleDisabled() {
+    if (this.settings.loop === true) {
+      return;
+    }
+
+    const info = this.slider.getInfo();
+
+    // Prev
+    if (info.index === 0) {
+      this.buttons.prev.classList.add(this.disabled);
+    } else {
+      this.buttons.prev.classList.remove(this.disabled);
+    }
+
+    // Last
+    if ((info.index + info.items) === info.slideCount) {
+      this.buttons.next.classList.add(this.disabled);
+    } else {
+      this.buttons.next.classList.remove(this.disabled);
     }
   }
 
