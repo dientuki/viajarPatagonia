@@ -15,7 +15,7 @@
     @else
       <?php $image = $product->getFirstMedia('products'); ?>
       <figure class="aspect-slider">
-        <img data-src="{{ $image->getFullUrl('slider') }}" class="tns-lazy-img"/>
+        <img data-original="{{ $image->getFullUrl('slider') }}" class="lzl"/>
       </figure>      
     @endif
   </div>
