@@ -28,9 +28,9 @@ class HomeController extends Controller
     public function setLocale() {
       $request = request();
       $locale = array('iso' => '', 'id' => '');
-      
+
       if ($request->session()->has('locale')) {
-        $locale = $request->session->get('locale');
+        $locale = $request->session()->get('locale');
         return redirect($locale['iso']);
       }
 
