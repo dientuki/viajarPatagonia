@@ -28,6 +28,10 @@ class Currency extends Model
     protected $fillable = ['sign', 'iso', 'currency', 'amount'];    
 
 
+    static function getDefault($iso){
+      return Currency::where('iso', $iso)->value('id');
+    }
+
     static function getAll() {
       $request = request();
       $queries = [];

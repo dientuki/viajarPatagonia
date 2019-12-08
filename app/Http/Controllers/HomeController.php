@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Helpers\Helpers;
+use App\Currency;
 use App\Packages;
 use App\Excursions;
 use App\Cruiseships;
+use App\Http\Helpers\Helpers;
 use App\Translations\Language;
 use App\Http\Controllers\Controller;
 
@@ -53,8 +54,21 @@ class HomeController extends Controller
       return redirect($locale['iso']);
     }
 
-    public function setCurrency(Request $request)
+    public function setCurrency($iso)
     {
-      
+      $id = Currency::getDefault($iso);
+      $defaults = array(
+        'en' => 'USD',
+        'es' => 'ARS',
+        'pt' => 'EUR'
+      );
+
+      if ($id == null) {
+        return redirect()->route('cleanHome');
+      } else {
+        $currency = array('iso' => $iso, 'id' => $id);
+        session(['currency' => $currency]);
+        return redirect()->back();
+      }
     }    
 }
