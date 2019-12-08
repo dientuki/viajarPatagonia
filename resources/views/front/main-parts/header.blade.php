@@ -6,6 +6,7 @@ use App\Translations\Language;
 use Illuminate\Support\Facades\Route;
 
 ?>
+
 <header class="header">
   <div class="wrapper">
     <a class="header__logo text-hidden" href="{{route('home', app()->getLocale())}}" title="{{ __('front.go_to_home') }}">Viajar por patagonia</a>
@@ -45,7 +46,7 @@ use Illuminate\Support\Facades\Route;
       $parameters = Route::current()->parameters();
     ?>
     <div class="selector">
-      <div class="selector--current">{!! Helpers::load_svg('lang-es') !!}{{ ucfirst(__('front.language')) }}{!! Helpers::load_svg('ico-down') !!}</div>
+      <div class="selector--current">{!! Helpers::load_svg('lang-' . session('locale')['iso']) !!}{{ ucfirst(__('front.language')) }}{!! Helpers::load_svg('ico-down') !!}</div>
       <ul class="selector__ul">
         @foreach ($languages as $language)
           <?php $parameters['locale'] = $language->iso; ?>
