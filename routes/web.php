@@ -42,8 +42,8 @@ Route::group(['namespace' => 'Admin',
 
 Auth::routes(['register' => false]);
 
-Route::get('/', 'HomeController@setLocale');
-Route::get('/currency', 'HomeController@setCurrency');
+Route::get('/', 'HomeController@setLocale')->name('cleanHome');
+Route::get('/currency/{iso}', 'HomeController@setCurrency')->name('setCurrency');;
 
 Route::group(['prefix' => '{locale}',
               'where' => ['locale' => '[a-zA-Z]{2}'],
