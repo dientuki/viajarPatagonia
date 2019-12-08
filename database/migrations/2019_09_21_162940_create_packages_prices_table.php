@@ -20,7 +20,7 @@ class CreatePackagesPricesTable extends Migration
 
             $table->smallIncrements('id');
             $table->mediumInteger('price')->unsigned();
-            $table->mediumInteger('discount')->unsigned();
+            $table->mediumInteger('discount')->unsigned()->nullable(true);
             $table->boolean('is_active')->unsigned()->default(false);
             $table->tinyInteger('fk_currency')->unsigned();
             $table->smallInteger('fk_package')->unsigned();

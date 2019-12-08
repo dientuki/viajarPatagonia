@@ -48,6 +48,17 @@ class Homeslider extends Model implements HasMedia
       return $homeslider->orderBy('homeslider.order')->simplePaginate(20);
     }
 
+    static function getHome() {
+      $homeslider = Homeslider::select('homeslider.id', 'url', 'hotel', 'stars', 'title', 'date', 'description');
+      $homeslider->join("homeslider_translation", 'homeslider.id', '=', "homeslider_translation.fk_slider");
+
+      $homeslider->orderBy('order', 'ASC');
+      $homeslider->where('homeslider.is_active', 1);
+      $homeslider->where("homeslider_translation.fk_language", '2');
+
+      return $homeslider->get();
+    }
+
     static function getEdit($id){
 
       $homeslider = Homeslider::select('id', 'is_active', 'url', 'hotel', 'stars', 'order');

@@ -22,7 +22,7 @@ $factory->define(Inquiry::class, function (Faker $faker) {
       'name' => $faker->name,
       'email' => $faker->safeEmail,
       'phone' => $faker->phoneNumber,
-      'departure' => $faker->date('Y-m-d', 'now'),
+      'departure' => $faker->date('d/m/Y', 'now'),
       'adult' => rand(1,10),
       'child' => rand(0,10),
       'comment' => $faker->paragraph,

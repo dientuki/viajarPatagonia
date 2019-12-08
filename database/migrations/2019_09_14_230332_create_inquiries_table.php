@@ -24,8 +24,8 @@ class CreateInquiriesTable extends Migration
             $table->string('email', 190);
             $table->string('phone', 190);
             $table->date('departure');
-            $table->tinyInteger('adult')->unsigned();
-            $table->tinyInteger('child')->unsigned();
+            $table->tinyInteger('adult')->unsigned()->default(0);
+            $table->tinyInteger('child')->unsigned()->default(0);
             $table->text('comment');
             $table->enum('product', ['cruise', 'excursion', 'package']);
             $table->smallInteger('product_id')->unsigned();

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Cruiseships;
-use App\CruiseshipsPrices;
+use App\Excursions;
+use App\ExcursionsPrices;
 use App\Http\Controllers\Controller;
 
-class CruiseshipsController extends Controller
+class ExcursionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,19 +15,19 @@ class CruiseshipsController extends Controller
      */
     public function show($locale, $name, $id)
     {
-        $product = Cruiseships::getShow($id);
-        $price = CruiseshipsPrices::getPrice($id);
-        $relateds = Cruiseships::getRelated($id);
-        $productType = 'cruise';
+        $product = Excursions::getShow($id);
+        $price = ExcursionsPrices::getPrice($id);
+        $relateds = Excursions::getRelated($id);
+        $productType = 'excursion';
 
         return view('front/product/index', compact('product', 'price', 'relateds', 'productType'));      
-    }    
+    }      
 
     public function list($locale, $name)
     {
-        $products = Cruiseships::getList();
-        $productType = 'cruiseships';
-        $route = 'cruise';
+        $products = Excursions::getList();
+        $productType = 'excursions';
+        $route = 'excursion';
 
         return view('front/product/list', compact('products', 'productType', 'route'));
     }    

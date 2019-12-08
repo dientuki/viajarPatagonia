@@ -51,17 +51,27 @@ Route::group(['prefix' => '{locale}',
 
     Route::get('/', 'HomeController@index')->name('home');
 
-    Route::get('/package/{name}_{id}.html', 'PackageController@show')
+    Route::get('/package/{name}_{id}.html', 'PackagesController@show')
         ->name('package')
         ->where(['id' => '[0-9]+']);
 
-    Route::get('/excursion/{name}_{id}.html', 'ExcursionController@show')
+    Route::get('/packages/{name}.html', 'PackagesController@list')
+        ->name('packages');
+
+    Route::get('/excursion/{name}_{id}.html', 'ExcursionsController@show')
         ->name('excursion')
         ->where(['id' => '[0-9]+']);
+
+    Route::get('/excursions/{name}.html', 'ExcursionsController@list')
+        ->name('excursions');        
 
     Route::get('/cruise/{name}_{id}.html', 'CruiseshipsController@show')
         ->name('cruise')
         ->where(['id' => '[0-9]+']);
+
+    Route::get('/cruiseships/{name}.html', 'CruiseshipsController@list')
+        ->name('cruiseships');          
+
 });
 
 Route::group(['prefix' => 'api', 'as' => 'api.'], function() {

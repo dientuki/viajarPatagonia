@@ -35,16 +35,20 @@ return [
     'cta' => 'Call to action',
 
     //Sidebar
-    'another_packages' => 'another packages',
-    'details_packages' => 'package detail',
+    'another_package' => 'another paquetes',
+    'another_excursion' => 'another excursion',
+    'another_cruiseship' => 'another cruiseship',        
+    'detail_package' => 'package detail',
+    'detail_excursion' => 'excursion detail',
+    'detail_cruiseship' => 'cruise detail',
 
     //Inquiries
     'name' => 'name',
     'email' => 'email',
     'phone' => 'phone',
     'departure' => 'departure',
-    'adults' => 'adults',
-    'childs' => 'childs',
+    'adult' => 'adults',
+    'child' => 'childs',
     'comments' => 'comments',
 
     //Home

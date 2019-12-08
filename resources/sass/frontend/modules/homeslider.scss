@@ -1,0 +1,51 @@
+.aspect-homeslider {
+  padding-bottom: (580rem/$fs);
+}
+
+.header-slider {
+  position: relative;
+
+  &__item {
+    position: relative;
+    height: (580rem/$fs);
+  }
+
+  &__content {
+    padding: 1rem;
+    background: rgba(map-get($colors, "black"), .7);
+    color: map-get($colors, "white");
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15%;
+  }
+}
+
+[class *= slider-controls-] {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: (60rem/$fs);
+  height: (60rem/$fs);
+  background: rgba(map-get($colors, "white"), .7);
+  border-radius: (100rem/$fs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  [class *= ico-] {
+    width: 65%;
+    height: 65%;
+  }
+}
+
+.slider-controls {
+  &-prev {
+    left: (10rem/$fs);
+  }
+
+  &-next {
+    right: (10rem/$fs);
+  }
+}

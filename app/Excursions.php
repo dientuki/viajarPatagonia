@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Package2destination;
+use App\Http\Helpers\Helpers;
 use App\Translations\Language;
 use Spatie\Image\Manipulations;
 use Illuminate\Support\Facades\App;
@@ -101,13 +102,47 @@ class Excursions extends Model implements HasMedia
       return abort(404);
     }
 
-    static function getHome($limit = 4) {
-      $home = Excursions::select('excursions.id', 'excursions_translation.name', 'excursions_translation.summary');
-      $home->join("excursions_translation", 'excursions.id', '=', "excursions_translation.fk_excursion");
-      $home->join("languages", 'languages.id', '=', "excursions_translation.fk_language");
-      $home->where('is_active', 1)->where('languages.iso', App::getLocale());
+    static function getList($limit = false) {
+      $list = Excursions::select('excursions.id', 'excursions_translation.name', 'excursions_translation.summary', 'availability_translation.availability', 'duration_translation.duration');
+      $list->join("excursions_translation", 'excursions.id', '=', "excursions_translation.fk_excursion");
+      $list->join("languages", 'languages.id', '=', "excursions_translation.fk_language");
 
-      return $home->limit($limit)->get();
+      $list->join("availability", 'availability.id', '=', "excursions.fk_availability");
+      $list->join("availability_translation", 'availability.id', '=', "availability_translation.fk_availability");
+      $list->join("languages as la", 'la.id', '=', "availability_translation.fk_language");
+
+      $list->join("duration", 'duration.id', '=', "excursions.fk_duration");
+      $list->join("duration_translation", 'duration.id', '=', "duration_translation.fk_duration");
+      $list->join("languages as ld", 'ld.id', '=', "duration_translation.fk_language");      
+
+      $list->where('is_active', 1)
+        ->where('languages.iso', App::getLocale())
+        ->where('la.iso', App::getLocale())
+        ->where('ld.iso', App::getLocale());
+
+      if ($limit != false) {
+        $list = $list->limit($limit)->get();
+      } else {
+        $list = $list->simplePaginate(10);      
+      }
+
+      return $list;
+    }    
+
+    static function getShow($id) {
+      $excursion = Excursions::select('excursions.id', 'map', 'excursions_translation.name', 'excursions_translation.summary', 'excursions_translation.body');
+      $excursion->join("excursions_translation", 'excursions.id', '=', "excursions_translation.fk_excursion");
+      $excursion->join("languages", 'languages.id', '=', "excursions_translation.fk_language");
+      $excursion->where([
+        ['excursions.id', '=', $id],
+        ['languages.iso', '=', App::getLocale()]
+      ]);
+
+      return $excursion->get()->first();
+    }  
+    
+    public function getBodyHtmlAttribute() {
+      return Helpers::draft2html($this->attributes['body']);
     }    
 
     static function getRelatedPackage($id) {
@@ -158,6 +193,21 @@ class Excursions extends Model implements HasMedia
         ->whereIn('excursions.fk_destination', $currentDestinations);
       
       return $home->limit(3)->get();
+    }
+
+    static function getRelated($id) {
+      $currentDestinations = Package2destination::orderBy('id')->where('fk_package', $id)->pluck('fk_destination');
+
+      $home = Excursions::select('excursions.id', 'excursions_translation.name', 'excursions_translation.summary');
+      $home->join("excursions_translation", 'excursions.id', '=', "excursions_translation.fk_excursion");
+      $home->join("languages", 'languages.id', '=', "excursions_translation.fk_language");
+
+
+      $home->where('is_active', 1)
+        ->where('languages.iso', App::getLocale())
+        ->whereIn('excursions.fk_destination', $currentDestinations);   
+        
+      return $home->limit(3)->get();        
     }
 
     public function getPrice() {
