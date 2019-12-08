@@ -49,7 +49,7 @@ class Language extends Model
     }
 
     static function getLocale($iso) {
-      return Language::select('iso')->where('iso', $iso)->exists();
+      return Language::where('iso', $iso)->pluck('id', 'iso');
     }
 
     static function getEdit($id){
