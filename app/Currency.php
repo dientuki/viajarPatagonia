@@ -27,6 +27,9 @@ class Currency extends Model
      */
     protected $fillable = ['sign', 'iso', 'currency', 'amount'];    
 
+    static function getOrder() {
+      
+    }
 
     static function getDefault($iso){
       return Currency::where('iso', $iso)->value('id');
@@ -36,17 +39,9 @@ class Currency extends Model
       $request = request();
       $queries = [];
 
-      $currencies = Currency::select('id', 'sign', 'iso', 'currency');
+      $currencies = Currency::select('id', 'sign', 'iso', 'currency', 'amount');
 
-      if ($request->has('order')) {
-        $currencies->orderBy('iso', $request->get('order'));
-        $queries['order'] = $request->get('order');
-      } else {
-        $currencies->orderBy('iso', 'asc');
-        $queries['order'] = 'asc';
-      }  
-
-      return $currencies->simplePaginate(20)->appends($queries);
+      return $currencies->orderBy('order')->simplePaginate(20);
       
     }
 
@@ -56,22 +51,26 @@ class Currency extends Model
 
     static function getEdit($id){
 
-        $result = Currency::select('id', 'sign', 'iso', 'currency', 'amount')
-            ->where('id', $id)
-            ->get()->first();
-    
-        if (is_array($id)) {
-          if (count($result) == count(array_unique($id))) {
-            return $result;
-          }
-        } elseif (! is_null($result)) {
+      $result = Currency::select('id', 'sign', 'iso', 'currency', 'amount')
+          ->where('id', $id)
+          ->get()->first();
+  
+      if (is_array($id)) {
+        if (count($result) == count(array_unique($id))) {
           return $result;
         }
-    
-        //Laravel 4 fallback
-        return abort(404);
-    
-        //throw (new ModelNotFoundException)->setModel(get_class($this->model));
+      } elseif (! is_null($result)) {
+        return $result;
       }
+  
+      //Laravel 4 fallback
+      return abort(404);
+  
+      //throw (new ModelNotFoundException)->setModel(get_class($this->model));
+    }
+
+    static function updateOrder($id, $order) {
+      Currency::where('id', $id)->update(['order' => $order]);
+    }    
     
 }

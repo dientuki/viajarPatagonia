@@ -105,4 +105,12 @@ class CurrenciesController extends Controller
 
         return redirect()->route('admin.currencies.index');
     }
+
+    public function order(Request $request) {
+      $data = json_decode($request->getContent(), true);
+
+      foreach($data as $order) {
+        Currency::updateOrder($order['id'], $order['order']);
+      }
+    }    
 }
