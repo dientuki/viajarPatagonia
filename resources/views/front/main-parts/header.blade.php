@@ -33,10 +33,12 @@ use Illuminate\Support\Facades\Route;
     <?php $currencies = Currency::getAll(); ?>
     <div class="selector">
       
-      <div class="selector--current">{!! Helpers::load_svg('lang-pt') !!}{{ ucfirst(__('front.currency')) }}{!! Helpers::load_svg('ico-down') !!}</div>
+      <div class="selector--current">{!! Helpers::load_svg('currency-' . strtolower(session('currency')['iso'])) !!}{{ ucfirst(__('front.currency')) }}{!! Helpers::load_svg('ico-down') !!}</div>
       <ul class="selector__ul">
         @foreach ($currencies as $currency)
-          <li class="selector__li" title="{{ ucfirst(__('front.change_to')) }} {{ __('front.currency') }} {{ $currency->currency }}">{{ $currency->sign }} {{ $currency->iso }}</li>
+          <li class="selector__li">
+            <a title="{{ ucfirst(__('front.change_to')) }} {{ __('front.currency') }} {{ $currency->currency }}" href="{{route('setCurrency', ['iso' => $currency->iso] )}}">{{ $currency->sign }} {{ $currency->iso }}</li>
+          </li>
         @endforeach
       </ul>
     </div>
