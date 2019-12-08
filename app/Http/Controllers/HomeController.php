@@ -27,26 +27,30 @@ class HomeController extends Controller
 
     public function setLocale() {
       $request = request();
+      $locale = array('iso' => '', 'id' => '');
       
       if ($request->session()->has('locale')) {
-        $locale = $request->session('locale');
-        return redirect($locale);
+        $locale = $request->session->get('locale');
+        return redirect($locale['iso']);
       }
 
-      $locale = app()->getLocale();
+      $iso = app()->getLocale();
       $languages = Helpers::getLocale();
       
       if ($languages != null) {
           foreach($languages as $key => $value) {
-            if (Language::getLocale($key)) {
-                $locale = $key;
-                break;
+            $tmp = Language::getLocale($key);
+
+            if (count($tmp) == 1) {
+              $locale = array('iso' => $key, 'id' => $tmp->first());
+              break;
             }
           }
       }
 
-      app()->setLocale($locale);
-      return redirect($locale);
+      $request->session()->put('locale', $locale);
+      app()->setLocale($locale['iso']);
+      return redirect($locale['iso']);
     }
 
     public function setCurrency(Request $request)
