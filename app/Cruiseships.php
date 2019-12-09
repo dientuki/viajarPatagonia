@@ -129,7 +129,18 @@ class Cruiseships extends Model implements HasMedia
     
     
     public function getPrice(){
-      return 'ARS ' . number_format(rand(5000, 199999), 0, null, '.');
+      $price = CruiseshipsPrices::getPrice($this->id);
+      $finalPrice = $price->is_active == 1 ? $price->discount : $price->price;
+      $iso = $price->iso;
+
+      if (session()->has('currency')) {
+        if (session('currency')['iso'] != $price->iso) {
+          $finalPrice = $finalPrice * Currency::getAmount(session('currency')['id']);
+          $iso = session('currency')['iso'];
+        }
+      }
+
+      return $iso . ' ' . ceil($finalPrice);
     }
 
     public function getBodyHtmlAttribute() {
