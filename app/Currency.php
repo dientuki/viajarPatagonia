@@ -28,11 +28,19 @@ class Currency extends Model
     protected $fillable = ['sign', 'iso', 'currency', 'amount'];    
 
     static function getOrder() {
-      
+      return Currency::select('id', 'iso')->orderBy('order')->get();
     }
 
     static function getDefault($iso){
       return Currency::where('iso', $iso)->value('id');
+    }
+
+    static function getDolar() {
+      return Currency::where('iso', 'USD')->value('id');
+    }
+
+    static function getAmount($id) {
+      return Currency::where('id', $id)->value('amount');
     }
 
     static function getAll() {
