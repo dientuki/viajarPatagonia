@@ -24,6 +24,7 @@ Route::group(['namespace' => 'Admin',
     Route::resource('regions', 'RegionsController')->except(['show']);
     Route::resource('destinations', 'DestinationsController')->except(['show']);
     Route::resource('currencies', 'CurrenciesController')->except(['show']);
+    Route::post('currencies/order', 'CurrenciesController@order')->name('currency.order');
     Route::resource('languages', 'LanguagesController')->except(['show']);
     Route::resource('cruiseships-types', 'CruiseshipsTypesController')->except(['show']);
     Route::resource('excursions-types', 'ExcursionsTypesController')->except(['show']);
@@ -42,7 +43,8 @@ Route::group(['namespace' => 'Admin',
 
 Auth::routes(['register' => false]);
 
-Route::get('/', 'HomeController@setLocale');
+Route::get('/', 'HomeController@setLocale')->name('cleanHome');
+Route::get('/currency/{iso}', 'HomeController@setCurrency')->name('setCurrency');;
 
 Route::group(['prefix' => '{locale}',
               'where' => ['locale' => '[a-zA-Z]{2}'],

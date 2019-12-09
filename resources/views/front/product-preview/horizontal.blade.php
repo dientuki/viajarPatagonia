@@ -1,6 +1,7 @@
 <?php
   use Illuminate\Support\Str;
 ?>
+
 @foreach ($products as $product)
   <article class="list list--horizontal grid col-12">
     <?php 

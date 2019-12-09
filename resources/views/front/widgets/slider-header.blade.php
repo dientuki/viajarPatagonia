@@ -14,9 +14,11 @@ $sliders = Homeslider::getHome();
         @foreach ($sliders as $slide)
           <li class="header-slider__item <?php if ($loop->first) : ?>header-slider__first<?php endif; ?>">  
             <?php $image = $slide->getFirstMedia('sliderHome'); ?>
+            @if ($image != null)
             <figure class="aspect-homeslider">
               <img data-src="{{ $image->getFullUrl('slider_desktop') }}" class="tns-lazy-img"/>
             </figure>
+            @endif
             <div class="header-slider__content">
               <div class="header-slider__title">{{ $slide->title }}</div>
               <div class="header-slider__date">{{ $slide->date }}</div>
@@ -33,9 +35,11 @@ $sliders = Homeslider::getHome();
       @foreach ($sliders as $slide)
         <div class="header-slider__item header-slider__first">  
           <?php $image = $slide->getFirstMedia('sliderHome'); ?>
+          @if ($image != null)
           <figure class="aspect-homeslider">
             <img data-original="{{ $image->getFullUrl('slider_desktop') }}" class="lzl"/>
           </figure>
+          @endif
           <div class="header-slider__content">
             <div class="header-slider__title">{{ $slide->title }}</div>
             <div class="header-slider__date">{{ $slide->date }}</div>

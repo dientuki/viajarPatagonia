@@ -3,7 +3,9 @@
 namespace App;
 
 use App\Region;
+use App\Currency;
 use App\Packages;
+use App\PackagePrices;
 use App\Package2destination;
 use App\Http\Helpers\Helpers;
 use App\Translations\Language;
@@ -134,8 +136,19 @@ class Packages extends Model implements HasMedia
       return $list;
     }
 
-    public function getPrice() {
-      return 'ARS ' . number_format(rand(5000, 199999), 0, null, '.');
+    public function getPrice(){
+      $price = PackagePrices::getPrice($this->id);
+      $finalPrice = $price->is_active == 1 ? $price->discount : $price->price;
+      $iso = $price->iso;
+
+      if (session()->has('currency')) {
+        if (session('currency')['iso'] != $price->iso) {
+          $finalPrice = $finalPrice * Currency::getAmount(session('currency')['id']);
+          $iso = session('currency')['iso'];
+        }
+      }
+
+      return $iso . ' ' . ceil($finalPrice);
     }
 
     public function getBodyHtmlAttribute() {

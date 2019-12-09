@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Helpers\Helpers;
+use App\Currency;
 use App\Packages;
 use App\Excursions;
 use App\Cruiseships;
+use App\Http\Helpers\Helpers;
 use App\Translations\Language;
 use App\Http\Controllers\Controller;
 
@@ -26,16 +27,48 @@ class HomeController extends Controller
     }
 
     public function setLocale() {
-      $locale = app()->getLocale();
+      $request = request();
+      $locale = array('iso' => '', 'id' => '');
+
+      if ($request->session()->has('locale')) {
+        $locale = $request->session()->get('locale');
+        return redirect($locale['iso']);
+      }
+
+      $iso = app()->getLocale();
       $languages = Helpers::getLocale();
+      
       if ($languages != null) {
           foreach($languages as $key => $value) {
-            if (Language::getLocale($key)) {
-                $locale = $key;
-                break;
+            $tmp = Language::getLocale($key);
+
+            if (count($tmp) == 1) {
+              $locale = array('iso' => $key, 'id' => $tmp->first());
+              break;
             }
           }
       }
-      return redirect($locale);
+
+      $request->session()->put('locale', $locale);
+      app()->setLocale($locale['iso']);
+      return redirect($locale['iso']);
     }
+
+    public function setCurrency($iso)
+    {
+      $id = Currency::getDefault($iso);
+      $defaults = array(
+        'en' => 'USD',
+        'es' => 'ARS',
+        'pt' => 'EUR'
+      );
+
+      if ($id == null) {
+        return redirect()->route('cleanHome');
+      } else {
+        $currency = array('iso' => $iso, 'id' => $id);
+        session(['currency' => $currency]);
+        return redirect()->back();
+      }
+    }    
 }

@@ -4,12 +4,10 @@
 
 <div class="header-sticky row">
   <div class="col">{{ ucfirst(trans_choice('fields.currency', 2)) }}</div>
-
-  @include ('admin/widgets/order', ['default' => 'asc'])
 </div>
 
 @if (isset($currencies))
-<table class="table table-striped table-bordered table-hover table-sm">
+<table class="table table-striped table-bordered table-hover table-sm sortable">
     <thead class="thead-dark">
         <tr>
             <th>{{ ucfirst(__('fields.sign')) }}</th>
@@ -21,7 +19,7 @@
     </thead>
     <tbody>
         @foreach ($currencies as $currency)
-        <tr>
+        <tr class="order" data-order="{{$currency->order}}" data-id="{{$currency->id}}" draggable="true">
             <td>{{ $currency->sign }}</td>
             <td>{{ $currency->iso }}</td>
             <td>{{ $currency->currency }}</td>
@@ -47,6 +45,7 @@
 <div class="row">
   <div class="col-sm">
     <a href="{{route('admin.currencies.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} {{ ucfirst(trans_choice('fields.currency',1)) }}">{{__('buttons.create')}} {{ ucfirst(trans_choice('fields.currency',1)) }}</a>
+    <button data-href="{{route('admin.currency.order')}}" class="btn btn-secondary sortable-update" title="{{ucfirst(__('buttons.apply'))}} {{ ucfirst(__('fields.order')) }}">{{ ucfirst(__('buttons.apply')) }} {{ __('fields.order') }}</button>    
   </div>
   <div class="col-sm d-flex">
     {{ $currencies->links() }}

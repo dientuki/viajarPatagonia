@@ -6,6 +6,7 @@ use App\Translations\Language;
 use Illuminate\Support\Facades\Route;
 
 ?>
+
 <header class="header">
   <div class="wrapper">
     <a class="header__logo text-hidden" href="{{route('home', app()->getLocale())}}" title="{{ __('front.go_to_home') }}">Viajar por patagonia</a>
@@ -32,10 +33,12 @@ use Illuminate\Support\Facades\Route;
     <?php $currencies = Currency::getAll(); ?>
     <div class="selector">
       
-      <div class="selector--current">{!! Helpers::load_svg('lang-pt') !!}{{ ucfirst(__('front.currency')) }}{!! Helpers::load_svg('ico-down') !!}</div>
+      <div class="selector--current">{!! Helpers::load_svg('currency-' . strtolower(session('currency')['iso'])) !!}{{ ucfirst(__('front.currency')) }}{!! Helpers::load_svg('ico-down') !!}</div>
       <ul class="selector__ul">
         @foreach ($currencies as $currency)
-          <li class="selector__li" title="{{ ucfirst(__('front.change_to')) }} {{ __('front.currency') }} {{ $currency->currency }}">{{ $currency->sign }} {{ $currency->iso }}</li>
+          <li class="selector__li">
+            <a title="{{ ucfirst(__('front.change_to')) }} {{ __('front.currency') }} {{ $currency->currency }}" href="{{route('setCurrency', ['iso' => $currency->iso] )}}">{{ $currency->sign }} {{ $currency->iso }}</li>
+          </li>
         @endforeach
       </ul>
     </div>
@@ -45,7 +48,7 @@ use Illuminate\Support\Facades\Route;
       $parameters = Route::current()->parameters();
     ?>
     <div class="selector">
-      <div class="selector--current">{!! Helpers::load_svg('lang-es') !!}{{ ucfirst(__('front.language')) }}{!! Helpers::load_svg('ico-down') !!}</div>
+      <div class="selector--current">{!! Helpers::load_svg('lang-' . session('locale')['iso']) !!}{{ ucfirst(__('front.language')) }}{!! Helpers::load_svg('ico-down') !!}</div>
       <ul class="selector__ul">
         @foreach ($languages as $language)
           <?php $parameters['locale'] = $language->iso; ?>
