@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Currency;
 use App\Translations\Language;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -64,50 +65,23 @@ class ExcursionsPrices extends Model
     }    
 
     static function getPrice($id) {
-      $result = null;
-      $price = ExcursionsPrices::select('price', 'discount', 'is_active', 'currencies.iso', 'currencies.amount');
+      $results = null;
+      $price = PackagePrices::select('price', 'discount', 'is_active', 'currencies.iso', 'currencies.amount');
       $price->join("currencies", 'currencies.id', '=', "excursions_prices.fk_currency");
       $price->where('fk_excursion', $id);
 
-      if (session()->has('appcurrency')) {
-        $price->where('fk_currency', Session::get('appcurrency'));
-        $result = $price->get()->first();
-      }
-
-      if ($result == null || session()->has('appcurrency') == false ) {
-        $price->where('currencies.iso', 'ars');
-        $result = $price->get()->first();
-      }
-
-      return $result;
-
-      /*
-            $result = null;
-      $currency = 'ars';
-
-      if (session()->has('currency') == false) {
-        $currency = session()->get('currency');
-      } else {
-        session()->set('currency', $currency);
-      }
-
-
-      $price = PackagePrices::select('price', 'discount', 'is_active', 'currencies.iso');
-      $price->join("currencies", 'currencies.id', '=', "packages_prices.fk_currency");
       
-      $tmp = $price;
-      $tmp->where('currencies.iso', $currency);
-      $result = $tmp->get()->first();
+      if (session()->has('currency')) {
+        $currency = clone $price;
+        $return = $currency->where('fk_currency', session('currency')['id'])->get()->first();
+        if ($return != null) {
+          return $return;
+        }
+      }      
 
-      if ($result == null) {
-        $tmp = $price;
-        $tmp->where('currencies.iso', 'usd');
-        $result = $tmp->get()->first();
-      }
-
-      return $result;
-      */
-
-    }    
+      $dolar = Currency::getDolar();
+      $price->where('fk_currency', $dolar);
+      return $price->get()->first();
+    }   
     
 }

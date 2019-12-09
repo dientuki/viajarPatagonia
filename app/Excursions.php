@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Currency;
+use App\ExcursionsPrices;
 use App\Package2destination;
 use App\Http\Helpers\Helpers;
 use App\Translations\Language;
@@ -210,8 +212,19 @@ class Excursions extends Model implements HasMedia
       return $home->limit(3)->get();        
     }
 
-    public function getPrice() {
-      return 'ARS ' . number_format(rand(5000, 199999), 0, null, '.');
+    public function getPrice(){
+      $price = ExcursionsPrices::getPrice($this->id);
+      $finalPrice = $price->is_active == 1 ? $price->discount : $price->price;
+      $iso = $price->iso;
+
+      if (session()->has('currency')) {
+        if (session('currency')['iso'] != $price->iso) {
+          $finalPrice = $finalPrice * Currency::getAmount(session('currency')['id']);
+          $iso = session('currency')['iso'];
+        }
+      }
+
+      return $iso . ' ' . ceil($finalPrice);
     }
 
     public function registerMediaConversions(Media $media = null)
