@@ -66,7 +66,7 @@ class ExcursionsPrices extends Model
 
     static function getPrice($id) {
       $results = null;
-      $price = PackagePrices::select('price', 'discount', 'is_active', 'currencies.iso', 'currencies.amount');
+      $price = ExcursionsPrices::select('price', 'discount', 'is_active', 'currencies.iso', 'currencies.amount');
       $price->join("currencies", 'currencies.id', '=', "excursions_prices.fk_currency");
       $price->where('fk_excursion', $id);
 
