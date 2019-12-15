@@ -35,8 +35,9 @@ if (document.querySelectorAll('.modalOpener').length > 0) {
 
 // Load the map loader
 if (document.querySelector('.loadMap') !== null) {
-  import(/* webpackChunkName: "loadmap" */ './modules/loadmap/loadmap').then((module) => {
-    module.loadmap(document.querySelector('.loadMap'));
+  import(/* webpackChunkName: "loadmap" */ './modules/loadmap/loadmap').then((LoadMap) => {
+    // eslint-disable-next-line no-new
+    new LoadMap.default(document.querySelector('.loadMap'));
   });
 }
 
