@@ -14,6 +14,8 @@ export default class DropzoneMiddleware {
     this.config = {
       clickable: '.fileinput-button',
       maxFiles: this.element.dataset.maxfiles === undefined ? null : parseInt(this.element.dataset.maxfiles, 10),
+      // max file size in MB
+      maxFilesize: 2,
       parallelUploads: 1,
       previewTemplate: previewTemplate.querySelector('.template').outerHTML,
       previewsContainer: '#previews',
