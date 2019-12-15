@@ -16,7 +16,7 @@
       <div class="form-group col-1">
         <?php $class = $errors->has('stars') != null ? 'form-control is-invalid' : 'form-control'; ?>
         {!! Form::label('stars', ucfirst(__('fields.stars'))) !!}
-        {!! Form::number('stars', null, array('placeholder' => ucfirst(__('fields.stars')), 'class'=>$class, 'min' => 1, 'max' => 5)) !!}
+        {!! Form::number('stars', null, array('placeholder' => ucfirst(__('fields.stars')), 'class'=>$class, 'required' => true, 'min' => 1, 'max' => 5)) !!}
         @error('stars')
         <div class="invalid-feedback">
           <strong>{{ $message }}</strong>
@@ -28,7 +28,7 @@
     <div class="form-group">
       <?php $class = $errors->has('urlstring') != null ? 'form-control is-invalid' : 'form-control'; ?>
       {!! Form::label('urlstring', ucfirst(__('fields.url'))) !!}
-      {!! Form::text('urlstring', null, array('placeholder' => ucfirst(__('fields.url')), 'class'=>$class, 'required' => true, 'maxlength' => 190)) !!}
+      {!! Form::text('urlstring', null, array('placeholder' => ucfirst(__('fields.url')), 'class'=>$class, 'maxlength' => 190)) !!}
       @error('urlstring')
       <div class="invalid-feedback">
         <strong>{{ $message }}</strong>

@@ -1,6 +1,11 @@
 export function urlSelect(select) {
+  const selectedElement = select.querySelector('[selected]');
 
-  let selected = parseInt(select.querySelector('[selected]').value, 10);
+  if (selectedElement === null) {
+    return;
+  }
+
+  let selected = parseInt(selectedElement.value, 10);
 
   select.querySelectorAll('option').forEach((option) => {
     option.addEventListener('click', (e) => {
