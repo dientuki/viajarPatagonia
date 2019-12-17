@@ -2,7 +2,7 @@
   {{ csrf_field() }}
   <input type="hidden" name="product" value="{{ $productType }}">
   <input type="hidden" name="product_id" value="{{ $product->id}}">
-  <input type="hidden" name="fk_language" value="1">
+  <input type="hidden" name="fk_language" value="{{ session('locale')['id'] }}">
 
   <div class="col">
     <label class="label" for="name">{{ ucfirst(__('front.name')) }}</label>
