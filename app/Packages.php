@@ -151,6 +151,12 @@ class Packages extends Model implements HasMedia
       return $iso . ' ' . ceil($finalPrice);
     }
 
+    static function getName($id) {
+      return PackageTranslation::where('fk_package', $id)
+        ->where('fk_language', session('locale')['id'])
+        ->pluck('name');
+    }    
+
     public function getBodyHtmlAttribute() {
       return Helpers::draft2html($this->attributes['body']);
     }
