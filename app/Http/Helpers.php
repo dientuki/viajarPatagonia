@@ -4,7 +4,9 @@ namespace App\Http\Helpers;
 
 use Request;
 use App\Inquiry;
+use App\Packages;
 use App\Excursions;
+use App\Cruiseships;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
 use App\Translations\PackageTranslation;
@@ -278,10 +280,10 @@ class Helpers {
           $routeParams['name'] = Str::slug(Excursions::getName($data[1], '-'));
         break;
         case 'package':
-          $routeParams['name'] = Str::slug(Excursions::getName($data[1], '-'));
+          $routeParams['name'] = Str::slug(Packages::getName($data[1], '-'));
         break;
-        case 'cruiseship':
-          $routeParams['name'] = Str::slug(Excursions::getName($data[1], '-'));
+        case 'cruiseships':
+          $routeParams['name'] = Str::slug(Cruiseships::getName($data[1], '-'));
         break;
       }
       

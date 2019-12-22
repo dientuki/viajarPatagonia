@@ -13,6 +13,7 @@ use Spatie\Image\Manipulations;
 use Illuminate\Support\Facades\App;
 use Spatie\MediaLibrary\Models\Media;
 use Illuminate\Database\Eloquent\Model;
+use App\Translations\PackageTranslation;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
