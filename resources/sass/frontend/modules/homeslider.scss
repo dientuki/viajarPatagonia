@@ -30,6 +30,10 @@
     }
   }
 
+  &__title {
+    font-size: (48rem/$fs);
+  }
+
   &__date {
     font-size: (24rem/$fs);
   }  
