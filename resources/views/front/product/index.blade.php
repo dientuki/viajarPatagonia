@@ -29,7 +29,6 @@
         <meta property="og:image:width" content="{{ $image->getWidth() }}">
         <meta property="og:image:height" content="{{ $image->getHeight() }}">
       @endif      
-      
     @endif
 
     <meta property="fb:app_id" content="1494084460xxxxxx">
