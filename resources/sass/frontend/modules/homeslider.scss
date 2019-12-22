@@ -11,13 +11,49 @@
   }
 
   &__content {
-    padding: 1rem;
+    padding: (15rem/$fs);
     background: rgba(map-get($colors, "black"), .7);
     color: map-get($colors, "white");
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     right: 15%;
+    width: (640rem/$fs);
+    text-align: center;
+  }
+
+  &__top {
+    margin-top: (15rem/$fs);
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &__title {
+    font-size: (48rem/$fs);
+  }
+
+  &__date {
+    font-size: (24rem/$fs);
+  }
+
+  &__description {
+    font-size: (16rem/$fs);
+  }
+
+  &__hotel {
+    font-size: (24rem/$fs);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__cta {
+    background: map-get($colors, "button-bg");
+    display: inline-block;
+    border-radius: (5rem/$fs);
+    padding: 0 (15rem/$fs);
   }
 }
 
@@ -47,5 +83,43 @@
 
   &-next {
     right: (10rem/$fs);
+  }
+}
+
+.star {
+
+  /* Controlls the size of the stars. */
+  font-size: (10rem/$fs);
+  position: relative;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: .9em;
+  margin-right: .9em;
+  margin-bottom: 1.2em;
+  border-right: .3em solid rgba(map-get($colors, "star"), 0);
+  border-bottom: .7em solid map-get($colors, "star");
+  border-left: .3em solid rgba(map-get($colors, "star"), 0);
+
+  &:after,
+  &:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: .6em;
+    left: -1em;
+    border-right: 1em solid rgba(map-get($colors, "star"), 0);
+    border-bottom: .7em  solid map-get($colors, "star");
+    border-left: 1em solid rgba(map-get($colors, "star"), 0);
+  }
+
+  &:after {
+    transform: rotate(35deg);
+  }
+
+  &:before {
+    transform: rotate(-35deg);
   }
 }

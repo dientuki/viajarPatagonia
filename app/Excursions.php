@@ -227,6 +227,12 @@ class Excursions extends Model implements HasMedia
       return $iso . ' ' . ceil($finalPrice);
     }
 
+    static function getName($id) {
+      return ExcursionsTranslation::where('fk_excursion', $id)
+        ->where('fk_language', session('locale')['id'])
+        ->pluck('name');
+    }
+
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('backoffice')

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\App;
 use Spatie\MediaLibrary\Models\Media;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
+use App\Translations\CruiseshipsTranslation;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -142,6 +143,12 @@ class Cruiseships extends Model implements HasMedia
 
       return $iso . ' ' . ceil($finalPrice);
     }
+
+    static function getName($id) {
+      return CruiseshipsTranslation::where('fk_cruiseship', $id)
+        ->where('fk_language', session('locale')['id'])
+        ->pluck('name');
+    }      
 
     public function getBodyHtmlAttribute() {
       return Helpers::draft2html($this->attributes['body']);
