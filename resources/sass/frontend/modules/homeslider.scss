@@ -11,13 +11,42 @@
   }
 
   &__content {
-    padding: 1rem;
+    padding: (15rem/$fs);
     background: rgba(map-get($colors, "black"), .7);
     color: map-get($colors, "white");
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     right: 15%;
+    width: (640rem/$fs);
+    text-align: center;
+  }
+
+  &__top {
+    margin-top: (15rem/$fs);
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &__date {
+    font-size: (24rem/$fs);
+  }  
+
+  &__description {
+    font-size: (16rem/$fs);
+  }
+
+  &__hotel {
+    font-size: (24rem/$fs);
+  }
+
+  &__cta {
+    background: map-get($colors, 'button-bg');
+    display: inline-block;
+    border-radius: (5rem/$fs);
+    padding: 0 (15rem/$fs);
   }
 }
 
