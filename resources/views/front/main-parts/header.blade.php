@@ -37,7 +37,7 @@ use Illuminate\Support\Facades\Route;
       <ul class="selector__ul">
         @foreach ($currencies as $currency)
           <li class="selector__li">
-            <a title="{{ ucfirst(__('front.change_to')) }} {{ __('front.currency') }} {{ $currency->currency }}" href="{{route('setCurrency', ['iso' => $currency->iso] )}}">{{ $currency->sign }} {{ $currency->iso }}</li>
+            <a title="{{ ucfirst(__('front.change_to')) }} {{ __('front.currency') }} {{ $currency->currency }}" href="{{route('setCurrency', ['iso' => $currency->iso] )}}">{{ $currency->sign }} {{ $currency->iso }}</a>
           </li>
         @endforeach
       </ul>
