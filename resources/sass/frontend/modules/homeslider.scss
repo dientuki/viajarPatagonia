@@ -36,7 +36,7 @@
 
   &__date {
     font-size: (24rem/$fs);
-  }  
+  }
 
   &__description {
     font-size: (16rem/$fs);
@@ -50,7 +50,7 @@
   }
 
   &__cta {
-    background: map-get($colors, 'button-bg');
+    background: map-get($colors, "button-bg");
     display: inline-block;
     border-radius: (5rem/$fs);
     padding: 0 (15rem/$fs);
@@ -87,42 +87,39 @@
 }
 
 .star {
-  position: relative;
-  
-  display: inline-block;
-  width: 0;
-  height: 0;
-  
-  margin-left: .9em;
-  margin-right: .9em;
-  margin-bottom: 1.2em;
-  
-  border-right:  .3em solid transparent;
-  border-bottom: .7em  solid #FC0;
-  border-left:   .3em solid transparent;
 
   /* Controlls the size of the stars. */
   font-size: (10rem/$fs);
-  
-  &:before, &:after {
-    content: '';
-    
+  position: relative;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: .9em;
+  margin-right: .9em;
+  margin-bottom: 1.2em;
+  border-right: .3em solid rgba(map-get($colors, "star"), 0);
+  border-bottom: .7em solid map-get($colors, "star");
+  border-left: .3em solid rgba(map-get($colors, "star"), 0);
+
+  &:after,
+  &:before {
+    content: "";
     display: block;
     width: 0;
     height: 0;
-    
     position: absolute;
     top: .6em;
     left: -1em;
-  
-    border-right:  1em solid transparent;
-    border-bottom: .7em  solid #FC0;
-    border-left:   1em solid transparent;
-  
-    transform: rotate(-35deg);
+    border-right: 1em solid rgba(map-get($colors, "star"), 0);
+    border-bottom: .7em  solid map-get($colors, "star");
+    border-left: 1em solid rgba(map-get($colors, "star"), 0);
   }
-  
-  &:after {  
+
+  &:after {
     transform: rotate(35deg);
+  }
+
+  &:before {
+    transform: rotate(-35deg);
   }
 }
