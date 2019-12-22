@@ -1,14 +1,16 @@
 @import "gridlex-vars";
 
-.wrapper {
+.wrapper,
+.layout-wrapper {
   width: rem(1150);
   margin: 0 auto;
+}
+
+.wrapper {
   height: 100%;
 }
 
 .layout-wrapper {
-  width: rem(1150);
-  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -20,4 +22,16 @@
 
 .layout-aside {
   flex-basis: rem(370);
+}
+
+@media (max-width: em(1149)) {
+  .wrapper,
+  .layout-wrapper {
+    width: calc(100% - #{rem(20)});
+  }
+
+  .layout-aside,
+  .layout-main {
+    flex-basis: 100%;
+  }
 }
