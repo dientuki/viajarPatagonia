@@ -79,3 +79,18 @@
     }
   }
 }
+
+@media (max-width: em(1149)) {
+  .footer {
+
+    &__top {
+      flex-wrap: wrap;
+      height: auto;      
+    }
+
+    &__links {
+      flex-basis: 100%;
+      margin-bottom: 1em;
+    }
+  }
+}
