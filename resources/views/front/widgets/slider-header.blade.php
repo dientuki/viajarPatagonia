@@ -4,7 +4,7 @@ use App\Homeslider;
 use App\Http\Helpers\Helpers;
 
 $sliders = Homeslider::getHome();
-
+$first = true;
 ?>
 
 @if (count($sliders) > 0)
@@ -12,42 +12,24 @@ $sliders = Homeslider::getHome();
     @if (count($sliders) > 1)
       <ul id="header-slider">
         @foreach ($sliders as $slide)
-          <li class="header-slider__item <?php if ($loop->first) : ?>header-slider__first<?php endif; ?>">  
-            <?php $image = $slide->getFirstMedia('sliderHome'); ?>
-            @if ($image != null)
-            <figure class="aspect-homeslider">
-              <img data-src="{{ $image->getFullUrl('slider_desktop') }}" class="tns-lazy-img"/>
-            </figure>
-            @endif
-            <div class="header-slider__content">
-              <div class="header-slider__title">{{ $slide->title }}</div>
-              <div class="header-slider__date">{{ $slide->date }}</div>
-              <div class="header-slider__description">{{ $slide->description }}</div>
-              <div class="header-slider__hotel">{{ $slide->hotel }} {{ $slide->stars}}*</div>
-              <div class="header-slider__cta">consultar</div>
-            </div>
-          </li>
+          <?php $image = $slide->getFirstMedia('sliderHome'); ?>
+          @if ($image != null)        
+            <li class="header-slider__item <?php if ($first == true): $first = false;?>header-slider__first<?php endif; ?>">  
+              @include('front/widgets/slider-image', ['image' => $image, 'slide' => $slide, 'lazyload' => 'tns-lazy-img'])
+            </li>
+          @endif            
         @endforeach
       </ul>
       <div class="slider-controls-prev">{!! Helpers::load_svg('ico-prev') !!}</div>
       <div class="slider-controls-next">{!! Helpers::load_svg('ico-next') !!}</div>
     @else
       @foreach ($sliders as $slide)
-        <div class="header-slider__item header-slider__first">  
-          <?php $image = $slide->getFirstMedia('sliderHome'); ?>
-          @if ($image != null)
-          <figure class="aspect-homeslider">
-            <img data-original="{{ $image->getFullUrl('slider_desktop') }}" class="lzl"/>
-          </figure>
-          @endif
-          <div class="header-slider__content">
-            <div class="header-slider__title">{{ $slide->title }}</div>
-            <div class="header-slider__date">{{ $slide->date }}</div>
-            <div class="header-slider__description">{{ $slide->description }}</div>
-            <div class="header-slider__hotel">{{ $slide->hotel }} {{ $slide->stars}}*</div>
-            <div class="header-slider__cta">consultar</div>
+        <?php $image = $slide->getFirstMedia('sliderHome'); ?>
+        @if ($image != null)      
+          <div class="header-slider__item header-slider__first">  
+            @include('front/widgets/slider-image', ['image' => $image, 'slide' => $slide, 'lazyload' => 'lzl'])
           </div>
-          </div>
+        @endif
       @endforeach 
     @endif
   </div>

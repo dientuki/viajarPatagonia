@@ -1,11 +1,10 @@
 import $ from 'jquery';
-import { expandableItem, toogleNav } from './modules/sidebar/sidebar';
+import { expandableItem } from './modules/sidebar/sidebar';
 import 'bootstrap/js/dist/alert';
 __webpack_public_path__ = `${window.location.protocol}//${window.location.host}/dist/`;
 
 const alertClose = document.querySelector('.alert-close');
 
-toogleNav();
 expandableItem(document.querySelectorAll('.must-expand'));
 
 if (alertClose !== null) {

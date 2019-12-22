@@ -28,6 +28,13 @@ export function modalForms(elements) {
     e.preventDefault();
     loading.classList.toggle('show');
 
+    window.requestAnimationFrame(() => {
+      form.querySelectorAll('.is-invalid').forEach((withErrors) => {
+        withErrors.classList.remove('is-invalid');
+        withErrors.querySelector('.invalid-feedback').innerHTML = '';
+      });
+    });
+
     for (const pair of new FormData(e.target)) {
       data.append(pair[0], pair[1]);
     }
@@ -58,8 +65,8 @@ export function modalForms(elements) {
               Object.keys(dataReturned.message).map((key) => {
                 const elem = form.querySelector(`[name="${key}"]`);
 
-                elem.closest('.col').classList.add('is-invalid');
-                elem.nextElementSibling.innerHTML(dataReturned.message[key]);
+                elem.parentNode.classList.add('is-invalid');
+                elem.nextElementSibling.innerHTML = dataReturned.message[key];
               });
 
               loading.classList.toggle('show');

@@ -4,6 +4,9 @@ namespace App\Http\Helpers;
 
 use Request;
 use App\Inquiry;
+use App\Packages;
+use App\Excursions;
+use App\Cruiseships;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
 use App\Translations\PackageTranslation;
@@ -258,5 +261,35 @@ class Helpers {
   static function get_read_icon($value){
     $values = array('unread', 'read');
     return Helpers::load_svg('ico-' . $values[$value]);
-  }  
+  }
+
+  static function slider_get_url($url) {
+    if (filter_var($url, FILTER_VALIDATE_URL)) {
+      return $url;
+    }
+
+    $data = explode(':', $url);
+
+    if (count($data) == 1) {
+      return false;
+    } else {
+      $routeParams = array('locale' => app()->getLocale(), 'id' => $data[1]);
+
+      switch ($data[0]) {
+        case 'excursion':
+          $routeParams['name'] = Str::slug(Excursions::getName($data[1], '-'));
+        break;
+        case 'package':
+          $routeParams['name'] = Str::slug(Packages::getName($data[1], '-'));
+        break;
+        case 'cruiseships':
+          $routeParams['name'] = Str::slug(Cruiseships::getName($data[1], '-'));
+        break;
+      }
+      
+      return route($data[0], $routeParams);
+    }
+
+
+  }
 }
