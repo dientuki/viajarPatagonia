@@ -1,3 +1,125 @@
+$totalTime: .5s;
+$midTime: $totalTime / 2;
+
+@mixin open($Y, $deg) {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(#{$Y/$fs}rem);
+  }
+
+  100% {
+    transform: rotate(#{$deg}deg) translateY(#{$Y/$fs}rem);
+  }
+}
+
+@mixin close($Y, $deg) {
+  0% {
+    transform: rotate(#{$deg}deg) translateY(#{$Y/$fs}rem);
+  }
+
+  50% {
+    transform: translateY(#{$Y/$fs}rem) rotate(0);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes ico-top-open {
+  @include open(7.8, 45);
+}
+
+@keyframes ico-top-close {
+  @include close(7.8, 45);
+}
+
+@keyframes ico-bottom-open {
+  @include open(-7.8, -45);
+}
+
+@keyframes ico-bottom-close {
+  @include close(-7.8, -45);
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.ico-menu {
+  .ico-menu-top,
+  .ico-menu-bottom,
+  .ico-menu-middle {
+    transform-origin: center;
+    animation-fill-mode: forwards;
+  }
+}
+
+.icopen {
+  .ico-menu {
+    .ico-menu-top {
+      animation-name: ico-top-open;
+      animation-duration: $totalTime;
+    }
+
+    .ico-menu-bottom {
+      animation-name: ico-bottom-open;
+      animation-duration: $totalTime;
+    }
+
+    .ico-menu-middle {
+      animation-name: fade-out;
+      animation-duration: $totalTime;
+    }
+  }
+}
+
+.icoclose {
+  .ico-menu {
+    .ico-menu-top {
+      animation-name: ico-top-close;
+      animation-duration: $midTime;
+    }
+
+    .ico-menu-bottom {
+      animation-name: ico-bottom-close;
+      animation-duration: $midTime;
+    }
+
+    .ico-menu-middle {
+      animation-name: fade-in;
+      animation-duration: $midTime;
+    }
+  }
+}
+
 .header {
   height: rem(90);
   position: sticky;
@@ -17,24 +139,67 @@
     background: url("../../images/logo.png") no-repeat;
   }
 
-  .collapsable {
-    width: 100%;
+  .ico-menu-wrapper {
+    position: absolute;
+    right: rem(1);
+    top: 50%;
+    transform: translateY(-50%);
+    width: rem(30);
+    height: rem(30);
+    @include hidden();
+  }
+}
+
+.collapsable {
+  width: 100%;
+  
+  &__content {
     display: flex;
     align-items: center;
   }
 }
 
 @media (max-width: em(1029)) {
-  .header {
-    .collapsable {
+  .collapsable {
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: block;
+    background: rgba(map-get($colors, "black"), .6);
+    width: 0;
+    height: 100%;
+    overflow: hidden;
+    transition: width $totalTime;
+
+    &__content {
+      box-sizing: content-box;
       width: rem(184);
-      position: fixed;
-      top: rem(90);
-      background: map-get($colors, "white");
+      top: 0;
       right: 0;
-      padding: 0 rem(8);
-      height: calc(100% - #{rem(90)});
+      position: absolute;
+      background: map-get($colors, "white");
+      padding: rem(90) rem(8) 0 rem(8);
       display: block;
+      height: 100%;
+      transform: translateX(rem(200));
+      transition: transform $totalTime;
+    }
+
+    &-expanded {
+      .collapsable {
+        width: 100%;
+
+        &__content {
+          transform: translateX(0);
+        }
+      }
+    }
+  }
+
+  .header {
+    .ico-menu-wrapper {
+      display: block;
+      visibility: visible;
     }
   }
 }

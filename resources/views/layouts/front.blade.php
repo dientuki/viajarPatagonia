@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+<html lang="es" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#" class="icoclose">
   <head>
     @include ('front/main-parts/head')
   </head>
