@@ -30,11 +30,11 @@
       width: rem(184);
       position: fixed;
       top: rem(90);
-      background: green;
+      background: map-get($colors, "white");
       right: 0;
       padding: 0 rem(8);
       height: calc(100% - #{rem(90)});
       display: block;
-    }    
+    }
   }
 }

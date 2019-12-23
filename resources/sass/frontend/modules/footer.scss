@@ -82,10 +82,9 @@
 
 @media (max-width: em(1149)) {
   .footer {
-
     &__top {
       flex-wrap: wrap;
-      height: auto;      
+      height: auto;
     }
 
     &__links {
@@ -97,7 +96,6 @@
 
 @media (max-width: em(470)) {
   .footer {
-
     &__li,
     &__column,
     &__afip {
@@ -106,13 +104,12 @@
 
     &__column,
     &__afip {
-      margin: 1em 0 0 0;
+      margin: 1em 0 0;
     }
 
     &__afip .fullblock {
       width: rem(55);
       height: rem(75);
     }
-
   }
 }
