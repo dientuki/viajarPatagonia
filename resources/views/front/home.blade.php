@@ -27,7 +27,7 @@
       </header>
 
       <main class="grid section__main">
-        @include('front/product-preview/vertical', ['products' => $packages, 'grid' => 'col-4', 'route' => 'package'])
+        @include('front/product-preview/vertical', ['products' => $packages, 'grid' => 'col-4_lg-6_sm-12', 'route' => 'package'])
       </main>
     </section>
 

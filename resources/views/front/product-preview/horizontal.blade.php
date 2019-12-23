@@ -15,12 +15,12 @@
       }
       
     ?>
-    <div class="col-{{$col}}">
+    <div class="col-{{$col}}_lg-4_sm-12">
       <figure class="aspect-preview list__figure">
         <img src="about:blank" data-original="{{ $img }}" class="lzl" />
       </figure>
     </div>
-    <div class="col">
+    <div class="col_sm-12">
       <h1 class="list__title bold">
         <a href="{{route($route, $routeParams)}}" class="list_link">{{ $product->name }}</a>
       </h1>
@@ -35,7 +35,7 @@
       <div class="list__summary">{!! nl2br($product->summary) !!}</div>
     </div>
     @if (isset($noprice) == false)
-      <div class="col-3">
+      <div class="col-3_lg-12">
         <div class="button button__price">{{ $product->getPrice() }} {{__('front.final')}}</div>
       </div>
     @endif

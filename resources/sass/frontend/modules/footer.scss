@@ -79,3 +79,37 @@
     }
   }
 }
+
+@media (max-width: em(1149)) {
+  .footer {
+    &__top {
+      flex-wrap: wrap;
+      height: auto;
+    }
+
+    &__links {
+      flex-basis: 100%;
+      margin-bottom: 1em;
+    }
+  }
+}
+
+@media (max-width: em(470)) {
+  .footer {
+    &__li,
+    &__column,
+    &__afip {
+      flex-basis: 100%;
+    }
+
+    &__column,
+    &__afip {
+      margin: 1em 0 0;
+    }
+
+    &__afip .fullblock {
+      width: rem(55);
+      height: rem(75);
+    }
+  }
+}

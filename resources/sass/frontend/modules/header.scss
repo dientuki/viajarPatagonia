@@ -16,4 +16,25 @@
     height: rem(70);
     background: url("../../images/logo.png") no-repeat;
   }
+
+  .collapsable {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media (max-width: em(1029)) {
+  .header {
+    .collapsable {
+      width: rem(184);
+      position: fixed;
+      top: rem(90);
+      background: map-get($colors, "white");
+      right: 0;
+      padding: 0 rem(8);
+      height: calc(100% - #{rem(90)});
+      display: block;
+    }
+  }
 }
