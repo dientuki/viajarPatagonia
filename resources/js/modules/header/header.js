@@ -1,4 +1,4 @@
-import { mergeObjects, killBubling } from '../helpers/generic';
+import { killBubling, mergeObjects } from '../helpers/generic';
 
 function clickOut(bodyClass) {
   window.requestAnimationFrame(() => {
