@@ -62,7 +62,7 @@ use Illuminate\Support\Facades\Route;
         </div>
       </div>
     </div>
-    <div class="ico-menu-wrapper">{!! Helpers::load_svg('ico-menu') !!}</div>
+    <div id="ico-menu" class="ico-menu-wrapper">{!! Helpers::load_svg('ico-menu') !!}</div>
   </div>
   
 </header>
