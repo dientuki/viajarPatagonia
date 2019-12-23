@@ -1,4 +1,4 @@
-import { mergeObjects } from '../helpers/generic';
+import { mergeObjects, killBubling } from '../helpers/generic';
 
 function clickOut(bodyClass) {
   window.requestAnimationFrame(() => {
@@ -6,6 +6,9 @@ function clickOut(bodyClass) {
 
     if (html.classList.contains('icopen')) {
       html.classList.replace('icopen', 'icoclose');
+      document.querySelectorAll('.hover').forEach((element) => {
+        element.classList.remove('hover');
+      });
     } else if (html.classList.contains('icoclose')) {
       html.classList.replace('icoclose', 'icopen');
     } else {
@@ -13,6 +16,44 @@ function clickOut(bodyClass) {
     }
 
     html.classList.toggle(bodyClass);
+  });
+}
+
+function submenu(settings) {
+
+  const defaults = mergeObjects({
+      css: 'expanded',
+      trigger: '.collapsable-menu-title',
+      wrapper: '#collapsable-menu'
+    }, settings),
+    triggers = document.querySelectorAll(defaults.trigger),
+    wrapper = document.querySelector(defaults.wrapper);
+
+  Array.from(triggers).forEach((trigger) => {
+    trigger.addEventListener('click', (event) => {
+      let li;
+
+      if (event.target.classList.contains('selector--current')) {
+        li = event.target.parentNode;
+      } else {
+        const title = killBubling(event.target, 'DIV');
+
+        li = title.parentNode;
+      }
+
+      window.requestAnimationFrame(() => {
+        if (li.classList.contains(defaults.css)) {
+          li.classList.remove(defaults.css);
+        } else {
+          const expanded = wrapper.querySelector(`.${defaults.css}`);
+
+          if (expanded !== null) {
+            expanded.classList.remove(defaults.css);
+          }
+          li.classList.toggle(defaults.css);
+        }
+      });
+    });
   });
 }
 
@@ -28,13 +69,11 @@ export function menu(settings) {
     clickOut(defaults.bodyClass);
   });
 
-  /*
   submenu({
-    css: 'expanded',
-    trigger: '.collapsable-menu-title',
-    wrapper: '#collapsable-menu'
+    css: 'hover',
+    trigger: '.selector--current',
+    wrapper: '.collapsable__content'
   });
-  */
 
   document.querySelector('.collapsable').addEventListener('click', (event) => {
     if (event.target.classList.contains('collapsable')) {
