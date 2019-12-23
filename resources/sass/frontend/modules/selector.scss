@@ -9,12 +9,6 @@
     transition: max-height 500ms;
   }
 
-  &:hover {
-    .selector__ul {
-      max-height: rem(100);
-    }
-  }
-
   &--current {
     height: rem(20);
     font-size: rem(14.5);
@@ -47,8 +41,23 @@
   }
 }
 
+@media (min-width: em(1030)) {
+  .selector:hover {
+    .selector__ul {
+      max-height: rem(100);
+    }
+  }
+}
+
 @media (max-width: em(1029)) {
   .selector {
     margin: rem(20) 0 0 0;
+    height: auto;
+
+    &.hover {
+      .selector__ul {
+        max-height: rem(100);
+      }
+    }
   }
 }

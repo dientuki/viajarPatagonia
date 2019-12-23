@@ -7,6 +7,10 @@ const settings_lzl = {
   elements_selector: '.lzl'
 };
 
+import(/* webpackChunkName: "header" */ './modules/header/header').then((module) => {
+  module.menu();
+});
+
 if (document.querySelector('#product-slider') !== null) {
   import(/* webpackChunkName: "slider" */ './modules/slider/slider').then((SliderMiddleware) => {
     new SliderMiddleware.default({
