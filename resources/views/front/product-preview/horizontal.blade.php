@@ -22,7 +22,7 @@
     </div>
     <div class="col_sm-12">
       <h1 class="list__title bold">
-        <a href="{{route($route, $routeParams)}}" class="list_link">{{ $product->name }}</a>
+        <a href="{{route($route, $routeParams)}}#product" class="list_link">{{ $product->name }}</a>
       </h1>
       @if (isset($product->dataExtra))
         <div class="list__summary">{!! nl2br($product->summary) !!}</div>

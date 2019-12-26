@@ -35,7 +35,7 @@
 @endpush
 
 @section ('content')
-
+  <a id="product" name="product"></a>
   <article class="layout-wrapper product">
     <header class="product__header">
       <h1 class="product__title">{{ $product->name }}</h1>
