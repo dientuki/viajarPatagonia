@@ -74,6 +74,10 @@
     width: 65%;
     height: 65%;
   }
+
+  path {
+    fill: map-get($colors, 'sliderArrow');
+  }
 }
 
 .slider-controls {
