@@ -21,7 +21,7 @@
     </thead>
     <tbody>
         @foreach ($pages as $page)
-        <tr>
+        <tr class="order" data-order="{{$page->order}}" data-id="{{$page->id}}" draggable="true">
             @foreach ($languages as $language)
               <?php $routeParams = array('locale' => $language->iso, 'slug' => $page['slug' . $language->id]); ?>
               <td>
@@ -50,6 +50,7 @@
 <div class="row">
   <div class="col-sm">
     <a href="{{route('admin.pages.create')}}" class="btn btn-primary" title="{{__('buttons.create')}} ucfirst(trans_choice('fields.page', 1)) }}">{{__('buttons.create')}} {{ ucfirst(trans_choice('fields.page', 1)) }}</a>
+    <button data-href="{{route('admin.pages.order')}}" class="btn btn-secondary sortable-update" title="{{ucfirst(__('buttons.apply'))}} {{ ucfirst(__('fields.order')) }}">{{ ucfirst(__('buttons.apply')) }} {{ __('fields.order') }}</button>
   </div>
   <div class="col-sm d-flex">
     {{ $pages->links() }}
