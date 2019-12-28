@@ -36,6 +36,7 @@ Route::group(['namespace' => 'Admin',
     Route::resource('users', 'UsersController')->except(['show']);
     Route::resource('inquiries', 'InquiriesController')->except(['show', 'create', 'store']);
     Route::resource('homeslider', 'HomesliderController')->except(['show']);
+    Route::resource('third-parties', 'ThirdPartiesController')->except(['show']);
     Route::post('homeslider/order', 'HomesliderController@order')->name('homeslider.order');
 
     Route::post('images', 'ImagesController@store')->name('images.store');
