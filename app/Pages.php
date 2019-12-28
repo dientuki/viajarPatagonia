@@ -66,4 +66,10 @@ class Pages extends Model
     static function getPage($slug) {
 
     }
+
+    static function getLastOrder() {
+      return Pages::orderBy('order', 'DESC')
+        ->limit(1)
+        ->value('order');      
+    }
   }

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Exception;
 use App\Pages;
+use Exception;
 use Illuminate\Http\Request;
 use App\Translations\Language;
+use App\Http\Requests\StorePages;
 use Prologue\Alerts\Facades\Alert;
 use App\Http\Controllers\Controller;
 use App\Translations\PagesTranslation;
@@ -52,6 +53,7 @@ class PagesController extends Controller
         $data = $request->validated();
 
         $data['is_active'] = isset($data['is_active']) ? 1 : 0;
+        $data['order'] = Pages::getLastOrder() + 1;
 
         $page = Pages::create($data);
 
