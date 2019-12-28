@@ -19,6 +19,8 @@ class CreatePagesTable extends Migration
             $table->collation = 'utf8_unicode_ci';
 
             $table->tinyIncrements('id');
+            $table->tinyInteger('order')->unsigned();
+            $table->boolean('is_active')->unsigned()->default(false);
         });
     }
 
