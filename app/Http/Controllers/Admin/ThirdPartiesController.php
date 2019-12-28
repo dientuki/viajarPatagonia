@@ -28,11 +28,11 @@ class ThirdPartiesController extends Controller
      */
     public function create()
     {
-        $currency = new ThirdParty();
+        $thirdParty = new ThirdParties();
         $action = 'create';
-        $form_data = array('route' => 'admin.currencies.store', 'method' => 'POST');
+        $form_data = array('route' => 'admin.third-parties.store', 'method' => 'POST');
         
-        return view('admin/currencies/form', compact('action', 'currency',  'form_data'));
+        return view('admin/third-party/form', compact('action', 'thirdParty',  'form_data'));
     }
 
     /**
@@ -47,7 +47,7 @@ class ThirdPartiesController extends Controller
 
         $currency = ThirdParty::create($data);
 
-        return redirect()->route('admin.currencies.index');
+        return redirect()->route('admin.third-parties.index');
     }
 
     /**
@@ -61,9 +61,9 @@ class ThirdPartiesController extends Controller
         $currency = ThirdParty::getEdit($id);
 
         $action    = 'update';
-        $form_data = array('route' => array('admin.currencies.update', $currency->id), 'method' => 'PATCH');
+        $form_data = array('route' => array('admin.third-parties.update', $currency->id), 'method' => 'PATCH');
 
-        return view('admin/currencies/form', compact('action', 'currency', 'form_data'));
+        return view('admin/third-parties/form', compact('action', 'currency', 'form_data'));
     }
 
     /**
@@ -81,7 +81,7 @@ class ThirdPartiesController extends Controller
 
         $currency->fill($data)->save();
 
-        return redirect()->route('admin.currencies.index');
+        return redirect()->route('admin.third-parties.index');
     }
 
     /**
@@ -101,7 +101,7 @@ class ThirdPartiesController extends Controller
             Alert::error('No puedes eliminar el registro!')->flash();
         }  
 
-        return redirect()->route('admin.currencies.index');
+        return redirect()->route('admin.third-parties.index');
     }
 
     public function order(Request $request) {
