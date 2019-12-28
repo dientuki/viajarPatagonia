@@ -78,7 +78,7 @@
           <li class="main-nav__li {{ Helpers::sub_menu('destinations') }}"><a href="{{route('admin.destinations.index')}}" class="main-nav__link">{{ ucfirst(trans_choice('fields.destination', 2)) }}</a></li>
           <li class="main-nav__li {{ Helpers::sub_menu('languages') }}"><a href="{{route('admin.languages.index')}}" class="main-nav__link">{{ ucfirst(trans_choice('fields.language', 2)) }}</a></li>  
           <li class="main-nav__li {{ Helpers::sub_menu('currencies') }}"><a href="{{route('admin.currencies.index')}}" class="main-nav__link">{{ ucfirst(trans_choice('fields.currency', 2)) }}</a></li>
-          <li class="main-nav__li {{ Helpers::sub_menu('currencies') }}"><a href="{{route('admin.currencies.index')}}" class="main-nav__link">Third party</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('third-parties') }}"><a href="{{route('admin.third-parties.index')}}" class="main-nav__link">Third party</a></li>
           <li class="main-nav__li {{ Helpers::sub_menu('currencies') }}"><a href="{{route('admin.currencies.index')}}" class="main-nav__link">Footer</a></li>
         </ul>
       </li>    

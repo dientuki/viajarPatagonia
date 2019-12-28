@@ -20,7 +20,7 @@
   <div class="form-group">
     <?php $class = $errors->has('code') != null ? 'form-control is-invalid' : 'form-control'; ?>
     {!! Form::label('code', ucfirst(__('fields.code'))) !!}
-    {!! Form::text('code', null, array('placeholder' => ucfirst(__('fields.code')), 'class'=>$class, 'required' => true)) !!}
+    {!! Form::textarea('code', null, array('placeholder' => ucfirst(__('fields.code')), 'class'=>$class, 'required' => true)) !!}
     @error('code')
       <div class="invalid-feedback">
         <strong>{{ $message }}</strong>
@@ -29,7 +29,7 @@
   </div>  
 
   <div class="form-check">
-    {!! Form::checkbox('is_active', 1, false, array('class' => 'form-check-input') ) !!}
+    {!! Form::checkbox('is_active', 1, null, array('class' => 'form-check-input') ) !!}
     {!! Form::label('is_active', ucfirst(__('fields.active'))) !!}
   </div>  
 

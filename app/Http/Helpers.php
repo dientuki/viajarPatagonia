@@ -7,6 +7,7 @@ use App\Inquiry;
 use App\Packages;
 use App\Excursions;
 use App\Cruiseships;
+use App\ThirdParties;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
 use App\Translations\PackageTranslation;
@@ -289,7 +290,11 @@ class Helpers {
       
       return route($data[0], $routeParams);
     }
+  }
 
+  static function getThirdParty($key, $default = false) {
+    $element = ThirdParties::getValue($key);
 
+    return $element == null ? $default : $element;
   }
 }
