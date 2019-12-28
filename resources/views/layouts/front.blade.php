@@ -15,6 +15,8 @@
 
     @include ('front/main-parts/footer')
 
+    @include ('front/main-parts/scripts')
+
   </body>
 
 </html>

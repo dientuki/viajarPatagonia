@@ -64,4 +64,11 @@ class ThirdParties extends Model
   
       //throw (new ModelNotFoundException)->setModel(get_class($this->model));
     }
+
+    static function getValue($key) {
+      return ThirdParties::where('name', $key)
+        ->where('is_active', 1)
+        ->limit(1)
+        ->value('code');
+    }
 }
