@@ -32,15 +32,13 @@ class PagesController extends Controller
      */
     public function create()
     {
-        $cruiseship = new Cruiseships();
+        $page = new Pages();
         $action = 'create';
-        $form_data = array('route' => 'admin.cruiseships.store', 'method' => 'POST');
-        $cruiseshipType = CruiseshipsTypes::getLists();
-        $currencies = Currency::getAll();
+        $form_data = array('route' => 'admin.pages.store', 'method' => 'POST');
 
         $languages = Language::getAll();
         
-        return view('admin/pages/create', compact('action', 'cruiseship',  'form_data', 'languages', 'cruiseshipType', 'currencies'));
+        return view('admin/pages/create', compact('action', 'page',  'form_data', 'languages'));
     }
 
     /**
@@ -55,13 +53,13 @@ class PagesController extends Controller
 
         $data['is_active'] = isset($data['is_active']) ? 1 : 0;
 
-        $cruiseship = Cruiseships::create($data);
+        $page = Cruiseships::create($data);
 
-        $this->storeLanguages($cruiseship->id, $data);
-        $this->storeCurrencies($cruiseship->id, $data);
-        $this->storeImages($cruiseship, $data);
+        $this->storeLanguages($page->id, $data);
+        $this->storeCurrencies($page->id, $data);
+        $this->storeImages($page, $data);
 
-        return redirect()->route('admin.cruiseships.index');
+        return redirect()->route('admin.pages.index');
     }
 
     private function storeLanguages($id, $data)
@@ -115,14 +113,14 @@ class PagesController extends Controller
      */
     public function edit($id)
     {
-        $cruiseship = Cruiseships::find($id);
-        $cruiseshipTranslation = CruiseshipsTranslation::getEdit($id);
-        $cruiseshipType = CruiseshipsTypes::getLists();
-        $cruiseshipPrice = CruiseshipsPrices::getEdits($id);
+        $page = Cruiseships::find($id);
+        $pageTranslation = CruiseshipsTranslation::getEdit($id);
+        $pageType = CruiseshipsTypes::getLists();
+        $pagePrice = CruiseshipsPrices::getEdits($id);
         $currencies = Currency::getAll();
 
         $action    = 'update';
-        $form_data = array('route' => array('admin.cruiseships.update', $cruiseship->id), 'method' => 'PATCH');
+        $form_data = array('route' => array('admin.pages.update', $page->id), 'method' => 'PATCH');
         $languages = Language::getAll();
 
         return view('admin/pages/edit', compact('action', 'cruiseship', 'form_data', 'languages', 'cruiseshipTranslation', 'cruiseshipType', 'currencies', 'cruiseshipPrice'));
@@ -137,20 +135,20 @@ class PagesController extends Controller
      */
     public function update(EditCruiseship $request, $id)
     {
-        $cruiseship = Cruiseships::getEdit($id);
+        $page = Cruiseships::getEdit($id);
 
         $data = $request->validated();
 
         $data['is_active'] = isset($data['is_active']) ? 1 : 0;
 
-        $cruiseship->fill($data)->save();
+        $page->fill($data)->save();
 
         $this->updateLanguages($id, $data);
         $this->updateCurrencies($id, $data);
         $this->updateImage($id, $data);
-        $this->storeImages($cruiseship, $data);
+        $this->storeImages($page, $data);
 
-        return redirect()->route('admin.cruiseships.index');
+        return redirect()->route('admin.pages.index');
     }
 
     private function updateLanguages($id, $data)
@@ -164,9 +162,9 @@ class PagesController extends Controller
                     ['fk_cruiseship', $id]
                 );
 
-                $cruiseshipTranslation = CruiseshipsTranslation::getUpdate($where);
+                $pageTranslation = CruiseshipsTranslation::getUpdate($where);
 
-                $cruiseshipTranslation->fill([
+                $pageTranslation->fill([
                     'name' => $data['name_' . $language->id],
                     'summary' => $data['summary_' . $language->id],
                     'body' => $data['body_' . $language->id]
@@ -185,9 +183,9 @@ class PagesController extends Controller
                     ['fk_cruiseship', $id]
                 );
 
-                $cruiseshipPrice = CruiseshipsPrices::getUpdate($where);
+                $pagePrice = CruiseshipsPrices::getUpdate($where);
 
-                if (is_null($cruiseshipPrice)) {
+                if (is_null($pagePrice)) {
                     CruiseshipsPrices::create([
                         'fk_currency' => $data['fk_currency_' . $currency->id],
                         'fk_cruiseship' => $id,
@@ -196,7 +194,7 @@ class PagesController extends Controller
                         'is_active' => isset($data['is_active_' . $currency->id]) ? 1 : 0
                     ]);
                 } else {
-                    $cruiseshipPrice->fill([
+                    $pagePrice->fill([
                         'price' => $data['price_' . $currency->id],
                         'discount' => $data['discount_' . $currency->id],
                         'is_active' => isset($data['is_active_' . $currency->id]) ? 1 : 0
@@ -224,18 +222,18 @@ class PagesController extends Controller
      */
     public function destroy($id)
     {
-        $cruiseship = Cruiseships::findOrFail($id);
+        $page = Cruiseships::findOrFail($id);
 
         try {
             CruiseshipsTranslation::where('fk_cruiseship', $id)->delete();
             CruiseshipsPrices::where('fk_cruiseship', $id)->delete();
-            $cruiseship->delete();
+            $page->delete();
 
             Alert::success('Registro eliminado correctamente!')->flash();
         } catch (Exception $e) {
             Alert::error('No puedes eliminar el registro!')->flash();
         }  
 
-        return redirect()->route('admin.cruiseships.index');
+        return redirect()->route('admin.pages.index');
     }
 }

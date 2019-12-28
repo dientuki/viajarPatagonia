@@ -23,7 +23,7 @@ class CreatePagesTranslationTable extends Migration
             $table->tinyInteger('fk_page')->unsigned();
             $table->string('slug', 190);
             $table->string('title', 190);
-            $table->mediumText('body', 190);
+            $table->mediumText('body');
 
             $table->foreign('fk_language')->references('id')->on('languages');
             $table->foreign('fk_page')->references('id')->on('pages');
