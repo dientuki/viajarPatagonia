@@ -99,9 +99,12 @@ return [
     'child' => 'niños',
     'timestamp' => 'fecha',
 
+    //thirdParty
+    'thirdParty' => 'Código de tercero|Códigos de terceros',
+
     //
     'all' => 'todos',
     'productPlaceholder' => 'Seleccione un producto',
     'languagePlaceholder' => 'Seleccione un lenguage',
-    'readPlaceholder' => 'Seleccione un estado',
+    'readPlaceholder' => 'Seleccione un estado',    
 ];
