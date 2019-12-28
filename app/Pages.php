@@ -71,4 +71,8 @@ class Pages extends Model
         ->limit(1)
         ->value('order');      
     }
+
+    static function updateOrder($id, $order) {
+      Pages::where('id', $id)->update(['order' => $order]);
+    }    
   }

@@ -205,4 +205,12 @@ class PagesController extends Controller
 
         return redirect()->route('admin.pages.index');
     }
+
+    public function order(Request $request) {
+      $data = json_decode($request->getContent(), true);
+
+      foreach($data as $order) {
+        Pages::updateOrder($order['id'], $order['order']);
+      }
+    }    
 }
