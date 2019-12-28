@@ -47,7 +47,7 @@ class ThirdParties extends Model
 
     static function getEdit($id){
 
-      $result = ThirdParties::select('name', 'code', 'is_active')
+      $result = ThirdParties::select('id', 'name', 'code', 'is_active')
           ->where('id', $id)
           ->get()->first();
   

@@ -7,6 +7,7 @@ use App\ThirdParties;
 use Illuminate\Http\Request;
 use Prologue\Alerts\Facades\Alert;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EditThirdParty;
 use App\Http\Requests\StoreThirdParty;
 
 class ThirdPartiesController extends Controller
@@ -46,7 +47,7 @@ class ThirdPartiesController extends Controller
     {      
         $data = $request->validated();
 
-        $currency = ThirdParties::create($data);
+        $thirdParty = ThirdParties::create($data);
 
         return redirect()->route('admin.third-parties.index');
     }
@@ -59,28 +60,28 @@ class ThirdPartiesController extends Controller
      */
     public function edit($id)
     {
-        $currency = ThirdParty::getEdit($id);
+        $thirdParty = ThirdParties::getEdit($id);
 
         $action    = 'update';
-        $form_data = array('route' => array('admin.third-parties.update', $currency->id), 'method' => 'PATCH');
+        $form_data = array('route' => array('admin.third-parties.update', $thirdParty->id), 'method' => 'PATCH');
 
-        return view('admin/third-parties/form', compact('action', 'currency', 'form_data'));
+        return view('admin/third-parties/form', compact('action', 'thirdParty', 'form_data'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\EditCurrency  $request
+     * @param  \App\Http\Requests\EditThirdParty  $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EditCurrency $request, $id)
+    public function update(EditThirdParty $request, $id)
     {
-        $currency = ThirdParty::getEdit($id);
+        $thirdParty = ThirdParties::getEdit($id);
 
         $data = $request->validated();
 
-        $currency->fill($data)->save();
+        $thirdParty->fill($data)->save();
 
         return redirect()->route('admin.third-parties.index');
     }
@@ -93,23 +94,15 @@ class ThirdPartiesController extends Controller
      */
     public function destroy($id)
     {
-        $currency = ThirdParty::findOrFail($id);
+        $thirdParty = ThirdParties::findOrFail($id);
 
         try {
-            $currency->delete();
+            $thirdParty->delete();
             Alert::success('Registro eliminado correctamente!')->flash();
         } catch (Exception $e) {
             Alert::error('No puedes eliminar el registro!')->flash();
         }  
 
         return redirect()->route('admin.third-parties.index');
-    }
-
-    public function order(Request $request) {
-      $data = json_decode($request->getContent(), true);
-
-      foreach($data as $order) {
-        ThirdParty::updateOrder($order['id'], $order['order']);
-      }
-    }    
+    }  
 }
