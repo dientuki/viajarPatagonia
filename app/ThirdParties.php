@@ -31,7 +31,7 @@ class ThirdParties extends Model
       $request = request();
       $queries = [];
 
-      $thirdParties = ThirdParties::select('name', 'code', 'is_active');
+      $thirdParties = ThirdParties::select('id', 'name', 'code', 'is_active');
 
       if ($request->has('order')) {
         $thirdParties->orderBy('id', $request->get('order'));

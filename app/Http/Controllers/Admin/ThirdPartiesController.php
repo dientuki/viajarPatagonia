@@ -7,6 +7,7 @@ use App\ThirdParties;
 use Illuminate\Http\Request;
 use Prologue\Alerts\Facades\Alert;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreThirdParty;
 
 class ThirdPartiesController extends Controller
 {
@@ -18,7 +19,7 @@ class ThirdPartiesController extends Controller
     public function index()
     {
         $thirdParties = ThirdParties::getAll();
-        return view('admin/third-party/index', compact('thirdParties'));
+        return view('admin/third-parties/index', compact('thirdParties'));
     }
 
     /**
@@ -32,20 +33,20 @@ class ThirdPartiesController extends Controller
         $action = 'create';
         $form_data = array('route' => 'admin.third-parties.store', 'method' => 'POST');
         
-        return view('admin/third-party/form', compact('action', 'thirdParty',  'form_data'));
+        return view('admin/third-parties/form', compact('action', 'thirdParty',  'form_data'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCurrency  $request
+     * @param  \App\Http\Requests\StoreThirdParty  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCurrency $request)
+    public function store(StoreThirdParty $request)
     {      
         $data = $request->validated();
 
-        $currency = ThirdParty::create($data);
+        $currency = ThirdParties::create($data);
 
         return redirect()->route('admin.third-parties.index');
     }

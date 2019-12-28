@@ -1,9 +1,13 @@
+<?php use App\Http\Helpers\Helpers; ?>
+
 @extends('layouts.admin')
 
 @section ('content')
 
 <div class="header-sticky row">
   <div class="col">{{ ucfirst(trans_choice('fields.thirdParty', 2)) }}</div>
+
+  @include ('admin/widgets/order')
 </div>
 
 @if (isset($thirdParties))
