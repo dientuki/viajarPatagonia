@@ -16,7 +16,7 @@
             {!! Form::text('title_' . $language->id, null, array('placeholder' => ucfirst(__('fields.title')),
             'class'=>$class, 'required'=>true, 'maxlength' => 190)) !!}
             @error('title_' . $language->id)
-            <div class="invalid-feedback">
+            <div class="invalid-feedback">|
                 <strong>{{ $message }}</strong>
             </div>
             @enderror

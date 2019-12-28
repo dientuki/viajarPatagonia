@@ -44,20 +44,18 @@ class PagesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCruiseship  $request
+     * @param  \App\Http\Requests\StorePages  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCruiseship $request)
+    public function store(StorePages $request)
     {      
         $data = $request->validated();
 
         $data['is_active'] = isset($data['is_active']) ? 1 : 0;
 
-        $page = Cruiseships::create($data);
+        $page = Pages::create($data);
 
         $this->storeLanguages($page->id, $data);
-        $this->storeCurrencies($page->id, $data);
-        $this->storeImages($page, $data);
 
         return redirect()->route('admin.pages.index');
     }
@@ -68,41 +66,15 @@ class PagesController extends Controller
 
         foreach ($languages as $language) {
             if (isset($data['fk_language_' . $language->id])) {
-                CruiseshipsTranslation::create([
+                PagesTranslation::create([
                     'fk_language' => $data['fk_language_' . $language->id],
-                    'fk_cruiseship' => $id,
-                    'name' => $data['name_' . $language->id],
-                    'summary' => $data['summary_' . $language->id],
+                    'fk_page' => $id,
+                    'title' => $data['title_' . $language->id],
+                    'slug' => $data['slug_' . $language->id],
                     'body' => $data['body_' . $language->id]
                 ]);
             }
         }
-    }
-
-    private function storeCurrencies($id, $data)
-    {
-        $currencies = Currency::getAll();
-        
-        foreach ($currencies as $currency) {
-            if (isset($data['fk_currency_' . $currency->id]) && $data['price_' . $currency->id] != null) {
-
-                CruiseshipsPrices::create([
-                    'fk_currency' => $data['fk_currency_' . $currency->id],
-                    'fk_cruiseship' => $id,
-                    'price' => $data['price_' . $currency->id],
-                    'discount' => $data['discount_' . $currency->id],
-                    'is_active' => isset($data['is_active_' . $currency->id]) ? true : false
-                ]);
-            }
-        }  
-    }
-
-    private function storeImages($model, $data) {
-      if (isset($data['images'])) {
-        foreach ($data['images'] as $file) {
-          $model->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('products');
-        }
-      }
     }
 
     /**
@@ -113,7 +85,7 @@ class PagesController extends Controller
      */
     public function edit($id)
     {
-        $page = Cruiseships::find($id);
+        $page = Pages::find($id);
         $pageTranslation = CruiseshipsTranslation::getEdit($id);
         $pageType = CruiseshipsTypes::getLists();
         $pagePrice = CruiseshipsPrices::getEdits($id);
@@ -135,7 +107,7 @@ class PagesController extends Controller
      */
     public function update(EditCruiseship $request, $id)
     {
-        $page = Cruiseships::getEdit($id);
+        $page = Pages::getEdit($id);
 
         $data = $request->validated();
 
@@ -222,7 +194,7 @@ class PagesController extends Controller
      */
     public function destroy($id)
     {
-        $page = Cruiseships::findOrFail($id);
+        $page = Pages::findOrFail($id);
 
         try {
             CruiseshipsTranslation::where('fk_cruiseship', $id)->delete();
