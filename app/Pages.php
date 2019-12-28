@@ -47,9 +47,8 @@ class Pages extends Model
 
     static function getEdit($id){
 
-      /*
-      $cruiseship = Pages::select('id', 'is_active', 'map', 'fk_cruiseship_type');
-      $result = $cruiseship->where('id', $id)->get()->first();
+      $page = Pages::select('id', 'is_active');
+      $result = $page->where('id', $id)->get()->first();
   
       if (is_array($id)) {
         if (count($result) == count(array_unique($id))) {
@@ -61,7 +60,6 @@ class Pages extends Model
   
       //Laravel 4 fallback
       return abort(404);
-      */
     }
 
     static function getPage($slug) {

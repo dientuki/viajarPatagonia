@@ -23,9 +23,9 @@
         @foreach ($pages as $page)
         <tr>
             @foreach ($languages as $language)
-              <?php $routeParams = array('locale' => $language->iso, 'name' => Str::slug($page['title' . $language->id], '-'), 'id' => $page->id); ?>
+              <?php $routeParams = array('locale' => $language->iso, 'slug' => $page['slug' . $language->id]); ?>
               <td>
-                <a href="{{route('cruise', $routeParams)}}" rel="noopener" target="_blank">{{$page['title' . $language->id]}}</a>
+                <a href="{{route('pages', $routeParams)}}" rel="noopener" target="_blank">{{$page['title' . $language->id]}}</a>
               </td>
             @endforeach
             <td class="column-active">{!! Helpers::get_active_icon($page->is_active ) !!}</td>

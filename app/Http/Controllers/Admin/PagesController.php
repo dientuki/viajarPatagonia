@@ -6,7 +6,8 @@ use App\Pages;
 use Exception;
 use Illuminate\Http\Request;
 use App\Translations\Language;
-use App\Http\Requests\StorePages;
+use App\Http\Requests\StorePage;
+use App\Http\Requests\EditPage;
 use Prologue\Alerts\Facades\Alert;
 use App\Http\Controllers\Controller;
 use App\Translations\PagesTranslation;
@@ -45,10 +46,10 @@ class PagesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorePages  $request
+     * @param  \App\Http\Requests\StorePage  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePages $request)
+    public function store(StorePage $request)
     {      
         $data = $request->validated();
 
@@ -88,26 +89,23 @@ class PagesController extends Controller
     public function edit($id)
     {
         $page = Pages::find($id);
-        $pageTranslation = CruiseshipsTranslation::getEdit($id);
-        $pageType = CruiseshipsTypes::getLists();
-        $pagePrice = CruiseshipsPrices::getEdits($id);
-        $currencies = Currency::getAll();
+        $pageTranslation = PagesTranslation::getEdit($id);
 
         $action    = 'update';
         $form_data = array('route' => array('admin.pages.update', $page->id), 'method' => 'PATCH');
         $languages = Language::getAll();
 
-        return view('admin/pages/edit', compact('action', 'cruiseship', 'form_data', 'languages', 'cruiseshipTranslation', 'cruiseshipType', 'currencies', 'cruiseshipPrice'));
+        return view('admin/pages/edit', compact('action', 'page', 'form_data', 'languages', 'pageTranslation'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\EditCruiseship  $request
+     * @param  \App\Http\Requests\EditPage  $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EditCruiseship $request, $id)
+    public function update(EditPage $request, $id)
     {
         $page = Pages::getEdit($id);
 
@@ -118,9 +116,6 @@ class PagesController extends Controller
         $page->fill($data)->save();
 
         $this->updateLanguages($id, $data);
-        $this->updateCurrencies($id, $data);
-        $this->updateImage($id, $data);
-        $this->storeImages($page, $data);
 
         return redirect()->route('admin.pages.index');
     }
@@ -133,14 +128,14 @@ class PagesController extends Controller
 
                 $where = array(
                     ['fk_language', $data['fk_language_' . $language->id]],
-                    ['fk_cruiseship', $id]
+                    ['fk_page', $id]
                 );
 
-                $pageTranslation = CruiseshipsTranslation::getUpdate($where);
+                $pageTranslation = PagesTranslation::getUpdate($where);
 
                 $pageTranslation->fill([
-                    'name' => $data['name_' . $language->id],
-                    'summary' => $data['summary_' . $language->id],
+                    'title' => $data['title_' . $language->id],
+                    'slug' => $data['slug_' . $language->id],
                     'body' => $data['body_' . $language->id]
                 ])->save();
             }            

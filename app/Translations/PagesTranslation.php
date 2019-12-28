@@ -27,29 +27,18 @@ class PagesTranslation extends Model
      */
     protected $fillable = ['fk_language', 'fk_page', 'title', 'slug', 'body'];    
 
-    static function getEdit($where){
+    static function getEdit($id){
+      
+      return PagesTranslation::select('id', 'fk_language', 'fk_page', 'title', 'slug', 'body')
+        ->where('fk_page', $id)
+        ->orderBy('fk_language')
+        ->get();   
+    }    
 
-      $result = PagesTranslation::select('id', 'fk_language', 'fk_page', 'title', 'slug', 'body');
+    static function getUpdate($where){
 
-      if (is_array($where)) {
-        $result->where($where);
-      } else {
-        $result->where('id', $id);
-      }
-    
-      return $result->get()->first();
-  /*
-      if (is_array($id)) {
-        if (count($result) == count(array_unique($id))) {
-          return $result;
-        }
-      } elseif (! is_null($result)) {
-        return $result;
-      }
-  */
-      //Laravel 4 fallback
-      return abort(404);
-  
-      //throw (new ModelNotFoundException)->setModel(get_class($this->model));
+      return PagesTranslation::select('id', 'fk_language', 'fk_page', 'title', 'slug', 'body')
+        ->where($where)
+        ->get()->first();
     }    
 }
