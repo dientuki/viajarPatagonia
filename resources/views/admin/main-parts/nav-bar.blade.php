@@ -73,7 +73,7 @@
         </div>
         <ul class="main-nav__submenu">
           <li class="main-nav__li {{ Helpers::sub_menu('users') }}"><a href="{{route('admin.users.index')}}" class="main-nav__link">{{ ucfirst(trans_choice('fields.user', 2)) }}</a></li>
-          <li class="main-nav__li {{ Helpers::sub_menu('destinations') }}"><a href="{{route('admin.destinations.index')}}" class="main-nav__link">Paginas</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('pages') }}"><a href="{{route('admin.pages.index')}}" class="main-nav__link">Paginas</a></li>
           <li class="main-nav__li {{ Helpers::sub_menu('regions') }}"><a href="{{route('admin.regions.index')}}" class="main-nav__link">{{ ucfirst(trans_choice('fields.region', 2)) }}</a></li>  
           <li class="main-nav__li {{ Helpers::sub_menu('destinations') }}"><a href="{{route('admin.destinations.index')}}" class="main-nav__link">{{ ucfirst(trans_choice('fields.destination', 2)) }}</a></li>
           <li class="main-nav__li {{ Helpers::sub_menu('languages') }}"><a href="{{route('admin.languages.index')}}" class="main-nav__link">{{ ucfirst(trans_choice('fields.language', 2)) }}</a></li>  

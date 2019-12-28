@@ -44,7 +44,6 @@ class ThirdParties extends Model
       return $thirdParties->simplePaginate(20)->appends($queries);
     }
 
-
     static function getEdit($id){
 
       $result = ThirdParties::select('id', 'name', 'code', 'is_active')
