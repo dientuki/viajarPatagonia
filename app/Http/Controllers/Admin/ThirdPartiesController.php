@@ -80,6 +80,7 @@ class ThirdPartiesController extends Controller
         $thirdParty = ThirdParties::getEdit($id);
 
         $data = $request->validated();
+        $data['is_active'] = isset($data['is_active']) ? 1 : 0;
 
         $thirdParty->fill($data)->save();
 
