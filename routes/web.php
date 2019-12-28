@@ -23,8 +23,6 @@ Route::group(['namespace' => 'Admin',
 
     Route::resource('regions', 'RegionsController')->except(['show']);
     Route::resource('destinations', 'DestinationsController')->except(['show']);
-    Route::resource('currencies', 'CurrenciesController')->except(['show']);
-    Route::post('currencies/order', 'CurrenciesController@order')->name('currency.order');
     Route::resource('languages', 'LanguagesController')->except(['show']);
     Route::resource('cruiseships-types', 'CruiseshipsTypesController')->except(['show']);
     Route::resource('excursions-types', 'ExcursionsTypesController')->except(['show']);
@@ -36,8 +34,13 @@ Route::group(['namespace' => 'Admin',
     Route::resource('users', 'UsersController')->except(['show']);
     Route::resource('inquiries', 'InquiriesController')->except(['show', 'create', 'store']);
     Route::resource('homeslider', 'HomesliderController')->except(['show']);
+
+    Route::resource('currencies', 'CurrenciesController')->except(['show']);
+    Route::post('currencies/order', 'CurrenciesController@order')->name('currency.order');    
     Route::resource('third-parties', 'ThirdPartiesController')->except(['show']);
     Route::post('homeslider/order', 'HomesliderController@order')->name('homeslider.order');
+    Route::resource('pages', 'PagesController')->except(['show']);
+    Route::post('pages/order', 'PagesController@order')->name('pages.order');
 
     Route::post('images', 'ImagesController@store')->name('images.store');
 });

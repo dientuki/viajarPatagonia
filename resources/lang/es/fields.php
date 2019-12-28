@@ -100,7 +100,10 @@ return [
     'timestamp' => 'fecha',
 
     //thirdParty
-    'thirdParty' => 'Código de tercero|Códigos de terceros',
+    'thirdParty' => 'código de tercero|códigos de terceros',
+
+    //pages
+    'page' => 'pagina|paginas',
 
     //
     'all' => 'todos',
