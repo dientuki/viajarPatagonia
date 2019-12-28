@@ -75,7 +75,10 @@ Route::group(['prefix' => '{locale}',
         ->where(['id' => '[0-9]+']);
 
     Route::get('/cruiseships/{name}.html', 'CruiseshipsController@list')
-        ->name('cruiseships');          
+        ->name('cruiseships');       
+        
+    Route::get('/pages/{slug}.html', 'PagesController@show')
+        ->name('pages');           
 
 });
 

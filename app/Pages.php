@@ -36,6 +36,7 @@ class Pages extends Model
 
       foreach ($languages as $language) {
         $pages->addSelect("ct$language->id.title as title$language->id")
+          ->addSelect("ct$language->id.slug as slug$language->id")
           ->join("pages_translation as ct$language->id", 'pages.id', '=', "ct$language->id.fk_page")
           ->join("languages as l$language->id", "l$language->id.id", '=', "ct$language->id.fk_language")
           ->where("l$language->id.iso", $language->iso);
