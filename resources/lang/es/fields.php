@@ -15,7 +15,7 @@ return [
 
     // Region
     'region' => 'region|regiones',
-    'region_select_placeholder' => 'Seleccione una region...',
+    'region_select_placeholder' => 'Seleccione una región...',
 
     // Destino
     'destination' => 'destino|destinos',
@@ -58,7 +58,7 @@ return [
     'excursionType_select_placeholder' => 'Seleccione un tipo de excursion...',
 
     // Excursiones
-    'excursion' => 'excursion|excursiones',    
+    'excursion' => 'excursión|excursiones',    
 
     // Paquetes
     'package' => 'paquete|paquetes', 
