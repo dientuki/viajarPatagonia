@@ -4,6 +4,7 @@ namespace App;
 
 use App\Pages;
 use App\Translations\Language;
+use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Model;
 
 class Pages extends Model
@@ -74,5 +75,18 @@ class Pages extends Model
 
     static function updateOrder($id, $order) {
       Pages::where('id', $id)->update(['order' => $order]);
-    }    
+    }
+
+    static function getPages() {
+      $pages = Pages::select('pages_translation.title', 'pages_translation.slug');
+      $pages->join("pages_translation", 'pages.id', '=', "pages_translation.fk_page");
+      $pages->join("languages", 'languages.id', '=', "pages_translation.fk_language");
+      $pages->where([
+        ['languages.iso', '=', App::getLocale()],
+        ['is_active', '=', 1]
+      ]);
+      $pages->orderBy('order');
+
+      return $pages->get();      
+    }
   }
