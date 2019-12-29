@@ -66,7 +66,7 @@ if (document.querySelector('#products') !== null) {
 if (document.querySelectorAll('.has-slug').length > 0) {
   import(/* webpackChunkName: "slug" */ './modules/slug/slug').then((module) => {
     module.slugify(document.querySelectorAll('.has-slug'));
-  });  
+  });
 }
 
 if (document.querySelector('.has-FS') !== null) {
