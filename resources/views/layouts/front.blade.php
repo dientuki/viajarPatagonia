@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+<html lang="{{App::getLocale()}}" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
   <head>
     @include ('front/main-parts/head')
   </head>
