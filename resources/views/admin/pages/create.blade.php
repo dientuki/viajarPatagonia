@@ -26,7 +26,7 @@
             <?php $class = $errors->has('slug_' . $language->id) != null ? 'form-control is-invalid' : 'form-control'; ?>
             {!! Form::label('slug_' . $language->id, ucfirst(__('fields.slug'))) !!}
             {!! Form::text('slug_' . $language->id, null, array('placeholder' => ucfirst(__('fields.slug')),
-            'class'=>$class, 'required'=>true, 'pattern' => '[a-z0-9_-]')) !!}
+            'class'=>$class, 'required'=>true, 'pattern' => '[a-z0-9_-]*')) !!}
             @error('slug_' . $language->id)
             <div class="invalid-feedback">
                 <strong>{{ $message }}</strong>
