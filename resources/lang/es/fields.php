@@ -14,8 +14,8 @@ return [
     */
 
     // Region
-    'region' => 'region|regiones',
-    'region_select_placeholder' => 'Seleccione una region...',
+    'region' => 'región|regiones',
+    'region_select_placeholder' => 'Seleccione una región...',
 
     // Destino
     'destination' => 'destino|destinos',
@@ -74,7 +74,7 @@ return [
     'availability_select_placeholder' => 'Seleccione una disponibilidad..',
 
     // Duracion
-    'duration' => 'duracion',
+    'duration' => 'duración',
     'duration_select_placeholder' => 'Seleccione una duracion..',
 
     // Slider
@@ -82,7 +82,7 @@ return [
     'slider' => 'slide',
     'order' => 'orden',
     'title' => 'titulo',
-    'description' => 'descripcion',
+    'description' => 'descripción',
     'hotel' => 'hotel',
     'url' => 'url',
     'stars' => 'estrellas',
