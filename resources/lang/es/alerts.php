@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'success' => 'Enhorabuena',
-    'warning' => 'Atencion',
-    'info' => 'Aviso parroquial',
+    'success' => 'Exito',
+    'warning' => 'Atención',
+    'info' => 'Aviso',
     'error' => 'Cuidado'
 ];
