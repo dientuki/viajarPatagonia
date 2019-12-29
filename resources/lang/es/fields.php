@@ -103,7 +103,7 @@ return [
     'thirdParty' => 'código de tercero|códigos de terceros',
 
     //pages
-    'page' => 'página|paginas',
+    'page' => 'página|páginas',
 
     //
     'all' => 'todos',
