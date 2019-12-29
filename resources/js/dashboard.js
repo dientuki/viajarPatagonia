@@ -69,8 +69,8 @@ if (document.querySelectorAll('.has-slug').length > 0) {
   });  
 }
 
-if (document.querySelector('.header-sticky') !== null) {
-  import(/* webpackChunkName: "urlSelect" */ './modules/filterSort/filterSort').then((module) => {
+if (document.querySelector('.has-FS') !== null) {
+  import(/* webpackChunkName: "filterSort" */ './modules/filterSort/filterSort').then((module) => {
     module.filter(document.querySelectorAll('.filter'));
     module.sort(document.querySelector('.sort'));
   });

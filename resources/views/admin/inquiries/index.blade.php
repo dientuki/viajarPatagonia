@@ -11,7 +11,7 @@ use App\Translations\CruiseshipsTranslation;
 
 @section ('content')
 
-  <div class="header-sticky row">
+  <div class="header-sticky row has-FS">
     <div class="col">{{ ucfirst(trans_choice('fields.inquiry', 2)) }}</div>
     
     <div class="col form-inline row">
