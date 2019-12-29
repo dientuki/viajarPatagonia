@@ -5,10 +5,11 @@
   <div class="wrapper">
     <div class="footer__top">
       <ul class="footer__column footer__links">
-        <li class="footer__li"><a href="#" class="footer__link">La empresa</a></li>
-        <li class="footer__li"><a href="#" class="footer__link">Condiciones generales</a></li>
-        <li class="footer__li"><a href="#" class="footer__link">Politicas de privacidad</a></li>
-        <li class="footer__li"><a href="#" class="footer__link">Contacto</a></li>
+        <?php $pages = Helpers::getFooterPages(); ?>
+        @foreach ($pages as $page)
+          <?php $route = route('pages', array('slug' => $page->slug, 'locale' => app()->getLocale())); ?>
+          <li class="footer__li"><a href="{{ $route }}" class="footer__link">{{ $page->title }}</a></li>
+        @endforeach
       </ul>
       <div class="footer__column">
         <span class="bold block">Gales al Sur E.V. y T.</span>

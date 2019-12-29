@@ -3,6 +3,7 @@
 namespace App\Http\Helpers;
 
 use Request;
+use App\Pages;
 use App\Inquiry;
 use App\Packages;
 use App\Excursions;
@@ -296,5 +297,9 @@ class Helpers {
     $element = ThirdParties::getValue($key);
 
     return $element == null ? $default : $element;
+  }
+
+  static function getFooterPages() {
+    return Pages::getPages();
   }
 }
