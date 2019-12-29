@@ -62,6 +62,13 @@ if (document.querySelector('#products') !== null) {
   });
 }
 
+// Slug
+if (document.querySelectorAll('.has-slug').length > 0) {
+  import(/* webpackChunkName: "slug" */ './modules/slug/slug').then((module) => {
+    module.slugify(document.querySelectorAll('.has-slug'));
+  });  
+}
+
 if (document.querySelector('.header-sticky') !== null) {
   import(/* webpackChunkName: "urlSelect" */ './modules/filterSort/filterSort').then((module) => {
     module.filter(document.querySelectorAll('.filter'));

@@ -25,11 +25,11 @@
                 @enderror
             </div>
 
-            <div class="form-group">
+            <div class="form-group has-slug" data-slug="input[name={{ 'title_' . $language->id }}]">
                 <?php $class = $errors->has('slug_' . $language->id) != null ? 'form-control is-invalid' : 'form-control'; ?>
                 {!! Form::label('slug_' . $language->id, ucfirst(__('fields.slug'))) !!}
                 {!! Form::text('slug_' . $language->id, $pageLanguage->slug, array('placeholder' => ucfirst(__('fields.slug')),
-                'class'=>$class, 'required'=>true)) !!}
+                'class'=>$class, 'required'=>true, 'pattern' => '[a-z0-9_-]')) !!}
                 @error('slug_' . $language->id)
                 <div class="invalid-feedback">
                     <strong>{{ $message }}</strong>
