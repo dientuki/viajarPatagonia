@@ -14,7 +14,7 @@ return [
   */
 
     //Header
-    'go_to_home' => 'Ir a la pagina principal',
+    'go_to_home' => 'Ir a la página principal',
     'home' => 'inicio',
     'hotels' => 'hoteles',
     'cars' => 'autos',
@@ -36,16 +36,16 @@ return [
 
     //Sidebar
     'another_package' => 'otros paquetes',
-    'another_excursion' => 'otros excursion',
-    'another_cruise' => 'otros crucero',
+    'another_excursion' => 'otras excursiones',
+    'another_cruise' => 'otros cruceros',
     'detail_package' => 'package detail',
-    'detail_excursion' => 'excursion detail',
+    'detail_excursion' => 'excursin detail',
     'detail_cruise' => 'cruise detail',
 
     //Inquiries
     'name' => 'nombre',
     'email' => 'email',
-    'phone' => 'telefono',
+    'phone' => 'teléfono',
     'departure' => 'fecha de salida',
     'adult' => 'adultos',
     'child' => 'infantes',
