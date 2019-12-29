@@ -110,4 +110,5 @@ return [
     'productPlaceholder' => 'Seleccione un producto',
     'languagePlaceholder' => 'Seleccione un lenguage',
     'readPlaceholder' => 'Seleccione un estado',    
+    'action' => 'acción'
 ];
