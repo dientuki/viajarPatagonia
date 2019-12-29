@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Pages;
+use App\Http\Helpers\Helpers;
 use App\Translations\Language;
 use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Model;
@@ -63,10 +64,6 @@ class Pages extends Model
       return abort(404);
     }
 
-    static function getPage($slug) {
-
-    }
-
     static function getLastOrder() {
       return Pages::orderBy('order', 'DESC')
         ->limit(1)
@@ -89,4 +86,24 @@ class Pages extends Model
 
       return $pages->get();      
     }
+
+    static function getShow($slug) {
+      $pages = Pages::select('pages_translation.title', 'pages_translation.body');
+      $pages->join("pages_translation", 'pages.id', '=', "pages_translation.fk_page");
+      $pages->join("languages", 'languages.id', '=', "pages_translation.fk_language");
+      $pages->where([
+        ['languages.iso', '=', App::getLocale()],
+        ['pages_translation.slug', '=', $slug]
+      ]);
+
+      return $pages->get()->first();      
+    }    
+
+    public function getBodyHtmlAttribute() {
+      return Helpers::draft2html($this->attributes['body']);
+    }   
+    
+    public function getDescAttribute() {
+      return strip_tags(Helpers::draft2html($this->attributes['body']));
+    }     
   }
