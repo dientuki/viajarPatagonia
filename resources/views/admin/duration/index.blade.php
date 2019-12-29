@@ -2,7 +2,7 @@
 
 @section ('content')
 
-<div class="header-sticky row">
+<div class="header-sticky row has-FS">
   <div class="col">{{ ucfirst(__('fields.duration')) }}</div>
 
   @include ('admin/widgets/order')

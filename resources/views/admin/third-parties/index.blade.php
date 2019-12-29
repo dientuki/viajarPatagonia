@@ -4,7 +4,7 @@
 
 @section ('content')
 
-<div class="header-sticky row">
+<div class="header-sticky row has-FS">
   <div class="col">{{ ucfirst(trans_choice('fields.thirdParty', 2)) }}</div>
 
   @include ('admin/widgets/order')

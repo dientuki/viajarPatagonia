@@ -9,7 +9,7 @@
 </div>
 
 @if (isset($pages))
-<table class="table table-striped table-bordered table-hover table-sm">
+<table class="table table-striped table-bordered table-hover table-sm sortable">
     <thead class="thead-dark">
         <tr>
         @foreach ($languages as $language)
