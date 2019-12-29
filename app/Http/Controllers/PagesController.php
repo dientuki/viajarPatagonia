@@ -2,12 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Currency;
-use App\Packages;
-use App\Excursions;
-use App\Cruiseships;
-use App\Http\Helpers\Helpers;
-use App\Translations\Language;
+use App\Pages;
 use App\Http\Controllers\Controller;
 
 class pagesController extends Controller
@@ -17,8 +12,10 @@ class pagesController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function show()
+    public function show($locale, $slug)
     {
+      $page = Pages::getShow($slug);
 
+      return view('front/pages/index', compact('page'));
     }
 }
