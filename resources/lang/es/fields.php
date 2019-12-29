@@ -26,7 +26,7 @@ return [
     'code' => 'código',
     'currency' => 'moneda|monedas',
     'amount' => 'cambio',
-    'amount_long' => 'Cambio con respecto al dolar',
+    'amount_long' => 'Cambio con respecto al dólar',
 
     // Lenguaje
     'language' => 'lenguaje|lenguajes',
@@ -34,8 +34,8 @@ return [
     
     // FK lenguajes
     'fk_language_1' => 'lenguaje español',
-    'fk_language_2' => 'lenguaje ingles',
-    'fk_language_3' => 'lenguaje portugues',
+    'fk_language_2' => 'lenguaje inglés',
+    'fk_language_3' => 'lenguaje portugués',
 
     // Tipo de cruceros
     'cruiseshipType' => 'tipo de crucero|tipo de cruceros',
@@ -54,11 +54,11 @@ return [
     'discount' => 'descuento',
 
     // Tipo de excursiones
-    'excursionType' => 'tipo de excursion|tipo de excursiones',
-    'excursionType_select_placeholder' => 'Seleccione un tipo de excursion...',
+    'excursionType' => 'tipo de excursión|tipo de excursiones',
+    'excursionType_select_placeholder' => 'Seleccione un tipo de excursión...',
 
     // Excursiones
-    'excursion' => 'excursion|excursiones',    
+    'excursion' => 'excursión|excursiones',    
 
     // Paquetes
     'package' => 'paquete|paquetes', 
@@ -75,7 +75,7 @@ return [
 
     // Duracion
     'duration' => 'duración',
-    'duration_select_placeholder' => 'Seleccione una duracion..',
+    'duration_select_placeholder' => 'Seleccione una duración..',
 
     // Slider
     'homeslider' => 'slider de la home',
@@ -89,11 +89,11 @@ return [
 
     // Consultas
     'inquiry' => 'consulta|consultas',
-    'is_readed' => 'leido',
+    'is_readed' => 'leído',
     'product' => 'producto',
     'comment' => 'comentario',
     'date' => 'fecha',
-    'phone' => 'telefono',
+    'phone' => 'teléfono',
     'departure' => 'fecha de salida',
     'adult' => 'adultos',
     'child' => 'niños',
@@ -103,7 +103,7 @@ return [
     'thirdParty' => 'código de tercero|códigos de terceros',
 
     //pages
-    'page' => 'pagina|paginas',
+    'page' => 'página|paginas',
 
     //
     'all' => 'todos',
