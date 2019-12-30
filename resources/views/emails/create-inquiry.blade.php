@@ -1,21 +1,11 @@
-<p>
-  Enhorabuena! {{ $valid['name'] }}
-</p>
-<p>
-  Enhorabuena! {{ $valid['email'] }}
-</p>
-<p>
-  Enhorabuena! {{ $valid['phone'] }}
-</p>
-<p>
-  Enhorabuena! {{ $valid['departure'] }}
-</p>
-<p>
-  Enhorabuena! {{ $valid['adult'] }}
-</p>
-<p>
-  Enhorabuena! {{ $valid['child'] }}
-</p>
-<p>
-  Enhorabuena! {{ $valid['comment'] }}
-</p>
+<?php use App\Http\Helpers\Helpers; ?>
+<div>
+  Nombre: {{ $valid['name'] }} <br />
+  Email: {{ $valid['email'] }} <br />
+  Telefono: {{ $valid['phone'] }} <br />
+  Fecha de salida: {{ $valid['departure'] }} <br />
+  Adultos: {{ $valid['adult'] }}, Niños: {{ $valid['child'] }}
+  Producto: {{ Helpers::product_title($valid) }}
+  Comentario: <br />
+  {{ $valid['comment'] }}
+</div>
