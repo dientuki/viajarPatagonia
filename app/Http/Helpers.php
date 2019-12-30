@@ -240,15 +240,27 @@ class Helpers {
   }
 
   static function product_title($inquiry) {
-    switch ($inquiry->product) {
+    $product = false;
+    $id = false;
+
+    if (isset($inquiry->product)) {
+      $product = $inquiry->product;
+      $id = $inquiry->product_id;
+    } elseif (isset($inquiry['product'])) {
+      $product = $inquiry['product'];
+      $id = $inquiry['product_id'];
+    }
+
+
+    switch ($product) {
       case 'cruise':
-        $title = CruiseshipsTranslation::getName($inquiry->product_id);
+        $title = CruiseshipsTranslation::getName($id);
       break;
       case 'excursion':
-        $title = ExcursionsTranslation::getName($inquiry->product_id);
+        $title = ExcursionsTranslation::getName($id);
       break;
       case 'package':
-        $title = PackageTranslation::getName($inquiry->product_id);
+        $title = PackageTranslation::getName($id);
       break;
     }
     
