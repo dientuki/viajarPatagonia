@@ -15,7 +15,7 @@
         @foreach ($languages as $language)
             <th>{{$language->language}}</th>
         @endforeach
-        <th class="column-action">Accion</th>
+        <th class="column-action">{{ ucfirst(__('fields.action')) }}</th>
         </tr>        
     </thead>
     <tbody>

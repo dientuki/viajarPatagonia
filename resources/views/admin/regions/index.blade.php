@@ -13,7 +13,7 @@
     <thead class="thead-dark">
         <tr>
             <th>{{ ucfirst(trans_choice('fields.region',1)) }}</th>
-            <th class="column-action">Accion</th>
+            <th class="column-action">{{ ucfirst(__('fields.action')) }}</th>
         </tr>
     </thead>
     <tbody>
