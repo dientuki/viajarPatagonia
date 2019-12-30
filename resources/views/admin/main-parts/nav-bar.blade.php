@@ -28,9 +28,9 @@
           <div class="main-nav__title">{{ ucfirst(trans_choice('fields.cruiseship', 2)) }}</div>
         </div>
         <ul class="main-nav__submenu">
-          <li class="main-nav__li {{ Helpers::sub_menu('cruiseships-types') }}"><a href="{{route('admin.cruiseships-types.index')}}" class="main-nav__link">{{ ucfirst(__('buttons.show')) }} {{ trans_choice('fields.cruiseshipType', 2) }}</a></li>  
           <li class="main-nav__li {{ Helpers::sub_menu('cruiseships', 'create') }}"><a href="{{route('admin.cruiseships.index')}}" class="main-nav__link">{{ ucfirst(__('buttons.show')) }} {{ trans_choice('fields.cruiseship', 2) }}</a></li>
           <li class="main-nav__li {{ Helpers::sub_menu_only('cruiseships.create') }}"><a href="{{route('admin.cruiseships.create')}}" class="main-nav__link">{{ ucfirst(trans_choice('buttons.new', 1))}} {{ trans_choice('fields.cruiseship', 1) }}</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('cruiseships-types') }}"><a href="{{route('admin.cruiseships-types.index')}}" class="main-nav__link">{{ ucfirst(__('buttons.show')) }} {{ trans_choice('fields.cruiseshipType', 2) }}</a></li>            
         </ul>
       </li>
 
@@ -41,11 +41,11 @@
           <div class="main-nav__title">{{ ucfirst(trans_choice('fields.excursion', 2)) }}</div>
         </div>
         <ul class="main-nav__submenu">
-          <li class="main-nav__li {{ Helpers::sub_menu('availability') }}"><a href="{{route('admin.availability.index')}}" class="main-nav__link">{{ ucfirst(__('buttons.show')) }} {{ trans_choice('fields.availability', 1) }}</a></li>  
-          <li class="main-nav__li {{ Helpers::sub_menu('duration') }}"><a href="{{route('admin.duration.index')}}" class="main-nav__link ">{{ ucfirst(__('buttons.show')) }} {{ __('fields.duration') }}</a></li>
-          <li class="main-nav__li {{ Helpers::sub_menu('excursions-types') }}"><a href="{{route('admin.excursions-types.index')}}" class="main-nav__link ">{{ ucfirst(__('buttons.show')) }} {{ trans_choice('fields.excursionType', 2) }}</a></li>
           <li class="main-nav__li {{ Helpers::sub_menu('excursions', 'create') }}"><a href="{{route('admin.excursions.index')}}" class="main-nav__link ">{{ ucfirst(__('buttons.show')) }} {{ trans_choice('fields.excursion', 2) }}</a></li>
           <li class="main-nav__li {{ Helpers::sub_menu_only('excursions.create') }}"><a href="{{route('admin.excursions.create')}}" class="main-nav__link ">{{ ucfirst(trans_choice('buttons.new', 2))}} {{ trans_choice('fields.excursion', 1) }}</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('duration') }}"><a href="{{route('admin.duration.index')}}" class="main-nav__link ">{{ ucfirst(__('buttons.show')) }} {{ __('fields.duration') }}</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('availability') }}"><a href="{{route('admin.availability.index')}}" class="main-nav__link">{{ ucfirst(__('buttons.show')) }} {{ trans_choice('fields.availability', 1) }}</a></li>  
+          <li class="main-nav__li {{ Helpers::sub_menu('excursions-types') }}"><a href="{{route('admin.excursions-types.index')}}" class="main-nav__link ">{{ ucfirst(__('buttons.show')) }} {{ trans_choice('fields.excursionType', 2) }}</a></li>
         </ul>
       </li>   
       
@@ -73,13 +73,13 @@
         </div>
         <ul class="main-nav__submenu">
           <li class="main-nav__li {{ Helpers::sub_menu('users') }}"><a href="{{route('admin.users.index')}}" class="main-nav__link">{{ ucfirst(trans_choice('fields.user', 2)) }}</a></li>
-          <li class="main-nav__li {{ Helpers::sub_menu('pages') }}"><a href="{{route('admin.pages.index')}}" class="main-nav__link">Paginas</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('pages') }}"><a href="{{route('admin.pages.index')}}" class="main-nav__link">{{ ucfirst(trans_choice('fields.page', 2)) }}</a></li>
           <li class="main-nav__li {{ Helpers::sub_menu('regions') }}"><a href="{{route('admin.regions.index')}}" class="main-nav__link">{{ ucfirst(trans_choice('fields.region', 2)) }}</a></li>  
           <li class="main-nav__li {{ Helpers::sub_menu('destinations') }}"><a href="{{route('admin.destinations.index')}}" class="main-nav__link">{{ ucfirst(trans_choice('fields.destination', 2)) }}</a></li>
           <li class="main-nav__li {{ Helpers::sub_menu('languages') }}"><a href="{{route('admin.languages.index')}}" class="main-nav__link">{{ ucfirst(trans_choice('fields.language', 2)) }}</a></li>  
           <li class="main-nav__li {{ Helpers::sub_menu('currencies') }}"><a href="{{route('admin.currencies.index')}}" class="main-nav__link">{{ ucfirst(trans_choice('fields.currency', 2)) }}</a></li>
-          <li class="main-nav__li {{ Helpers::sub_menu('third-parties') }}"><a href="{{route('admin.third-parties.index')}}" class="main-nav__link">Third party</a></li>
-          <li class="main-nav__li {{ Helpers::sub_menu('currencies') }}"><a href="{{route('admin.currencies.index')}}" class="main-nav__link">Footer</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('third-parties') }}"><a href="{{route('admin.third-parties.index')}}" class="main-nav__link">{{ ucfirst(trans_choice('fields.thirdParty', 2)) }}</a></li>
+          <li class="main-nav__li {{ Helpers::sub_menu('currencies') }}"><a href="{{route('admin.currencies.index')}}" class="main-nav__link">{{ ucfirst(__('buttons.edit')) }} footer</a></li>
         </ul>
       </li>    
       
