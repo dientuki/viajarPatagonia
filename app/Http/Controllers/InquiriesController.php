@@ -39,12 +39,20 @@ class InquiriesController extends Controller
         }
 
       } else {
-        Mail::to('dientuki@gmail.com')->send(new CreateInquiry($validator->valid()));
         $status = 'success';
         $message = '';
-        //Inquiry::create($validator->valid());
+        Inquiry::create($validator->valid());
+        $this->sendMail($validator->valid());
       }
       
       return response()->json( array('status' => $status, 'message' => $message) );
+    }
+
+    private function sendMail($valid) {
+      $email = Helpers::getThirdParty('inquiry', false);
+
+      if ($email != false) {
+        Mail::to($email)->send(new CreateInquiry($valid));
+      }
     }
 }
