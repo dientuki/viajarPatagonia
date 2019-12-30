@@ -14,7 +14,7 @@
             <th>{{ ucfirst(__('fields.iso')) }} ISO 4217</th>
             <th>{{ ucfirst(trans_choice('fields.currency',1)) }}</th>
             <th>{{ ucfirst(__('fields.amount')) }}</th>
-            <th class="column-action">Accion</th>
+            <th class="column-action">{{ ucfirst(__('fields.action')) }}</th>
         </tr>
     </thead>
     <tbody>
