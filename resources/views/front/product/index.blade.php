@@ -43,7 +43,7 @@
         @include('front.product.slider')
         <div class="layout-aside  grid-noGutter">
           @include('front.product.price')
-          <div class="product__summary">
+          <div class="product__summary col-12">
             {!! nl2br($product->summary) !!}
           </div>
           <div class="bold button button__cta col-bottom openOverlay">{{ ucfirst(__('front.cta')) }}</div>
