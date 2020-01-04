@@ -76,7 +76,7 @@
   }
 
   path {
-    fill: map-get($colors, 'sliderArrow');
+    fill: map-get($colors, "sliderArrow");
   }
 }
 
@@ -125,5 +125,18 @@
 
   &:before {
     transform: rotate(-35deg);
+  }
+}
+
+@media (max-width: em(970)) {
+  .header-slider__content {
+    left: 0;
+    margin: 0 auto;
+    right: 0;
+  }
+
+  .slider-controls-prev,
+  .slider-controls-next {
+    @include hidden();
   }
 }
