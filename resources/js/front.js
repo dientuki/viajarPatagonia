@@ -3,7 +3,7 @@ import lzl from './modules/lazyload/native';
 __webpack_public_path__ = `${window.location.protocol}//${window.location.host}/dist/`;
 
 const settings_lzl = {
-  data_src: 'original',
+  data_src: 'src',
   elements_selector: '.lzl'
 };
 
