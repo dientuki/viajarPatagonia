@@ -14,8 +14,8 @@ return [
     */
 
     // Region
-    'region' => 'region|regiones',
-    'region_select_placeholder' => 'Seleccione una region...',
+    'region' => 'región|regiones',
+    'region_select_placeholder' => 'Seleccione una región...',
 
     // Destino
     'destination' => 'destino|destinos',
@@ -26,7 +26,7 @@ return [
     'code' => 'código',
     'currency' => 'moneda|monedas',
     'amount' => 'cambio',
-    'amount_long' => 'Cambio con respecto al dolar',
+    'amount_long' => 'Cambio con respecto al dólar',
 
     // Lenguaje
     'language' => 'lenguaje|lenguajes',
@@ -34,8 +34,8 @@ return [
     
     // FK lenguajes
     'fk_language_1' => 'lenguaje español',
-    'fk_language_2' => 'lenguaje ingles',
-    'fk_language_3' => 'lenguaje portugues',
+    'fk_language_2' => 'lenguaje inglés',
+    'fk_language_3' => 'lenguaje portugués',
 
     // Tipo de cruceros
     'cruiseshipType' => 'tipo de crucero|tipo de cruceros',
@@ -54,11 +54,11 @@ return [
     'discount' => 'descuento',
 
     // Tipo de excursiones
-    'excursionType' => 'tipo de excursion|tipo de excursiones',
-    'excursionType_select_placeholder' => 'Seleccione un tipo de excursion...',
+    'excursionType' => 'tipo de excursión|tipo de excursiones',
+    'excursionType_select_placeholder' => 'Seleccione un tipo de excursión...',
 
     // Excursiones
-    'excursion' => 'excursion|excursiones',    
+    'excursion' => 'excursión|excursiones',    
 
     // Paquetes
     'package' => 'paquete|paquetes', 
@@ -74,34 +74,41 @@ return [
     'availability_select_placeholder' => 'Seleccione una disponibilidad..',
 
     // Duracion
-    'duration' => 'duracion',
-    'duration_select_placeholder' => 'Seleccione una duracion..',
+    'duration' => 'duración',
+    'duration_select_placeholder' => 'Seleccione una duración..',
 
     // Slider
     'homeslider' => 'slider de la home',
     'slider' => 'slide',
     'order' => 'orden',
     'title' => 'titulo',
-    'description' => 'descripcion',
+    'description' => 'descripción',
     'hotel' => 'hotel',
     'url' => 'url',
     'stars' => 'estrellas',
 
     // Consultas
     'inquiry' => 'consulta|consultas',
-    'is_readed' => 'leido',
+    'is_readed' => 'leído',
     'product' => 'producto',
     'comment' => 'comentario',
     'date' => 'fecha',
-    'phone' => 'telefono',
+    'phone' => 'teléfono',
     'departure' => 'fecha de salida',
     'adult' => 'adultos',
     'child' => 'niños',
     'timestamp' => 'fecha',
 
+    //thirdParty
+    'thirdParty' => 'código de tercero|códigos de terceros',
+
+    //pages
+    'page' => 'página|páginas',
+
     //
     'all' => 'todos',
     'productPlaceholder' => 'Seleccione un producto',
     'languagePlaceholder' => 'Seleccione un lenguage',
-    'readPlaceholder' => 'Seleccione un estado',
+    'readPlaceholder' => 'Seleccione un estado',    
+    'action' => 'acción'
 ];

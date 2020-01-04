@@ -2,7 +2,7 @@
 
 @section ('content')
 
-<div class="header-sticky row">
+<div class="header-sticky row has-FS">
   <div class="col">{{ ucfirst(__('fields.duration')) }}</div>
 
   @include ('admin/widgets/order')
@@ -15,7 +15,7 @@
         @foreach ($languages as $language)
             <th>{{$language->language}}</th>
         @endforeach
-        <th class="column-action">Accion</th>
+        <th class="column-action">{{ ucfirst(__('fields.action')) }}</th>
         </tr>        
     </thead>
     <tbody>

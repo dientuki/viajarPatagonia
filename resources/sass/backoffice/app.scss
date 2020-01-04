@@ -74,7 +74,7 @@ textarea.form-control {
   background: #f8fafc;
   box-shadow: 0 0 (10rem/$fs) (3rem/$fs) rgba(#f8fafc, 1);
   border-radius: 0 0 (10rem/$fs) (10rem/$fs);
-  z-index: 9;
+  z-index: 900;
   margin: 0 0 (10rem/$fs) 0;
 }
 
@@ -150,7 +150,9 @@ li {
 }
 
 .tag-list {
-  min-height: (23rem/$fs);
+  min-height: (37rem/$fs);
+  padding-bottom: 0;
+  height: auto;
 
   .tag-list-item {
     display: inline-block;
@@ -158,11 +160,11 @@ li {
     background: $blue;
     border-radius: (5rem/$fs);
     position: relative;
-    margin-right: (12rem/$fs);
+    margin: 0 (12rem/$fs) (6rem/$fs) 0;
     cursor: pointer;
 
     &:last-child {
-      margin: 0;
+      margin-right: 0;
     }
 
     &:before {

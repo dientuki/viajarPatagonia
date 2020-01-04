@@ -62,8 +62,15 @@ if (document.querySelector('#products') !== null) {
   });
 }
 
-if (document.querySelector('.header-sticky') !== null) {
-  import(/* webpackChunkName: "urlSelect" */ './modules/filterSort/filterSort').then((module) => {
+// Slug
+if (document.querySelectorAll('.has-slug').length > 0) {
+  import(/* webpackChunkName: "slug" */ './modules/slug/slug').then((module) => {
+    module.slugify(document.querySelectorAll('.has-slug'));
+  });
+}
+
+if (document.querySelector('.has-FS') !== null) {
+  import(/* webpackChunkName: "filterSort" */ './modules/filterSort/filterSort').then((module) => {
     module.filter(document.querySelectorAll('.filter'));
     module.sort(document.querySelector('.sort'));
   });

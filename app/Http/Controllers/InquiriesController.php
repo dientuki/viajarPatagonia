@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Inquiry;
+use App\Mail\CreateInquiry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class InquiriesController extends Controller
@@ -40,8 +42,17 @@ class InquiriesController extends Controller
         $status = 'success';
         $message = '';
         Inquiry::create($validator->valid());
+        $this->sendMail($validator->valid());
       }
       
       return response()->json( array('status' => $status, 'message' => $message) );
+    }
+
+    private function sendMail($valid) {
+      $email = Helpers::getThirdParty('inquiry', false);
+
+      if ($email != false) {
+        Mail::to($email)->send(new CreateInquiry($valid));
+      }
     }
 }

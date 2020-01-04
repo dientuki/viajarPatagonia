@@ -11,7 +11,7 @@ use App\Translations\CruiseshipsTranslation;
 
 @section ('content')
 
-  <div class="header-sticky row">
+  <div class="header-sticky row has-FS">
     <div class="col">{{ ucfirst(trans_choice('fields.inquiry', 2)) }}</div>
     
     <div class="col form-inline row">
@@ -57,7 +57,7 @@ use App\Translations\CruiseshipsTranslation;
             <th>{{ ucfirst(trans_choice('fields.language',1)) }}</th>
             <th>{{ ucfirst(__('fields.comment')) }}</th>
             <th>{{ ucfirst(__('fields.date')) }}</th>            
-            <th class="column-action">Accion</th>
+            <th class="column-action">{{ ucfirst(__('fields.action')) }}</th>
         </tr>
     </thead>
     <tbody>

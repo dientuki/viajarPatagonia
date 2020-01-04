@@ -2,7 +2,7 @@
 
 @section ('content')
 
-<div class="header-sticky row">
+<div class="header-sticky row has-FS">
   <div class="col">{{ ucfirst(trans_choice('fields.user', 2)) }}</div>
 
   @include ('admin/widgets/order')
@@ -14,7 +14,7 @@
         <tr>
             <th>{{ ucfirst(__('fields.name')) }}</th>
             <th>{{ ucfirst(__('fields.email')) }}</th>
-            <th class="column-action">Accion</th>
+            <th class="column-action">{{ ucfirst(__('fields.action')) }}</th>
         </tr>
     </thead>
     <tbody>

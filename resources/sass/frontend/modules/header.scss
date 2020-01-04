@@ -120,6 +120,11 @@ $midTime: $totalTime / 2;
   }
 }
 
+#product {
+  position: relative;
+  top: rem(-90);
+}
+
 .header {
   height: rem(90);
   position: sticky;

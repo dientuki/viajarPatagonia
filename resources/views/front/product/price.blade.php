@@ -10,5 +10,5 @@
     <div class="col-middle bold price__value price__value--regular">{{ $price->iso }} {{ $price->discount }}</div>
   </div>  
 @else
-  <div class="bold price__value price__value--full">{{ $price->iso }} {{ $price->price }}</div>
+  <div class="bold price__value price__value--full col-12">{{ $price->iso }} {{ $price->price }}</div>
 @endif

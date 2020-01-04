@@ -3,10 +3,12 @@
 namespace App\Http\Helpers;
 
 use Request;
+use App\Pages;
 use App\Inquiry;
 use App\Packages;
 use App\Excursions;
 use App\Cruiseships;
+use App\ThirdParties;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
 use App\Translations\PackageTranslation;
@@ -238,15 +240,27 @@ class Helpers {
   }
 
   static function product_title($inquiry) {
-    switch ($inquiry->product) {
+    $product = false;
+    $id = false;
+
+    if (isset($inquiry->product)) {
+      $product = $inquiry->product;
+      $id = $inquiry->product_id;
+    } elseif (isset($inquiry['product'])) {
+      $product = $inquiry['product'];
+      $id = $inquiry['product_id'];
+    }
+
+
+    switch ($product) {
       case 'cruise':
-        $title = CruiseshipsTranslation::getName($inquiry->product_id);
+        $title = CruiseshipsTranslation::getName($id);
       break;
       case 'excursion':
-        $title = ExcursionsTranslation::getName($inquiry->product_id);
+        $title = ExcursionsTranslation::getName($id);
       break;
       case 'package':
-        $title = PackageTranslation::getName($inquiry->product_id);
+        $title = PackageTranslation::getName($id);
       break;
     }
     
@@ -289,7 +303,15 @@ class Helpers {
       
       return route($data[0], $routeParams);
     }
+  }
 
+  static function getThirdParty($key, $default = false) {
+    $element = ThirdParties::getValue($key);
 
+    return $element == null ? $default : $element;
+  }
+
+  static function getFooterPages() {
+    return Pages::getPages();
   }
 }

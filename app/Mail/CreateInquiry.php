@@ -7,19 +7,19 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class CreateUser extends Mailable
+class CreateInquiry extends Mailable
 {
     use Queueable, SerializesModels;
-    public $user;
-    
+    public $valid;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($valid)
     {
-        $this->user = $user;
+        $this->valid = $valid;
     }
 
     /**
@@ -29,6 +29,6 @@ class CreateUser extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.create-user');
+        return $this->subject('Nueva consulta')->view('emails.create-inquiry');
     }
 }

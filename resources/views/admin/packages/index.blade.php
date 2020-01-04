@@ -4,7 +4,7 @@
 
 @section ('content')
 
-<div class="header-sticky row">
+<div class="header-sticky row has-FS">
   <div class="col">{{ ucfirst(trans_choice('fields.package', 2)) }}</div>
 
   @include ('admin/widgets/order')
@@ -18,7 +18,7 @@
             <th>{{$language->language}}</th>
         @endforeach
         <th class="column-active">{{ ucfirst(__('fields.active')) }}</th>
-        <th class="column-action">Accion</th>        
+        <th class="column-action">{{ ucfirst(__('fields.action')) }}</th>        
         </tr>        
     </thead>
     <tbody>
