@@ -1,5 +1,11 @@
 .aspect-homeslider {
-  padding-bottom: (580rem/$fs);
+  padding-bottom: rem(580);
+
+  img {
+    left: 50%;
+    transform: translateX(-50%);
+    width: rem(2000);
+  }
 }
 
 .header-slider {
