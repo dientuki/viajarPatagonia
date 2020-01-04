@@ -146,3 +146,13 @@
     @include hidden();
   }
 }
+
+@media (max-width: em(970)) {
+  .header-slider__content {
+    width: calc(100% - #{rem(20)});
+    bottom: 0;
+    top: inherit;
+    transform: none;
+    box-sizing: border-box;
+  }
+}
