@@ -68,6 +68,12 @@
 
 .aspect-slider {
   padding-bottom: (21%/38*100);
+
+  img {
+    left: 50%;
+    transform: translateX(-50%);
+    width: rem(2000);
+  }
 }
 
 .aspect-preview {

@@ -17,7 +17,7 @@
     ?>
     <div class="col-{{$col}}_lg-4_sm-12">
       <figure class="aspect-preview list__figure">
-        <img src="about:blank" data-original="{{ $img }}" class="lzl" />
+        <img src="about:blank" data-src="{{ $img }}" class="lzl" />
       </figure>
     </div>
     <div class="col_sm-12">

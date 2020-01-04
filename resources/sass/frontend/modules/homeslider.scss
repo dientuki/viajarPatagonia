@@ -18,7 +18,7 @@
     top: 50%;
     transform: translateY(-50%);
     right: 15%;
-    width: (640rem/$fs);
+    width: (610rem/$fs);
     text-align: center;
   }
 
@@ -74,6 +74,10 @@
     width: 65%;
     height: 65%;
   }
+
+  path {
+    fill: map-get($colors, "sliderArrow");
+  }
 }
 
 .slider-controls {
@@ -121,5 +125,18 @@
 
   &:before {
     transform: rotate(-35deg);
+  }
+}
+
+@media (max-width: em(970)) {
+  .header-slider__content {
+    left: 0;
+    margin: 0 auto;
+    right: 0;
+  }
+
+  .slider-controls-prev,
+  .slider-controls-next {
+    @include hidden();
   }
 }

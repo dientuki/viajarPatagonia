@@ -72,7 +72,7 @@
 
       @if ($product->map != '')
         <div class="aspect-slider product__map">
-          <iframe src="about:blank" data-original="{{ $product->map }}" class="lzl"></iframe>
+          <iframe src="about:blank" data-src="{{ $product->map }}" class="lzl"></iframe>
         </div>
       @endif
       

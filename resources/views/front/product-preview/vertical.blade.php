@@ -13,7 +13,7 @@
       }
     ?>
     <figure class="aspect-preview list__figure">
-      <img src="about:blank" data-original="{{ $img }}" class="lzl" />
+      <img src="about:blank" data-src="{{ $img }}" class="lzl" />
     </figure>
       <h1 class="list__title bold">
         <a href="{{route($route, $routeParams)}}#product" class="list_link">{{ $product->name }}</a>
