@@ -90,12 +90,17 @@
     &__links {
       flex-basis: 100%;
       margin-bottom: 1em;
+      padding-right: rem(15);
     }
   }
 }
 
 @media (max-width: em(470)) {
   .footer {
+    &__links {
+      padding: 0;
+    }
+
     &__li,
     &__column,
     &__afip {
@@ -107,9 +112,13 @@
       margin: 1em 0 0;
     }
 
-    &__afip .fullblock {
-      width: rem(55);
-      height: rem(75);
+    &__afip {
+      flex-basis: auto;
+
+      .fullblock {
+        width: rem(55);
+        height: rem(75);
+      }
     }
   }
 }
