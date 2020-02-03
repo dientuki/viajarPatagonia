@@ -50,6 +50,7 @@ return [
     'adult' => 'adultos',
     'child' => 'infantes',
     'comments' => 'comentarios',    
+    'nights' => 'nights',
 
     //Home
     'packages' => 'paquetes',
