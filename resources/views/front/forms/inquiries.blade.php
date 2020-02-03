@@ -23,10 +23,28 @@
   </div>
   
   <div class="col">
+
+  </div>
+
+  <div class="col grid">  
+
+    <div class="col-6">    
+
       <label class="label" for="departure">{{ ucfirst(__('front.departure')) }}</label>
       <input id="departure" type="text" class="form-control" name="departure" required placeholder="31/12/2012" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}" />
       <div class="invalid-feedback"></div> 
-  </div>
+
+    </div>  
+
+    <div class="col-6">  
+
+      <label class="label" for="nights">{{ ucfirst(__('front.nights')) }}</label>
+      <input id="nights" type="number" min="0" max="10" class="form-control" name="nights" required placeholder="{{ ucfirst(__('front.nights')) }}" value="0" />
+      <div class="invalid-feedback"></div>
+
+    </div>     
+
+  </div>  
   
   <div class="col grid">  
 

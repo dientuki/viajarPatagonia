@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Inquiry;
 use App\Mail\CreateInquiry;
 use Illuminate\Http\Request;
+use App\Http\Helpers\Helpers;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -24,8 +25,9 @@ class InquiriesController extends Controller
         'phone' => 'required',
         'departure' => 'required|date_format:d/m/Y',
         'adult' => 'required|integer',
-        'child' => 'integer|integer',
-        'comment' => 'required|string'
+        'child' => 'integer|nullable',
+        'comment' => 'required|string',
+        'nights' => 'integer|nullable'
       ];
 
       $validator = Validator::make($request->all(), $rules);

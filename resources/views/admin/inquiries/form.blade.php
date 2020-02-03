@@ -42,7 +42,7 @@
           <strong>{{ $message }}</strong>
         </div>
         @enderror
-      </div>
+      </div> 
 
       <div class="form-group col-2">
         <?php $class = $errors->has('phone') != null ? 'form-control is-invalid' : 'form-control'; ?>
@@ -65,6 +65,18 @@
         </div>
         @enderror
       </div>      
+
+      <div class="form-group col-1">
+        <?php $class = $errors->has('nights') != null ? 'form-control is-invalid' : 'form-control'; ?>
+        {!! Form::label('nights', ucfirst(__('fields.nights'))) !!}
+        {!! Form::number('nights', null, array('placeholder' => ucfirst(__('fields.nights')), 'class'=>$class, 'min' => 0, 'max' => 255)) !!}
+        @error('nights')
+        <div class="invalid-feedback">
+          <strong>{{ $message }}</strong>
+        </div>
+        @enderror
+      </div>     
+            
     </div>     
 
     <div class="form-row">
