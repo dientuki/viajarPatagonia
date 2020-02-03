@@ -21,9 +21,11 @@ use Illuminate\Support\Facades\Route;
             <li class="navigation__li">
               <a class="navigation__link" href="#">{{ ucfirst(__('front.hotels')) }}</a>
             </li>
+            <!--
             <li class="navigation__li">
               <a class="navigation__link" href="#">{{ ucfirst(__('front.cars')) }}</a>
             </li>
+            -->
           </ul>
         </nav>
 
