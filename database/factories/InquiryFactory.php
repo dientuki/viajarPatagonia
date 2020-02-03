@@ -29,6 +29,7 @@ $factory->define(Inquiry::class, function (Faker $faker) {
       'product' => $products[rand(0,2)],
       'product_id' => rand(1,2),
       'fk_language' => rand(1,3),
-      'is_readed' => rand(0,1)
+      'is_readed' => rand(0,1),
+      'nights' => rand(0,10)
     ];
 });
