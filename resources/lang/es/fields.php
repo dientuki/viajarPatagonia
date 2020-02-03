@@ -98,6 +98,7 @@ return [
     'adult' => 'adultos',
     'child' => 'niños',
     'timestamp' => 'fecha',
+    'nights' => 'noches',
 
     //thirdParty
     'thirdParty' => 'código de tercero|códigos de terceros',

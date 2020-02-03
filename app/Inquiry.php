@@ -28,7 +28,7 @@ class Inquiry extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'phone', 'adult', 'child', 'departure', 'timestamp', 'product', 'product_id', 'fk_language', 'comment'];     
+    protected $fillable = ['name', 'email', 'phone', 'adult', 'child', 'departure', 'timestamp', 'product', 'product_id', 'fk_language', 'comment', 'nights'];     
 
     public function getTimestampAttribute() {
       $current = explode('@', Route::currentRouteAction())[1];
@@ -101,7 +101,7 @@ class Inquiry extends Model
 
     static function getEdit($id){
 
-      $result = Inquiry::select('id', 'name', 'email', 'phone', 'adult', 'child', 'departure', 'timestamp', 'product', 'product_id', 'fk_language', 'is_readed', 'comment')
+      $result = Inquiry::select('id', 'name', 'email', 'phone', 'adult', 'child', 'departure', 'timestamp', 'product', 'product_id', 'fk_language', 'is_readed', 'comment', 'nights')
           ->where('id', $id)
           ->get()->first();
   
