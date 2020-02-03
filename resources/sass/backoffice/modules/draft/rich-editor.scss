@@ -34,7 +34,9 @@
   }
   
   .RichEditor-editor .public-DraftEditor-content {
-    min-height: 300px;
+    min-height: 323px;
+    height: 323px;
+    overflow: scroll;
   }
   
   .RichEditor-hidePlaceholder .public-DraftEditorPlaceholder-root {
