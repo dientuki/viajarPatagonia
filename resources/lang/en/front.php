@@ -48,7 +48,7 @@ return [
     'phone' => 'phone',
     'departure' => 'departure',
     'adult' => 'adults',
-    'child' => 'childs',
+    'child' => 'childs (2 to 11 years old)',
     'comments' => 'comments',
     'nights' => 'nights',
 

@@ -19,7 +19,7 @@ class PackagesPricesSeeder extends Seeder
             'is_active' => true,
         ]);
         DB::table('packages_prices')->insert([
-            'fk_currency' => 2,
+            'fk_currency' => 1,
             'fk_package' => 1,
             'price' => '6000',
             'discount' => '5000',
@@ -33,7 +33,7 @@ class PackagesPricesSeeder extends Seeder
             'is_active' => true,            
         ]);
         DB::table('packages_prices')->insert([
-            'fk_currency' => 2,
+            'fk_currency' => 1,
             'fk_package' => 2,
             'price' => '156000',
             'discount' => '13000',

@@ -96,7 +96,7 @@ return [
     'phone' => 'teléfono',
     'departure' => 'fecha de salida',
     'adult' => 'adultos',
-    'child' => 'niños',
+    'child' => 'menores',
     'timestamp' => 'fecha',
     'nights' => 'noches',
 

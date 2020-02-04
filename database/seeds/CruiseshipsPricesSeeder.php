@@ -19,7 +19,7 @@ class CruiseshipsPricesSeeder extends Seeder
             'is_active' => true,
         ]);
         DB::table('cruiseships_prices')->insert([
-            'fk_currency' => 2,
+            'fk_currency' => 1,
             'fk_cruiseship' => 1,
             'price' => '6000',
             'discount' => '5000',
@@ -33,7 +33,7 @@ class CruiseshipsPricesSeeder extends Seeder
             'is_active' => true,            
         ]);
         DB::table('cruiseships_prices')->insert([
-            'fk_currency' => 2,
+            'fk_currency' => 1,
             'fk_cruiseship' => 2,
             'price' => '156000',
             'discount' => '13000',
