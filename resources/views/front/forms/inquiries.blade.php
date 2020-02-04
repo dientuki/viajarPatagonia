@@ -39,7 +39,7 @@
     <div class="col-6">  
 
       <label class="label" for="nights">{{ ucfirst(__('front.nights')) }}</label>
-      <input id="nights" type="number" min="1" max="99" class="form-control" name="nights" required placeholder="{{ ucfirst(__('front.nights')) }}" value="0" />
+      <input id="nights" type="number" min="1" max="99" class="form-control" name="nights" required placeholder="{{ ucfirst(__('front.nights')) }}" value="1" />
       <div class="invalid-feedback"></div>
 
     </div>     
@@ -52,8 +52,8 @@
 
         <label class="label" for="adult">{{ ucfirst(__('front.adult')) }}</label>
         <select required class="form-control" id="adult" name="adult" required>
-          @for ($i = 0; $i <= 11; $i++)
-            <option value="$i">$i</option>
+          @for ($i = 0; $i <= 10; $i++)
+            <option value="{{$i}}">{{$i}}</option>
           @endfor
           <option value="11+">11+</option>
         </select>        
@@ -65,8 +65,8 @@
 
         <label class="label" for="childs">{{ ucfirst(__('front.child')) }}</label>
         <select required class="form-control" id="childs" name="childs" required>
-          @for ($i = 0; $i <= 11; $i++)
-            <option value="$i">$i</option>
+          @for ($i = 0; $i <= 10; $i++)
+            <option value="{{$i}}">{{$i}}</option>
           @endfor
           <option value="11+">11+</option>
         </select>

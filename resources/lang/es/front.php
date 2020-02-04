@@ -48,9 +48,11 @@ return [
     'phone' => 'teléfono',
     'departure' => 'fecha de salida',
     'adult' => 'adultos',
-    'child' => 'infantes',
+    'child' => 'menores (2 a 11 años)',
     'comments' => 'comentarios',    
     'nights' => 'noches',
+
+    'people_regex' => 'de 0 a 11+',
 
     //Home
     'packages' => 'paquetes',

@@ -19,7 +19,7 @@ class ExcursionsPricesSeeder extends Seeder
             'is_active' => true,
         ]);
         DB::table('excursions_prices')->insert([
-            'fk_currency' => 2,
+            'fk_currency' => 1,
             'fk_excursion' => 1,
             'price' => '6000',
             'discount' => '5000',
@@ -33,7 +33,7 @@ class ExcursionsPricesSeeder extends Seeder
             'is_active' => true,            
         ]);
         DB::table('excursions_prices')->insert([
-            'fk_currency' => 2,
+            'fk_currency' => 1,
             'fk_excursion' => 2,
             'price' => '156000',
             'discount' => '13000',
