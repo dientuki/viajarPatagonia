@@ -48,7 +48,7 @@ return [
     'phone' => 'teléfono',
     'departure' => 'fecha de salida',
     'adult' => 'adultos',
-    'child' => 'infantes',
+    'child' => 'crianças (2 a 11 anos)',
     'comments' => 'comentarios',    
     'nights' => 'nights',
 
