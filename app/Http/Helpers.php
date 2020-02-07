@@ -11,6 +11,7 @@ use App\Cruiseships;
 use App\ThirdParties;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
+use App\Translations\PagesTranslation;
 use App\Translations\PackageTranslation;
 use App\Translations\ExcursionsTranslation;
 use App\Translations\CruiseshipsTranslation;
@@ -313,5 +314,9 @@ class Helpers {
 
   static function getFooterPages() {
     return Pages::getPages();
+  }
+
+  static function getPageBySlug($slug, $language) {
+    return PagesTranslation::getSlugByLang($slug, $language);
   }
 }
