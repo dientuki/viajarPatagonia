@@ -57,6 +57,11 @@ use Illuminate\Support\Facades\Route;
             @foreach ($languages as $language)
               <?php $parameters['locale'] = $language->iso; ?>
               <li class="selector__li">
+                <?php
+                  if (Route::currentRouteName() == 'pages') {
+                    $parameters['slug'] = Helpers::getPageBySlug($parameters['slug'], $language->id);
+                  }
+                 ?>
                 <a title="{{ ucfirst(__('front.change_to')) }} {{ __('front.language') }} {{ $language->language }}" href="{{route(Route::currentRouteName(), $parameters )}}">{{ $language->language }}</a>
               </li>
             @endforeach
