@@ -33,7 +33,13 @@ class PagesTranslation extends Model
         ->where('fk_page', $id)
         ->orderBy('fk_language')
         ->get();   
-    }    
+    }  
+    
+    static function getSlugByLang($slug, $language){
+      
+      $pageId = PagesTranslation::where('slug', $slug)->value('fk_page');
+      return PagesTranslation::where('fk_page', $pageId)->where('fk_language', $language)->value('slug');
+    }     
 
     static function getUpdate($where){
 
