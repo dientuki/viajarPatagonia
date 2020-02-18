@@ -32,7 +32,7 @@ return [
     'final' => 'final',
 
     //Call to action
-    'cta' => 'Call to action',
+    'cta' => 'Consultar',
 
     //Sidebar
     'another_package' => 'another paquetes',
