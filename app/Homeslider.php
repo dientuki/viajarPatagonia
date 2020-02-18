@@ -54,7 +54,7 @@ class Homeslider extends Model implements HasMedia
 
       $homeslider->orderBy('order', 'ASC');
       $homeslider->where('homeslider.is_active', 1);
-      $homeslider->where("homeslider_translation.fk_language", '2');
+      $homeslider->where("homeslider_translation.fk_language", session('locale')['id']);
 
       return $homeslider->get();
     }
