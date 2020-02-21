@@ -38,9 +38,9 @@ return [
     'another_package' => 'otros paquetes',
     'another_excursion' => 'otras excursiones',
     'another_cruise' => 'otros cruceros',
-    'detail_package' => 'package detail',
-    'detail_excursion' => 'excursin detail',
-    'detail_cruise' => 'cruise detail',
+    'detail_package' => 'detalle del paquete',
+    'detail_excursion' => 'detalle de la excursión',
+    'detail_cruise' => 'detalle del crucero',
 
     //Inquiries
     'name' => 'nombre',
