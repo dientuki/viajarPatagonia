@@ -25,11 +25,12 @@
     <div class="layout-main">
       <main class="product__content">
         {!! $page->body_html !!}
+        @include('front.forms.contact')
       </main>
     </div>
     
     <aside class="layout-aside aside">
-      aside?
+      
     </aside>
 
   </article>
