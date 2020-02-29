@@ -142,47 +142,6 @@ class PagesController extends Controller
         }
     }
 
-    private function updateCurrencies($id, $data) {
-        $currencies = Currency::getAll();
-        foreach ($currencies as $currency) {
-            if (isset($data['fk_currency_' . $currency->id]) && $data['price_' . $currency->id] != null) {
-
-                $where = array(
-                    ['fk_currency', $data['fk_currency_' . $currency->id]],
-                    ['fk_cruiseship', $id]
-                );
-
-                $pagePrice = CruiseshipsPrices::getUpdate($where);
-
-                if (is_null($pagePrice)) {
-                    CruiseshipsPrices::create([
-                        'fk_currency' => $data['fk_currency_' . $currency->id],
-                        'fk_cruiseship' => $id,
-                        'price' => $data['price_' . $currency->id],
-                        'discount' => $data['discount_' . $currency->id],
-                        'is_active' => isset($data['is_active_' . $currency->id]) ? 1 : 0
-                    ]);
-                } else {
-                    $pagePrice->fill([
-                        'price' => $data['price_' . $currency->id],
-                        'discount' => $data['discount_' . $currency->id],
-                        'is_active' => isset($data['is_active_' . $currency->id]) ? 1 : 0
-                    ])->save();
-                }
-            }            
-        }
-    }
-
-    private function updateImage($id, $data) {
-      if (isset($data['delete'])) {
-        try {
-            Media::whereIn('id', $data['delete'])->delete();
-        } catch (Exception $e) {
-            Alert::error('No puedes eliminar las imagenes!')->flash();
-        }  
-      }
-    }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -194,8 +153,7 @@ class PagesController extends Controller
         $page = Pages::findOrFail($id);
 
         try {
-            CruiseshipsTranslation::where('fk_cruiseship', $id)->delete();
-            CruiseshipsPrices::where('fk_cruiseship', $id)->delete();
+            PagesTranslation::where('fk_page', $id)->delete();
             $page->delete();
 
             Alert::success('Registro eliminado correctamente!')->flash();
