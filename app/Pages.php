@@ -29,7 +29,7 @@ class Pages extends Model
      *
      * @var array
      */
-    protected $fillable = ['is_active', 'order'];    
+    protected $fillable = ['is_active', 'order', 'embed', 'in_header', 'in_footer'];    
 
     static public function getAll(){
       $request = request();
@@ -49,7 +49,7 @@ class Pages extends Model
 
     static function getEdit($id){
 
-      $page = Pages::select('id', 'is_active');
+      $page = Pages::select('id', 'is_active', 'embed', 'in_footer', 'in_header');
       $result = $page->where('id', $id)->get()->first();
   
       if (is_array($id)) {
@@ -74,7 +74,7 @@ class Pages extends Model
       Pages::where('id', $id)->update(['order' => $order]);
     }
 
-    static function getPages() {
+    static function getPages($place = null) {
       $pages = Pages::select('pages_translation.title', 'pages_translation.slug');
       $pages->join("pages_translation", 'pages.id', '=', "pages_translation.fk_page");
       $pages->join("languages", 'languages.id', '=', "pages_translation.fk_language");
@@ -82,13 +82,17 @@ class Pages extends Model
         ['languages.iso', '=', App::getLocale()],
         ['is_active', '=', 1]
       ]);
+
+      if ($place != null) {
+        $pages->where($place, 1);
+      }
       $pages->orderBy('order');
 
       return $pages->get();      
     }
 
     static function getShow($slug) {
-      $pages = Pages::select('pages_translation.title', 'pages_translation.body');
+      $pages = Pages::select('pages_translation.title', 'pages_translation.body', 'embed');
       $pages->join("pages_translation", 'pages.id', '=', "pages_translation.fk_page");
       $pages->join("languages", 'languages.id', '=', "pages_translation.fk_language");
       $pages->where([
