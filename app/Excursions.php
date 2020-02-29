@@ -173,11 +173,12 @@ class Excursions extends Model implements HasMedia
 
     static function getUnrelatedPackage($id) {
       $currentDestinations = Package2destination::orderBy('id')->where('fk_package', $id)->pluck('fk_destination');
+      $currentExcursions = Package2excursion::orderBy('id')->where('fk_package', $id)->pluck('fk_excursion');
       
       $home = Excursions::select('excursions.id', 'excursions_translation.name', 'excursions_translation.summary', 'availability_translation.availability', 'duration_translation.duration');
       $home->join("excursions_translation", 'excursions.id', '=', "excursions_translation.fk_excursion");
       $home->join("languages", 'languages.id', '=', "excursions_translation.fk_language");
-      $home->join("package2excursion", 'excursions.id', '=', "package2excursion.fk_excursion");
+      //$home->join("package2excursion", 'excursions.id', '=', "package2excursion.fk_excursion");
 
       $home->join("availability", 'availability.id', '=', "excursions.fk_availability");
       $home->join("availability_translation", 'availability.id', '=', "availability_translation.fk_availability");
@@ -191,7 +192,7 @@ class Excursions extends Model implements HasMedia
         ->where('languages.iso', App::getLocale())
         ->where('la.iso', App::getLocale())
         ->where('ld.iso', App::getLocale())        
-        ->where('package2excursion.fk_package', '!=', $id)
+        ->whereNotIn('excursions.id', $currentExcursions)
         ->whereIn('excursions.fk_destination', $currentDestinations);
       
       return $home->limit(3)->get();

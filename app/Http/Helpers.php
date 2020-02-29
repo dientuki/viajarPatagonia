@@ -313,8 +313,12 @@ class Helpers {
   }
 
   static function getFooterPages() {
-    return Pages::getPages();
+    return Pages::getPages('in_footer');
   }
+
+  static function getHeaderPages() {
+    return Pages::getPages('in_header');
+  }  
 
   static function getPageBySlug($slug, $language) {
     return PagesTranslation::getSlugByLang($slug, $language);

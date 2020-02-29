@@ -35,6 +35,9 @@ class StorePage extends FormRequest
         }
 
         $validation['is_active'] = 'boolean';
+        $validation['embed'] = 'string|nullable';
+        $validation['in_header'] = 'boolean';
+        $validation['in_footer'] = 'boolean';
         
         return $validation;
     }
@@ -57,6 +60,9 @@ class StorePage extends FormRequest
         }
 
         $validation['is_active'] = __('fields.active');
+        $validation['embed'] =  __('fields.embed');
+        $validation['in_header'] =  __('fields.in_header');
+        $validation['in_footer'] =  __('fields.in_footer');  
 
         return $validation;
     }    
