@@ -17,7 +17,7 @@
 
 @section ('content')
   <a id="product" name="product"></a>
-  <article class="layout-wrapper product">
+  <article class="layout-wrapper product page">
     <header class="product__header">
       <h1 class="product__title">{{ $page->title }}</h1>
     </header>
@@ -25,6 +25,10 @@
     <div class="layout-main">
       <main class="product__content">
         {!! $page->body_html !!}
+
+        @if ($page->embed)
+          {!! $page->embed !!}
+        @endif
       </main>
     </div>
     

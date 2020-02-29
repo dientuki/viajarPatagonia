@@ -105,6 +105,9 @@ return [
 
     //pages
     'page' => 'página|páginas',
+    'embed' => 'embebido',
+    'in_header' => 'en el header',
+    'in_footer' => 'en el footer',
 
     //
     'all' => 'todos',
