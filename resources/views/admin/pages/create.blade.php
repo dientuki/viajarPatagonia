@@ -52,6 +52,18 @@
     </fieldset>
     @endforeach
 
+    <div class="form-group">
+        <?php $class = $errors->has('embed') != null ? 'form-control is-invalid' : 'form-control'; ?>
+        {!! Form::label('embed', ucfirst(__('fields.embed'))) !!}
+        {!! Form::text('embed', null, array('placeholder' => ucfirst(__('fields.embed')),
+        'class'=>$class)) !!}
+        @error('embed')
+        <div class="invalid-feedback">
+            <strong>{{ $message }}</strong>
+        </div>
+        @enderror
+    </div>     
+
     <div class="form-check">
       {!! Form::checkbox('is_active', 1, false, array('class' => 'form-check-input') ) !!}
       {!! Form::label('is_active', ucfirst(__('fields.active'))) !!}
