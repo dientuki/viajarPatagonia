@@ -18,10 +18,18 @@ use Illuminate\Support\Facades\Route;
             <li class="navigation__li">
               <a class="navigation__link" href="{{route('home', app()->getLocale())}}">{{ ucfirst(__('front.home')) }}</a>
             </li>
+            <?php $pages = Helpers::getHeaderPages(); ?>
+            @foreach ($pages as $page)
+              <?php $route = route('pages', array('slug' => $page->slug, 'locale' => app()->getLocale())); ?>
+              <li class="navigation__li">
+                <a href="{{ $route }}" class="navigation__link">{{ $page->title }}</a></li>
+              </li>
+            @endforeach            
+            <!--
             <li class="navigation__li">
               <a class="navigation__link" href="#">{{ ucfirst(__('front.hotels')) }}</a>
             </li>
-            <!--
+
             <li class="navigation__li">
               <a class="navigation__link" href="#">{{ ucfirst(__('front.cars')) }}</a>
             </li>
