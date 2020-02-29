@@ -62,13 +62,31 @@
             <strong>{{ $message }}</strong>
         </div>
         @enderror
-    </div>     
+    </div>    
 
-    <div class="form-check">
-      {!! Form::checkbox('is_active', 1, false, array('class' => 'form-check-input') ) !!}
-      {!! Form::label('is_active', ucfirst(__('fields.active'))) !!}
+    <div class="row">
+      <div class="col">
+        <div class="form-check">
+          {!! Form::checkbox('is_active', 1, false, array('class' => 'form-check-input') ) !!}
+          {!! Form::label('is_active', ucfirst(__('fields.active'))) !!}
+        </div>
+      </div>
+
+      <div class="col">
+
+        <div class="form-check">
+          {!! Form::checkbox('in_header', 1, false, array('class' => 'form-check-input') ) !!}
+          {!! Form::label('in_header', ucfirst(__('fields.in_header'))) !!}
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-check">
+          {!! Form::checkbox('in_footer', 1, false, array('class' => 'form-check-input') ) !!}
+          {!! Form::label('in_footer', ucfirst(__('fields.in_footer'))) !!}
+        </div>        
+      </div>
     </div>
-
     {!! Form::submit(__('buttons.' . $action) . ' ' . ucfirst(trans_choice('fields.page', 1)), array('class'=>'btn btn-primary') ) !!}
 
   {!! Form::close() !!}

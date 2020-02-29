@@ -112,6 +112,8 @@ class PagesController extends Controller
         $data = $request->validated();
 
         $data['is_active'] = isset($data['is_active']) ? 1 : 0;
+        $data['in_header'] = isset($data['in_header']) ? 1 : 0;
+        $data['in_footer'] = isset($data['in_footer']) ? 1 : 0;
 
         $page->fill($data)->save();
 
