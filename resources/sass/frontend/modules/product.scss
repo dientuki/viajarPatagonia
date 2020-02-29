@@ -20,15 +20,15 @@
     margin-top: rem(30);
   }
 
-  .layout-main .button__cta {
-    margin-top: rem(40);
-  }
-
   .button__cta {
     width: rem(165);
     height: rem(45);
     line-height: rem(45);
     font-size: rem(17);
+  }
+
+  .layout-main .button__cta {
+    margin-top: rem(40);
   }
 }
 
