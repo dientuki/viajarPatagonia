@@ -18,6 +18,8 @@ export default class slider {
       prev: this.wrapper.querySelector('.slider-controls-prev')
     };
 
+    this.loadImgs();
+
     this.slider = tns(this.settings);
 
     this.autoplay();
@@ -34,6 +36,18 @@ export default class slider {
         this.slider.updateSliderHeight();
       });
       window.dispatchEvent(new Event('resize'));
+    }
+  }
+
+  loadImgs() {
+    if (this.settings.lazyload === undefined) {
+      this.settings.lazyload = false;
+    }
+
+    if (this.settings.lazyload === false) {
+      document.querySelectorAll('.tns-lazy-img').forEach((img) => {
+        img.setAttribute('src', img.dataset.src);
+      });
     }
   }
 
