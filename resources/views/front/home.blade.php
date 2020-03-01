@@ -26,9 +26,9 @@
         <a class="section__view-all" href="{{ route('packages', array('locale' => app()->getLocale(), 'name' => Str::slug(__('front.view-all')))) }}">{{ ucfirst(__('front.view-all')) }}</a>
       </header>
 
-      <main class="grid section__main">
+      <div class="grid section__main section-correct-height">
         @include('front/product-preview/vertical', ['products' => $packages, 'grid' => 'col-4_lg-6_sm-12', 'route' => 'package'])
-      </main>
+      </div>
     </section>
 
     <section class="section">
@@ -37,9 +37,9 @@
         <a class="section__view-all" href="{{ route('cruiseships', array('locale' => app()->getLocale(), 'name' => Str::slug(__('front.view-all')))) }}">{{ ucfirst(__('front.view-all')) }}</a>
       </header>
 
-      <main class="grid section__main">
+      <div class="grid section__main">
         @include('front/product-preview/vertical', ['products' => $cruiseships, 'grid' => 'col', 'route' => 'cruise'])
-      </main>
+      </div>
     </section>
 
     <section class="section">
@@ -48,9 +48,9 @@
         <a class="section__view-all" href="{{ route('excursions', array('locale' => app()->getLocale(), 'name' => Str::slug(__('front.view-all')))) }}">{{ ucfirst(__('front.view-all')) }}</a>
       </header>
 
-      <main class="grid section__main">
+      <div class="grid section__main">
         @include('front/product-preview/horizontal', ['products' => $excursions, 'route' => 'excursion'])
-      </main>
+      </div>
     </section>  
 
   </main>

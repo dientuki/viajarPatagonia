@@ -25,6 +25,21 @@
     text-decoration: underline;
     display: block;
   }
+
+  &-correct-height {
+    .list-content {
+      position: relative;
+      padding-bottom: rem(85);
+      box-sizing: border-box;
+      height: 100%;
+    }
+
+    .button {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+    }
+  }
 }
 
 .home-main .section:last-child {
