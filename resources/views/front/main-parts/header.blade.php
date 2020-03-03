@@ -25,20 +25,12 @@ use Illuminate\Support\Facades\Route;
                 <a href="{{ $route }}" class="navigation__link">{{ $page->title }}</a></li>
               </li>
             @endforeach            
-            <!--
-            <li class="navigation__li">
-              <a class="navigation__link" href="#">{{ ucfirst(__('front.hotels')) }}</a>
-            </li>
-
-            <li class="navigation__li">
-              <a class="navigation__link" href="#">{{ ucfirst(__('front.cars')) }}</a>
-            </li>
-            -->
           </ul>
         </nav>
 
-        <form action="#" class="search_form">
-          <input class="search_form__input" type="search" placeholder="{{ ucfirst(__('front.search')) }}" />
+        <form action="{{route('search', app()->getLocale())}}" class="search_form" method="POST">
+          @csrf
+          <input name="search" class="search_form__input" type="search" placeholder="{{ ucfirst(__('front.search')) }}" />
           <button class="search_form__submit">{!! Helpers::load_svg('ico-search') !!}</button>
         </form>
 
@@ -65,12 +57,16 @@ use Illuminate\Support\Facades\Route;
             @foreach ($languages as $language)
               <?php $parameters['locale'] = $language->iso; ?>
               <li class="selector__li">
-                <?php
-                  if (Route::currentRouteName() == 'pages') {
-                    $parameters['slug'] = Helpers::getPageBySlug($parameters['slug'], $language->id);
-                  }
-                 ?>
-                <a title="{{ ucfirst(__('front.change_to')) }} {{ __('front.language') }} {{ $language->language }}" href="{{route(Route::currentRouteName(), $parameters )}}">{{ $language->language }}</a>
+                @if (Route::currentRouteName() == 'search')
+                  <a title="{{ ucfirst(__('front.change_to')) }} {{ __('front.language') }} {{ $language->language }}" href="{{route('home', $language->iso)}}">{{ $language->language }}</a>
+                @else
+                  <?php
+                    if (Route::currentRouteName() == 'pages') {
+                      $parameters['slug'] = Helpers::getPageBySlug($parameters['slug'], $language->id);
+                    }
+                  ?>
+                  <a title="{{ ucfirst(__('front.change_to')) }} {{ __('front.language') }} {{ $language->language }}" href="{{route(Route::currentRouteName(), $parameters )}}">{{ $language->language }}</a>
+                @endif
               </li>
             @endforeach
           </ul>

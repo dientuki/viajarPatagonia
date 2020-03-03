@@ -78,7 +78,10 @@ Route::group(['prefix' => '{locale}',
         ->name('cruiseships');       
         
     Route::get('/pages/{slug}.html', 'PagesController@show')
-        ->name('pages');           
+        ->name('pages');
+        
+    Route::post('/search.html', 'SearchController@show')
+        ->name('search');    
 
 });
 
