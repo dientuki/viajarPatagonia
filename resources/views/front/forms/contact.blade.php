@@ -1,18 +1,27 @@
-{!! Form::model(null, array('route' => 'forms.contact.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form-horizontal')) !!}
+<form id="contact-form" class="grid-1 form" role="form" method="POST" action="{{ route('api.forms.contact') }}">
+  {{ csrf_field() }}
+  <input type="hidden" name="fk_language" value="{{ session('locale')['id'] }}">
 
   <div class="col">
-    <?php $class = $errors->has('name') != null ? 'form-control is-invalid' : 'form-control'; ?>
-    {!! Form::label('name', ucfirst(trans_choice('fields.name',1))) !!}
-    {!! Form::text('name', null, array('placeholder' => ucfirst(trans_choice('fields.name',1)), 'class'=>$class, 'maxlength' => 190))  !!}
-    @error('name')
-      <div class="invalid-feedback">
-        <strong>{{ $message }}</strong>
-      </div>
-    @enderror
+    <label class="label" for="name">{{ ucfirst(__('front.name')) }}</label>
+    <input id="name" type="text" class="form-control" name="name"  autofocus placeholder="{{ ucfirst(__('front.name')) }}">
+    <div class="invalid-feedback"></div>
   </div>
 
-  
+  <div class="col">
+      <label class="label" for="email">{{ ucfirst(__('front.email')) }}</label>
+      <input id="email" type="email" class="form-control" name="email" required placeholder="{{ ucfirst(__('front.email')) }}">
+      <div class="invalid-feedback"></div>
+  </div>
 
-  {!! Form::submit(__('buttons.create') . ' ' . ucfirst(trans_choice('fields.availability', 1)), array('class'=>'btn btn-primary') ) !!}
+  <div class="col">
+    <label class="label" for="comment">{{ ucfirst(__('front.comments')) }}</label>
+    <textarea name="comment" class="form-control textarea"></textarea>
+    <div class="invalid-feedback"></div>
+  </div>
 
-{!! Form::close() !!}
+  <div class="col">
+    <input type="submit" class="button button__cta" value="{{ ucfirst(__('front.cta')) }}" />
+  </div>
+
+</form>

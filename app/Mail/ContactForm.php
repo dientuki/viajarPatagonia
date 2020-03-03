@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class CreateInquiry extends Mailable
+class ContactForm extends Mailable
 {
     use Queueable, SerializesModels;
     public $valid;
@@ -29,6 +29,6 @@ class CreateInquiry extends Mailable
      */
     public function build()
     {
-        return $this->subject('Nueva consulta sobre un producto')->view('emails.create-inquiry');
+        return $this->subject('Nueva consulta')->view('emails.contact-form');
     }
 }

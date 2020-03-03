@@ -85,14 +85,9 @@ Route::group(['prefix' => '{locale}',
 
 });
 
-Route::group(['prefix' => 'forms', 'as' => 'forms.'], function() {
-  Route::group(['prefix' => 'contact', 'as' => 'contact.'], function() {
-    Route::post('store', 'ContactController@store')->name('store');
-  });
-});
-
 Route::group(['prefix' => 'api', 'as' => 'api.'], function() {
   Route::group(['prefix' => 'forms', 'as' => 'forms.'], function() {
     Route::post('inquiries', 'InquiriesController@store')->name('inquiries');
+    Route::post('contact', 'ContactController@store')->name('contact');
   });
 });
