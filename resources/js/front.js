@@ -66,3 +66,9 @@ if (document.querySelectorAll('.openOverlay').length > 0) {
     module.modalForms(document.querySelectorAll('.openOverlay'));
   });
 }
+
+if (document.querySelector('#contact-form') !== null) {
+  import(/* webpackChunkName: "modalForms" */ './modules/contactForm/contactForm').then((module) => {
+    module.contactForm('#contact-form');
+  });
+}

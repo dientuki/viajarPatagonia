@@ -25,6 +25,8 @@
     <div class="layout-main">
       <main class="product__content">
         {!! $page->body_html !!}
+        
+        @include('front.forms.contact')
 
         @if ($page->embed)
           {!! $page->embed !!}
@@ -33,7 +35,7 @@
     </div>
     
     <aside class="layout-aside aside">
-      aside?
+      
     </aside>
 
   </article>
