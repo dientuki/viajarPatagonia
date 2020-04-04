@@ -77,6 +77,13 @@
       </div>
 
       <div class="col">
+        <div class="form-check">
+          {!! Form::checkbox('add_contact_form', 1, $page->add_contact_form, array('class' => 'form-check-input') ) !!}
+          {!! Form::label('add_contact_form', ucfirst(__('fields.add_contact_form'))) !!}
+        </div>        
+      </div>            
+
+      <div class="col">
 
         <div class="form-check">
           {!! Form::checkbox('in_header', 1, $page->in_header, array('class' => 'form-check-input') ) !!}

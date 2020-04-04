@@ -106,6 +106,7 @@ return [
     //pages
     'page' => 'página|páginas',
     'embed' => 'embebido',
+    'add_contact_form' => 'añadir formulario de contacto',
     'in_header' => 'en el header',
     'in_footer' => 'en el footer',
 
