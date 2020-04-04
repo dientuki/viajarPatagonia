@@ -26,7 +26,9 @@
       <main class="product__content">
         {!! $page->body_html !!}
         
-        @include('front.forms.contact')
+        @if ($page->add_contact_form)
+          @include('front.forms.contact')
+        @endif
 
         @if ($page->embed)
           {!! $page->embed !!}

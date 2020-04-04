@@ -54,6 +54,9 @@ class PagesController extends Controller
         $data = $request->validated();
 
         $data['is_active'] = isset($data['is_active']) ? 1 : 0;
+        $data['in_header'] = isset($data['in_header']) ? 1 : 0;
+        $data['in_footer'] = isset($data['in_footer']) ? 1 : 0;
+        $data['add_contact_form'] = isset($data['add_contact_form']) ? 1 : 0;
         $data['order'] = Pages::getLastOrder() + 1;
 
         $page = Pages::create($data);
@@ -114,6 +117,7 @@ class PagesController extends Controller
         $data['is_active'] = isset($data['is_active']) ? 1 : 0;
         $data['in_header'] = isset($data['in_header']) ? 1 : 0;
         $data['in_footer'] = isset($data['in_footer']) ? 1 : 0;
+        $data['add_contact_form'] = isset($data['add_contact_form']) ? 1 : 0;
 
         $page->fill($data)->save();
 

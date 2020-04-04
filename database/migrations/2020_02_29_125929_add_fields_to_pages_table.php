@@ -15,7 +15,8 @@ class AddFieldsToPagesTable extends Migration
     {
         Schema::table('pages', function (Blueprint $table) {
             $table->text('embed')->nullable();
-            $table->boolean('in_footer')->unsigned()->default(false);
+            $table->boolean('add_contact_form')->unsigned()->default(false);
+            $table->boolean('in_header')->unsigned()->default(false);
             $table->boolean('in_header')->unsigned()->default(false);
         });
     }
@@ -29,7 +30,8 @@ class AddFieldsToPagesTable extends Migration
     {
         Schema::table('pages', function (Blueprint $table) {
             $table->dropColumn('embed');
-            $table->dropColumn('in_footer');
+            $table->dropColumn('add_contact_form');
+            $table->dropColumn('in_header');
             $table->dropColumn('in_header');
         });
     }

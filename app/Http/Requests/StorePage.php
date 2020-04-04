@@ -38,6 +38,8 @@ class StorePage extends FormRequest
         $validation['embed'] = 'string|nullable';
         $validation['in_header'] = 'boolean';
         $validation['in_footer'] = 'boolean';
+        $validation['add_contact_form'] = 'boolean';
+        
         
         return $validation;
     }
@@ -63,6 +65,7 @@ class StorePage extends FormRequest
         $validation['embed'] =  __('fields.embed');
         $validation['in_header'] =  __('fields.in_header');
         $validation['in_footer'] =  __('fields.in_footer');  
+        $validation['add_contact_form'] =  __('fields.add_contact_form');  
 
         return $validation;
     }    
