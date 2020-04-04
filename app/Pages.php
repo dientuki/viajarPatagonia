@@ -29,7 +29,7 @@ class Pages extends Model
      *
      * @var array
      */
-    protected $fillable = ['is_active', 'order', 'embed', 'in_header', 'in_footer'];    
+    protected $fillable = ['is_active', 'order', 'embed', 'in_header', 'in_footer', 'add_contact_form'];    
 
     static public function getAll(){
       $request = request();
@@ -49,7 +49,7 @@ class Pages extends Model
 
     static function getEdit($id){
 
-      $page = Pages::select('id', 'is_active', 'embed', 'in_footer', 'in_header');
+      $page = Pages::select('id', 'is_active', 'embed', 'in_footer', 'in_header', 'add_contact_form');
       $result = $page->where('id', $id)->get()->first();
   
       if (is_array($id)) {
@@ -92,7 +92,7 @@ class Pages extends Model
     }
 
     static function getShow($slug) {
-      $pages = Pages::select('pages_translation.title', 'pages_translation.body', 'embed');
+      $pages = Pages::select('pages_translation.title', 'pages_translation.body', 'embed', 'add_contact_form');
       $pages->join("pages_translation", 'pages.id', '=', "pages_translation.fk_page");
       $pages->join("languages", 'languages.id', '=', "pages_translation.fk_language");
       $pages->where([
