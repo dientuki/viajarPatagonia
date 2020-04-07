@@ -66,11 +66,10 @@ class PackagePrices extends Model
 
     static function getPrice($id) {
       $results = null;
-      $price = PackagePrices::select('price', 'discount', 'is_active', 'currencies.iso', 'currencies.amount');
+      $price = PackagePrices::select('packages_prices.id', 'price', 'discount', 'is_active', 'currencies.iso', 'currencies.amount');
       $price->join("currencies", 'currencies.id', '=', "packages_prices.fk_currency");
       $price->where('fk_package', $id);
 
-      
       if (session()->has('currency')) {
         $currency = clone $price;
         $return = $currency->where('fk_currency', session('currency')['id'])->get()->first();

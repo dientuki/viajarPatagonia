@@ -8,7 +8,6 @@ use App\Excursions;
 use App\Destination;
 use App\PackagePrices;
 use App\ExcursionsTypes;
-use App\ExcursionsPrices;
 use App\Package2excursion;
 use App\Package2destination;
 use App\Translations\Language;
@@ -157,7 +156,7 @@ class PackagesController extends Controller
         $packageTranslation = PackageTranslation::getEdit($id);
         $destinations = Destination::getLists();
         $excursions = Excursions::getPackageCombo();
-        $packagePrice = ExcursionsPrices::getEdits($id);
+        $packagePrice = PackagePrices::getEdits($id);
         $currencies = Currency::getAll();
         $plucked = [
           'destination' => implode('|', Package2destination::getAll($id)),
@@ -309,12 +308,12 @@ class PackagesController extends Controller
      */
     public function destroy($id)
     {
-        $excursion = Packages::findOrFail($id);
+        $package = Packages::findOrFail($id);
 
         try {
-            ExcursionsTranslation::where('fk_excursion', $id)->delete();
-            ExcursionsPrices::where('fk_excursion', $id)->delete();
-            $excursion->delete();
+            PackageTranslation::where('fk_package', $id)->delete();
+            PackagePrices::where('fk_package', $id)->delete();
+            $package->delete();
 
             Alert::success('Registro eliminado correctamente!')->flash();
         } catch (Exception $e) {
