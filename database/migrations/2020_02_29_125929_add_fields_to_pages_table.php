@@ -17,7 +17,7 @@ class AddFieldsToPagesTable extends Migration
             $table->text('embed')->nullable();
             $table->boolean('add_contact_form')->unsigned()->default(false);
             $table->boolean('in_header')->unsigned()->default(false);
-            $table->boolean('in_header')->unsigned()->default(false);
+            $table->boolean('in_footer')->unsigned()->default(false);
         });
     }
 
@@ -32,7 +32,7 @@ class AddFieldsToPagesTable extends Migration
             $table->dropColumn('embed');
             $table->dropColumn('add_contact_form');
             $table->dropColumn('in_header');
-            $table->dropColumn('in_header');
+            $table->dropColumn('in_footer');
         });
     }
 }

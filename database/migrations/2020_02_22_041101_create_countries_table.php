@@ -19,8 +19,8 @@ class CreateCountriesTable extends Migration
             $table->collation = 'utf8_unicode_ci';
 
             $table->smallIncrements('id');
-            $table->string('iso', 2);
-            $table->string('iso', 3);
+            $table->string('iso-2', 2);
+            $table->string('iso-3', 3);
 
             //https://gist.github.com/thiagosilr/4045668
         });
