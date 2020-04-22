@@ -30,7 +30,7 @@
                 <a href="{{route('package', $routeParams)}}" rel="noopener" target="_blank">{{$package['title' . $language->id]}}</a>
               </td>               
             @endforeach
-            <td class="column-active">{!! Helpers::get_active_icon($package->is_active ) !!}</td>
+            <td class="column-active"><div id="{{$package->id}}" class="state-activated" data-ref="package-change" data-state="{{$package->is_active}}">{!! Helpers::get_active_icon($package->is_active ) !!}</div></td>
 
             <td class="column-action px-4">
                 <div class="row">

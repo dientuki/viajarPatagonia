@@ -75,5 +75,11 @@ if (document.querySelector('.has-FS') !== null) {
     module.sort(document.querySelector('.sort'));
   });
 }
+if (document.querySelector('.state-activated') !== null) {
+  import(/* webpackChunkName: "state" */ './modules/state/state').then((module) => {
+    module.state(document.querySelectorAll('.state-activated'));
+  });
+}
 
+console.log("HOLA HUGO");
 window.$ = $;
