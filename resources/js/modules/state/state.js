@@ -1,7 +1,4 @@
 export function state(buttons) {
-  console.log(buttons);
-  console.log(buttons[0].localName);
-  console.log(buttons[1].localName);
   buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
       const data = [];
