@@ -17,6 +17,7 @@ use App\Http\Requests\StorePackage;
 use App\Http\Controllers\Controller;
 use Spatie\MediaLibrary\Models\Media;
 use App\Translations\PackageTranslation;
+use Illuminate\Http\Request;
 
 class PackagesController extends Controller
 {
@@ -322,4 +323,12 @@ class PackagesController extends Controller
 
         return redirect()->route('admin.packages.index');
     }
+
+    public function invert(Request $request) {
+      $data = json_decode($request->getContent(), true);
+      foreach($data as $package) {
+        Packages::updateState($package['id'], $package['state']);
+      }
+      
+    }    
 }

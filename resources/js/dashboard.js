@@ -81,5 +81,4 @@ if (document.querySelector('.state-activated') !== null) {
   });
 }
 
-console.log("HOLA HUGO");
 window.$ = $;
