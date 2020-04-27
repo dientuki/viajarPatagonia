@@ -326,9 +326,8 @@ class PackagesController extends Controller
 
     public function invert(Request $request) {
       $data = json_decode($request->getContent(), true);
-      foreach($data as $package) {
-        Packages::updateState($package['id'], $package['state']);
+      foreach($data as $content) {
+          Packages::updateState($content['id'], $content['state']);
       }
-      
     }    
 }

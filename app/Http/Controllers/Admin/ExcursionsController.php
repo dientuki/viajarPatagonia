@@ -253,4 +253,11 @@ class ExcursionsController extends Controller
 
         return redirect()->route('admin.excursions.index');
     }
+
+    public function invert(Request $request) {
+        $data = json_decode($request->getContent(), true);
+        foreach($data as $content) {
+            Excursions::updateState($content['id'], $content['state']);
+        } 
+    }  
 }

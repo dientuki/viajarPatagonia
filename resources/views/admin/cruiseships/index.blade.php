@@ -30,8 +30,7 @@
                 <a href="{{route('cruise', $routeParams)}}" rel="noopener" target="_blank">{{$cruiseship['title' . $language->id]}}</a>
               </td>
             @endforeach
-            <td class="column-active">{!! Helpers::get_active_icon($cruiseship->is_active ) !!}</td>
-
+            <td class="column-active"><div id="cruiseship_{{$cruiseship->id}}" class="state-activated" data-ref="{{route('admin.cruiseships.state.invert')}}" data-state="{{$cruiseship->is_active}}">{!! Helpers::get_active_icon($cruiseship->is_active ) !!}</div></td>
             <td class="column-action px-4">
                 <div class="row">
                 <a href="{{route('admin.cruiseships.edit', $cruiseship->id)}}" class="btn btn-primary col" title="{{__('buttons.edit')}} {{ $cruiseship['title' . $languages[0]->id] }}">{{__('buttons.edit')}}</a>

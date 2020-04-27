@@ -172,4 +172,8 @@ class Cruiseships extends Model implements HasMedia
           ->fit(Manipulations::FIT_CROP, 500, 261)
           ->optimize();            
     }
+
+    static function updateState($id, $state) {
+      Cruiseships::where('id', $id)->update(['is_active' => $state]);
+    }
   }

@@ -104,4 +104,8 @@ class Homeslider extends Model implements HasMedia
           ->fit(Manipulations::FIT_CROP, 768, 223)
           ->optimize();            
     }
+    
+    static function updateState($id, $state) {
+      Homeslider::where('id', $id)->update(['is_active' => $state]);
+    }
   }
