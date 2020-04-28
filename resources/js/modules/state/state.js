@@ -8,7 +8,7 @@ export function state(buttons) {
 
       data = [];
       id = button.id.split('_');
-      state_value = button.dataset.state === 1 ? 0 : 1;
+      state_value = button.dataset.state === '1' ? 0 : 1;
       data.push({
         id: id[1],
         ref: button.dataset.ref,
