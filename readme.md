@@ -19,6 +19,12 @@
 
 5) config/filesystem.php agregar app/public/ a url
 
+## install in dev
+
+1) npm install && npm run dev
+2) docker-compose up
+3) sh docker/env.ini
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
