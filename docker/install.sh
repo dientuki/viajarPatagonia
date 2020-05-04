@@ -18,5 +18,14 @@ docker-compose exec mariadb mysql -u root < docker/query.sql
 echo "Migration & Seed"
 docker-compose exec app php artisan migrate:fresh --seed
 
-echo "Stop"
-docker-compose stop
+echo "Installing NPM"
+npm install
+
+echo "Running NPM to compile dev stuff"
+npm run dev
+
+echo "Open the home!! in the default browser"
+xdg-open http://localhost
+
+echo "To stop the containers just run 'docker-compose stop' in the terminal"
+echo "Happy coding!"
