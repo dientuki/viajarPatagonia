@@ -6,7 +6,7 @@ docker-compose up -d
 echo "Coping env file"
 cp .env.example .env
 
-echo "Installing Laravel"
+echo "Installing Laravel... this maybe take some time, go for your another coffe or more mate"
 docker-compose exec app composer install
 
 echo "Generate hash"
@@ -16,7 +16,7 @@ echo "Clean cache"
 docker-compose exec app php artisan config:cache
 
 echo "Configure Database"
-docker-compose exec mariadb mysql -u root < docker/query.sql
+docker-compose exec -T mariadb mysql -u root < docker/query.sql
 
 echo "Migration & Seed"
 docker-compose exec app php artisan migrate:fresh --seed
