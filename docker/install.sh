@@ -6,6 +6,9 @@ docker-compose up -d
 echo "Coping env file"
 cp .env.example .env
 
+echo "Installing Laravel"
+docker-compose exec app composer install
+
 echo "Generate hash"
 docker-compose exec app php artisan key:generate
 
