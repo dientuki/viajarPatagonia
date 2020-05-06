@@ -1,12 +1,12 @@
 #!/bin/bash
 
-echo "Installing containers... this maybe take some time, go for your coffe or mate"
-docker-compose up -d
-
 echo "Coping env file"
 cp .env.example .env
 
-echo "Installing Laravel... this maybe take some time, go for your another coffe or more mate"
+echo "Installing containers... this maybe take some time, go for your coffe or mate"
+docker-compose up -d
+
+echo "Installing Laravel"
 docker-compose exec app composer install
 
 echo "Generate hash"
