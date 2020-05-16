@@ -31,7 +31,7 @@ use App\Duration;
         <div class="col-6">
           <?php $destinations = Destination::getLists(); ?>
           <select data-param="destination" class="filter form-control col">
-            <option>{{ ucfirst(__('fields.destination_select_placeholder')) }}</option>
+            <option {!!Helpers::selected_filter('destination', 'reset')!!}>{{ ucfirst(__('fields.destination_select_placeholder')) }}</option>
             <option {!!Helpers::selected_filter('destination', 'reset')!!}>{{ ucfirst(__('fields.all')) }}</option>
               @foreach ($destinations as $key => $destination)
                 <option {!!Helpers::selected_filter('destination', $key)!!}>{{ $destination }}</option>
@@ -42,7 +42,7 @@ use App\Duration;
         <div class="col-6">
           <?php $durations = Duration::getLists(); ?>
           <select data-param="duration" class="filter form-control col">
-            <option>{{ ucfirst(__('fields.duration_select_placeholder')) }}</option>
+            <option {!!Helpers::selected_filter('duration', 'reset')!!}>{{ ucfirst(__('fields.duration_select_placeholder')) }}</option>
             <option {!!Helpers::selected_filter('duration', 'reset')!!}>{{ ucfirst(__('fields.all')) }}</option>
               @foreach ($durations as $key => $duration)
                 <option {!!Helpers::selected_filter('duration', $key)!!}>{{ $duration }}</option>
