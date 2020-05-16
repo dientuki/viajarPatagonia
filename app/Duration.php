@@ -1,11 +1,11 @@
 <?php
-
 namespace App;
 
+use App\Translations\DurationTranslation;
 use App\Translations\Language;
 use Illuminate\Database\Eloquent\Model;
-use App\Translations\DurationTranslation;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\App;
 
 class Duration extends Model
 {
@@ -48,8 +48,14 @@ class Duration extends Model
     }
 
     static function getLists() {
+      $lang=1;
+      if(App::getLocale()=="en"){
+        $lang=2;
+      }elseif(App::getLocale()=="pt") {
+        $lang=3;
+      }
       return DurationTranslation::orderBy('duration')
-        ->where('fk_language', '1')
+        ->where('fk_language', $lang)
         ->pluck('duration', 'fk_duration');
     }  
 
