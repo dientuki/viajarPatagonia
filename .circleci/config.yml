@@ -195,7 +195,8 @@ jobs:
           command: ssh mateclass@mateclass.com rm -rf vpp/build.tar.gz
       - run:
           name: Clean permisions
-          command:  ssh mateclass@mateclass.com chmod 777 -fR vpp/storage || :
+          command: |
+            ssh mateclass@mateclass.com chmod 777 -fR vpp/storage || :
       - run:
           name: Clean laravel
           command: | 
