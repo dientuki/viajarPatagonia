@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Duration;
 use App\Excursions;
+use App\Destination;
 use App\ExcursionsPrices;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 class ExcursionsController extends Controller
 {
     /**
