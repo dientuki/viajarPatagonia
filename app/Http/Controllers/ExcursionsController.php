@@ -28,7 +28,7 @@ class ExcursionsController extends Controller
 
     public function list($locale, $name, Request $request)
     {   
-        $products = Excursions::getList(false, $request->input('duration'),$request->input('destination'));
+        $products = Excursions::getList();
         $destinations = Destination::getLists();
         $durations = Duration::getLists();
         $productType = 'excursions';
