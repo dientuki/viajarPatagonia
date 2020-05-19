@@ -1,11 +1,11 @@
 <?php
 namespace App;
 
-use App\Translations\DurationTranslation;
+use App\Duration;
 use App\Translations\Language;
 use Illuminate\Database\Eloquent\Model;
+use App\Translations\DurationTranslation;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\App;
 
 class Duration extends Model
 {
