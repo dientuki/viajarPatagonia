@@ -323,15 +323,5 @@ class Helpers {
   static function getPageBySlug($slug, $language) {
     return PagesTranslation::getSlugByLang($slug, $language);
   }
-
-  public static function getNumberLanguaje() {
-    $lang=1;
-    if(App::getLocale()=="en"){
-      $lang=2;
-    }elseif(App::getLocale()=="pt") {
-      $lang=3;
-    }
-    return $lang;
-  }
 }
 
