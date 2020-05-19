@@ -1,7 +1,7 @@
 <?php
-
 namespace App;
 
+use App\Duration;
 use App\Translations\Language;
 use Illuminate\Database\Eloquent\Model;
 use App\Translations\DurationTranslation;
@@ -49,7 +49,7 @@ class Duration extends Model
 
     static function getLists() {
       return DurationTranslation::orderBy('duration')
-        ->where('fk_language', '1')
+        ->where('fk_language', request()->session()->get('locale')['id'])
         ->pluck('duration', 'fk_duration');
     }  
 

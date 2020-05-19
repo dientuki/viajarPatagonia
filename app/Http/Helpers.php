@@ -324,3 +324,4 @@ class Helpers {
     return PagesTranslation::getSlugByLang($slug, $language);
   }
 }
+

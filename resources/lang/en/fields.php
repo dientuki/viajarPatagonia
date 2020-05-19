@@ -19,7 +19,7 @@ return [
 
     // Destino
     'destination' => 'destino|destinos',
-    'destination_select_placeholder' => 'Seleccione un destino...',
+    'destination_select_placeholder' => 'Select the destination...',
 
     // Moneda
     'sign' => 'signo',
@@ -75,7 +75,7 @@ return [
 
     // Duracion
     'duration' => 'duración',
-    'duration_select_placeholder' => 'Seleccione una duración...',
+    'duration_select_placeholder' => 'Select duration...',
 
     // Slider
     'homeslider' => 'slider de la home',
@@ -111,7 +111,7 @@ return [
     'in_footer' => 'en el footer',
 
     //
-    'all' => 'todos',
+    'all' => 'all',
     'productPlaceholder' => 'Seleccione un producto',
     'languagePlaceholder' => 'Seleccione un lenguage',
     'readPlaceholder' => 'Seleccione un estado',    
