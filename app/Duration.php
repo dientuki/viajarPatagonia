@@ -48,14 +48,8 @@ class Duration extends Model
     }
 
     static function getLists() {
-      $lang=1;
-      if(App::getLocale()=="en"){
-        $lang=2;
-      }elseif(App::getLocale()=="pt") {
-        $lang=3;
-      }
       return DurationTranslation::orderBy('duration')
-        ->where('fk_language', $lang)
+        ->where('fk_language', request()->session()->get('locale')['id'])
         ->pluck('duration', 'fk_duration');
     }  
 
