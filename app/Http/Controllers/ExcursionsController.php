@@ -25,10 +25,12 @@ class ExcursionsController extends Controller
 
     public function list($locale, $name, Request $request)
     {   
-        $products = Excursions::getList(false, $request->input('duration'),$request->input('destination'));           
+        $products = Excursions::getList(false, $request->input('duration'),$request->input('destination'));
+        $destinations = Destination::getLists();
+        $durations = Duration::getLists();
         $productType = 'excursions';
         $route = 'excursion';
 
-        return view('front/product/list', compact('products', 'productType', 'route'));
+        return view('front/product/list', compact('products', 'productType', 'route', 'destinations', 'durations'));
     }    
 }
