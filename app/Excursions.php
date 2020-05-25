@@ -105,6 +105,8 @@ class Excursions extends Model implements HasMedia
     }
 
     static function getList($limit = false, $duration = false, $destination = false) {
+      $request = request();
+      
       $list = Excursions::select('excursions.id', 'excursions_translation.name', 'excursions_translation.summary', 'availability_translation.availability', 'duration_translation.duration');
       $list->join("excursions_translation", 'excursions.id', '=', "excursions_translation.fk_excursion");
       $list->join("languages", 'languages.id', '=', "excursions_translation.fk_language");
