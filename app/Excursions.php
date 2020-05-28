@@ -104,7 +104,7 @@ class Excursions extends Model implements HasMedia
       return abort(404);
     }
 
-    static function getList($limit = false, $duration = false, $destination = false) {
+    static function getList($limit = false) {
       $request = request();
       
       $list = Excursions::select('excursions.id', 'excursions_translation.name', 'excursions_translation.summary', 'availability_translation.availability', 'duration_translation.duration');
@@ -123,19 +123,18 @@ class Excursions extends Model implements HasMedia
         ->where('languages.iso', App::getLocale())
         ->where('la.iso', App::getLocale())
         ->where('ld.iso', App::getLocale());
-      
-      if ($destination != false) {
-        $list->where('excursions.fk_destination', $destination);
-      }
 
-      if ($duration != false) {
-        $list->where('excursions.fk_duration', $duration);
+      foreach ($columns as $column) {
+        if ($request->has($column)) {
+          $list->where('excursions.fk_'.$column, $request->get($column));
+          $queries[$column] = $request->get($column);
+        }
       }
 
       if ($limit != false) {
         $list = $list->limit($limit)->get();
       } else {
-        $list = $list->simplePaginate(10);      
+        $list = $list->simplePaginate(10)->appends($queries);      
       }
 
       return $list;
