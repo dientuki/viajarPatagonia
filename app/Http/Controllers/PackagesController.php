@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Packages;
 use App\Excursions;
+use App\Destination;
 use App\PackagePrices;
 use App\Http\Controllers\Controller;
 
@@ -29,9 +30,11 @@ class PackagesController extends Controller
     public function list($locale, $name)
     {
         $products = Packages::getList();
+        $destinations = Destination::getLists();
+        $excursions = Excursions::getLists();        
         $productType = 'packages';
         $route = 'package';
 
-        return view('front/product/list', compact('products', 'productType', 'route'));
+        return view('front/product/list', compact('products', 'productType', 'destinations', 'excursions', 'route'));
     }    
 }

@@ -39,3 +39,17 @@ export function sort(element) {
   });
 
 }
+
+export function reset(element) {
+  if (element === null) {
+    return;
+  }
+
+  element.addEventListener('click', () => {
+    const params = window.location.href.split('?');
+
+    if (params.length > 1) {
+      window.location.href = params[0];
+    }
+  });
+}

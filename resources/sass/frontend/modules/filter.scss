@@ -1,0 +1,24 @@
+.filter {
+  margin-top: rem(20);
+
+  &-title,
+  &-reset {
+    font-size: rem(15);
+    height: rem(37);
+    line-height: rem(37);
+  }
+
+  &-reset {
+    text-align: center;
+    background: map-get($colors, "product-title");
+    cursor: pointer;
+    color: map-get($colors, "white");
+  }
+}
+
+@media (max-width: em(767)) {
+  .filter-title {
+    height: 100%;
+    line-height: 1em;
+  }
+}

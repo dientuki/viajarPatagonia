@@ -72,3 +72,10 @@ if (document.querySelector('#contact-form') !== null) {
     module.contactForm('#contact-form');
   });
 }
+
+if (document.querySelector('.has-FS') !== null) {
+  import(/* webpackChunkName: "filterSort" */ './modules/filterSort/filterSort').then((module) => {
+    module.filter(document.querySelectorAll('select'));
+    module.reset(document.querySelector('.filter-reset'));
+  });
+}
