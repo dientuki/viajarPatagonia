@@ -25,7 +25,7 @@ use App\Http\Helpers\Helpers;
         <h6 class="section__title">{{ ucfirst(__('front.' . $productType)) }}</h6>
       </header>
      
-      @includeIf('front/widgets/filters-' . $productType)
+      @includeIf('front/filters/' . $productType)
 
       <main class="grid section__main">
         @include('front/product-preview/horizontal', ['products' => $products, 'route' => $route])
