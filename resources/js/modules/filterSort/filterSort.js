@@ -44,11 +44,12 @@ export function reset(element) {
   if (element === null) {
     return;
   }
-  
-  element.addEventListener('click', (e) => {
-    const params = window.location.href.split("?");
+
+  element.addEventListener('click', () => {
+    const params = window.location.href.split('?');
+
     if (params.length > 1) {
-      window.location.href = window.location.href.split("?")[0];
+      window.location.href = params[0];
     }
   });
 }
