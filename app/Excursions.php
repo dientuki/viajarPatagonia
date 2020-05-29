@@ -73,7 +73,7 @@ class Excursions extends Model implements HasMedia
 
     static function getLists() {
       return ExcursionsTranslation::orderBy('name')
-        ->where('fk_language', '1')
+        ->where('fk_language', request()->session()->get('locale')['id'])
         ->pluck('name', 'fk_excursion');
     }  
 
@@ -107,8 +107,8 @@ class Excursions extends Model implements HasMedia
     static function getList($limit = false) {
       $request = request();
       $queries = [];
-      $columns = array('duration', 'destination');
-
+      $columns = array('duration', 'destination');      
+      
       $list = Excursions::select('excursions.id', 'excursions_translation.name', 'excursions_translation.summary', 'availability_translation.availability', 'duration_translation.duration');
       $list->join("excursions_translation", 'excursions.id', '=', "excursions_translation.fk_excursion");
       $list->join("languages", 'languages.id', '=', "excursions_translation.fk_language");
