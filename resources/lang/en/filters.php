@@ -16,6 +16,7 @@ return [
   'title' => 'filter by',
   'destination' => 'destination',
   'duration' => 'duration',
+  'excursion' => 'excursions',
 
   'reset' => 'reset',
   'all' => 'all'

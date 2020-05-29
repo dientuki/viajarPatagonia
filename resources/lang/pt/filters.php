@@ -16,6 +16,8 @@ return [
   'title' => 'filtrar por',
   'destination' => 'destino',
   'duration' => 'duração',
+  'excursion' => 'excursões',
+  
 
   'reset' => 'redefinir',
   'all' => 'todos'

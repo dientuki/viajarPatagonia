@@ -73,7 +73,7 @@ class Excursions extends Model implements HasMedia
 
     static function getLists() {
       return ExcursionsTranslation::orderBy('name')
-        ->where('fk_language', '1')
+        ->where('fk_language', request()->session()->get('locale')['id'])
         ->pluck('name', 'fk_excursion');
     }  
 
