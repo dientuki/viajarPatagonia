@@ -142,8 +142,6 @@ class Packages extends Model implements HasMedia
           $queries[$column] = $request->get($column);
         }
       }   
-      
-      //dd($list->toSql());
 
       if ($limit != false) {
         $list = $list->limit($limit)->get();
