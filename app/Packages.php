@@ -125,21 +125,25 @@ class Packages extends Model implements HasMedia
     static function getList($limit = false) {
       $request = request();
       $queries = [];
-      $columns = array('duration', 'destination');    
+      $columns = array('excursion', 'destination');    
 
       $list = Packages::select('packages.id', 'packages_translation.name', 'packages_translation.summary');
       $list->join("packages_translation", 'packages.id', '=', "packages_translation.fk_package");
       $list->join("languages", 'languages.id', '=', "packages_translation.fk_language");
       $list->where('is_active', 1)->where('languages.iso', App::getLocale());    
 
-      /*
       foreach ($columns as $column) {
         if ($request->has($column)) {
-          $list->where('packages.fk_'.$column, $request->get($column));
+          $table = 'package2' . $column;
+
+          $list->join($table, 'packages.id', '=', $table .".fk_package");
+          $list->where($table . '.fk_'.$column, $request->get($column));
+
           $queries[$column] = $request->get($column);
         }
-      }      
-      */
+      }   
+      
+      //dd($list->toSql());
 
       if ($limit != false) {
         $list = $list->limit($limit)->get();
