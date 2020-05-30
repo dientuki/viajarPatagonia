@@ -125,23 +125,30 @@ class Packages extends Model implements HasMedia
     static function getList($limit = false) {
       $request = request();
       $queries = [];
-      $columns = array('excursion', 'destination');    
+      $columns = array('region', 'destination');    
 
       $list = Packages::select('packages.id', 'packages_translation.name', 'packages_translation.summary');
       $list->join("packages_translation", 'packages.id', '=', "packages_translation.fk_package");
       $list->join("languages", 'languages.id', '=', "packages_translation.fk_language");
       $list->where('is_active', 1)->where('languages.iso', App::getLocale());    
+      
+      if ($request->has('destination') || $request->has('region')) {
+        $table = 'package2destination';
 
-      foreach ($columns as $column) {
-        if ($request->has($column)) {
-          $table = 'package2' . $column;
+        $list->join('package2destination', 'packages.id', '=', "package2destination.fk_package");
+        
+        if ( $request->has('destination') ) {
+          $list->where('package2destination.fk_destination', $request->get('destination'));
+          $queries['destination'] = $request->get('destination');
+        }     
 
-          $list->join($table, 'packages.id', '=', $table .".fk_package");
-          $list->where($table . '.fk_'.$column, $request->get($column));
+        if ( $request->has('region') ) {
+          $list->join('destinations', 'package2destination.fk_destination', '=', "destinations.fk_region");
+          $list->where('destinations.fk_region', $request->get('region'));
+          $queries['region'] = $request->get('region');
+        }          
+      }
 
-          $queries[$column] = $request->get($column);
-        }
-      }   
 
       if ($limit != false) {
         $list = $list->limit($limit)->get();

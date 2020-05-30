@@ -1,5 +1,6 @@
 <?php
 use App\Http\Helpers\Helpers;
+use Illuminate\Support\Str;
 ?>
 @extends('layouts.front')
 
@@ -28,7 +29,15 @@ use App\Http\Helpers\Helpers;
       @includeIf('front/filters/' . $productType)
 
       <main class="grid section__main">
-        @include('front/product-preview/horizontal', ['products' => $products, 'route' => $route])
+      
+        @if (count($products)  > 0)
+          @include('front/product-preview/horizontal', ['products' => $products, 'route' => $route])
+        @else
+          <h2 clas="col-12">Sin resultados</h2>
+          <div class="col-12"><a href="{{ route($productType, array('locale' => app()->getLocale(), 'name' => Str::slug(__('front.view-all')))) }}">{{ __('filters.reset') }}</a></div>
+        @endif
+
+
       </main>
 
       <footer>

@@ -17,6 +17,7 @@ return [
   'destination' => 'destination',
   'duration' => 'duration',
   'excursion' => 'excursions',
+  'region' => 'region',
 
   'reset' => 'reset',
   'all' => 'all'
