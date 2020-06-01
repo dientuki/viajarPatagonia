@@ -19,7 +19,7 @@ return [
   'excursion' => 'excursions',
   'region' => 'region',
 
-  'reset' => 'reset',
+  'reset' => 'reset filters',
   'all' => 'all'
 
 ];

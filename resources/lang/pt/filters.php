@@ -20,6 +20,6 @@ return [
   'region' => 'region',
   
 
-  'reset' => 'redefinir',
+  'reset' => 'redefinir filtros',
   'all' => 'todos'
 ];

@@ -19,7 +19,7 @@ return [
   'excursion' => 'excursiones',
   'region' => 'region',
 
-  'reset' => 'limpiar',
+  'reset' => 'limpiar filtros',
   'all' => 'todos'
 
 ];
