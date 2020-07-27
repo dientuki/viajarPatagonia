@@ -167,11 +167,21 @@ class Helpers {
 
       if (count($lang_parse[1])) {
         // create a list like "en" => 0.8
-        $langs = array_combine($lang_parse[1], $lang_parse[4]);
+        $tmp = array_combine($lang_parse[1], $lang_parse[4]);
 
         // set default to 1 for any without q factor
-        foreach ($langs as $lang => $val) {
-          if ($val === '') $langs[$lang] = 1;
+        foreach ($tmp as $lang => $val) {
+
+          if ($val === '') {
+            $val = 1;
+          };
+
+          if (strpos($lang, '-') !== false) {
+            $ex = explode('-', $lang);
+            $lang = $ex[0];
+          }
+
+          $langs[$lang] = $val;
         }
 
         // sort list based on value
