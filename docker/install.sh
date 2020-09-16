@@ -16,7 +16,7 @@ echo "Clean cache"
 docker-compose exec app php artisan config:cache
 
 echo "Configure Database"
-docker-compose exec -T mariadb mysql -u root < docker/query.sql
+docker-compose exec -T mariadb mysql -u root -plaravel < docker/query.sql
 
 echo "Migration & Seed"
 docker-compose exec app php artisan migrate:fresh --seed

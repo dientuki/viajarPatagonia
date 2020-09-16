@@ -21,9 +21,11 @@
 
 ## install in dev
 
-1) npm install && npm run dev
-2) docker-compose up
-3) sh docker/env.ini
+1) sh docker/install.sh
+
+## re-install in dev
+
+1) sh docker/install.sh
 
 ## About Laravel
 
