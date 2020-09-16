@@ -21,9 +21,16 @@
 
 ## install in dev
 
-1) npm install && npm run dev
-2) docker-compose up
-3) sh docker/env.ini
+1) sh docker/install.sh
+
+### Troubleshooting
+
+#### APP KEY
+
+Correr la generacion de la appkey desde un comando sh no funciona, no se bien xq', para eso hay que correrlo manual
+
+docker-compose exec app php artisan key:generate
+docker-compose exec app php artisan config:cache
 
 ## About Laravel
 
