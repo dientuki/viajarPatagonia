@@ -27,8 +27,5 @@ npm install
 echo "Running NPM to compile dev stuff"
 npm run dev
 
-echo "Open the home!! in the default browser"
-xdg-open http://localhost
-
 echo "To stop the containers just run 'docker-compose stop' in the terminal"
 echo "Happy coding!"
