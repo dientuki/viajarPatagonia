@@ -31,6 +31,18 @@ class Destination extends Model
       return Destination::orderBy('destination')->pluck('destination', 'id');
     }
 
+    static function getListsByRegions() {
+      $request = request();
+      if ($request->has('region')) {
+        return Destination::orderBy('destination')
+          ->join("regions", 'regions.id', '=', "fk_region")
+          ->where('fk_region', $request->get('region'))
+          ->pluck('destination', 'destinations.id');
+      } else {
+        return Destination::orderBy('destination')->pluck('destination', 'id');
+      }
+    }    
+
     static public function getAll(){
       $request = request();
       $queries = [];

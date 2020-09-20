@@ -3,9 +3,11 @@
 namespace App;
 
 use DateTime;
+use App\Inquiry;
 use App\Translations\Language;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Inquiry extends Model
 {

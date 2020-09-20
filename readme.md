@@ -19,6 +19,19 @@
 
 5) config/filesystem.php agregar app/public/ a url
 
+## install in dev
+
+1) sh docker/install.sh
+
+### Troubleshooting
+
+#### APP KEY
+
+Correr la generacion de la appkey desde un comando sh no funciona, no se bien xq', para eso hay que correrlo manual
+
+docker-compose exec app php artisan key:generate
+docker-compose exec app php artisan config:cache
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
