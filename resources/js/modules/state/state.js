@@ -1,6 +1,6 @@
 export function state(buttons) {
   buttons.forEach((button) => {
-    button.addEventListener('click', (e) => {
+    button.addEventListener('click', () => {
       const data = [],
         state_value = button.dataset.state === '1' ? 0 : 1;
 
