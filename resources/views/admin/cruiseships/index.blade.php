@@ -4,6 +4,8 @@
 
 @section ('content')
 
+@include ('admin/widgets/states')
+
 <div class="header-sticky row has-FS">
   <div class="col">{{ ucfirst(trans_choice('fields.cruiseship', 2)) }}</div>
 
@@ -30,7 +32,16 @@
                 <a href="{{route('cruise', $routeParams)}}" rel="noopener" target="_blank">{{$cruiseship['title' . $language->id]}}</a>
               </td>
             @endforeach
-            <td class="column-active"><div id="cruiseship_{{$cruiseship->id}}" class="state-activated" data-ref="{{route('admin.cruiseships.state.invert')}}" data-state="{{$cruiseship->is_active}}">{!! Helpers::get_active_icon($cruiseship->is_active ) !!}</div></td>
+            <td class="column-active">
+              <div data-id="{{$cruiseship->id}}" class="state-activated" data-ref="{{route('admin.cruiseships.state.invert')}}" data-state="{{$cruiseship->is_active}}">
+                <svg class="active" viewBox="0 0 512 512">
+                  <use href="#ico-active"/>
+                </svg>
+                <svg class="inactive" viewBox="0 0 512 512">
+                  <use href="#ico-inactive"/>
+                </svg>                
+              </div>
+            </td>
             <td class="column-action px-4">
                 <div class="row">
                 <a href="{{route('admin.cruiseships.edit', $cruiseship->id)}}" class="btn btn-primary col" title="{{__('buttons.edit')}} {{ $cruiseship['title' . $languages[0]->id] }}">{{__('buttons.edit')}}</a>
