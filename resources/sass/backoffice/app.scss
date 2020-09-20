@@ -252,6 +252,10 @@ select {
   position: relative;
 }
 
+.state-activated {
+  cursor: pointer;
+}
+
 // Draft
 @import "./modules/draft/draft.scss";
 @import "./modules/draft/rich-editor.scss";
