@@ -211,4 +211,11 @@ class HomesliderController extends Controller
         Homeslider::updateOrder($order['id'], $order['order']);
       }
     }
+
+    public function invert(Request $request) {
+      $data = json_decode($request->getContent(), true);
+      foreach($data as $content) {
+          Homeslider::updateState($content['id'], $content['state']);
+      } 
+    }  
 }

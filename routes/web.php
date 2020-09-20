@@ -29,16 +29,21 @@ Route::group(['namespace' => 'Admin',
     Route::resource('availability', 'AvailabilityController')->except(['show']);
     Route::resource('duration', 'DurationController')->except(['show']);
     Route::resource('cruiseships', 'CruiseshipsController')->except(['show']);
+    Route::post('cruiseships/state/invert', 'CruiseshipsController@invert')->name('cruiseships.state.invert'); 
     Route::resource('excursions', 'ExcursionsController')->except(['show']);
+    Route::post('excursions/state/invert', 'ExcursionsController@invert')->name('excursions.state.invert');
     Route::resource('packages', 'PackagesController')->except(['show']);
     Route::resource('users', 'UsersController')->except(['show']);
     Route::resource('inquiries', 'InquiriesController')->except(['show', 'create', 'store']);
     Route::resource('homeslider', 'HomesliderController')->except(['show']);
 
     Route::resource('currencies', 'CurrenciesController')->except(['show']);
-    Route::post('currencies/order', 'CurrenciesController@order')->name('currency.order');    
+    Route::post('currencies/order', 'CurrenciesController@order')->name('currency.order');
+    //link, controller and method, alias of link for access from html
+    Route::post('packages/state/invert', 'PackagesController@invert')->name('packages.state.invert');   
     Route::resource('third-parties', 'ThirdPartiesController')->except(['show']);
     Route::post('homeslider/order', 'HomesliderController@order')->name('homeslider.order');
+    Route::post('homeslider/state/invert', 'HomesliderController@invert')->name('homeslider.state.invert'); 
     Route::resource('pages', 'PagesController')->except(['show']);
     Route::post('pages/order', 'PagesController@order')->name('pages.order');
 

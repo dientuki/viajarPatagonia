@@ -1,3 +1,4 @@
+@import "../mixin";
 // Fonts
 
 @font-face {
@@ -225,19 +226,12 @@ select {
     text-align: right;
   }
 
-  /* stylelint-disable value-no-vendor-prefix, property-no-vendor-prefix */
   .clamp-one {
-    -webkit-line-clamp: 1;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
+    @include clamp(1);
   }
 
   .clamp-two {
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
+    @include clamp(1);
   }
 }
 
@@ -250,6 +244,33 @@ select {
 
 .relative {
   position: relative;
+}
+
+.state-activated {
+  cursor: pointer;
+
+  /* stylelint-disable selector-attribute-quotes */
+  &[data-state = "1"] {
+    .active {
+      display: inline;
+      visibility: visible;
+    }
+
+    .inactive {
+      @include hidden();
+    }
+  }
+
+  &[data-state = "0"] {
+    .active {
+      @include hidden();
+    }
+
+    .inactive {
+      display: inline;
+      visibility: visible;
+    }
+  }
 }
 
 // Draft

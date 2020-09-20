@@ -244,4 +244,11 @@ class CruiseshipsController extends Controller
 
         return redirect()->route('admin.cruiseships.index');
     }
+
+    public function invert(Request $request) {
+        $data = json_decode($request->getContent(), true);
+        foreach($data as $content) {
+            Cruiseships::updateState($content['id'], $content['state']);
+        } 
+    }    
 }

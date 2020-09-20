@@ -54,12 +54,20 @@ class Helpers {
     return $styles;
   }
 
-  public static function load_svg($file) {
+  public static function load_svg($file, $use = false) {
     $folder = '/dist/svg/';
     $filename = public_path($folder . $file . '.svg');
 
     if (file_exists($filename)) {
-      return file_get_contents($filename, FILE_USE_INCLUDE_PATH);
+      $svg = file_get_contents($filename, FILE_USE_INCLUDE_PATH);
+      
+      if ($use == true) {
+        $from = ['<svg', '</svg', 'class='];
+        $to = ['<symbol', '</symbol', 'id='];
+        $svg = str_replace($from, $to, $svg);    
+      }
+      
+      return $svg;
     }
 
     return false;
