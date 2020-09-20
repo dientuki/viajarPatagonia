@@ -1,3 +1,4 @@
+@import "../mixin";
 // Fonts
 
 @font-face {
@@ -254,6 +255,31 @@ select {
 
 .state-activated {
   cursor: pointer;
+/*
+  svg {
+    height: (26rem/$fs);
+    width: (26rem/$fs);
+  }
+*/
+  &[data-state="1"] {
+    .active {
+      display: inline;
+      visibility: visible;
+    }
+    .inactive {
+      @include hidden();
+    }
+  }
+
+  &[data-state="0"] {
+    .active {
+      @include hidden();
+    }
+    .inactive {
+      display: inline;
+      visibility: visible;      
+    }
+  }
 }
 
 // Draft
