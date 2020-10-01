@@ -15,7 +15,9 @@ if (alertClose !== null) {
 
 // Load draft js
 if (document.querySelectorAll('.draftjs').length > 0) {
+  /* eslint-disable no-unused-expressions */
   import(/* webpackChunkName: "draft" */ './modules/draft/draft.jsx');
+  /* eslint-enable no-unused-expressions */
 }
 
 // Load the image uploader
