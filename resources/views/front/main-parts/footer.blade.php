@@ -13,7 +13,7 @@
       </ul>
       <div class="footer__column">
         <span class="bold block">Gales al Sur E.V. y T.</span>
-        Leg. #9293 | Av. Patagonia 186<br />Trevelin, Buenos Aires
+        Leg. #9298 | Av. Patagonia 186<br />Trevelin, Buenos Aires
       </div>
       <div class="footer__column">
         <span class="bold block">Salimbeni Viajes E.V. y T.</span>
