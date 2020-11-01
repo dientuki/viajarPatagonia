@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 <header class="header">
   <div class="wrapper">
-    <a class="header__logo text-hidden" href="{{route('home', app()->getLocale())}}" title="{{ __('front.go_to_home') }}">Viajar por patagonia</a>
+    <a class="header__logo text-hidden" href="{{route('home', app()->getLocale())}}" title="{{ __('front.go_to_home') }}">Viajar por Argentina</a>
 
     <div class="collapsable">
       <div class="collapsable__content">
