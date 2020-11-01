@@ -158,6 +158,9 @@ jobs:
             rm -rf stylelint.json
             rm -rf scripts
             rm -rf bootstrap/cache/config.php
+            rm -rf docker
+            rm -rf docker-compose.yml
+            rm -rf svgo.yml
       - run:
           name: Making build.tar.gz
           command: |
