@@ -8,10 +8,9 @@
 <!-- CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-<title>@yield('title') - Viajar por Patagonia</title>
+<title>@yield('title') - Viajar por Argentina</title>
 @stack('meta')
-<meta name="og:site_name" content="Viajar por Patagonia">
-<meta name="og:region" content="Patagonia">
+<meta name="og:site_name" content="Viajar por Argentina">
 <meta name="og:country_name" content="Argentina">
 @stack('facebook')
 
@@ -20,8 +19,8 @@
 <link rel="icon" type="image/png" sizes="16x16" href="{{ URL::asset('favicon/favicon-16x16.png') }}">
 <link rel="manifest" href="{{ URL::asset('site.webmanifest') }}">
 <link rel="mask-icon" href="{{ URL::asset('favicon/safari-pinned-tab.svg') }}" color="#5bbad5">
-<meta name="apple-mobile-web-app-title" content="Viajar por patagonia">
-<meta name="application-name" content="Viajar por patagonia">
+<meta name="apple-mobile-web-app-title" content="Viajar por Argentina">
+<meta name="application-name" content="Viajar por Argentina">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 
