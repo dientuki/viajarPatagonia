@@ -4,7 +4,7 @@
 <div class="vertical-nav" id="sidebar">
 
   <div class="main-nav__title-wrapper vertical-nav__action" >
-    <div class="main-nav__title"><img src="{{ asset('images/logo.png') }}" width="200"></div>    
+    <div class="main-nav__title"><img src="{{ asset('images/logo-vpa.png') }}" width="200"></div>    
   </div>
 
   <nav class="main-nav">
