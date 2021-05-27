@@ -1,4 +1,4 @@
-<?php use App\Http\Helpers\Helpers; ?>
+<?php use App\Http\Helpers; ?>
 
 @foreach (Alert::getMessages() as $type => $messages)
   <div class="alert-wrapper animated zoomIn">

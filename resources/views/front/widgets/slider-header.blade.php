@@ -1,7 +1,7 @@
 <?php
 
 use App\Homeslider;
-use App\Http\Helpers\Helpers;
+use App\Http\Helpers;
 
 $sliders = Homeslider::getHome();
 $first = true;

@@ -1,5 +1,5 @@
 <?php 
-  use App\Http\Helpers\Helpers;
+  use App\Http\Helpers;
 ?>
 
 @extends('layouts.admin')

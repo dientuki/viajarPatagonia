@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Inquiry;
 use App\Mail\CreateInquiry;
 use Illuminate\Http\Request;
-use App\Http\Helpers\Helpers;
+use App\Http\Helpers;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 

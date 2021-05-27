@@ -228,7 +228,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Helper' => App\Http\Helpers::class,
+        'Helpers' => App\Http\Helpers::class,
         'HTMLMin' => HTMLMin\HTMLMin\Facades\HTMLMin::class,
     ],
 
