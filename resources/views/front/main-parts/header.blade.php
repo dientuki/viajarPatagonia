@@ -1,7 +1,7 @@
 <?php 
 
 use App\Currency;
-use App\Http\Helpers\Helpers;
+use App\Http\Helpers;
 use App\Translations\Language;
 use Illuminate\Support\Facades\Route;
 

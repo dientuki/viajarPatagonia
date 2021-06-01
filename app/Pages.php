@@ -3,7 +3,7 @@
 namespace App;
 
 use App\Pages;
-use App\Http\Helpers\Helpers;
+use App\Http\Helpers;
 use App\Translations\Language;
 use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Model;

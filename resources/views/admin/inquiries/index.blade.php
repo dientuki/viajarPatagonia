@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Helpers\Helpers;
+use App\Http\Helpers;
 use App\Translations\Language;
 use App\Translations\PackageTranslation;
 use App\Translations\ExcursionsTranslation;

@@ -1,4 +1,4 @@
-<?php use App\Http\Helpers\Helpers; ?>
+<?php use App\Http\Helpers; ?>
 
 <div class="grid has-FS filter">
   <div class="col-1_lg-2_sm-12"><div class="filter-title">{{ ucfirst(__('filters.title')) }}:</div></div>

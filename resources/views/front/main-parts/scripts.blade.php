@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Helpers\Helpers;
+use App\Http\Helpers;
 
 $ga = Helpers::getThirdParty('analytics')
 ?>

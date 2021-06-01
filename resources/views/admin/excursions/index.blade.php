@@ -1,4 +1,4 @@
-<?php use App\Http\Helpers\Helpers; ?>
+<?php use App\Http\Helpers; ?>
 
 @extends('layouts.admin')
 

@@ -5,7 +5,7 @@ namespace App;
 use App\Currency;
 use App\ExcursionsPrices;
 use App\Package2destination;
-use App\Http\Helpers\Helpers;
+use App\Http\Helpers;
 use App\Translations\Language;
 use Spatie\Image\Manipulations;
 use Illuminate\Support\Facades\App;
